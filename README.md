@@ -55,7 +55,15 @@ Click the button below to clone and deploy this template on [Vercel](https://ver
 
 You’ll be asked to install the [DatoCMS](https://www.datocms.com) integration. It lets you sign up or log in to DatoCMS and create a new DatoCMS project based on the data (speakers, stages, etc.) used in the demo.
 
+## Customize
+
+### CMS
+
 Feel free to modify the code to use a different content management system. See `lib/cms-api.ts` for details.
+
+### Constants
+
+`lib/constants.ts` contains a list of variables you should customize.
 
 ## Authentication and Database
 
@@ -67,7 +75,7 @@ You need to have GitHub OAuth set up to be able to customize the ticket after si
 
 First, create a [GitHub OAuth application](https://docs.github.com/en/free-pro-team@latest/developers/apps/creating-an-oauth-app) to use for authentication.
 
-- Set **Authorization Callback URL** as `<your domain>/api/github-oauth`.
+- Set **Authorization Callback URL** as `<your domain>/api/github-oauth`
 - After creating the OAuth app, create a **client secret**.
 
 #### Running Locally:
@@ -75,15 +83,15 @@ First, create a [GitHub OAuth application](https://docs.github.com/en/free-pro-t
 - Set the Authorization Callback URL as `http://localhost:3000/api/github-oauth` on GitHub.
 - On `.env.local`, set `NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID` as the **Client ID** of the OAuth app.
 - Set `GITHUB_OAUTH_CLIENT_SECRET` as the **Client secret** of the OAuth app.
-and `GITHUB_OAUTH_CLIENT_SECRET`.
 - Finally, set `SITE_ORIGIN` env var as `http://localhost:3000`. This is required to get the OAuth popup to work locally.
 - Restart the app (`yarn dev`) after editing `.env.local`.
 
 #### On Vercel:
 
-- Same as running locally, but make sure to set the Authorization Callback URL as `<your domain>/api/github-oauth` on GitHub.
+- Set the Authorization Callback URL as `<your deployment’s URL>/api/github-oauth` on GitHub.
 - Set `NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID` and `GITHUB_OAUTH_CLIENT_SECRET` on [Vercel Project Environment Variables Settings](https://vercel.com/docs/environment-variables).
-- Redeploy the Project on Vercel after updating environment variables.
+- Edit `SITE_URL` in `lib/constants.ts` to match your deployment’s URL.
+- Push the code to redeploy the Project on Vercel.
 
 ### Database
 
@@ -100,7 +108,7 @@ The demo uses [Redis](https://redis.io/), but you can customize it to use any da
 2. Specify the following in `.env.local`:
 
 ```
-REDIS_PORT=6379
+REDIS_PORT=6379 # Default Redis port number
 REDIS_URL=localhost
 REDIS_PASSWORD=
 REDIS_EMAIL_TO_ID_SECRET=foo # Come up with your own secret string
