@@ -56,15 +56,17 @@ export default function SpeakerSection({ speaker }: Props) {
         </a>
       </Link>
       <div key={speaker.name} className={styles.container}>
-        <Image
-          alt={speaker.name}
-          title={speaker.name}
-          src={speaker.image.url}
-          className={styles.image}
-          loading="lazy"
-          height={400}
-          width={300}
-        />
+        <div style={{ minWidth: '300px' }}>
+          <Image
+            alt={speaker.name}
+            title={speaker.name}
+            src={speaker.image.url}
+            className={styles.image}
+            loading="lazy"
+            height={400}
+            width={300}
+          />
+        </div>
         <div className={styles['speaker-details']}>
           <div>
             <h1 className={styles.name}>{speaker.name}</h1>

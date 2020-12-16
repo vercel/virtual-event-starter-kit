@@ -56,8 +56,6 @@
 
 .image {
   border-radius: var(--space-2x);
-  width: 100%;
-  height: auto;
 }
 
 @media (min-width: 768px) {
