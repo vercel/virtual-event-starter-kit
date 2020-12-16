@@ -1,0 +1,107 @@
+/**
+ * Copyright 2020 Vercel Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.footer {
+  margin: 0 auto;
+  width: 100%;
+  font-size: 12px;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  color: var(--secondary-color);
+  z-index: 2;
+}
+
+.footer-link {
+  color: var(--secondary-color);
+  font-size: 12px;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #fff;
+}
+
+.footer-logo :global(svg) {
+  height: var(--space-4x);
+  transform: translateY(5px);
+  margin-left: 2px;
+}
+
+.footer-legal {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-4x);
+}
+
+.footer-copyright {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.footer-separator {
+  margin-bottom: 15px;
+}
+
+.footer-center-group {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 960px) {
+  .footer-hostedby {
+    display: none;
+  }
+
+  .footer-legal {
+    flex-direction: row;
+  }
+
+  .footer-copyright {
+    margin-bottom: 0;
+  }
+
+  .footer-center-group {
+    flex-direction: row;
+  }
+
+  .footer-separator {
+    margin: 0 10px;
+    height: var(--space-4x);
+    width: 1px;
+    background: var(--secondary-color);
+    display: block;
+  }
+}
+
+.footer-paragraph {
+  margin: 0;
+}
+
+.secondary-text {
+  color: var(--secondary-color);
+  display: none;
+}
+
+@media screen and (min-width: 390px) {
+  .secondary-text {
+    display: initial;
+  }
+}

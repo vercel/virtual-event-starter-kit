@@ -1,0 +1,131 @@
+/**
+ * Copyright 2020 Vercel Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.container {
+  padding: var(--space-4x);
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.backlink {
+  color: var(--secondary-color);
+  padding: var(--space-8x) var(--space-4x) var(--space-4x) var(--space-4x);
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.backlink > svg {
+  margin-right: var(--space-2x);
+}
+
+.backlink:hover {
+  color: #fff;
+}
+
+.speaker-details {
+  padding: var(--space-4x) 0;
+  display: flex;
+  flex-direction: column;
+  flex: unset;
+}
+
+.talk-details {
+  margin-top: var(--space-8x);
+  padding: 0 var(--space-4x);
+  max-width: 800px;
+}
+
+.bio {
+  color: var(--accents-2);
+  max-width: 800px;
+}
+
+.image {
+  border-radius: var(--space-2x);
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    padding: var(--space-8x);
+  }
+
+  .backlink {
+    padding: var(--space-8x);
+    padding-bottom: 0;
+  }
+
+  .speaker-details {
+    padding: 0;
+    padding-left: var(--space-8x);
+  }
+
+  .talk-details {
+    padding-left: var(--space-8x);
+    color: var(--accents-2);
+  }
+
+  .image {
+    max-width: 300px;
+    max-height: 400px;
+  }
+}
+
+.name {
+  font-weight: 800;
+  color: #fff;
+  font-size: 56px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.company {
+  color: #fff;
+}
+
+.company:hover {
+  color: #fff;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 20px;
+}
+
+.bio-header {
+  font-size: 30px;
+  letter-spacing: -0.05em;
+  color: #fff;
+}
+
+.socials-header {
+  font-size: 24px;
+  letter-spacing: -0.05em;
+  color: #fff;
+  margin-bottom: var(--space-4x);
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.githubIcon {
+  margin-left: var(--space-2x);
+}

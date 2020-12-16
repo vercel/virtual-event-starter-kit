@@ -1,0 +1,87 @@
+/**
+ * Copyright 2020 Vercel Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.container {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.row-wrapper {
+  display: inline-block;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  margin: 0 24px;
+  padding: var(--space-8x) 0 0;
+  border-bottom: 1px solid var(--accents-7);
+  width: 100%;
+}
+
+.stage-name {
+  font-size: 22px;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.05em;
+  font-weight: 800;
+  min-width: 220px;
+  padding-bottom: var(--space-2x);
+  position: absolute;
+  left: initial;
+  color: var(--brand);
+}
+
+.talks {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.talks > div {
+  margin-right: 24px;
+}
+
+@media (min-width: 500px) {
+  .container {
+    border-top: 1px solid var(--accents-7);
+    margin-top: var(--space-4x);
+  }
+
+  .row {
+    margin: 0 var(--space-8x) 0 0;
+    flex-direction: row;
+    padding: var(--space-8x) 0;
+  }
+
+  .talks {
+    flex-direction: row;
+    margin-top: 0;
+  }
+
+  .stage-name {
+    font-size: var(--space-8x);
+    position: sticky;
+    left: 0;
+    padding-left: var(--space-8x);
+    z-index: 1;
+  }
+}

@@ -1,0 +1,189 @@
+/**
+ * Copyright 2020 Vercel Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.companyRow {
+  padding: 0 24px;
+}
+
+.grid {
+  margin: 0 auto 50px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 1fr);
+  grid-gap: 24px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.companyName {
+  color: #f1f1f1;
+  font-size: 24px;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-weight: 800;
+  margin: var(--space-4x) 0 var(--space);
+  padding-bottom: var(--space);
+  display: inline-flex;
+}
+
+@media (min-width: 500px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .companyRow {
+    padding: 0 var(--space-8x);
+  }
+}
+
+.rowHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: intial;
+  margin-bottom: var(--space-4x);
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .companyName {
+    font-size: 28px;
+  }
+
+  .rowHeader {
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+}
+
+.grid::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  border-radius: var(--space-2x);
+  background: #111111;
+  display: flex;
+  flex-direction: column;
+  background-clip: content-box, border-box;
+  background-image: linear-gradient(#111111, #111111), linear-gradient(to right, #333333, #333333);
+  padding: 1px;
+  cursor: pointer;
+}
+
+.card:hover,
+.card:focus {
+  outline: none;
+  background-image: linear-gradient(#111111, #111111),
+    linear-gradient(to right, var(--brand), var(--brand));
+}
+
+.cardBody {
+  padding: var(--space-4x);
+  color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.title {
+  font-weight: bold;
+  color: #f1f1f1;
+  font-size: 20px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.company {
+  color: #f1f1f1;
+  margin: var(--space) 0 0 0;
+}
+
+.title {
+  margin: 0;
+}
+
+.description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: var(--text-md);
+  margin: 0;
+}
+
+.link:hover {
+  color: #fff;
+}
+
+.icon {
+  color: #fff;
+  margin-left: var(--space);
+}
+
+.button {
+  border-radius: var(--space-2x);
+  border: none;
+  color: #fff;
+  background: var(--brand);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--text-md);
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  outline: none;
+  transition: background-color 0.2s ease;
+  padding: 0 var(--space-4x);
+  height: 50px;
+  width: 270px;
+  min-width: 270px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover,
+.button:focus {
+  background: black;
+  color: var(--brand);
+  border: 1px solid var(--brand);
+}
+
+.button:hover > svg,
+.button:focus > svg {
+  fill: var(--brand);
+}
+
+.button > svg {
+  margin-left: var(--space-2x);
+  min-height: var(--space-8x);
+  min-width: var(--space-8x);
+}

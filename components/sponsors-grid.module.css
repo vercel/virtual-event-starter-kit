@@ -1,0 +1,96 @@
+/**
+ * Copyright 2020 Vercel Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.card {
+  border-radius: var(--space-2x);
+  background: #111111;
+  display: flex;
+  flex-direction: column;
+  background-clip: content-box, border-box;
+  background-image: linear-gradient(#111111, #111111), linear-gradient(to right, #333333, #333333);
+  padding: 1px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.card:hover,
+.card:focus {
+  outline: none;
+  background-image: linear-gradient(#111111, #111111),
+    linear-gradient(to right, var(--brand), var(--brand));
+}
+
+.grid {
+  width: 100%;
+  margin: 50px auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .card {
+    margin-bottom: 0;
+  }
+  .grid {
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+.silver {
+  border-radius: 6px;
+}
+
+.cardBody {
+  padding: var(--space-4x);
+  color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.name {
+  font-weight: bold;
+  color: #f1f1f1;
+  font-size: 24px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.description {
+  margin-top: var(--space);
+  margin-bottom: 0;
+  line-height: 1.4;
+}
