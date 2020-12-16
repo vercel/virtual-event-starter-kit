@@ -67,7 +67,7 @@ Feel free to modify the code to use a different content management system. See `
 
 ## Authentication and Database
 
-Some features won’t work until you set up authentication and database. The demo (https://demo.vercel.events) uses [GitHub OAuth](https://docs.github.com/en/free-pro-team@latest/developers/apps/creating-an-oauth-app) for authentication and [Redis](https://redis.io/) for database. You can use different providers as you see fit.
+Some features won’t work until you set up authentication and database. The demo ([demo.vercel.events](https://demo.vercel.events)) uses [GitHub OAuth](https://docs.github.com/en/free-pro-team@latest/developers/apps/creating-an-oauth-app) for authentication and [Redis](https://redis.io/) for database. You can use different providers as you see fit.
 
 ### Authentication
 
@@ -100,7 +100,7 @@ You need a database to save user data and enable the following features:
 - Generating a unique ticket number for each email when signing up on the registration form. If DB is not set up, it’ll always be `1234`.
 - Generating a unique ticket image or ticket URL after signing in with GitHub. If DB is not set up, each ticket image or URL will show generic data.
 
-The demo uses [Redis](https://redis.io/), but you can customize it to use any database you like.
+The demo ([demo.vercel.events](https://demo.vercel.events)) uses [Redis](https://redis.io/), but you can customize it to use any database you like.
 
 #### Running Redis Locally
 
@@ -136,7 +136,7 @@ The primary use case for this is updating the YouTube embedded URL. Next.js Conf
 
 ### Schedule / Speaker Pages
 
-Schedule and speaker information is hosted in DatoCMS. The demo (`demo.vercel.events`) is seeded with images from Unsplash and a placeholder schedule. Each speaker has their own page with an image, bio, social media links, and information about their talk. The schedule is also shown as a sidebar on each corresponding stage.
+Schedule and speaker information is hosted in DatoCMS. The demo ([demo.vercel.events](https://demo.vercel.events)) is seeded with images from Unsplash and a placeholder schedule. Each speaker has their own page with an image, bio, social media links, and information about their talk. The schedule is also shown as a sidebar on each corresponding stage.
 
 ### Sponsor Expo
 
@@ -157,7 +157,7 @@ Networking is vital for in-person conferences and replicating that environment v
 
 For Next.js Conf, we used Discord for conference attendees to chat. On each stage, we showed a highlighted message from the corresponding Discord channel. If a user in our allow list used the camera emoji (📸) it would show the message on the stage.
 
-If you'd like to add similar functionality to your conference, you can use the API route below to fetch messages after creating a Discord bot. This API route is set up with the proper caching headers and ensures you won't get rate-limited with high traffic.
+If you'd like to add similar functionality to your conference, you can use the [API route](https://nextjs.org/docs/api-routes/introduction) below to fetch messages after creating a Discord bot. This API route is set up with the proper caching headers and ensures you won't get rate-limited with high traffic.
 
 ```ts
 import ms from 'ms';
