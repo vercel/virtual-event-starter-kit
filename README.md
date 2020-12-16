@@ -89,7 +89,7 @@ First, create a [GitHub OAuth application](https://docs.github.com/en/free-pro-t
 #### On Vercel:
 
 - Set the Authorization Callback URL as `<your deployment’s URL>/api/github-oauth` on GitHub.
-- Set `NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID` and `GITHUB_OAUTH_CLIENT_SECRET` on [Vercel Project Environment Variables Settings](https://vercel.com/docs/environment-variables).
+- Set `NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID` and `GITHUB_OAUTH_CLIENT_SECRET` on [Vercel Project Environment Variables Settings](https://vercel.com/docs/environment-variables) for the production environment.
 - Edit `SITE_URL` in `lib/constants.ts` to match your deployment’s URL.
 - Push the code to redeploy the Project on Vercel.
 
@@ -98,7 +98,7 @@ First, create a [GitHub OAuth application](https://docs.github.com/en/free-pro-t
 You need a database to save user data and enable the following features:
 
 - Generating a unique ticket number for each email. If DB is not set up, it’ll always be `1234`.
-- Generating a unique ticket image or ticket URL after signing in with GitHub. If DB is not set up, the image or the ticket URL will show generic data.
+- Generating a unique ticket image or ticket URL after signing in with GitHub. If DB is not set up, each ticket image or URL will show generic data.
 
 The demo uses [Redis](https://redis.io/), but you can customize it to use any database you like.
 
@@ -122,7 +122,7 @@ REDIS_EMAIL_TO_ID_SECRET=foo # Come up with your own secret string
 
 #### On Vercel
 
-Provision your own Redis instance and set `REDIS_PORT`, `REDIS_URL`, `REDIS_PASSWORD`, and `REDIS_EMAIL_TO_ID_SECRET` (come up with your own secret string).
+Provision your own Redis instance and set `REDIS_PORT`, `REDIS_URL`, `REDIS_PASSWORD`, and `REDIS_EMAIL_TO_ID_SECRET` (come up with your own secret string) for the production environment.
 
 ## More Details
 
