@@ -83,28 +83,28 @@ First, create a [GitHub OAuth application](https://docs.github.com/en/free-pro-t
 - Set the Authorization Callback URL as `http://localhost:3000/api/github-oauth` on GitHub.
 - On `.env.local`, set `NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID` as the **Client ID** of the OAuth app.
 - Set `GITHUB_OAUTH_CLIENT_SECRET` as the **Client secret** of the OAuth app.
-- Finally, set `SITE_ORIGIN` env var as `http://localhost:3000`. This is required to get the OAuth popup to work locally.
+- Finally, make sure the `SITE_ORIGIN` environment variable is set as `http://localhost:3000`. This is required to get the OAuth popup to work locally.
 - Restart the app (`yarn dev`) after editing `.env.local`.
 
 #### On Vercel:
 
 - Set the Authorization Callback URL as `<your deployment’s URL>/api/github-oauth` on GitHub.
 - Set `NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID` and `GITHUB_OAUTH_CLIENT_SECRET` on [Vercel Project Environment Variables Settings](https://vercel.com/docs/environment-variables) for the production environment.
-- Edit `SITE_URL` in `lib/constants.ts` to match your deployment’s URL.
+- Edit `SITE_URL` in `lib/constants.ts` to match your deployment’s URL (no trailing slash).
 - Push the code to redeploy the Project on Vercel.
 
 ### Database
 
 You need a database to save user data and enable the following features:
 
-- Generating a unique ticket number for each email. If DB is not set up, it’ll always be `1234`.
+- Generating a unique ticket number for each email when signing up on the registration form. If DB is not set up, it’ll always be `1234`.
 - Generating a unique ticket image or ticket URL after signing in with GitHub. If DB is not set up, each ticket image or URL will show generic data.
 
 The demo uses [Redis](https://redis.io/), but you can customize it to use any database you like.
 
-#### Running Locally
+#### Running Redis Locally
 
-1. Install Redis locally and launch it.
+1. Install Redis locally and run it.
 2. Specify the following in `.env.local`:
 
 ```
@@ -120,9 +120,9 @@ REDIS_EMAIL_TO_ID_SECRET=foo # Come up with your own secret string
 4. In a separate terminal window, start the Next.js dev server (`yarn dev`) and sign up using the registration form.
 5. In a separate terminal window, run Redis CLI, list keys (`keys *`) and inspect a `id:<hash>` key (`hgetall id:<hash>`). You should see the newly registered user.
 
-#### On Vercel
+#### Using Redis On Vercel
 
-Provision your own Redis instance and set `REDIS_PORT`, `REDIS_URL`, `REDIS_PASSWORD`, and `REDIS_EMAIL_TO_ID_SECRET` (come up with your own secret string) for the production environment.
+Provision your own Redis instance and set `REDIS_PORT`, `REDIS_URL`, `REDIS_PASSWORD`, and `REDIS_EMAIL_TO_ID_SECRET` (come up with your own secret string) on [Vercel Project Environment Variables Settings](https://vercel.com/docs/environment-variables) for the production environment.
 
 ## More Details
 
