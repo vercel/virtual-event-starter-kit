@@ -207,7 +207,7 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
             <>
               GitHub OAuth app is required.{' '}
               <a
-                href={REPO}
+                href={`${REPO}#authentication`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={ticketFormStyles['learn-more']}
