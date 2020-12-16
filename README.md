@@ -86,7 +86,7 @@ First, create a [GitHub OAuth application](https://docs.github.com/en/free-pro-t
 - Finally, make sure the `NEXT_PUBLIC_SITE_ORIGIN` environment variable is set as `http://localhost:3000`. This is required to get the OAuth popup to work locally.
 - Restart the app (`yarn dev`) after editing `.env.local`.
 
-Once it’s set up, sign up on the registration form on the home page (not from a stage page) and then click "Generate with GitHub".
+Once it’s set up, sign up using the registration form on the home page (not on a stage page) and then click "Generate with GitHub".
 
 #### On Vercel:
 
