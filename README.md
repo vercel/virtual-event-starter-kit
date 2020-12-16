@@ -47,17 +47,22 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Deploy Your Own
+## Clone and Deploy
 
-We've included a read-only DatoCMS access token so you can clone and deploy without setting up your own CMS. However, there are a few steps you'll need to complete before launching your event.
+Click the button below to clone and deploy this template on [Vercel](https://vercel.com/).
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fvirtual-event-starter-kit&project-name=virtual-event-starter-kit&repository-name=virtual-event-starter-kit&demo-title=Virtual%20Event%20Starter%20Kit&demo-description=Jumpstart%20your%20virtual%20event%20and%20scale%20to%20any%20size%20with%20Next.js%20and%20Vercel.&demo-url=https%3A%2F%2Fdemo.vercel.events%2F&demo-image=https%3A%2F%2Fdemo.vercel.events%2Fdeploy.png&integration-ids=oac_I1h8Dm9Mf30VNb3xQ0hebYvS&external-id={%22githubRepo%22:%20%22vercel/virtual-event-starter-kit%22})
+
+You’ll be asked to install a [DatoCMS](https://www.datocms.com) integration. It lets you sign up or log in to DatoCMS and create a new DatoCMS project based on the data used in the demo.
+
+Feel free to modify the code to use a different CMS. See `lib/cms-api.ts` for details.
+
+## Set up Backend
 
 You'll need to customize this starter kit to your needs. There are three pieces you'll want to choose:
 
 - Authentication (defaults to [GitHub OAuth](https://docs.github.com/en/free-pro-team@latest/developers/apps/creating-an-oauth-app))
 - Database (defaults to [Redis](https://redis.io/))
-- CMS (defaults to [DatoCMS](https://www.datocms.com/))
 
 We've included the defaults used for Next.js Conf. However, you are free to switch these as you see fit.
 
@@ -96,11 +101,7 @@ REDIS_EMAIL_TO_ID_SECRET=foo # Come up with your own secret string
 3. In a separate terminal window, start the Next.js dev server (`yarn dev`) and sign up using the registration form.
 4. In a separate terminal window, run Redis CLI and inspect the `id:<hash>` key. You should see the newly registered user.
 
-### CMS
-
-The default example uses [DatoCMS](https://www.datocms.com).
-
-## About
+## More Details
 
 ### Stages
 
