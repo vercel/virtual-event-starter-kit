@@ -83,7 +83,7 @@ First, create a [GitHub OAuth application](https://docs.github.com/en/free-pro-t
 - Set the Authorization Callback URL as `http://localhost:3000/api/github-oauth` on GitHub.
 - On `.env.local`, set `NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID` as the **Client ID** of the OAuth app.
 - Set `GITHUB_OAUTH_CLIENT_SECRET` as the **Client secret** of the OAuth app.
-- Finally, make sure the `SITE_ORIGIN` environment variable is set as `http://localhost:3000`. This is required to get the OAuth popup to work locally.
+- Finally, make sure the `NEXT_PUBLIC_SITE_ORIGIN` environment variable is set as `http://localhost:3000`. This is required to get the OAuth popup to work locally.
 - Restart the app (`yarn dev`) after editing `.env.local`.
 
 Once it’s set up, sign up on the registration form on the home page (not from a stage page) and then click "Generate with GitHub".
