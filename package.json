@@ -1,7 +1,6 @@
 {
   "name": "virtual-event-starter-kit",
   "description": "Starter kit for your virtual event.",
-  "private": true,
   "repository": "vercel/virtual-event-starter-kit",
   "author": "Vercel Inc.",
   "homepage": "https://demo.vercel.events",
