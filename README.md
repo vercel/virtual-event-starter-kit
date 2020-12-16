@@ -1,8 +1,10 @@
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fvirtual-event-starter-kit&project-name=virtual-event-starter-kit&repository-name=virtual-event-starter-kit&demo-title=Virtual%20Event%20Starter%20Kit&demo-description=Jumpstart%20your%20virtual%20event%20and%20scale%20to%20any%20size%20with%20Next.js%20and%20Vercel.&demo-url=https%3A%2F%2Fdemo.vercel.events%2F&demo-image=https%3A%2F%2Fdemo.vercel.events%2Fdeploy.png&integration-ids=oac_I1h8Dm9Mf30VNb3xQ0hebYvS&external-id={%22githubRepo%22:%20%22vercel/virtual-event-starter-kit%22})
 
-# Virtual Event Starter Kit
+# [Virtual Event Starter Kit](https://vercel.com/virtual-event-starter-kit)
 
-This virtual event starter kit was used to run Next.js Conf 2020, which had almost 40,000 live attendees. It includes the following features:
+### Demo: https://demo.vercel.events
+
+This virtual event starter kit was used to run [Next.js Conf 2020](https://nextjs.org/2020/conf), which had almost 40,000 live attendees. It includes the following features:
 
 - Multiple stages with an embedded YouTube stream
 - Sponsor expo, including individual virtual booths
@@ -15,7 +17,7 @@ This platform is built upon three principles:
 
 - **Delegation:** Running a conference is difficult – you have to **delegate** tasks to third-parties to ensure success. Certain elements of an online conference experience are tough to get right, and we'd rather lean on established, industry leading solutions.
 - **Flexibility:** While delegating certain elements of the conference experience is helpful, it's also important to own the platform. That's why this template provides a **flexible** open-source codebase that can be modified for your event.
-- **Reducing Risk:** It's inevitable something will go wrong during your event. This platform **reduces risk** by leaning on a dynamic site that outputs as static files. These static files are cached, ensuring your site is never down. Then, it uses [Serverless Functions](https://vercel.com/docs/serverless-functions/introduction) to sprinkle dynamic content on top, which are hosted by a provider with 99.99% uptime.
+- **Reducing Risk:** It's inevitable something will go wrong during your event. This platform **reduces risk** by leaning on a dynamic site that outputs as static files using [Incremental Static Generation](https://nextjs.org/docs/basic-features/data-fetching). These static files are cached, ensuring your site is never down. Then, it uses [API Routes](https://nextjs.org/docs/api-routes/introduction) to sprinkle dynamic content on top, which are hosted by a provider with 99.99% uptime.
 
 ### Built With
 
@@ -25,27 +27,25 @@ This platform is built upon three principles:
 - CMS: [DatoCMS](https://www.datocms.com)
 - Videos: [YouTube](https://www.youtube.com)
 - Deployment: [Vercel](https://vercel.com)
+- Authentication: [GitHub OAuth](https://docs.github.com/en/free-pro-team@latest/developers/apps/authorizing-oauth-apps)
+- Database: [Redis](https://redis.io)
 
 ## Running Locally
 
-First, run the development server:
+First, set local environment variables. We've included a read-only DatoCMS access token you can use in `.env.local.example`.
+
+```
+cp .env.local.example .env.local
+```
+
+Then install packages and run the development server:
 
 ```bash
+yarn install
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
 ## Deploy Your Own
 
@@ -76,13 +76,13 @@ We've included the defaults used for Next.js Conf. However, you are free to swit
 #### If testing locally:
 
 - Set the Authorization Callback URL as `http://localhost:3000/api/github-oauth` on GitHub.
-- Create `.env.local` and set `NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID` and `GITHUB_OAUTH_CLIENT_SECRET`. You can copy `.env.local.example` or use [Vercel CLI](https://vercel.com/docs/cli#commands/env).
+- Create `.env.local` and set `NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID` and `GITHUB_OAUTH_CLIENT_SECRET`.
 - Finally, set `SITE_ORIGIN` env var as `http://localhost:3000`. This is required to get the OAuth popup to work locally.
 
 ### Test Database (Redis) Locally
 
 1. Install Redis locally and launch it.
-2. Specify the following in `.env.local`
+2. Specify the following in `.env.local`:
 
 ```
 REDIS_PORT=6379
@@ -98,10 +98,7 @@ REDIS_EMAIL_TO_ID_SECRET=foo # Come up with your own secret string
 
 ### CMS
 
-The default example uses DatoCMS. We also have examples for:
-
-- [AgilityCMS]()
-- [Contentful]()
+The default example uses [DatoCMS](https://www.datocms.com).
 
 ## About
 
