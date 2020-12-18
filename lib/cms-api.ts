@@ -16,8 +16,7 @@
 
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import { GetStaticPathsContext, GetStaticPropsContext } from 'next'
-import { ParsedUrlQuery } from 'querystring'
+
 import { agilityConfig, syncContentAndGetClient } from './agility-cms/agility.config'
 import { asyncForEach, expandContentItem, expandContentList, expandLinkedList } from "./agility-cms/agility.utils"
 import { Job, Speaker, Sponsor, Stage } from "./types"
