@@ -25,7 +25,7 @@ import { Stage } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
-  stage: Stage | null;
+  stage: Stage;
   allStages: Stage[];
 };
 
@@ -34,8 +34,6 @@ export default function StagePage({ stage, allStages }: Props) {
     title: 'Demo - Virtual Event Starter Kit',
     description: META_DESCRIPTION
   };
-
-  if (stage === null) return null
 
   return (
     <Page meta={meta} fullViewport>
@@ -50,6 +48,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = params?.slug;
   const stages = await getAllStages();
   const stage = stages.find((s: Stage) => s.slug === slug) || null;
+
+  if (!stage) {
+    return {
+      notFound: true
+    };
+  }
 
   return {
     props: {

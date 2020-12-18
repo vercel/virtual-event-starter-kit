@@ -25,7 +25,7 @@ import { Sponsor } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
-  sponsor: Sponsor | null;
+  sponsor: Sponsor;
 };
 
 export default function SponsorPage({ sponsor }: Props) {
@@ -33,8 +33,6 @@ export default function SponsorPage({ sponsor }: Props) {
     title: 'Demo - Virtual Event Starter Kit',
     description: META_DESCRIPTION
   };
-
-  if (sponsor === null) return null
 
   return (
     <Page meta={meta}>
@@ -49,6 +47,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = params?.slug;
   const sponsors = await getAllSponsors();
   const sponsor = sponsors.find((s: Sponsor) => s.slug === slug) || null;
+
+  if (!sponsor) {
+    return {
+      notFound: true
+    };
+  }
 
   return {
     props: {
