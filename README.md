@@ -310,4 +310,4 @@ export default async function getDiscordMessage(req: NextApiRequest, res: NextAp
 
 ### Demo
 
-The demo is available at https://demo.vercel.events. The data recorded or used on the demo may be removed by Vercel at any point.
+The demo is available at https://demo.vercel.events. The data recorded or used on the demo may be removed by Vercel at any point. Test
