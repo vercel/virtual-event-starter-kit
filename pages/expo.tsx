@@ -48,6 +48,12 @@ export default function ExpoPage({ sponsors }: Props) {
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const sponsors = await getAllSponsors();
 
+  if (!sponsors) {
+    return {
+      notFound: true
+    };
+  }
+
   return {
     props: {
       sponsors
