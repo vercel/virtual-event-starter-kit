@@ -16,7 +16,7 @@
 
 module.exports = {
   images: {
-    domains: ['cdn.aglty.io'],
+    domains: ['datocms-assets.com', 'www.datocms-assets.com', 'cdn.aglty.io'],
     imageSizes: [24, 64, 300]
   }
 };
