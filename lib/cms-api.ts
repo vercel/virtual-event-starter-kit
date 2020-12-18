@@ -14,131 +14,200 @@
  * limitations under the License.
  */
 
-const API_URL = 'https://graphql.datocms.com/';
-const API_TOKEN = process.env.DATOCMS_READ_ONLY_API_TOKEN;
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+import { GetStaticPathsContext, GetStaticPropsContext } from 'next'
+import { ParsedUrlQuery } from 'querystring'
+import { agilityConfig, syncContentAndGetClient } from './agility-cms/agility.config'
+import { asyncForEach, expandContentItem, expandContentList, expandLinkedList } from "./agility-cms/agility.utils"
+import { Job, Speaker, Sponsor, Stage } from "./types"
 
-async function fetchCmsAPI(query: string, { variables }: { variables?: Record<string, any> } = {}) {
-  const res = await fetch(API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${API_TOKEN}`
-    },
-    body: JSON.stringify({
-      query,
-      variables
-    })
-  });
+/**
+ * Get the list of speakers, sorted by name.
+ *
+ * @export
+ * @returns {Promise<Speaker[]>}
+ */
+export async function getAllSpeakers ():Promise<Speaker[]> {
 
-  const json = await res.json();
-  if (json.errors) {
-    // eslint-disable-next-line no-console
-    console.error(json.errors);
-    throw new Error('Failed to fetch API');
-  }
+	const agility = await syncContentAndGetClient(null)
+	let speakers = await agility.getContentList({ referenceName: "speakers", languageCode: agilityConfig.languageCode })
+	const schedule = await agility.getContentList({ referenceName: "schedule", languageCode: agilityConfig.languageCode })
+	const languageCode = agilityConfig.languageCode
 
-  return json.data;
+	const lst:Speaker[] = []
+
+	await asyncForEach(speakers, async (speaker:any) => {
+		//expand out the talks on this stage...
+		//speaker = await expandLinkedList({ agility, contentItem: speaker, fieldName: "talk", languageCode, sortIDField: "talkIDs", excludeNonSortedIds: true  })
+
+		speaker = await expandContentItem({agility, contentItem: speaker, languageCode})
+
+
+		//find any talks that this speaker is on...
+		const talks = schedule
+						.filter((t:any) => {
+							return `,${ t.fields.speakerIDs},`.indexOf(`,${speaker.contentID},`) !== -1
+						})
+						.map((t:any) => {
+							return {
+								title: t.fields.name,
+								description: t.fields.description
+							}
+						})
+		//the speaker could have multiple talks - this just picks the first one
+		//TODO: show ALL of the talks the speaker has...
+		const talk = (talks || []).length > 0 ? talks[0] : null
+
+
+		lst.push({
+			name: speaker.fields.name,
+			title: speaker.fields.title,
+			bio: speaker.fields.bio,
+			slug: speaker.fields.slug,
+			twitter: speaker.fields.twitter,
+			github: speaker.fields.github,
+			company: speaker.fields.company.fields.name,
+			image: {
+				url: `${speaker.fields.image.url}?w=300&h=400&c=1`
+			},
+			imageSquare: {
+				url: `${speaker.fields.image.url}?w=192&h=192&c=1`
+			},
+			talk
+		})
+	})
+
+	//return speakers sorted by name
+	return lst.sort((a, b) => a.name > b.name ? 1 : -1)
 }
 
-export async function getAllSpeakers() {
-  const data = await fetchCmsAPI(`
-    {
-      allSpeakers(first: 100) {
-        name
-        bio
-        title
-        slug
-        twitter
-        github
-        company
-        talk {
-          title
-          description
-        }
-        image {
-          url(imgixParams: {fm: jpg, fit: crop, w: 300, h: 400})
-        }
-        imageSquare: image {
-          url(imgixParams: {fm: jpg, fit: crop, w: 192, h: 192})
-        }
-      }
-    }
-  `);
+/**
+ * Return the list of stages, sorted to match the ordering in the CMS.
+ *
+ * @export
+ * @returns {Promise<Stage[]>}
+ */
+export async function getAllStages():Promise<Stage[]> {
 
-  return data.allSpeakers;
+	const agility = await syncContentAndGetClient(null)
+	const languageCode = agilityConfig.languageCode
+	const stages = await agility.getContentList({ referenceName: "stages", languageCode,  })
+	await expandContentList({agility, contentItems: stages, languageCode, depth: 2})
+
+
+	const lst: Stage[] = stages
+		.sort((a:any, b:any) => a.properties.itemOrder > b.properties.itemOrder ? 1 : -1)
+		.map((stage:any) => {
+
+		 const schedule:any[] = stage.fields.schedule?.map((talk:any) => {
+
+			return {
+				title: talk.fields.name,
+				start: talk.fields.start,
+				end: talk.fields.end,
+				speaker: talk.fields.speaker?.map((speaker:any) => {
+					return {
+						name: speaker.fields.name,
+						slug: speaker.fields.slug,
+						image: {
+							url: `${speaker.fields.image.url}?w=120&h=120&c=1`
+						}
+					}
+				})
+			}
+
+		 })
+
+		return {
+			name: stage.fields.name,
+			slug: stage.fields.slug,
+			stream: stage.fields.stream,
+			discord: stage.fields.discord,
+			schedule
+		}
+	})
+
+	return lst
+
 }
+/**
+ * Get the list of sponsor companies, sorted by their Tier Rank.
+ *
+ * @export
+ * @returns {Promise<Sponsor[]>}
+ */
+export async function getAllSponsors():Promise<Sponsor[]> {
 
-export async function getAllStages() {
-  const data = await fetchCmsAPI(`
-    {
-      allStages(first: 100, orderBy: order_ASC) {
-        name
-        slug
-        stream
-        discord
-        schedule {
-          title
-          start
-          end
-          speaker {
-            name
-            slug
-            image {
-              url(imgixParams: {fm: jpg, fit: crop, w: 120, h: 120})
-            }
-          }
-        }
-      }
-    }
-  `);
+	const agility = await syncContentAndGetClient(null)
+	const languageCode = agilityConfig.languageCode
 
-  return data.allStages;
+	let companies = await agility.getContentList({ referenceName: "companies", languageCode: agilityConfig.languageCode })
+	companies = companies.sort((a:any, b:any) => a.fields.tierRank > b.fields.tierRank ? 1 : -1)
+
+	const lst:Sponsor[] = []
+	await asyncForEach(companies, async (company:any) => {
+		company = await expandLinkedList({agility, contentItem: company, languageCode,  fieldName: "links" })
+
+		let links =[]
+
+		if (company.fields.links) {
+			links = company.fields.links.map((link:any) => {
+				return {
+					url: link.fields.link.href,
+					text: link.fields.link.text
+				}
+			})
+		}
+
+		lst.push({
+			name: company.fields.name,
+			discord: company.fields.discord,
+			slug: company.fields.slug,
+			website: company.fields.website,
+			callToAction: company.fields.callToAction.text,
+			callToActionLink: company.fields.callToAction.href,
+			youtubeSlug: company.fields.youtubeSlug,
+			tier: company.fields.tier,
+			description: company.fields.description,
+			cardImage: {
+				url: `${company.fields.cardImage.url}`
+			},
+			logo: {
+				url: `${company.fields.logo.url}`
+			},
+			links
+		})
+
+	})
+
+	return lst
 }
+/**
+ * Get the list of jobs, sorted by rank.
+ *
+ * @export
+ * @returns {Promise<Job[]>}
+ */
+export async function getAllJobs():Promise<Job[]> {
 
-export async function getAllSponsors() {
-  const data = await fetchCmsAPI(`
-    {
-      allCompanies(first: 100, orderBy: tierRank_ASC) {
-        name
-        description
-        slug
-        website
-        callToAction
-        callToActionLink
-        discord
-        youtubeSlug
-        tier
-        links {
-          url
-          text
-        }
-        cardImage {
-          url(imgixParams: {fm: jpg, fit: crop})
-        }
-        logo {
-          url(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100})
-        }
-      }
-    }
-  `);
+	const agility = await syncContentAndGetClient(null)
+	const languageCode = agilityConfig.languageCode
+	let jobs = await agility.getContentList({ referenceName: "jobs", languageCode: agilityConfig.languageCode })
 
-  return data.allCompanies;
-}
+	jobs = jobs.sort((a:any, b:any) => a.fields.rank > b.fields.rank ? 1 : -1)
 
-export async function getAllJobs() {
-  const data = await fetchCmsAPI(`
-    {
-      allJobs(first: 100, orderBy: rank_ASC) {
-        id
-        companyName
-        title
-        description
-        discord
-        link
-        rank
-      }
-    }
-  `);
+	await expandContentList({agility, contentItems:jobs, languageCode, depth: 1})
 
-  return data.allJobs;
+	return jobs.map((job:any) => {
+		return {
+			id: job.contentID,
+			companyName: job.fields.company?.fields.name,
+			title: job.fields.name,
+			description: job.fields.description,
+			discord: job.fields.discord,
+			link: job.fields.link,
+			rank: parseInt(job.fields.rank)
+		}
+	}).sort((a:any, b:any) => a.rank > b.rank ? 1 : -1)
 }
