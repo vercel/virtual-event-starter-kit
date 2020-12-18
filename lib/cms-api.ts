@@ -16,7 +16,7 @@
 
 import { RichText, Link } from 'prismic-reactjs'
 
-const API_ID = 'nextjs-conference';
+const API_ID = 'your-repo-name';
 const API_REF_URL = `https://${API_ID}.prismic.io/api/v2`;
 const API_URL = `https://${API_ID}.prismic.io/graphql`;
 const API_TOKEN = '';
