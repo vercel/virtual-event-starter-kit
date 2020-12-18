@@ -13,8 +13,7 @@
     "dev": "next",
     "start": "next start",
     "build": "next build",
-	"license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js",
-	"cms-clear": "node lib/agility-cms/agility.sync.js clear"
+	"license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js"
   },
   "dependencies": {
 	"@agility/content-fetch": "^1.0.0",
