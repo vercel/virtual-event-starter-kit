@@ -267,6 +267,7 @@ export default async function getDiscordMessage(req: NextApiRequest, res: NextAp
   }
 
   const channelId = CHANNELS.get(stage);
+
   if (!channelId) {
     return res.status(400).json({ error: `Invalid "stage": ${stage}` });
   }
@@ -286,6 +287,7 @@ export default async function getDiscordMessage(req: NextApiRequest, res: NextAp
   }
 
   const messageToShow = await getLatestMessageWithEmoji(messages, EMOJI, USERS);
+
   if (!messageToShow) {
     return res.status(404).json({ error: 'Could not find message with emoji' });
   }
@@ -296,7 +298,6 @@ export default async function getDiscordMessage(req: NextApiRequest, res: NextAp
     timestamp: messageToShow.message.timestamp
   };
 
-  // Set caching headers
   const expires = new Date(Date.now() + ms(`${EXPIRES_SECONDS}s`));
   res.setHeader('Expires', expires.toUTCString());
   res.setHeader(
