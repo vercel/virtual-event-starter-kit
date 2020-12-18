@@ -25,7 +25,7 @@ import { Stage } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
-  stage: Stage;
+  stage: Stage | null;
   allStages: Stage[];
 };
 
@@ -34,6 +34,8 @@ export default function StagePage({ stage, allStages }: Props) {
     title: 'Demo - Virtual Event Starter Kit',
     description: META_DESCRIPTION
   };
+
+  if (stage === null) return null
 
   return (
     <Page meta={meta} fullViewport>

@@ -13,10 +13,13 @@
     "dev": "next",
     "start": "next start",
     "build": "next build",
-    "license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js"
+	"license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js",
+	"cms-clear": "node lib/agility-cms/agility.sync.js clear"
   },
   "dependencies": {
-    "@reach/skip-nav": "0.12.1",
+	"@agility/content-fetch": "^1.0.0",
+    "@agility/content-sync": "^0.1.23",
+	"@reach/skip-nav": "0.12.1",
     "chrome-aws-lambda": "5.5.0",
     "classnames": "2.2.6",
     "cookie": "0.4.1",

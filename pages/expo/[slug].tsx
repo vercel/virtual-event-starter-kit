@@ -25,7 +25,7 @@ import { Sponsor } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
-  sponsor: Sponsor;
+  sponsor: Sponsor | null;
 };
 
 export default function SponsorPage({ sponsor }: Props) {
@@ -33,6 +33,8 @@ export default function SponsorPage({ sponsor }: Props) {
     title: 'Demo - Virtual Event Starter Kit',
     description: META_DESCRIPTION
   };
+
+  if (sponsor === null) return null
 
   return (
     <Page meta={meta}>

@@ -25,7 +25,7 @@ import { Speaker } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
-  speaker: Speaker;
+  speaker: Speaker | null;
 };
 
 export default function SpeakerPage({ speaker }: Props) {
@@ -33,6 +33,8 @@ export default function SpeakerPage({ speaker }: Props) {
     title: 'Demo - Virtual Event Starter Kit',
     description: META_DESCRIPTION
   };
+
+  if (speaker === null) return null
 
   return (
     <Page meta={meta}>
