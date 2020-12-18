@@ -1,5 +1,3 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fvirtual-event-starter-kit&project-name=virtual-event-starter-kit&repository-name=virtual-event-starter-kit&demo-title=Virtual%20Event%20Starter%20Kit&demo-description=Jumpstart%20your%20virtual%20event%20and%20scale%20to%20any%20size%20with%20Next.js%20and%20Vercel.&demo-url=https%3A%2F%2Fdemo.vercel.events%2F&demo-image=https%3A%2F%2Fdemo.vercel.events%2Fdeploy.png&integration-ids=oac_I1h8Dm9Mf30VNb3xQ0hebYvS&external-id=%7B%22manifest%22%3A%20%22https%3A%2F%2Fraw.githubusercontent.com%2Fvercel%2Fvirtual-event-starter-kit%2Fmain%2Fdatocms.json%22%7D)
-
 # [Virtual Event Starter Kit](https://vercel.com/virtual-event-starter-kit)
 
 ### Demo: https://demo.vercel.events
@@ -24,36 +22,55 @@ This platform is built upon three principles:
 - Framework: [Next.js](https://nextjs.org)
   - [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support)
   - [TypeScript](https://nextjs.org/docs/basic-features/typescript)
-- CMS: [DatoCMS](https://www.datocms.com)
+- CMS: [Prismic](https://prismic.io)
 - Videos: [YouTube](https://www.youtube.com)
 - Deployment: [Vercel](https://vercel.com)
 - Authentication: [GitHub OAuth](https://docs.github.com/en/free-pro-team@latest/developers/apps/authorizing-oauth-apps)
 - Database: [Redis](https://redis.io)
 
+
+## Clone the project with the Prismic CLI
+The Prismic command line interface will help get this project launched. First install the CLI.
+```bash
+yarn global add prismic-cli
+```
+
+Then you can clone the project and launch a Prismic repository.
+```bash
+prismic theme --theme-url https://github.com/vercel/virtual-event-starter-kit/tree/prismic --conf lib/cms-api.ts 
+```
+
+Note that you will likely need to log into your Prismic account or signup. After that, the command will download the project files, create a Prismic repository, & install the project dependencies. 
+
 ## Running Locally
 
-First, set local environment variables. We've included a read-only DatoCMS access token you can use in `.env.local.example`.
+First, set local environment variables in `.env.local.example`.
 
 ```
 cp .env.local.example .env.local
 ```
 
-Then install packages and run the development server:
+From the root of the project, run the development server:
 
 ```bash
-yarn install
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Clone and Deploy
+## Deploy
 
-Click the button below to clone and deploy this template on [Vercel](https://vercel.com/).
+Follow these instructions to deploy this template on [Vercel](https://vercel.com/).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fvirtual-event-starter-kit&project-name=virtual-event-starter-kit&repository-name=virtual-event-starter-kit&demo-title=Virtual%20Event%20Starter%20Kit&demo-description=Jumpstart%20your%20virtual%20event%20and%20scale%20to%20any%20size%20with%20Next.js%20and%20Vercel.&demo-url=https%3A%2F%2Fdemo.vercel.events%2F&demo-image=https%3A%2F%2Fdemo.vercel.events%2Fdeploy.png&integration-ids=oac_I1h8Dm9Mf30VNb3xQ0hebYvS&external-id=%7B%22manifest%22%3A%20%22https%3A%2F%2Fraw.githubusercontent.com%2Fvercel%2Fvirtual-event-starter-kit%2Fmain%2Fdatocms.json%22%7D)
+You'll need to make sure that you install the Vercel CLI.
+```bash
+yarn global add vercel
+``` 
 
-You’ll be asked to install the [DatoCMS](https://www.datocms.com) integration. It lets you sign up or log in to DatoCMS and create a new DatoCMS project based on the data (speakers, stages, etc.) used in the demo.
+Then you can deploy to Vercel with a single command.
+```bash
+vercel
+```
 
 ## Customize
 
@@ -132,13 +149,13 @@ Provision your own Redis instance and set `REDIS_PORT`, `REDIS_URL`, `REDIS_PASS
 
 There are four different stages included in the seed data. Feel free to add or remove these based on your schedule. Each stage requires the user to enter their email to register with the conference before entering the event. After successfully entering their email and saving the user with your database of choice, the user is able to view the embedded YouTube stream. The login state is persisted as a `httponly` cookie.
 
-One major feature of the conference platform is a near real-time sync with DatoCMS. Every five seconds, the stage queries `/api/stages` to fetch the latest information from the CMS. This allows you to make changes on the fly, without the user having the refresh the page. No need for websockets.
+One major feature of the conference platform is a near real-time sync with the Prismic CMS. Every five seconds, the stage queries `/api/stages` to fetch the latest information from the CMS. This allows you to make changes on the fly, without the user having the refresh the page. No need for websockets.
 
-The primary use case for this is updating the YouTube embedded URL. Next.js Conf used this to seamlessly switch between pre-recorded videos running as a live premiere, and truly live content (e.g. panels). Plus, we had a few instances where our schedule needed to be tweaked on the fly. This implementation is fault tolerant, as well. The API route is properly cached and if the CMS was to somewhow go down, it won't break the page.
+The primary use case for this is updating the YouTube embedded URL. Next.js Conf used this to seamlessly switch between pre-recorded videos running as a live premiere, and truly live content (e.g. panels). Plus, we had a few instances where our schedule needed to be tweaked on the fly. This implementation is fault tolerant, as well. The API route is properly cached and if the CMS was to somehow go down, it won't break the page.
 
 ### Schedule / Speaker Pages
 
-Schedule and speaker information is hosted in DatoCMS. The demo ([demo.vercel.events](https://demo.vercel.events)) is seeded with images from Unsplash and a placeholder schedule. Each speaker has their own page with an image, bio, social media links, and information about their talk. The schedule is also shown as a sidebar on each corresponding stage.
+Schedule and speaker information is hosted in the Prismic CMS. The demo ([demo.vercel.events](https://demo.vercel.events)) is seeded with images from Unsplash and a placeholder schedule. Each speaker has their own page with an image, bio, social media links, and information about their talk. The schedule is also shown as a sidebar on each corresponding stage.
 
 ### Sponsor Expo
 
