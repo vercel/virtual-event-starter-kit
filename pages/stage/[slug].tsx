@@ -49,6 +49,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const stages = await getAllStages();
   const stage = stages.find((s: Stage) => s.slug === slug) || null;
 
+  if (!stage) {
+    return {
+      notFound: true
+    };
+  }
+
   return {
     props: {
       stage,

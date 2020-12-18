@@ -48,6 +48,12 @@ export default function SchedulePage({ allStages }: Props) {
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const allStages = await getAllStages();
 
+  if (!allStages) {
+    return {
+      notFound: true
+    };
+  }
+
   return {
     props: {
       allStages
