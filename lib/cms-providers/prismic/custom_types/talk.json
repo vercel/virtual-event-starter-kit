@@ -1,0 +1,46 @@
+{
+  "Main": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Title"
+      }
+    },
+    "speakers": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "speaker": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["speaker"],
+              "label": "Speaker"
+            }
+          }
+        },
+        "label": "Speakers"
+      }
+    },
+    "start": {
+      "type": "Timestamp",
+      "config": {
+        "label": "Start"
+      }
+    },
+    "end": {
+      "type": "Timestamp",
+      "config": {
+        "label": "End"
+      }
+    },
+    "description": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Description"
+      }
+    }
+  }
+}
