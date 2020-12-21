@@ -221,18 +221,20 @@ const getSyncClient = (context:any) => {
 		isPreview = isDevelopmentMode
 	}
 
-	let cachePath = `node_modules/@agility/content-sync/cache/${isPreview ? 'preview' : 'live'}`
 
-	if (!isDevelopmentMode) {
-		//we are in prod and need to use a different directory that Vercel understands
-		cachePath = `/tmp/agilitycache/${isPreview ? 'preview' : 'live'}`
-	}
 
 	const apiKey = isPreview ? agilityConfig.previewAPIKey : agilityConfig.fetchAPIKey
 
 	if (!agilityConfig.guid) {
 		console.log("Agility CMS => No GUID was provided.")
 		return null
+	}
+
+	let cachePath = `node_modules/@agility/content-sync/cache/${agilityConfig.guid}/${isPreview ? 'preview' : 'live'}`
+
+	if (!isDevelopmentMode) {
+		//we are in prod and need to use a different directory that Vercel understands
+		cachePath = `/tmp/agilitycache/${agilityConfig.guid}/${isPreview ? 'preview' : 'live'}`
 	}
 
 	const client = agilityContentSync.getSyncClient({
