@@ -16,7 +16,7 @@
 
 module.exports = {
   images: {
-    domains: ['www.datocms-assets.com', 'images.ctfassets.net'],
+    domains: ['www.datocms-assets.com', 'images.ctfassets.net', 'images.prismic.io'],
     imageSizes: [24, 64, 300]
   }
 };
