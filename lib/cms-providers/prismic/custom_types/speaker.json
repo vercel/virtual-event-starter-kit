@@ -1,0 +1,71 @@
+{
+  "Main": {
+    "name": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Name"
+      }
+    },
+    "bio": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Bio"
+      }
+    },
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "Slug"
+      }
+    },
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading4",
+        "label": "Title"
+      }
+    },
+    "twitter": {
+      "type": "Link",
+      "config": {
+        "label": "Twitter",
+        "select": "web"
+      }
+    },
+    "github": {
+      "type": "Link",
+      "config": {
+        "label": "Github",
+        "select": "web"
+      }
+    },
+    "company": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading4",
+        "label": "Company"
+      }
+    },
+    "image": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 300,
+          "height": 400
+        },
+        "thumbnails": [],
+        "label": "Image"
+      }
+    },
+    "talk": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["talk"],
+        "label": "Talk"
+      }
+    }
+  }
+}

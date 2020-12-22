@@ -1,0 +1,112 @@
+{
+  "Main": {
+    "name": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Name"
+      }
+    },
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "Slug"
+      }
+    },
+    "logo": {
+      "type": "Image",
+      "config": {
+        "constraint": {
+          "width": 128,
+          "height": 134
+        },
+        "thumbnails": [],
+        "label": "Logo"
+      }
+    },
+    "website": {
+      "type": "Link",
+      "config": {
+        "label": "Website",
+        "select": "web"
+      }
+    },
+    "card_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Card Image"
+      }
+    },
+    "description": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph",
+        "label": "Description"
+      }
+    },
+    "call_to_action": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Call To Action"
+      }
+    },
+    "call_to_action_link": {
+      "type": "Link",
+      "config": {
+        "label": "Call To Action Link",
+        "select": "web"
+      }
+    },
+    "discord": {
+      "type": "Link",
+      "config": {
+        "label": "Discord",
+        "select": "web"
+      }
+    },
+    "tier": {
+      "type": "Select",
+      "config": {
+        "options": ["gold", "diamond"],
+        "default_value": "gold",
+        "label": "Tier"
+      }
+    },
+    "tier_rank": {
+      "type": "Number",
+      "config": {
+        "label": "Tier Rank"
+      }
+    },
+    "links": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "link_text": {
+            "type": "Text",
+            "config": {
+              "label": "Link Text"
+            }
+          },
+          "link": {
+            "type": "Link",
+            "config": {
+              "label": "Link",
+              "select": "web"
+            }
+          }
+        },
+        "label": "Links"
+      }
+    },
+    "youtube_slug": {
+      "type": "Text",
+      "config": {
+        "label": "Youtube Slug"
+      }
+    }
+  }
+}

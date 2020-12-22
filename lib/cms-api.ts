@@ -17,6 +17,7 @@ import { Job, Sponsor, Stage, Speaker } from '@lib/types';
 
 import * as datoCmsApi from './cms-providers/dato';
 import * as contentfulApi from './cms-providers/contentful';
+import * as prismicApi from './cms-providers/prismic';
 
 let cmsApi: {
   getAllSpeakers: () => Promise<Speaker[]>;
@@ -29,6 +30,8 @@ if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
   cmsApi = datoCmsApi;
 } else if (process.env.CONTENTFUL_ACCESS_TOKEN && process.env.CONTENTFUL_SPACE_ID) {
   cmsApi = contentfulApi;
+} else if (process.env.PRISMIC_REPO_ID && process.env.PRISMIC_ACCESS_TOKEN) {
+  cmsApi = prismicApi;
 } else {
   cmsApi = {
     getAllSpeakers: async () => [],
