@@ -48,12 +48,6 @@ export default function Jobs({ jobs }: Props) {
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const jobs = await getAllJobs();
 
-  if (!jobs) {
-    return {
-      notFound: true
-    };
-  }
-
   return {
     props: {
       jobs

@@ -47,12 +47,6 @@ export default function Speakers({ speakers }: Props) {
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const speakers = await getAllSpeakers();
 
-  if (!speakers) {
-    return {
-      notFound: true
-    };
-  }
-
   return {
     props: {
       speakers

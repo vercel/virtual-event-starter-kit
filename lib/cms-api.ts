@@ -22,7 +22,7 @@ let cmsApi: any;
 
 if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
   cmsApi = datoCmsApi;
-} else if (process.env.CONTENTFUL_ACCESS_TOKEN) {
+} else if (process.env.CONTENTFUL_ACCESS_TOKEN && process.env.CONTENTFUL_SPACE_ID) {
   cmsApi = contentfulApi;
 }
 
