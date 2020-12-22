@@ -1,0 +1,47 @@
+{
+  "Main": {
+    "name": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Name"
+      }
+    },
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "Slug"
+      }
+    },
+    "stream": {
+      "type": "Link",
+      "config": {
+        "label": "Stream",
+        "select": "web"
+      }
+    },
+    "discord": {
+      "type": "Link",
+      "config": {
+        "label": "Discord",
+        "select": "web"
+      }
+    },
+    "schedule": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "talk": {
+            "type": "Link",
+            "config": {
+              "select": "document",
+              "customtypes": ["talk"],
+              "label": "Talk"
+            }
+          }
+        },
+        "label": "Schedule"
+      }
+    }
+  }
+}

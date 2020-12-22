@@ -16,6 +16,8 @@
     "license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js"
   },
   "dependencies": {
+    "@agility/content-fetch": "1.0.0",
+    "@agility/content-sync": "0.1.23",
     "@reach/skip-nav": "0.12.1",
     "chrome-aws-lambda": "5.5.0",
     "classnames": "2.2.6",
