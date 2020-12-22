@@ -48,6 +48,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const speakers = await getAllSpeakers();
   const currentSpeaker = speakers.find((s: Speaker) => s.slug === slug) || null;
 
+  if (!currentSpeaker) {
+    return {
+      notFound: true
+    };
+  }
+
   return {
     props: {
       speaker: currentSpeaker

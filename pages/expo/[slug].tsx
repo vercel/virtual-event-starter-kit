@@ -48,6 +48,12 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const sponsors = await getAllSponsors();
   const sponsor = sponsors.find((s: Sponsor) => s.slug === slug) || null;
 
+  if (!sponsor) {
+    return {
+      notFound: true
+    };
+  }
+
   return {
     props: {
       sponsor
