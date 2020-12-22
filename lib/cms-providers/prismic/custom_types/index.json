@@ -1,0 +1,26 @@
+[{
+  "id": "speaker",
+  "name": "Speaker",
+  "repeatable": true,
+  "value": "speaker.json"
+}, {
+  "id": "company",
+  "name": "Company",
+  "repeatable": true,
+  "value": "company.json"
+}, {
+  "id": "stage",
+  "name": "Stage",
+  "repeatable": true,
+  "value": "stage.json"
+}, {
+  "id": "talk",
+  "name": "Talk",
+  "repeatable": true,
+  "value": "talk.json"
+}, {
+  "id": "job",
+  "name": "Job",
+  "repeatable": true,
+  "value": "job.json"
+}]

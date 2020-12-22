@@ -13,10 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-module.exports = {
-  images: {
-    domains: ['www.datocms-assets.com', 'images.ctfassets.net', 'images.prismic.io'],
-    imageSizes: [24, 64, 300]
+export function richTextAsText(richTextField: any) {
+  if (Object.prototype.toString.call(richTextField) !== '[object Array]') {
+    return '';
   }
-};
+  return richTextField.map((block: any) => block.text).join(' ');
+}
+
+export function getLinkUrl(linkField: any) {
+  return linkField && linkField.url ? linkField.url : '';
+}

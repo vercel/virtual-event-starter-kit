@@ -62,6 +62,7 @@ You’ll be asked to install the [DatoCMS](https://www.datocms.com) integration.
 Environment variables determine which CMS to use. See [`lib/cms-api.ts`](lib/cms-api.ts) for details and `.env.local.example` for all environment variables. The demo ([demo.vercel.events](https://demo.vercel.events)) uses DatoCMS, but we also have support for:
 
 - [Contentful](lib/cms-providers/contentful.ts)
+- [Prismic](lib/cms-providers/prismic.ts) ([Instructions](lib/cms-providers/prismic/README.md))
 
 ### Constants
 

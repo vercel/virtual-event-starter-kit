@@ -1,0 +1,46 @@
+{
+  "Main": {
+    "company_name": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading4",
+        "label": "Company Name"
+      }
+    },
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Title",
+        "useAsTitle": true
+      }
+    },
+    "description": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph",
+        "label": "Description"
+      }
+    },
+    "link": {
+      "type": "Link",
+      "config": {
+        "label": "Link",
+        "select": "web"
+      }
+    },
+    "discord": {
+      "type": "Link",
+      "config": {
+        "label": "Discord",
+        "select": "web"
+      }
+    },
+    "rank": {
+      "type": "Number",
+      "config": {
+        "label": "Rank"
+      }
+    }
+  }
+}
