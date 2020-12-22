@@ -108,8 +108,8 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
         url: edge.node.image?.url.replace('compress,format', 'format') || 'https://images.prismic.io',
       },
       talk: {
-        title: edge.node.talk ? richTextAsText(edge.node.talk.title) : '',
-        description: edge.node.talk  ? richTextAsText(edge.node.talk.description) : '',
+        title: edge.node.talk?.title ? richTextAsText(edge.node.talk.title) : '',
+        description: edge.node.talk?.description  ? richTextAsText(edge.node.talk.description) : '',
       },
     };
   });

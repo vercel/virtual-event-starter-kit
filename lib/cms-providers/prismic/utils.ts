@@ -1,7 +1,6 @@
 export function richTextAsText(richTextField: any) {
   if (Object.prototype.toString.call(richTextField) !== '[object Array]') {
-    console.warn(`Rich text argument should be an Array. Received ${typeof richTextField}`);
-    return null;
+    return '';
   }
   return richTextField.map((block: any) => block.text).join(' ');
 }
