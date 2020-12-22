@@ -24,7 +24,7 @@ This platform is built upon three principles:
 - Framework: [Next.js](https://nextjs.org)
   - [CSS Modules](https://nextjs.org/docs/basic-features/built-in-css-support)
   - [TypeScript](https://nextjs.org/docs/basic-features/typescript)
-- CMS: [DatoCMS](https://www.datocms.com)
+- CMS: [Multiple Options](#cms)
 - Videos: [YouTube](https://www.youtube.com)
 - Deployment: [Vercel](https://vercel.com)
 - Authentication: [GitHub OAuth](https://docs.github.com/en/free-pro-team@latest/developers/apps/authorizing-oauth-apps)
@@ -63,6 +63,7 @@ Environment variables determine which CMS to use. See [`lib/cms-api.ts`](lib/cms
 
 - [Contentful](lib/cms-providers/contentful.ts)
 - [Prismic](lib/cms-providers/prismic.ts) ([Instructions](lib/cms-providers/prismic/README.md))
+- [Sanity](https://create.sanity.io/?template=sanity-io%2Fsanity-template-nextjs-event-starter)
 
 ### Constants
 
