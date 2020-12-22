@@ -59,9 +59,9 @@ You’ll be asked to install the [DatoCMS](https://www.datocms.com) integration.
 
 ### CMS
 
-Environment variables determine which CMS to use. See `lib/cms-api.ts` for details and `.env.local.example` for all environment variables. The demo ([demo.vercel.events](https://demo.vercel.events)) uses DatoCMS, but we also have support for:
+Environment variables determine which CMS to use. See [`lib/cms-api.ts`](lib/cms-api.ts) for details and `.env.local.example` for all environment variables. The demo ([demo.vercel.events](https://demo.vercel.events)) uses DatoCMS, but we also have support for:
 
-- [Contentful](https://github.com/vercel/virtual-event-starter-kit/tree/main/lib/cms-providers/contentful.ts)
+- [Contentful](lib/cms-providers/contentful.ts)
 
 ### Constants
 

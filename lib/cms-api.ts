@@ -18,12 +18,24 @@ import { Job, Sponsor, Stage, Speaker } from '@lib/types';
 import * as datoCmsApi from './cms-providers/dato';
 import * as contentfulApi from './cms-providers/contentful';
 
-let cmsApi: any;
+let cmsApi: {
+  getAllSpeakers: () => Promise<Speaker[]>;
+  getAllStages: () => Promise<Stage[]>;
+  getAllSponsors: () => Promise<Sponsor[]>;
+  getAllJobs: () => Promise<Job[]>;
+};
 
 if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
   cmsApi = datoCmsApi;
 } else if (process.env.CONTENTFUL_ACCESS_TOKEN && process.env.CONTENTFUL_SPACE_ID) {
   cmsApi = contentfulApi;
+} else {
+  cmsApi = {
+    getAllSpeakers: async () => [],
+    getAllStages: async () => [],
+    getAllSponsors: async () => [],
+    getAllJobs: async () => []
+  };
 }
 
 export async function getAllSpeakers(): Promise<Speaker[]> {
