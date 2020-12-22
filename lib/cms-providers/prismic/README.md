@@ -46,5 +46,5 @@ yarn global add vercel
 
 Then you can deploy to Vercel with a single command.
 ```bash
-vercel -b PRISMIC_REPO_ID=your-repo-name -b PRISMIC_ACCESS_TOKEN= -e PRISMIC_REPO_ID=your-repo-name -e PRISMIC_ACCESS_TOKEN=
+vercel -b PRISMIC_REPO_ID=your-repo-name -e PRISMIC_REPO_ID=your-repo-name
 ```

@@ -18,7 +18,7 @@ import { richTextAsText, getLinkUrl } from './prismic/utils'
 
 const API_REF_URL = `https://${process.env.PRISMIC_REPO_ID}.prismic.io/api/v2`;
 const API_URL = `https://${process.env.PRISMIC_REPO_ID}.prismic.io/graphql`;
-const API_TOKEN = process.env.PRISMIC_ACCESS_TOKEN;
+const API_TOKEN = process.env.PRISMIC_ACCESS_TOKEN || '';
 
 async function fetchCmsMasterRef() {
   const res = await fetch(`${API_REF_URL}${API_TOKEN ? `?access_token=${API_TOKEN}` : ''}`);
