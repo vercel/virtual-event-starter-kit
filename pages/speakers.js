@@ -19,7 +19,7 @@ import Layout from '@components/layout';
 import Header from '@components/header';
 import SpeakersGrid from 'components/speakers-grid';
 
-import { getAllSpeakers } from '@lib/cms-api';
+import { getSpeakers } from 'lib/cms-api';
 import { META_DESCRIPTION } from '@lib/constants';
 
 export default function Speakers({ speakers }) {
@@ -39,7 +39,7 @@ export default function Speakers({ speakers }) {
 }
 
 export async function getStaticProps() {
-  const speakers = await getAllSpeakers();
+  const speakers = await getSpeakers();
 
   return {
     props: {

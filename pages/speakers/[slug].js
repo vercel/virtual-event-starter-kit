@@ -20,7 +20,7 @@ import Page from '@components/page';
 import SpeakerSection from 'components/speaker-section';
 import Layout from '@components/layout';
 
-import { getAllSpeakers } from '@lib/cms-api';
+import { getSpeakers } from 'lib/cms-api';
 import { META_DESCRIPTION } from '@lib/constants';
 
 export default function SpeakerPage({ speaker }) {
@@ -40,7 +40,7 @@ export default function SpeakerPage({ speaker }) {
 
 export async function getStaticProps({ params }) {
   const slug = params?.slug;
-  const speakers = await getAllSpeakers();
+  const speakers = await getSpeakers();
   const currentSpeaker = speakers.find((s) => s.slug === slug) || null;
 
   if (!currentSpeaker) {
@@ -58,7 +58,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const speakers = await getAllSpeakers();
+  const speakers = await getSpeakers();
   const slugs = speakers.map((s) => ({ params: { slug: s.slug } }));
 
   return {

@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-import Page from '@components/page';
-import StageContainer from '@components/stage-container';
-import Layout from '@components/layout';
+import styles from './schedule.module.css';
+import TalkCard from './talk-card';
 
-import { META_DESCRIPTION } from '@lib/constants';
-
-export default function StagePage({ stage, allStages }) {
-  const meta = {
-    title: 'Stage - TEDxCMU Catalyst',
-    description: META_DESCRIPTION
-  };
-
+export default function Schedule({ events }) {
   return (
-    <Page meta={meta} fullViewport>
-      <Layout>
-        <StageContainer stage={stage} />
-      </Layout>
-    </Page>
+    <div className={styles.container}>
+      <div className={styles['row-wrapper']}>
+        <div className={styles.row}>
+          <div className={styles.talks}>
+            {events.map((event) => (
+              <div key={event.startTime}>
+                <TalkCard key={event.title} talk={event} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

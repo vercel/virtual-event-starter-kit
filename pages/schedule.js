@@ -17,21 +17,16 @@
 import { GetStaticProps } from 'next';
 
 import Page from '@components/page';
-import Schedule from '@components/schedule';
+import Schedule from 'components/schedule';
 import Layout from '@components/layout';
 import Header from '@components/header';
 
-import { getAllStages } from '@lib/cms-api';
-import { Stage } from '@lib/types';
+import { getSchedule } from 'lib/cms-api';
 import { META_DESCRIPTION } from '@lib/constants';
 
-type Props = {
-  allStages: Stage[];
-};
-
-export default function SchedulePage({ allStages }: Props) {
+export default function SchedulePage({ events }) {
   const meta = {
-    title: 'Schedule - Virtual Event Starter Kit',
+    title: 'Schedule - TEDxCMU Catalyst',
     description: META_DESCRIPTION
   };
 
@@ -39,19 +34,19 @@ export default function SchedulePage({ allStages }: Props) {
     <Page meta={meta}>
       <Layout>
         <Header hero="Schedule" description={meta.description} />
-        <Schedule allStages={allStages} />
+        <Schedule events={events} />
       </Layout>
     </Page>
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const allStages = await getAllStages();
+export async function getStaticProps() {
+  const events = await getSchedule();
 
   return {
     props: {
-      allStages
+      events
     },
     revalidate: 60
   };
-};
+}
