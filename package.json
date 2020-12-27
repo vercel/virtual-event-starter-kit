@@ -6,9 +6,6 @@
   "author": "Vercel Inc.",
   "homepage": "https://demo.vercel.events",
   "license": "Apache-2.0",
-  "engines": {
-    "node": "12.x"
-  },
   "scripts": {
     "dev": "next",
     "start": "next start",
@@ -51,16 +48,9 @@
     "@types/react": "17.0.0",
     "@types/smoothscroll-polyfill": "0.3.1",
     "@types/validator": "13.1.1",
-    "@typescript-eslint/eslint-plugin": "4.10.0",
-    "@typescript-eslint/parser": "4.10.0",
-    "eslint": "7.15.0",
-    "eslint-config-prettier": "7.0.0",
-    "eslint-plugin-react": "7.21.5",
-    "eslint-plugin-react-hooks": "4.2.0",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-hover-media-feature": "1.0.0",
     "postcss-preset-env": "6.7.0",
-    "prettier": "2.2.1",
     "typescript": "4.1.3"
   }
 }
