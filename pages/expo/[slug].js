@@ -17,38 +17,33 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 
 import Page from '@components/page';
-import SponsorSection from '@components/sponsor-section';
 import Layout from '@components/layout';
+import InnovatorSection from 'components/innovator-section';
 
-import { getAllSponsors } from '@lib/cms-api';
-import { Sponsor } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
+import { getInnovators } from 'lib/cms-api';
 
-type Props = {
-  sponsor: Sponsor;
-};
-
-export default function SponsorPage({ sponsor }: Props) {
+export default function InnovatorPage({ innovator }) {
   const meta = {
-    title: 'Demo - Virtual Event Starter Kit',
+    title: 'Innovator - TEDxCMU Catalyst',
     description: META_DESCRIPTION
   };
 
   return (
     <Page meta={meta}>
       <Layout>
-        <SponsorSection sponsor={sponsor} />
+        <InnovatorSection innovator={innovator} />
       </Layout>
     </Page>
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+export async function getStaticProps({ params }) {
   const slug = params?.slug;
-  const sponsors = await getAllSponsors();
-  const sponsor = sponsors.find((s: Sponsor) => s.slug === slug) || null;
+  const innovators = await getInnovators();
+  const innovator = innovators.find((i) => i.slug === slug) || null;
 
-  if (!sponsor) {
+  if (!innovator) {
     return {
       notFound: true
     };
@@ -56,18 +51,18 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
   return {
     props: {
-      sponsor
+      innovator
     },
     revalidate: 60
   };
-};
+}
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const sponsors = await getAllSponsors();
-  const slugs = sponsors.map((s: Sponsor) => ({ params: { slug: s.slug } }));
+export async function getStaticPaths() {
+  const innovators = await getInnovators();
+  const slugs = innovators.map((i) => ({ params: { slug: i.slug } }));
 
   return {
     paths: slugs,
     fallback: 'blocking'
   };
-};
+}

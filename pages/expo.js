@@ -14,24 +14,17 @@
  * limitations under the License.
  */
 
-import { GetStaticProps } from 'next';
-
 import Page from '@components/page';
-import SponsorsGrid from '@components/sponsors-grid';
 import Header from '@components/header';
 import Layout from '@components/layout';
+import InnovatorsGrid from 'components/innovators-grid';
 
-import { getAllSponsors } from '@lib/cms-api';
-import { Sponsor } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
+import { getInnovators } from 'lib/cms-api';
 
-type Props = {
-  sponsors: Sponsor[];
-};
-
-export default function ExpoPage({ sponsors }: Props) {
+export default function ExpoPage({ innovators }) {
   const meta = {
-    title: 'Expo - Virtual Event Starter Kit',
+    title: 'Expo - TEDxCMU Catalyst',
     description: META_DESCRIPTION
   };
 
@@ -39,19 +32,19 @@ export default function ExpoPage({ sponsors }: Props) {
     <Page meta={meta}>
       <Layout>
         <Header hero="Expo" description={meta.description} />
-        <SponsorsGrid sponsors={sponsors} />
+        <InnovatorsGrid innovators={innovators} />
       </Layout>
     </Page>
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const sponsors = await getAllSponsors();
+export async function getStaticProps() {
+  const innovators = await getInnovators();
 
   return {
     props: {
-      sponsors
+      innovators
     },
-    revalidate: 60
+    revalidate: 1
   };
-};
+}
