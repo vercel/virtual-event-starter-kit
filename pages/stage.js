@@ -14,24 +14,16 @@
  * limitations under the License.
  */
 
-import { GetStaticProps, GetStaticPaths } from 'next';
-
 import Page from '@components/page';
 import StageContainer from '@components/stage-container';
 import Layout from '@components/layout';
 
 import { getAllStages } from '@lib/cms-api';
-import { Stage } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
-type Props = {
-  stage: Stage;
-  allStages: Stage[];
-};
-
-export default function StagePage({ stage, allStages }: Props) {
+export default function StagePage({ stage, allStages }) {
   const meta = {
-    title: 'Demo - Virtual Event Starter Kit',
+    title: 'Stage - TEDxCMU Catalyst',
     description: META_DESCRIPTION
   };
 
@@ -44,10 +36,10 @@ export default function StagePage({ stage, allStages }: Props) {
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+export async function getStaticProps() {
   const slug = params?.slug;
   const stages = await getAllStages();
-  const stage = stages.find((s: Stage) => s.slug === slug) || null;
+  const stage = stages.find((s) => s.slug === slug) || null;
 
   if (!stage) {
     return {
@@ -60,16 +52,16 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       stage,
       allStages: stages
     },
-    revalidate: 60
+    revalidate: 1
   };
-};
+}
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export async function getStaticPaths() {
   const stages = await getAllStages();
-  const slugs = stages.map((s: Stage) => ({ params: { slug: s.slug } }));
+  const slugs = stages.map((s) => ({ params: { slug: s.slug } }));
 
   return {
     paths: slugs,
     fallback: false
   };
-};
+}
