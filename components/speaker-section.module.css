@@ -56,6 +56,7 @@
 
 .image {
   border-radius: var(--space-2x);
+  background-color: #fff;
 }
 
 @media (min-width: 768px) {
@@ -101,7 +102,7 @@
   color: #fff;
 }
 
-.title {
+.tagline {
   margin-top: 0;
   margin-bottom: 24px;
   font-size: 20px;

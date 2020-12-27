@@ -17,18 +17,13 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 
 import Page from '@components/page';
-import SpeakerSection from '@components/speaker-section';
+import SpeakerSection from 'components/speaker-section';
 import Layout from '@components/layout';
 
 import { getAllSpeakers } from '@lib/cms-api';
-import { Speaker } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
-type Props = {
-  speaker: Speaker;
-};
-
-export default function SpeakerPage({ speaker }: Props) {
+export default function SpeakerPage({ speaker }) {
   const meta = {
     title: 'Demo - Virtual Event Starter Kit',
     description: META_DESCRIPTION
@@ -43,10 +38,10 @@ export default function SpeakerPage({ speaker }: Props) {
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+export async function getStaticProps({ params }) {
   const slug = params?.slug;
   const speakers = await getAllSpeakers();
-  const currentSpeaker = speakers.find((s: Speaker) => s.slug === slug) || null;
+  const currentSpeaker = speakers.find((s) => s.slug === slug) || null;
 
   if (!currentSpeaker) {
     return {
@@ -60,14 +55,14 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     },
     revalidate: 60
   };
-};
+}
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export async function getStaticPaths() {
   const speakers = await getAllSpeakers();
-  const slugs = speakers.map((s: Speaker) => ({ params: { slug: s.slug } }));
+  const slugs = speakers.map((s) => ({ params: { slug: s.slug } }));
 
   return {
     paths: slugs,
     fallback: false
   };
-};
+}

@@ -16,17 +16,12 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Speaker } from '@lib/types';
 import styles from './speakers-grid.module.css';
 
-type Props = {
-  speakers: Speaker[];
-};
-
-export default function SpeakersGrid({ speakers }: Props) {
+export default function SpeakersGrid({ speakers }) {
   return (
     <div className={styles.grid}>
-      {speakers.map(speaker => (
+      {speakers?.map(speaker => (
         <Link key={speaker.name} href={`/speakers/${speaker.slug}`}>
           <a role="button" tabIndex={0} className={styles.card}>
             <div className={styles.imageWrapper}>
@@ -43,10 +38,11 @@ export default function SpeakersGrid({ speakers }: Props) {
             </div>
             <div className={styles.cardBody}>
               <div>
-                <h2 className={styles.name}>{speaker.name}</h2>
-                <p className={styles.title}>
-                  {`${speaker.title} @ `}
-                  <span className={styles.company}>{speaker.company}</span>
+                <h2 className={styles.name}>
+                  {speaker.name}
+                </h2>
+                <p className={styles.tagline}>
+                  {speaker.tagline}
                 </p>
               </div>
             </div>
