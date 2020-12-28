@@ -44,16 +44,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Deploy
 
-Follow these instructions to deploy this template on [Vercel](https://vercel.com/docs/platform/deployments).
-
-You'll need to make sure that you install the Vercel CLI.
-
-```bash
-yarn global add vercel
-```
-
-Then you can deploy to Vercel with a single command.
-
-```bash
-vercel -b PRISMIC_REPO_ID=your-repo-name -e PRISMIC_REPO_ID=your-repo-name
-```
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fvirtual-event-starter-kit&project-name=virtual-event-starter-kit&repository-name=virtual-event-starter-kit&demo-title=Virtual%20Event%20Starter%20Kit&demo-description=Jumpstart%20your%20virtual%20event%20and%20scale%20to%20any%20size%20with%20Next.js%20and%20Vercel.&demo-url=https%3A%2F%2Fdemo.vercel.events%2F&demo-image=https%3A%2F%2Fdemo.vercel.events%2Fdeploy.png&env=PRISMIC_REPO_ID,PRISMIC_ACCESS_TOKEN)
