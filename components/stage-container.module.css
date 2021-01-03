@@ -38,10 +38,6 @@
   .container {
     flex-direction: row;
   }
-
-  .streamContainer {
-    width: calc(100vw - 303px);
-  }
 }
 
 .bottom {

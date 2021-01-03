@@ -56,7 +56,7 @@ export default function ScheduleSidebar({ allStages }: Props) {
       </Select>
       <div className={styles.talks}>
         {currentStage?.schedule.map(talk => (
-          <TalkCard key={talk.title} talk={talk} showTime />
+          <TalkCard key={talk.title} talk={talk} />
         ))}
       </div>
     </div>

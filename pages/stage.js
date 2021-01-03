@@ -14,11 +14,23 @@
  * limitations under the License.
  */
 
-module.exports = {
-  images: {
-    domains: [
-      'images.prismic.io',
-    ],
-    imageSizes: [24, 64, 300]
-  }
-};
+import Page from '@components/page';
+import StageContainer from '@components/stage-container';
+import Layout from '@components/layout';
+
+import { META_DESCRIPTION } from '@lib/constants';
+
+export default function StagePage({ stage, allStages }) {
+  const meta = {
+    title: 'Stage - TEDxCMU Catalyst',
+    description: META_DESCRIPTION
+  };
+
+  return (
+    <Page meta={meta} fullViewport>
+      <Layout>
+        <StageContainer stage={stage} />
+      </Layout>
+    </Page>
+  );
+}

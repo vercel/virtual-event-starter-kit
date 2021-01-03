@@ -14,11 +14,23 @@
  * limitations under the License.
  */
 
-module.exports = {
-  images: {
-    domains: [
-      'images.prismic.io',
-    ],
-    imageSizes: [24, 64, 300]
-  }
-};
+import styles from './schedule.module.css';
+import TalkCard from './talk-card';
+
+export default function Schedule({ events }) {
+  return (
+    <div className={styles.container}>
+      <div className={styles['row-wrapper']}>
+        <div className={styles.row}>
+          <div className={styles.talks}>
+            {events.map((event) => (
+              <div key={event.startTime}>
+                <TalkCard key={event.title} talk={event} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
