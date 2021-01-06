@@ -15,7 +15,7 @@ yarn global add prismic-cli
 Then you can clone the project and launch a Prismic repository.
 
 ```bash
-prismic theme --theme-url https://github.com/vercel/virtual-event-starter-kit/tree/prismic --conf lib/cms-providers/prismic/README.md --custom-types lib/cms-providers/prismic/custom_types --documents lib/cms-providers/prismic/documents
+prismic theme --theme-url https://github.com/vercel/virtual-event-starter-kit/archive/main.zip --conf lib/cms-providers/prismic/README.md --custom-types lib/cms-providers/prismic/custom_types --documents lib/cms-providers/prismic/documents
 ```
 
 Note that you will likely need to log into your Prismic account or signup. After that, the command will download the project files, create a Prismic repository, & install the project dependencies.
