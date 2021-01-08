@@ -22,12 +22,12 @@ import Layout from '@components/layout';
 import Header from '@components/header';
 
 import { getSchedule } from 'lib/cms-api';
-import { META_DESCRIPTION } from '@lib/constants';
+import { SCHEDULE_DESCRIPTION } from '@lib/constants';
 
 export default function SchedulePage({ events }) {
   const meta = {
     title: 'Schedule - TEDxCMU Catalyst',
-    description: META_DESCRIPTION
+    description: SCHEDULE_DESCRIPTION
   };
 
   return (

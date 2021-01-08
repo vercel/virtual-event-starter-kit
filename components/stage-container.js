@@ -22,12 +22,7 @@ import styleUtils from './utils.module.css';
 // import ScheduleSidebar from './schedule-sidebar';
 import ConfEntry from './conf-entry';
 
-type Props = {
-  stage: Stage;
-  allStages: Stage[];
-};
-
-export default function StageContainer({ stage }: Props) {
+export default function StageContainer({ stage }) {
   const { loginStatus, mutate } = useLoginStatus();
 
   return (
@@ -48,7 +43,7 @@ export default function StageContainer({ stage }: Props) {
                 <h2 className={styles.stageName}>{stage.name}</h2>
               </div>
               <a
-                href={stage.discord}
+                href={stage.chat_link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.button}
