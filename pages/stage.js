@@ -17,10 +17,11 @@
 import Page from '@components/page';
 import StageContainer from '@components/stage-container';
 import Layout from '@components/layout';
+import { getStage } from 'lib/cms-api';
 
 import { META_DESCRIPTION } from '@lib/constants';
 
-export default function StagePage({ stage, allStages }) {
+export default function StagePage({ stage }) {
   const meta = {
     title: 'Stage - TEDxCMU Catalyst',
     description: META_DESCRIPTION
@@ -33,4 +34,16 @@ export default function StagePage({ stage, allStages }) {
       </Layout>
     </Page>
   );
+}
+
+export async function getStaticProps() {
+  const stages = await getStage();
+  const stage = stages[0];
+
+  return {
+    props: {
+      stage
+    },
+    revalidate: 1
+  };
 }
