@@ -19,19 +19,20 @@ import Header from '@components/header';
 import Layout from '@components/layout';
 import InnovatorsGrid from 'components/innovators-grid';
 
-import { META_DESCRIPTION } from '@lib/constants';
+import { EXPO_DESCRIPTION } from '@lib/constants';
 import { getInnovators } from 'lib/cms-api';
 
 export default function ExpoPage({ innovators }) {
   const meta = {
     title: 'Expo - TEDxCMU Catalyst',
-    description: META_DESCRIPTION
+    description: EXPO_DESCRIPTION
   };
 
   return (
     <Page meta={meta}>
       <Layout>
         <Header hero="Expo" description={meta.description} />
+        <p>{meta.description}</p>
         <InnovatorsGrid innovators={innovators} />
       </Layout>
     </Page>

@@ -20,12 +20,12 @@ import Header from '@components/header';
 import SpeakersGrid from 'components/speakers-grid';
 
 import { getSpeakers } from 'lib/cms-api';
-import { META_DESCRIPTION } from '@lib/constants';
+import { SPEAKERS_DESCRIPTION } from '@lib/constants';
 
 export default function Speakers({ speakers }) {
   const meta = {
     title: 'Speakers - TEDxCMU Catalyst',
-    description: META_DESCRIPTION
+    description: SPEAKERS_DESCRIPTION
   };
 
   return (
