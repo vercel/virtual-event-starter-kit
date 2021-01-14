@@ -34,6 +34,12 @@ Then update the environment variables with your Prismic repo ID. Your repo id wi
 PRISMIC_REPO_ID=your-repo-name
 ```
 
+Next at the top of the file, make sure to remove the the value from `DATOCMS_READ_ONLY_API_TOKEN`. The project won't source the content from Prismic until this has been done.
+
+```
+DATOCMS_READ_ONLY_API_TOKEN=
+```
+
 From the root of the project, run the development server:
 
 ```bash
