@@ -19,6 +19,7 @@ import * as agilityApi from './cms-providers/agility';
 import * as datoCmsApi from './cms-providers/dato';
 import * as contentfulApi from './cms-providers/contentful';
 import * as prismicApi from './cms-providers/prismic';
+import * as storyblokApi from './cms-providers/storyblok';
 
 let cmsApi: {
   getAllSpeakers: () => Promise<Speaker[]>;
@@ -31,6 +32,8 @@ if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
   cmsApi = datoCmsApi;
 } else if (process.env.CONTENTFUL_ACCESS_TOKEN && process.env.CONTENTFUL_SPACE_ID) {
   cmsApi = contentfulApi;
+} else if (process.env.STORYBLOK_PREVIEW_TOKEN) {
+  cmsApi = storyblokApi;
 } else if (process.env.PRISMIC_REPO_ID && process.env.PRISMIC_ACCESS_TOKEN) {
   cmsApi = prismicApi;
 } else if (

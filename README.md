@@ -65,6 +65,8 @@ Environment variables determine which CMS to use. See [`lib/cms-api.ts`](lib/cms
 - [Contentful](lib/cms-providers/contentful.ts)
 - [Prismic](lib/cms-providers/prismic/index.ts) ([Instructions](lib/cms-providers/prismic/README.md))
 - [Sanity](https://create.sanity.io/?template=sanity-io%2Fsanity-template-nextjs-event-starter)
+- [Storyblok](lib/cms-providers/storyblok.ts) 
+  - Click the following link to create the space for this starter kit in Storyblok: [Create Event Space](https://app.storyblok.com/#!/build/101757)
 
 ### Constants
 
