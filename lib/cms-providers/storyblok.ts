@@ -95,6 +95,9 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
           image {
             url: filename
           }
+          talk {
+            content
+          }
         }
       }
     }
@@ -103,6 +106,7 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
 
   const responseData = data.SpeakerItems.items.map((s: any) => {
     const speaker = s.content
+    speaker.talk = speaker.talk.content
     speaker.uuid = s.uuid
     return speaker
   })
