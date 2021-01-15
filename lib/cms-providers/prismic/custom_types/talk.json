@@ -4,7 +4,8 @@
       "type": "StructuredText",
       "config": {
         "single": "heading1",
-        "label": "Title"
+        "label": "Title",
+        "placeholder": "Talk title"
       }
     },
     "speakers": {
@@ -15,8 +16,11 @@
             "type": "Link",
             "config": {
               "select": "document",
-              "customtypes": ["speaker"],
-              "label": "Speaker"
+              "customtypes": [
+                "speaker"
+              ],
+              "label": "Speaker",
+              "placeholder": "Add a speaker"
             }
           }
         },
@@ -39,7 +43,8 @@
       "type": "StructuredText",
       "config": {
         "single": "paragraph",
-        "label": "Description"
+        "label": "Description",
+        "placeholder": "Talk description"
       }
     }
   }
