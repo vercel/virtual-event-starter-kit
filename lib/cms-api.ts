@@ -34,7 +34,7 @@ if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
   cmsApi = contentfulApi;
 } else if (process.env.STORYBLOK_PREVIEW_TOKEN) {
   cmsApi = storyblokApi;
-} else if (process.env.PRISMIC_REPO_ID && process.env.PRISMIC_ACCESS_TOKEN) {
+} else if (process.env.PRISMIC_REPO_ID) {
   cmsApi = prismicApi;
 } else if (
   process.env.AGILITY_GUID &&

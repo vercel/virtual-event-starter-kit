@@ -1,45 +1,47 @@
 {
-  "Main": {
-    "company_name": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading4",
-        "label": "Company Name"
+  "Main" : {
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Title",
+        "placeholder" : "Job title"
       }
     },
-    "title": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading1",
-        "label": "Title",
-        "useAsTitle": true
+    "company_name" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading4",
+        "label" : "Company Name",
+        "placeholder" : "Company name"
       }
     },
-    "description": {
-      "type": "StructuredText",
-      "config": {
-        "multi": "paragraph",
-        "label": "Description"
+    "description" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph",
+        "label" : "Description",
+        "placeholder" : "Job description"
       }
     },
-    "link": {
-      "type": "Link",
-      "config": {
-        "label": "Link",
-        "select": "web"
+    "link" : {
+      "type" : "Link",
+      "config" : {
+        "label" : "Link",
+        "select" : "web"
       }
     },
-    "discord": {
-      "type": "Link",
-      "config": {
-        "label": "Discord",
-        "select": "web"
+    "discord" : {
+      "type" : "Link",
+      "config" : {
+        "label" : "Discord",
+        "select" : "web"
       }
     },
-    "rank": {
-      "type": "Number",
-      "config": {
-        "label": "Rank"
+    "rank" : {
+      "type" : "Number",
+      "config" : {
+        "label" : "Rank"
       }
     }
   }

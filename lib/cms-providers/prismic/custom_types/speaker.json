@@ -1,70 +1,77 @@
 {
-  "Main": {
-    "name": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading1",
-        "label": "Name"
+  "Main" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "Slug",
+        "placeholder" : "URL slug"
       }
     },
-    "bio": {
-      "type": "StructuredText",
-      "config": {
-        "single": "paragraph",
-        "label": "Bio"
+    "name" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1",
+        "label" : "Name",
+        "placeholder" : "Speaker's name"
       }
     },
-    "uid": {
-      "type": "UID",
-      "config": {
-        "label": "Slug"
-      }
-    },
-    "title": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading4",
-        "label": "Title"
-      }
-    },
-    "twitter": {
-      "type": "Link",
-      "config": {
-        "label": "Twitter",
-        "select": "web"
-      }
-    },
-    "github": {
-      "type": "Link",
-      "config": {
-        "label": "Github",
-        "select": "web"
-      }
-    },
-    "company": {
-      "type": "StructuredText",
-      "config": {
-        "single": "heading4",
-        "label": "Company"
-      }
-    },
-    "image": {
-      "type": "Image",
-      "config": {
-        "constraint": {
-          "width": 300,
-          "height": 400
+    "image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : {
+          "width" : 300,
+          "height" : 400
         },
-        "thumbnails": [],
-        "label": "Image"
+        "thumbnails" : [ ],
+        "label" : "Image"
       }
     },
-    "talk": {
-      "type": "Link",
-      "config": {
-        "select": "document",
-        "customtypes": ["talk"],
-        "label": "Talk"
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading4",
+        "label" : "Title",
+        "placeholder" : "Role"
+      }
+    },
+    "company" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading4",
+        "label" : "Company",
+        "placeholder" : "Company"
+      }
+    },
+    "bio" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "paragraph",
+        "label" : "Bio",
+        "placeholder" : "Bio"
+      }
+    },
+    "twitter" : {
+      "type" : "Link",
+      "config" : {
+        "label" : "Twitter",
+        "select" : "web",
+        "placeholder" : "Twitter profile URL"
+      }
+    },
+    "github" : {
+      "type" : "Link",
+      "config" : {
+        "label" : "Github",
+        "select" : "web",
+        "placeholder" : "GitHub profile URL"
+      }
+    },
+    "talk" : {
+      "type" : "Link",
+      "config" : {
+        "select" : "document",
+        "customtypes" : [ "talk" ],
+        "label" : "Talk"
       }
     }
   }
