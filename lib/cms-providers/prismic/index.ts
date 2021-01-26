@@ -171,8 +171,8 @@ export async function getAllStages(): Promise<Stage[]> {
     return {
       name: richTextAsText(edge.node.name),
       slug: edge.node._meta.uid,
-      stream: getLinkUrl(edge.node.twitter),
-      discord: getLinkUrl(edge.node.twitter),
+      stream: getLinkUrl(edge.node.stream),
+      discord: getLinkUrl(edge.node.discord),
       schedule: edge.node.schedule
         .filter((item: any) => item.talk)
         .map((item: any) => {
