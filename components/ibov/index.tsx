@@ -7,7 +7,7 @@ export default function IbovImage() {
         <div className={styles.background}>
             <div className={styles.page}>
                 <h1> Oi iBov</h1>
-                <h2>Teste</h2>
+                <h2>Teste_ {query.username}</h2>
             </div>
         </div>
 

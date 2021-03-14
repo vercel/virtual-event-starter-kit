@@ -31,11 +31,11 @@ export default async function ibovImages(req: NextApiRequest, res: NextApiRespon
     res.setHeader('Content-Type', `image/png`);
     res.setHeader(
       'Cache-Control',
-      `public, immutable, no-transform, s-maxage=10, max-age=31536000`
+      `public, s-maxage=10, max-age=31536000, stale-while-revalidate`
     );
     res.statusCode = 200;
     res.end(file);
   } else {
-    res.status(404).send('Not Found');
+    res.status(404).send('Not Found aa_');
   }
 }
