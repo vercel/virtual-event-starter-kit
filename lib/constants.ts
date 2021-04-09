@@ -14,29 +14,29 @@
  * limitations under the License.
  */
 
-export const SITE_URL = 'https://demo.vercel.events';
+export const SITE_URL = 'https://usa.jsworldconference.com/';
 export const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_ORIGIN || new URL(SITE_URL).origin;
-export const TWITTER_USER_NAME = 'vercel';
-export const BRAND_NAME = 'ACME';
-export const SITE_NAME_MULTILINE = ['ACME', 'Conf'];
-export const SITE_NAME = 'ACME Conf';
+export const TWITTER_USER_NAME = 'frontend_love';
+export const BRAND_NAME = 'JSWorld Conference USA';
+export const SITE_NAME_MULTILINE = ['JSWorld Conference', 'USA'];
+export const SITE_NAME = 'JSWorld Conference';
 export const META_DESCRIPTION =
-  'This is an open source demo that Next.js developers can clone, deploy, and fully customize for events. Created through collaboration of marketers, designers, and developers at Vercel.';
+  'United States\'s Premier Javascript Conference of 2021.';
 export const SITE_DESCRIPTION =
-  'An interactive online experience by the community, free for everyone.';
-export const DATE = 'October 27, 2020';
-export const SHORT_DATE = 'Oct 27 - 9:00am PST';
-export const FULL_DATE = 'Oct 27th 9am Pacific Time (GMT-7)';
+  'JSworld Conference USA Online is the Largest & Most Epic JavaScript Conference and Community Event of 2021. Learn & Talk directly with the JavaScript Frontend Developer Leaders from around the world on Friday May 21, 2021.';
+export const DATE = 'May 21, 2021';
+export const SHORT_DATE = 'May 21 - 2:00pm CET';
+export const FULL_DATE = 'May 21st 2pm Central Eastern Time (GMT+2)';
 export const TWEET_TEXT = META_DESCRIPTION;
 export const COOKIE = 'user-id';
 
 // Remove process.env.NEXT_PUBLIC_... below and replace them with
 // strings containing your own privacy policy URL and copyright holder name
-export const LEGAL_URL = process.env.NEXT_PUBLIC_PRIVACY_POLICY_URL;
-export const COPYRIGHT_HOLDER = process.env.NEXT_PUBLIC_COPYRIGHT_HOLDER;
+export const LEGAL_URL = 'https://usa.jsworldconference.com/privacy-policy/';
+export const COPYRIGHT_HOLDER = '';
 
 export const CODE_OF_CONDUCT =
-  'https://www.notion.so/vercel/Code-of-Conduct-Example-7ddd8d0e9c354bb597a0faed87310a78';
+  'https://usa.jsworldconference.com/code-of-conduct';
 export const REPO = 'https://github.com/vercel/virtual-event-starter-kit';
 export const SAMPLE_TICKET_NUMBER = 1234;
 export const NAVIGATION = [

@@ -24,7 +24,7 @@ import { META_DESCRIPTION } from '@lib/constants';
 export default function Conf() {
   const { query } = useRouter();
   const meta = {
-    title: 'Demo - Virtual Event Starter Kit',
+    title: 'JSWorld Conference USA',
     description: META_DESCRIPTION
   };
   const ticketNumber = query.ticketNumber?.toString();
