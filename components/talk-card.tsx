@@ -42,12 +42,12 @@ export default function TalkCard({ talk: { title, speaker, start, end }, showTim
     setIsTalkLive(isAfter(now, parseISO(start)) && isBefore(now, parseISO(end)));
     setStartAndEndTime(`${formatDate(start)} – ${formatDate(end)}`);
   }, []);
-
-  const firstSpeakerLink = `/speakers/${speaker[0].slug}`;
+  console.log({ title, speaker });
+  // const firstSpeakerLink = `/speakers/${speaker[0].slug}`;
 
   return (
     <div key={title} className={styles.talk}>
-      {showTime && <p className={styles.time}>{startAndEndTime || <>&nbsp;</>}</p>}
+      {/* {showTime && <p className={styles.time}>{startAndEndTime || <>&nbsp;</>}</p>}
       <Link href={firstSpeakerLink}>
         <a
           className={cn(styles.card, {
@@ -80,7 +80,7 @@ export default function TalkCard({ talk: { title, speaker, start, end }, showTim
             </div>
           </div>
         </a>
-      </Link>
+      </Link> */}
     </div>
   );
 }
