@@ -18,7 +18,7 @@
 import { Job, Sponsor, Stage, Speaker } from '@lib/types';
 
 const API_URL = `${process.env.STRAPI_API_URL}/graphql`;
-const IMAGE_API_URL = process.env.STRAPI_API_URL;
+const IMAGE_API_URL = process.env.API_URL;
 
 interface Image {
   url?: string;
@@ -46,6 +46,10 @@ async function fetchCmsAPI(query: string, { variables }: { variables?: Record<st
   return json.data;
 }
 
+/**
+ * The default image url will be '/uploads/...
+ * Here we add the IMAGE_API_URL prefix to allow locally stored assets to be displayed
+ */
 function serializeImage(image: Image) {
   if (!image?.url) return null;
   let imageUrl: string = image.url.startsWith('http') ? image.url : `${IMAGE_API_URL}${image.url}`;
@@ -53,7 +57,7 @@ function serializeImage(image: Image) {
   return {
     ...image,
     sizes: '',
-    url: `${imageUrl}?auto=compress,format`
+    url: imageUrl
   };
 }
 
