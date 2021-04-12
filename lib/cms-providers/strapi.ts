@@ -18,25 +18,10 @@
 import { Job, Sponsor, Stage, Speaker } from '@lib/types';
 
 const API_URL = `${process.env.STRAPI_API_URL}/graphql`;
+const IMAGE_API_URL = process.env.STRAPI_API_URL;
 
-/**
- * This transformResponse() function can be removed if you're using the
- * Strapi data directly. This transformation only happens to adapt the data
- * returned from the GraphQL api to the data structure used in the
- * starter so as not to have to modify the component files.
- */
-function transformResponse(response: any[], _speakers?: any) {
-  response.map((item: any) => {
-    Object.keys(item).map(key => {
-      // assign the urls directly if not an image
-      const noAssign = ['image', 'logo', 'cardImage'];
-      if (item[key]?.url && noAssign.indexOf(key) === -1) {
-        item[key] = item[key].url;
-      }
-    });
-  });
-
-  return response;
+interface Image {
+  url?: string;
 }
 
 async function fetchCmsAPI(query: string, { variables }: { variables?: Record<string, any> } = {}) {
@@ -59,6 +44,17 @@ async function fetchCmsAPI(query: string, { variables }: { variables?: Record<st
   }
 
   return json.data;
+}
+
+function serializeImage(image: Image) {
+  if (!image?.url) return null;
+  let imageUrl: string = image.url.startsWith('http') ? image.url : `${IMAGE_API_URL}${image.url}`;
+
+  return {
+    ...image,
+    sizes: '',
+    url: `${imageUrl}?auto=compress,format`
+  };
 }
 
 export async function getAllSpeakers(): Promise<Speaker[]> {
@@ -92,12 +88,16 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
   }  
   `);
 
-  const transformedData = transformResponse(data.speakers);
-  return transformedData;
+  return data.speakers.map((speaker: Speaker) => ({
+    ...speaker,
+    image: {
+      ...speaker.image,
+      ...serializeImage(speaker.image)
+    }
+  }));
 }
 
 export async function getAllStages(): Promise<Stage[]> {
-  const speakers = await getAllSpeakers();
   const data = await fetchCmsAPI(`
     {
       stages {
@@ -136,8 +136,18 @@ export async function getAllStages(): Promise<Stage[]> {
     }
   `);
 
-  const transformedData = transformResponse(data.stages, speakers);
-  return transformedData;
+  return data.stages.map((stage: Stage) => ({
+    ...stage,
+    schedule: stage.schedule.map(talk => ({
+      speaker: talk.speaker.map((speaker: Speaker) => ({
+        ...speaker,
+        image: {
+          ...speaker.image,
+          ...serializeImage(speaker.image)
+        }
+      }))
+    }))
+  }));
 }
 
 export async function getAllSponsors(): Promise<Sponsor[]> {
@@ -177,8 +187,17 @@ export async function getAllSponsors(): Promise<Sponsor[]> {
   }  
   `);
 
-  const transformedData = transformResponse(data.sponsors);
-  return transformedData;
+  return data.sponsors.map((sponsor: Sponsor) => ({
+    ...sponsor,
+    cardImage: {
+      ...sponsor.cardImage,
+      ...serializeImage(sponsor.cardImage)
+    },
+    logo: {
+      ...sponsor.cardImage,
+      ...serializeImage(sponsor.cardImage)
+    }
+  }));
 }
 
 export async function getAllJobs(): Promise<Job[]> {
@@ -196,6 +215,5 @@ export async function getAllJobs(): Promise<Job[]> {
     }
   `);
 
-  const transformedData = transformResponse(data.jobs);
-  return transformedData;
+  return data.jobs;
 }
