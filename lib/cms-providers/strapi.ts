@@ -139,6 +139,7 @@ export async function getAllStages(): Promise<Stage[]> {
   return data.stages.map((stage: Stage) => ({
     ...stage,
     schedule: stage.schedule.map(talk => ({
+      ...talk,
       speaker: talk.speaker.map((speaker: Speaker) => ({
         ...speaker,
         image: {
