@@ -18,7 +18,7 @@
 import { Job, Sponsor, Stage, Speaker } from '@lib/types';
 
 const API_URL = `${process.env.STRAPI_API_URL}/graphql`;
-const IMAGE_API_URL = process.env.API_URL;
+const IMAGE_API_URL = process.env.STRAPI_API_URL;
 
 interface Image {
   url?: string;
