@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export const SITE_URL = 'https://usa.jsworldconference.com/';
+export const SITE_URL = 'https://usa-jsworld-conference.vercel.app';
 export const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_ORIGIN || new URL(SITE_URL).origin;
 export const TWITTER_USER_NAME = 'frontend_love';
 export const BRAND_NAME = 'JSWorld Conference USA';
