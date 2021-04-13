@@ -49,6 +49,8 @@ async function fetchCmsAPI(query: string, { variables }: { variables?: Record<st
 /**
  * The default image url will be '/uploads/...
  * Here we add the IMAGE_API_URL prefix to allow locally stored assets to be displayed
+ * @param image
+ * @return image object with serialized url
  */
 function serializeImage(image: Image) {
   if (!image?.url) return null;
@@ -58,6 +60,20 @@ function serializeImage(image: Image) {
     ...image,
     sizes: '',
     url: imageUrl
+  };
+}
+
+/**
+ * @param speaker
+ * @returns speaker object with serialized image
+ */
+function serializeSpeaker(speaker: Speaker) {
+  return {
+    ...speaker,
+    image: {
+      ...speaker.image,
+      ...serializeImage(speaker.image)
+    }
   };
 }
 
@@ -92,13 +108,7 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
   }  
   `);
 
-  return data.speakers.map((speaker: Speaker) => ({
-    ...speaker,
-    image: {
-      ...speaker.image,
-      ...serializeImage(speaker.image)
-    }
-  }));
+  return data.speakers.map(serializeSpeaker);
 }
 
 export async function getAllStages(): Promise<Stage[]> {
@@ -144,13 +154,7 @@ export async function getAllStages(): Promise<Stage[]> {
     ...stage,
     schedule: stage.schedule.map(talk => ({
       ...talk,
-      speaker: talk.speaker.map((speaker: Speaker) => ({
-        ...speaker,
-        image: {
-          ...speaker.image,
-          ...serializeImage(speaker.image)
-        }
-      }))
+      speaker: talk.speaker.map(serializeSpeaker)
     }))
   }));
 }
