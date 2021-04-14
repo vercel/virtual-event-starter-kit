@@ -29,9 +29,7 @@ let cmsApi: {
   getAllJobs: () => Promise<Job[]>;
 };
 
-if (process.env.STRAPI_API_URL) {
-  cmsApi = strapiApi;
-} else if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
+if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
   cmsApi = datoCmsApi;
 } else if (process.env.CONTENTFUL_ACCESS_TOKEN && process.env.CONTENTFUL_SPACE_ID) {
   cmsApi = contentfulApi;
@@ -45,6 +43,8 @@ if (process.env.STRAPI_API_URL) {
   process.env.AGILITY_API_PREVIEW_KEY
 ) {
   cmsApi = agilityApi;
+} else if (process.env.STRAPI_API_URL) {
+  cmsApi = strapiApi;
 } else {
   cmsApi = {
     getAllSpeakers: async () => [],
