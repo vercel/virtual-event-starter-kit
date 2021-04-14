@@ -15,6 +15,7 @@
  */
 import { Job, Sponsor, Stage, Speaker } from '@lib/types';
 
+import * as strapiApi from './cms-providers/strapi';
 import * as agilityApi from './cms-providers/agility';
 import * as datoCmsApi from './cms-providers/dato';
 import * as contentfulApi from './cms-providers/contentful';
@@ -42,6 +43,8 @@ if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
   process.env.AGILITY_API_PREVIEW_KEY
 ) {
   cmsApi = agilityApi;
+} else if (process.env.STRAPI_API_URL) {
+  cmsApi = strapiApi;
 } else {
   cmsApi = {
     getAllSpeakers: async () => [],
