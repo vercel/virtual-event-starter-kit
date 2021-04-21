@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-.background {
+.bull {
   width: 1080px;
   height: 1920px;
   background: dodgerblue;
@@ -26,9 +26,93 @@
   background-image: url("/assets/bull.png");
 }
 
+.bear {
+  width: 1080px;
+  height: 1920px;
+  background: dodgerblue;
+  color: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/assets/bear.png");
+}
+
 .page {
   width: 1080px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Noto Sans', 'Noto Sans JP',
     'Noto Sans KR', 'Noto Sans SC', 'Noto Sans TC', 'Noto Sans HK', sans-serif;
+}
+
+.variation {
+  width: 1080px;
+  position: absolute;
+  top: 20px;
+  font-size: 340px;
+  transform: rotate(15deg);
+  font-family: 'Anton', sans-serif;
+  text-align: center;
+  opacity: 30%;
+  /*font-family: 'Cabin Sketch', cursive;*/
+}
+
+.variation > span {
+  font-family: 'Oswald', sans-serif;
+}
+
+.stockname {
+  width: 1080px;
+  position: absolute;
+  top: 420px;
+  font-size: 160px;
+  padding: 2rem;
+  line-height: 0.8;
+  font-family: 'Cabin Sketch', cursive;
+}
+
+.tickerBull {
+  position: absolute;
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 120px;
+  transform: rotate(270deg);
+  text-transform: uppercase;
+  left: -100px;
+  top: 1100px;
+  width: 350px;
+}
+
+.priceBull {
+  position: absolute;
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 42px;
+  transform: rotate(270deg);
+  left: -30px;
+  top: 1160px;
+  width: 350px;
+}
+
+.tickerBear {
+  position: absolute;
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 120px;
+  transform: rotate(270deg);
+  text-transform: uppercase;
+  left: 760px;
+  top: 1455px;
+  text-align: right;
+  /*background-color: deeppink;*/
+  width: 500px;
+}
+
+.priceBear {
+  position: absolute;
+  font-family: 'Cabin Sketch', cursive;
+  font-size: 42px;
+  transform: rotate(270deg);
+  left: 690px;
+  top: 1530px;
+  width: 500px;
+  text-align: right;
+  /*background-color: blue;*/
 }
