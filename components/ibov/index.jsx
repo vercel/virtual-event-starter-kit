@@ -1,13 +1,13 @@
 import {useRouter} from "next/router";
 import styles from './ibov.module.css';
 
-export default function IbovImage({ ibovData }: any) {
+export default function IbovImage(ibovData) {
     const { query } = useRouter();
     const up = ibovData[0];
     const down = ibovData.filter(isDown);
     const stock = query.username != "up" ? down[0] : up;
 
-    function isDown ({value}) {
+    function isDown (value) {
         if (value.resultType == 1)
             return value;
     }
