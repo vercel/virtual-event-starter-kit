@@ -21,7 +21,7 @@ export default function IbovOnlyPage(data) {
   return <IbovImage ibovData={data}/>;
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps = async () => {
     const uri = "https://statusinvest.com.br/acao/getaltabaixa?IndiceCode=ibovespa";
     // const uri = "https://statusinvest.com.br/stock/getaltabaixa?IndiceCode=sp-500";
     const res = await fetch(uri);
