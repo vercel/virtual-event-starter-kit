@@ -17,7 +17,7 @@ import {GetServerSideProps, GetStaticProps} from 'next';
 import IbovImage from '@components/ibov';
 
 
-export default function IbovOnlyPage({ data }) {
+export default function IbovOnlyPage(data) {
   return <IbovImage ibovData={data}/>;
 }
 
