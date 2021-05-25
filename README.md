@@ -120,10 +120,13 @@ The demo ([demo.vercel.events](https://demo.vercel.events)) uses [Redis](https:/
 REDIS_PORT=6379 # Default Redis port number
 REDIS_URL=localhost
 REDIS_PASSWORD=
+REDIS_SSL_ENABLED=
 REDIS_EMAIL_TO_ID_SECRET=foo # Come up with your own secret string
 ```
 
 > `REDIS_EMAIL_TO_ID_SECRET` will be used to create a hash of the email address, which will be used for the Redis key for each user data (i.e. `id:<hash>`). See `lib/redis.ts` for details.
+
+> If your Redis server has SSL (TLS) encryption enabled then set REDIS_SSL_ENABLED=true
 
 3. Restart the app (`yarn dev`) after editing `.env.local`.
 4. In a separate terminal window, start the Next.js dev server (`yarn dev`) and sign up using the registration form.
@@ -131,7 +134,9 @@ REDIS_EMAIL_TO_ID_SECRET=foo # Come up with your own secret string
 
 #### Using Redis On Vercel
 
-Provision your own Redis instance and set `REDIS_PORT`, `REDIS_URL`, `REDIS_PASSWORD`, and `REDIS_EMAIL_TO_ID_SECRET` (come up with your own secret string) on [Vercel Project Environment Variables Settings](https://vercel.com/docs/environment-variables) for the production environment.
+Provision your own Redis instance and set `REDIS_PORT`, `REDIS_URL`, `REDIS_PASSWORD`, `REDIS_SSL_ENABLED` and `REDIS_EMAIL_TO_ID_SECRET` (come up with your own secret string) on [Vercel Project Environment Variables Settings](https://vercel.com/docs/environment-variables) for the production environment.
+
+If you do not want to maintain a Redis server, you can use [Upstash](https://upstash.com) which provides Serverless Redis with a free tier.
 
 ## More Details
 
