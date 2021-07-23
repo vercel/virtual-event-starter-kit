@@ -48,7 +48,7 @@ export default function Hero() {
       </h2>
       <div className={cn(styleUtils.appear, styleUtils.appearFourth, styles.info)}>
         <p>{DATE}</p>
-        <div className={styles['description-separator']} />
+        <div className={styles.descriptionSeparator} />
         <p>
           <strong>Online</strong>
         </p>

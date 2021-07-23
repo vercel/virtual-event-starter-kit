@@ -46,9 +46,9 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
 
   return formState === 'error' ? (
     <div>
-      <div className={cn(formStyles['form-row'], ticketFormStyles['form-row'])}>
-        <div className={cn(formStyles['input-label'], formStyles.error)}>
-          <div className={cn(formStyles.input, formStyles['input-text'])}>{errorMsg}</div>
+      <div className={cn(formStyles.formRow, ticketFormStyles.formRow)}>
+        <div className={cn(formStyles.inputLabel, formStyles.error)}>
+          <div className={cn(formStyles.input, formStyles.inputText)}>{errorMsg}</div>
           <button
             type="button"
             className={cn(formStyles.submit, formStyles.error)}
@@ -162,15 +162,15 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
           });
       }}
     >
-      <div className={cn(formStyles['form-row'], ticketFormStyles['form-row'])}>
+      <div className={cn(formStyles.formRow, ticketFormStyles.formRow)}>
         <button
           type="submit"
           className={cn(
             formStyles.submit,
-            formStyles['generate-with-github'],
+            formStyles.generateWithGithub,
             formStyles[formState],
             {
-              [formStyles['not-allowed']]: !githubEnabled
+              [formStyles.notAllowed]: !githubEnabled
             }
           )}
           disabled={

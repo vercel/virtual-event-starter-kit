@@ -42,7 +42,7 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
       <div className={styles.background}>
         {!hideNav && (
           <header className={cn(styles.header)}>
-            <div className={styles['header-logos']}>
+            <div className={styles.headerLogos}>
               <MobileMenu key={router.asPath} />
               <Link href="/">
                 {/* eslint-disable-next-line */}
@@ -56,7 +56,7 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
                 <Link key={name} href={route}>
                   <a
                     className={cn(styles.tab, {
-                      [styles['tab-active']]: activeRoute.startsWith(route)
+                      [styles.tabActive]: activeRoute.startsWith(route)
                     })}
                   >
                     {name}
@@ -64,7 +64,7 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
                 </Link>
               ))}
             </div>
-            <div className={cn(styles['header-right'])}>
+            <div className={cn(styles.headerRight)}>
               <HostedByVercel />
             </div>
           </header>

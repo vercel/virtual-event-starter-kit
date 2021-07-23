@@ -51,14 +51,14 @@
   z-index: 2;
 }
 
-.header-logos {
+.headerLogos {
   max-width: 200px;
   display: flex;
   align-items: center;
   margin: var(--space-2x) var(--space-4x);
 }
 
-.header-right {
+.headerRight {
   margin: var(--space-2x) var(--space-16x);
   display: none;
 }
@@ -105,7 +105,7 @@
   color: #fff;
 }
 
-.tab-active {
+.tabActive {
   color: #fff;
   background: linear-gradient(90deg, var(--brand), var(--brand)) left bottom transparent no-repeat;
   background-size: 100% 1px;

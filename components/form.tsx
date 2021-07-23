@@ -44,12 +44,12 @@ export default function Form({ sharePage }: Props) {
   return formState === 'error' ? (
     <div
       className={cn(styles.form, {
-        [styles['share-page']]: sharePage
+        [styles.sharePage]: sharePage
       })}
     >
-      <div className={styles['form-row']}>
-        <div className={cn(styles['input-label'], styles.error)}>
-          <div className={cn(styles.input, styles['input-text'])}>{errorMsg}</div>
+      <div className={styles.formRow}>
+        <div className={cn(styles.inputLabel, styles.error)}>
+          <div className={cn(styles.input, styles.inputText)}>{errorMsg}</div>
           <button
             type="button"
             className={cn(styles.submit, styles.register, styles.error)}
@@ -66,7 +66,7 @@ export default function Form({ sharePage }: Props) {
   ) : (
     <form
       className={cn(styles.form, {
-        [styles['share-page']]: sharePage,
+        [styles.sharePage]: sharePage,
         [styleUtils.appear]: !errorTryAgain,
         [styleUtils.appearFifth]: !errorTryAgain && !sharePage,
         [styleUtils.appearThird]: !errorTryAgain && sharePage
@@ -126,10 +126,10 @@ export default function Form({ sharePage }: Props) {
         e.preventDefault();
       }}
     >
-      <div className={styles['form-row']}>
+      <div className={styles.formRow}>
         <label
           htmlFor="email-input-field"
-          className={cn(styles['input-label'], {
+          className={cn(styles.inputLabel, {
             [styles.focused]: focused
           })}
         >

@@ -48,7 +48,7 @@
   max-width: 355px;
 }
 
-.description-separator {
+.descriptionSeparator {
   height: 24px;
   width: 1px;
   background: var(--secondary-color);
