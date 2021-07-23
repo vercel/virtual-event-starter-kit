@@ -20,11 +20,11 @@
   margin-bottom: var(--space-12x);
 }
 
-.contact-email {
+.contactEmail {
   color: #fff;
 }
 
-.contact-email:hover {
+.contactEmail:hover {
   text-decoration: underline;
   color: #fff;
 }
