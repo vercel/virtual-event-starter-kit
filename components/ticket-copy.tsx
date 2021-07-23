@@ -112,7 +112,7 @@ export default function TicketCopy({ username }: Props) {
           style={{ opacity: fadeOpacity }}
         />
         <div
-          className={cn(styles['desktop-copy'], styleUtils['hide-on-mobile'], {
+          className={cn(styles['desktop-copy'], styleUtils.hideOnMobile, {
             [styles['desktop-copy-disabled']]: !copyEnabled
           })}
         >

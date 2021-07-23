@@ -19,27 +19,27 @@
   animation: appear 0.8s cubic-bezier(0.1, 0, 0.175, 1) forwards;
 }
 
-.appear-first {
+.appearFirst {
   animation-delay: 0.4s;
 }
 
-.appear-second {
+.appearSecond {
   animation-delay: 0.8s;
 }
 
-.appear-third {
+.appearThird {
   animation-delay: 1.2s;
 }
 
-.appear-fourth {
+.appearFourth {
   animation-delay: 1.6s;
 }
 
-.appear-fifth {
+.appearFifth {
   animation-delay: 2s;
 }
 
-.appear-sixth {
+.appearSixth {
   animation-delay: 2.4s;
 }
 
@@ -50,43 +50,43 @@
 }
 
 @media (min-width: 1200px) {
-  .hide-on-desktop {
+  .hideOnDesktop {
     display: none;
   }
 }
 
-.show-on-mobile {
+.showOnMobile {
   display: block;
 }
 
-.hide-on-mobile {
+.hideOnMobile {
   display: none;
 }
 
 @media (min-width: 768px) {
-  .show-on-mobile {
+  .showOnMobile {
     display: none;
   }
 
-  .hide-on-mobile {
+  .hideOnMobile {
     display: block;
   }
 }
 
-.hide-on-tablet {
+.hideOnTablet {
   display: block;
 }
 
-.show-on-tablet {
+.appearFirst {
   display: none;
 }
 
 @media (max-width: 1199px) and (min-width: 768px) {
-  .show-on-tablet {
+  .showOnTablet {
     display: block;
   }
 
-  .hide-on-tablet {
+  .hideOnTablet {
     display: none;
   }
 }

@@ -48,7 +48,7 @@ export default function SponsorSection({ sponsor }: Props) {
       </Link>
       <div className={styles.layout}>
         <iframe
-          className={cn(styles.video, styleUtils.appear, styleUtils['appear-first'])}
+          className={cn(styles.video, styleUtils.appear, styleUtils.appearFirst)}
           allow="picture-in-picture"
           allowFullScreen
           frameBorder="0"

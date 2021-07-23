@@ -42,7 +42,7 @@ export default function StageContainer({ stage, allStages }: Props) {
     <div className={styles.container}>
       <div className={styles.streamContainer}>
         {loginStatus === 'loggedIn' ? (
-          <div className={cn(styles.stream, styleUtils.appear, styleUtils['appear-first'])}>
+          <div className={cn(styles.stream, styleUtils.appear, styleUtils.appearFirst)}>
             <iframe
               allow="autoplay; picture-in-picture"
               allowFullScreen
@@ -51,7 +51,7 @@ export default function StageContainer({ stage, allStages }: Props) {
               title={updatedStage.name}
               width="100%"
             />
-            <div className={cn(styles.bottom, styleUtils.appear, styleUtils['appear-second'])}>
+            <div className={cn(styles.bottom, styleUtils.appear, styleUtils.appearSecond)}>
               <div className={styles.messageContainer}>
                 <h2 className={styles.stageName}>{stage.name}</h2>
               </div>

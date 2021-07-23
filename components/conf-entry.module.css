@@ -88,7 +88,7 @@
   color: var(--secondary-color);
 }
 
-.input-label {
+.inputLabel {
   background-color: var(--gray);
   border-radius: var(--space-2x);
   border: 1px solid transparent;
@@ -96,32 +96,32 @@
   display: block;
 }
 
-.input-label.focused {
+.inputLabel.focused {
   background-color: #33373c;
 }
 
-.input-label.error {
+.inputLabel.error {
   background: red;
 }
 
-.input-label.success {
+.inputLabel.success {
   background: #0070f3;
 }
 
-.input-text {
+.inputText {
   display: flex;
   align-items: center;
   width: 100%;
 }
 
-.form-row {
+.formRow {
   position: relative;
   max-width: 400px;
   width: 100%;
 }
 
 @media (min-width: 768px) {
-  .form-row {
+  .formRow {
     max-width: 480px;
   }
 }
@@ -183,7 +183,7 @@
 }
 
 @media (min-width: 1200px) {
-  .form-row {
+  .formRow {
     margin: 0;
   }
 }

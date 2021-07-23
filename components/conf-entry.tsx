@@ -76,20 +76,20 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
   }, []);
 
   return (
-    <div className={cn(styles.container, styleUtils.appear, styleUtils['appear-first'])}>
+    <div className={cn(styles.container, styleUtils.appear, styleUtils.appearFirst)}>
       <h1 className={cn(styles.hero)}>Join the conference.</h1>
       <h2 className={cn(styles.description)}>{SITE_DESCRIPTION}</h2>
       <form onSubmit={onSubmit} className={styles.form}>
-        <div className={styles['form-row']}>
+        <div className={styles.formRow}>
           <label
             htmlFor="email-input-field"
-            className={cn(styles['input-label'], {
+            className={cn(styles.inputLabel, {
               [styles.focused]: focused,
               [styles.error]: formState === 'error'
             })}
           >
             {formState === 'error' ? (
-              <div className={cn(styles.input, styles['input-text'])}>{errorMsg}</div>
+              <div className={cn(styles.input, styles.inputText)}>{errorMsg}</div>
             ) : (
               <input
                 className={styles.input}
