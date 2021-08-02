@@ -38,7 +38,7 @@ export default function TicketProfile({ name, username, size = 1, ticketGenerati
         {username ? (
           <img src={`https://github.com/${username}.png`} alt={username} className={styles.image} />
         ) : (
-          <span className={cn(styles.image, styles['empty-icon'])}>
+          <span className={cn(styles.image, styles.emptyIcon)}>
             <IconAvatar />
           </span>
         )}
@@ -46,7 +46,7 @@ export default function TicketProfile({ name, username, size = 1, ticketGenerati
       <div className={styles.text}>
         <p
           className={cn(styles.name, {
-            [styles['name-blank']]: !username
+            [styles.nameBlank]: !username
           })}
         >
           <span

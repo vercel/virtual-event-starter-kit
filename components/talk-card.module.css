@@ -37,12 +37,12 @@
   background-image: linear-gradient(#111111, #111111), linear-gradient(to right, #aaa, #aaa);
 }
 
-.is-live {
+.isLive {
   background-image: linear-gradient(#111111, #111111),
     linear-gradient(to right, var(--brand), var(--brand));
 }
 
-.card-body {
+.cardBody {
   padding: var(--space-4x);
 }
 
@@ -75,18 +75,18 @@
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
-.avatar-wrapper {
+.avatarWrapper {
   margin-right: var(--space-2x);
 }
 
-.avatar-group {
+.avatarGroup {
   display: flex;
 }
 
-.avatar-wrapper:nth-child(n + 2) {
+.avatarWrapper:nth-child(n + 2) {
   margin-left: -15px;
 }
 
-.link:hover .card:not(.is-live) {
+.link:hover .card:not(.isLive) {
   background-image: linear-gradient(#111111, #111111), linear-gradient(to right, #555, #555);
 }

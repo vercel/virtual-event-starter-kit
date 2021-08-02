@@ -48,24 +48,24 @@
   }
 }
 
-.created-by {
+.createdBy {
   display: flex;
   align-items: center;
   color: var(--accents-4);
 }
 
 @media (min-width: 768px) {
-  .created-by {
+  .createdBy {
     margin-right: var(--space-4x);
   }
 }
 
-.created-by-text {
+.createdByText {
   white-space: nowrap;
   margin-right: var(--space);
 }
 
-.created-by-logo {
+.createdByLogo {
   height: calc(16px * var(--size));
   display: inline-flex;
 }

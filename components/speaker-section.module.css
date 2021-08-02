@@ -36,14 +36,14 @@
   color: #fff;
 }
 
-.speaker-details {
+.speakerDetails {
   padding: var(--space-4x) 0;
   display: flex;
   flex-direction: column;
   flex: unset;
 }
 
-.talk-details {
+.talkDetails {
   margin-top: var(--space-8x);
   padding: 0 var(--space-4x);
   max-width: 800px;
@@ -69,12 +69,12 @@
     padding-bottom: 0;
   }
 
-  .speaker-details {
+  .speakerDetails {
     padding: 0;
     padding-left: var(--space-8x);
   }
 
-  .talk-details {
+  .talkDetails {
     padding-left: var(--space-8x);
     color: var(--accents-2);
   }
@@ -107,13 +107,13 @@
   font-size: 20px;
 }
 
-.bio-header {
+.bioHeader {
   font-size: 30px;
   letter-spacing: -0.05em;
   color: #fff;
 }
 
-.socials-header {
+.socialHeader {
   font-size: 24px;
   letter-spacing: -0.05em;
   color: #fff;

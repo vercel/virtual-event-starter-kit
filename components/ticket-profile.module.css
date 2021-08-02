@@ -74,14 +74,14 @@
   display: inline-flex;
 }
 
-.empty-icon {
+.emptyIcon {
   display: block;
   background: linear-gradient(135deg, #b4b6b8, #7f8183);
   width: 60px;
 }
 
 @media (min-width: 768px) {
-  .empty-icon {
+  .emptyIcon {
     width: calc(80px * var(--size));
   }
 }

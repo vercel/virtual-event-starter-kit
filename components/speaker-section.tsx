@@ -67,16 +67,16 @@ export default function SpeakerSection({ speaker }: Props) {
             width={300}
           />
         </div>
-        <div className={styles['speaker-details']}>
+        <div className={styles.speakerDetails}>
           <div>
             <h1 className={styles.name}>{speaker.name}</h1>
             <p className={styles.title}>
               {`${speaker.title} @ `}
               <span className={styles.company}>{speaker.company}</span>
             </p>
-            <h2 className={styles['bio-header']}>Bio</h2>
+            <h2 className={styles.bioHeader}>Bio</h2>
             <p className={styles.bio}>{speaker.bio}</p>
-            <h3 className={styles['socials-header']}>Social Media</h3>
+            <h3 className={styles.socialHeader}>Social Media</h3>
             {speaker.twitter ? (
               <a
                 aria-label="Twitter"
@@ -110,8 +110,8 @@ export default function SpeakerSection({ speaker }: Props) {
         </div>
       </div>
       {speaker.talk && (
-        <div className={styles['talk-details']}>
-          <h3 className={styles['socials-header']}>{speaker.talk.title}</h3>
+        <div className={styles.talkDetails}>
+          <h3 className={styles.socialHeader}>{speaker.talk.title}</h3>
           <p>{speaker.talk.description}</p>
         </div>
       )}

@@ -58,7 +58,7 @@ export default function SponsorSection({ sponsor }: Props) {
           width="100%"
         />
         <div className={styles.container}>
-          <div className={styles['name-and-logo']}>
+          <div className={styles.nameAndLogo}>
             <Image
               alt={sponsor.name}
               src={sponsor.logo.url}
@@ -71,7 +71,7 @@ export default function SponsorSection({ sponsor }: Props) {
             <h1 className={styles.name}>{sponsor.name}</h1>
           </div>
           <p className={styles.description}>{sponsor.description}</p>
-          <div className={styles['sponsor-details']}>
+          <div className={styles.sponsorDetails}>
             <a
               href={sponsor.callToActionLink}
               target="_blank"
@@ -86,7 +86,7 @@ export default function SponsorSection({ sponsor }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               type="button"
-              className={cn(styles.button, styles['button-link'])}
+              className={cn(styles.button, styles.buttonLink)}
             >
               Chat on Discord
             </a>
@@ -99,7 +99,7 @@ export default function SponsorSection({ sponsor }: Props) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(styles.button, styles['button-resource'])}
+                className={cn(styles.button, styles.buttonResource)}
               >
                 <span className={styles.truncate}>{link.text}</span>
                 <svg

@@ -71,7 +71,7 @@ export default function TicketActions({ username }: Props) {
           styles.second,
           'icon-button',
           // LinkedIn Share widget doesn’t work on mobile
-          styles['linkedin-button']
+          styles.linkedinButton
         )}
         href={linkedInUrl}
         rel="noopener noreferrer"

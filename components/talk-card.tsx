@@ -51,17 +51,17 @@ export default function TalkCard({ talk: { title, speaker, start, end }, showTim
       <Link href={firstSpeakerLink}>
         <a
           className={cn(styles.card, {
-            [styles['is-live']]: isTalkLive
+            [styles.isLive]: isTalkLive
           })}
         >
-          <div className={styles['card-body']}>
+          <div className={styles.cardBody}>
             <h4 title={title} className={styles.title}>
               {title}
             </h4>
             <div className={styles.speaker}>
-              <div className={styles['avatar-group']}>
+              <div className={styles.avatarGroup}>
                 {speaker.map(s => (
-                  <div key={s.name} className={styles['avatar-wrapper']}>
+                  <div key={s.name} className={styles.avatarWrapper}>
                     <Image
                       loading="lazy"
                       alt={s.name}

@@ -50,11 +50,11 @@
   }
 }
 
-.ticket-text {
+.ticketText {
   margin-bottom: 30px;
 }
 
-.ticket-layout {
+.ticketLayout {
   display: grid;
   grid-template-columns: 1fr;
   gap: 45px;
@@ -62,12 +62,12 @@
   padding: var(--space-4x);
 }
 
-.ticket-share-layout {
+.ticketShareLayout {
   align-items: center;
   margin-bottom: auto;
 }
 
-.ticket-visual {
+.ticketVisual {
   position: relative;
   border-radius: var(--space-4x);
   overflow: hidden;
@@ -75,8 +75,8 @@
   margin: 0 auto;
 }
 
-.ticket-visual:before,
-.ticket-visual:after {
+.ticketVisual:before,
+.ticketVisual:after {
   content: '';
   display: block;
   width: 72px;
@@ -87,37 +87,37 @@
   border-radius: 50%;
 }
 
-.ticket-visual:before {
+.ticketVisual:before {
   left: 50%;
   top: -7.5%;
   transform: translateZ(0) translateX(-50%) rotate(90deg);
 }
 
-.ticket-visual:after {
+.ticketVisual:after {
   left: 50%;
   bottom: -7.5%;
   transform: translateZ(0) translateX(-50%) rotate(90deg);
 }
 
 @media (min-width: 768px) {
-  .ticket-visual {
+  .ticketVisual {
     width: 650px;
   }
 
-  .ticket-visual:before {
+  .ticketVisual:before {
     top: 50%;
     left: -7%;
     transform: translateZ(0) translateY(-50%);
   }
 
-  .ticket-visual:after {
+  .ticketVisual:after {
     top: 50%;
     left: 96%;
     transform: translateZ(0) translateY(-50%);
   }
 }
 
-.ticket-actions {
+.ticketActions {
   margin-top: 30px;
   display: flex;
   align-items: center;
@@ -125,25 +125,25 @@
   flex-direction: column;
 }
 
-.ticket-copy {
+.ticketCopy {
   margin-top: 30px;
 }
 
-.ticket-actions-placeholder {
+.ticketActionsPlaceholder {
   height: 280px;
 }
 
 @media (min-width: 768px) {
-  .ticket-actions {
+  .ticketActions {
     flex-direction: row;
   }
-  .ticket-actions-placeholder {
+  .ticketActionsPlaceholder {
     height: 157px;
   }
 }
 
 @media (min-width: 1200px) {
-  .ticket-layout {
+  .ticketLayout {
     grid-template-columns: 1fr 1fr;
   }
   .hero {
@@ -156,12 +156,12 @@
   }
 }
 
-.ticket-visual-wrapper {
+.ticketVisualWrapper {
   width: 100%;
 }
 
 @media screen and (min-width: 1280px) {
-  .ticket-layout {
+  .ticketLayout {
     padding: 0 40px;
   }
 }

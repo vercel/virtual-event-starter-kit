@@ -42,10 +42,10 @@ export default function TicketVisual({
   return (
     <>
       <div className={styles.visual} style={{ ['--size' as string]: size }}>
-        <div className={styles['horizontal-ticket']}>
+        <div className={styles.horizontalTicket}>
           {username ? <TicketColored /> : <TicketMono />}
         </div>
-        <div className={styles['vertical-ticket']}>
+        <div className={styles.verticalTicket}>
           {username ? <TicketColoredMobile /> : <TicketMonoMobile />}
         </div>
         <div className={styles.profile}>
@@ -60,8 +60,8 @@ export default function TicketVisual({
           <TicketInfo logoTextSecondaryColor={ticketNumber ? 'var(--brand)' : undefined} />
         </div>
         {ticketNumber && (
-          <div className={styles['ticket-number-wrapper']}>
-            <div className={styles['ticket-number']}>
+          <div className={styles.ticketNumberWrapper}>
+            <div className={styles.ticketNumber}>
               <TicketNumber number={ticketNumber} />
             </div>
           </div>

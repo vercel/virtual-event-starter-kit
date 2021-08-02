@@ -19,20 +19,20 @@
   transform: translateZ(0);
 }
 
-.horizontal-ticket {
+.horizontalTicket {
   display: none;
 }
 
-.vertical-ticket {
+.verticalTicket {
   display: flex;
 }
 
 @media (min-width: 768px) {
-  .horizontal-ticket {
+  .horizontalTicket {
     display: flex;
   }
 
-  .vertical-ticket {
+  .verticalTicket {
     display: none;
   }
 }
@@ -70,19 +70,19 @@
   }
 }
 
-.ticket-number-wrapper {
+.ticketNumberWrapper {
   position: absolute;
   bottom: 55px;
   right: 0;
 }
 
 @media (min-width: 768px) {
-  .ticket-number-wrapper {
+  .ticketNumberWrapper {
     bottom: 0;
   }
 }
 
-.ticket-number {
+.ticketNumber {
   font-weight: bold;
   font-size: calc(40px * var(--size));
   line-height: 1;
@@ -91,7 +91,7 @@
 }
 
 @media (min-width: 768px) {
-  .ticket-number {
+  .ticketNumber {
     transform: rotate(90deg) translateY(calc(100px * var(--size)));
     transform-origin: bottom right;
   }

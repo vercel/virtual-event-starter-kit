@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-.nav-overlay {
+.navOverlay {
   position: fixed;
   z-index: 100;
   top: 72px;
@@ -34,7 +34,7 @@
   align-items: center;
 }
 
-.nav-item {
+.navItem {
   font-size: var(--space-8x);
   letter-spacing: -0.05em;
   font-weight: 800;
@@ -44,11 +44,11 @@
   width: fit-content;
 }
 
-.nav-item:focus {
+.navItem:focus {
   outline: 1px dotted #fff;
 }
 
-.nav-active {
+.navActive {
   color: #fff;
   background: linear-gradient(90deg, var(--brand), var(--brand)) left bottom transparent no-repeat;
   background-size: 100% 2px;

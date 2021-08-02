@@ -52,7 +52,7 @@ export default function TicketCopy({ username }: Props) {
   const copyButton = (
     <button
       type="button"
-      className={styles['copy-button']}
+      className={styles.copyButton}
       ref={buttonRef}
       onClick={() => {
         navigator.clipboard.writeText(url).then(() => {
@@ -69,11 +69,11 @@ export default function TicketCopy({ username }: Props) {
 
   return (
     <div className={cn(styles.wrapper, styleUtils.appear)}>
-      <div className={styles['label-wrapper']}>
+      <div className={styles.labelWrapper}>
         <div className={styles.label}>Your ticket URL:</div>
         <div
-          className={cn(styles['mobile-copy'], {
-            [styles['mobile-copy-disabled']]: !copyEnabled
+          className={cn(styles.mobileCopy, {
+            [styles.mobileCopyDisabled]: !copyEnabled
           })}
         >
           {copiedText}
@@ -82,7 +82,7 @@ export default function TicketCopy({ username }: Props) {
       </div>
       <div
         className={cn(styles.field, {
-          [styles['desktop-copy-disabled']]: !copyEnabled
+          [styles.desktopCopyDisabled]: !copyEnabled
         })}
       >
         <span
@@ -107,13 +107,13 @@ export default function TicketCopy({ username }: Props) {
         </span>
         <span
           className={cn(styles.fade, {
-            [styles['desktop-copy-disabled']]: !copyEnabled
+            [styles.desktopCopyDisabled]: !copyEnabled
           })}
           style={{ opacity: fadeOpacity }}
         />
         <div
-          className={cn(styles['desktop-copy'], styleUtils.hideOnMobile, {
-            [styles['desktop-copy-disabled']]: !copyEnabled
+          className={cn(styles.desktopCopy, styleUtils.hideOnMobile, {
+            [styles.desktopCopyDisabled]: !copyEnabled
           })}
         >
           {copiedText}

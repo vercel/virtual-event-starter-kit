@@ -64,11 +64,11 @@
   }
 }
 
-.learn-more {
+.learnMore {
   color: #fff;
 }
 
-.learn-more:hover {
+.learnMore:hover {
   text-decoration: underline;
   color: #fff;
 }

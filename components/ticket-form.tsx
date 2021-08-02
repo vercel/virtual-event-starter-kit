@@ -168,7 +168,7 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
           className={cn(
             formStyles.submit,
             formStyles.generateWithGithub,
-            formStyles[formState],
+            formStyles.formState,
             {
               [formStyles.notAllowed]: !githubEnabled
             }
@@ -210,7 +210,7 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
                 href={`${REPO}#authentication`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={ticketFormStyles['learn-more']}
+                className={ticketFormStyles.learnMore}
               >
                 Learn more.
               </a>

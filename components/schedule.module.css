@@ -23,7 +23,7 @@
   display: none;
 }
 
-.row-wrapper {
+.rowWrapper {
   display: inline-block;
 }
 
@@ -36,7 +36,7 @@
   width: 100%;
 }
 
-.stage-name {
+.stageName {
   font-size: 22px;
   color: #fff;
   line-height: 1.15;
@@ -77,7 +77,7 @@
     margin-top: 0;
   }
 
-  .stage-name {
+  .stageName {
     font-size: var(--space-8x);
     position: sticky;
     left: 0;

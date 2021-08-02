@@ -38,14 +38,14 @@ function ModalDialog(props: Parameters<typeof useOverlay>[0] & Parameters<typeof
   usePreventScroll();
 
   return (
-    <div className={styles['nav-overlay']}>
+    <div className={styles.navOverlay}>
       <FocusScope contain restoreFocus autoFocus>
         <nav className={styles.nav} {...overlayProps} {...dialogProps} {...modalProps} ref={ref}>
           {NAVIGATION.map(({ name, route }) => (
             <Link key={name} href={route}>
               <a
-                className={cn(styles['nav-item'], {
-                  [styles['nav-active']]: activeRoute.startsWith(route)
+                className={cn(styles.navItem, {
+                  [styles.navActive]: activeRoute.startsWith(route)
                 })}
               >
                 {name}

@@ -63,12 +63,12 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
 
   return (
     <div
-      className={cn(styles['ticket-layout'], {
-        [styles['ticket-share-layout']]: sharePage
+      className={cn(styles.ticketLayout, {
+        [styles.ticketShareLayout]: sharePage
       })}
     >
       <div ref={divRef}>
-        <div className={styles['ticket-text']}>
+        <div className={styles.ticketText}>
           <h2 className={cn(styles.hero, styleUtils.appear, styleUtils.appearFirst)}>
             {sharePage ? (
               name ? (
@@ -106,10 +106,10 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
           )}
         </div>
       </div>
-      <div className={styles['ticket-visual-wrapper']}>
+      <div className={styles.ticketVisualWrapper}>
         <div
           ref={ticketRef}
-          className={cn(styles['ticket-visual'], styleUtils.appear, styleUtils.appearFourth)}
+          className={cn(styles.ticketVisual, styleUtils.appear, styleUtils.appearFourth)}
         >
           <TicketVisual
             username={username}
@@ -122,15 +122,15 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
           <>
             {username ? (
               <div>
-                <div className={styles['ticket-actions']}>
+                <div className={styles.ticketActions}>
                   <TicketActions username={username} />
                 </div>
-                <div className={styles['ticket-copy']}>
+                <div className={styles.ticketCopy}>
                   <TicketCopy username={username} />
                 </div>
               </div>
             ) : (
-              <div className={styles['ticket-actions-placeholder']} />
+              <div className={styles.ticketActionsPlaceholder} />
             )}
           </>
         )}

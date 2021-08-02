@@ -32,7 +32,7 @@
   margin-bottom: var(--space-2x);
 }
 
-.label-wrapper {
+.labelWrapper {
   display: flex;
   align-items: center;
   max-width: 400px;
@@ -51,7 +51,7 @@
     margin-bottom: 0px;
   }
 
-  .label-wrapper {
+  .labelWrapper {
     width: auto;
   }
 }
@@ -67,26 +67,26 @@
   .field {
     padding-right: 50px;
   }
-  .field.desktop-copy-disabled {
+  .field.desktopCopyDisabled {
     padding-right: 0px;
   }
 }
 
-.mobile-copy {
+.mobileCopy {
   margin-bottom: 10px;
   display: flex;
 }
 
-.mobile-copy-disabled.mobile-copy-disabled {
+.mobileCopyDisabled.mobileCopyDisabled {
   display: none;
 }
 
-.mobile-copy * {
+.mobileCopy * {
   color: var(--secondary-color);
   transition: color 0.2s ease;
 }
 
-.mobile-copy:hover * {
+.mobileCopy:hover * {
   color: #fff;
   transition: color 0.2s ease;
 }
@@ -123,7 +123,7 @@
   .url {
     width: 400px;
   }
-  .mobile-copy {
+  .mobileCopy {
     margin-bottom: 0;
     display: none;
   }
@@ -146,7 +146,7 @@
   pointer-events: none;
 }
 
-.desktop-copy.desktop-copy-disabled {
+.desktopCopy.desktopCopyDisabled {
   display: none;
 }
 
@@ -154,7 +154,7 @@
   .fade {
     right: 50px;
   }
-  .fade.desktop-copy-disabled {
+  .fade.desktopCopyDisabled {
     right: 0px;
   }
 }
@@ -172,7 +172,7 @@
   opacity: 1;
 }
 
-.copy-button {
+.copyButton {
   background: none;
   outline: none;
   border: none;
@@ -195,7 +195,7 @@
     background: linear-gradient(90deg, rgba(37, 39, 41, 0%) 0px, #252729 40px);
     padding-left: 50px;
   }
-  .copy-button {
+  .copyButton {
     position: absolute;
     top: 0px;
     right: 0px;

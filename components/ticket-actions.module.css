@@ -75,12 +75,12 @@
   animation-delay: 1s;
 }
 
-.linkedin-button {
+.linkedinButton {
   display: none !important;
 }
 
 @media (min-width: 768px) {
-  .linkedin-button {
+  .linkedinButton {
     display: grid !important;
   }
 }
