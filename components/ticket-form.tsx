@@ -168,7 +168,7 @@ export default function Form({ defaultUsername = '', setTicketGenerationState }:
           className={cn(
             formStyles.submit,
             formStyles.generateWithGithub,
-            formStyles.formState,
+            formStyles[formState],
             {
               [formStyles.notAllowed]: !githubEnabled
             }
