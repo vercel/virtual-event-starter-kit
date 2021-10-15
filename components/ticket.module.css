@@ -117,13 +117,6 @@
   }
 }
 
-.ticket-actions {
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
 
 .ticket-copy {
   margin-top: 30px;
@@ -134,9 +127,6 @@
 }
 
 @media (min-width: 768px) {
-  .ticket-actions {
-    flex-direction: row;
-  }
   .ticket-actions-placeholder {
     height: 157px;
   }

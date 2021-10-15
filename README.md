@@ -320,6 +320,29 @@ export default async function getDiscordMessage(req: NextApiRequest, res: NextAp
 }
 ```
 
+### Web 3.0
+
+This kit has a hidden feature that lets participants mint their tickets as NFTs on Polygon Mumbai TestNet as long as they have Metamask extension installed
+
+> Contributions are welcome to move this to main net.
+
+#### Deploy the smart contract
+
+1- Rename `.env.local` to `.env`
+2- Add your Metamask account's private key to `.env`, make sure you're on Mumbai TestNet network and make sure to remove the initial `0x` from the string
+
+> Network Name: Mumbai Testnet
+> New RPC URL: https://rpc-mumbai.matic.today
+> Chain ID: 80001
+> Currency Symbol: MATIC
+
+3- Run `npx hardhat run scripts/deploy.js --network mumbai` to deploy the smart contract
+4- Take the deployed smart contract address
+5- Paste the smart contract address here: https://github.com/smakosh/virtual-event-starter-kit/blob/main/components/ticket-actions.tsx#L87
+6- Start your app like you used to do `yarn dev`
+
+#### NFT Collection demo
+- Collection: https://testnets.opensea.io/collection/vercelnft
 ### Demo
 
 The demo is available at https://demo.vercel.events. The data recorded or used on the demo may be removed by Vercel at any point.

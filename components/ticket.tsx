@@ -39,9 +39,8 @@ type Props = {
 
 export default function Ticket({ username, name, ticketNumber, sharePage }: Props) {
   const ticketRef = useRef<HTMLDivElement>(null);
-  const [ticketGenerationState, setTicketGenerationState] = useState<TicketGenerationState>(
-    'default'
-  );
+  const [ticketGenerationState, setTicketGenerationState] =
+    useState<TicketGenerationState>('default');
   const divRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -122,9 +121,7 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
           <>
             {username ? (
               <div>
-                <div className={styles['ticket-actions']}>
-                  <TicketActions username={username} />
-                </div>
+                <TicketActions username={username} />
                 <div className={styles['ticket-copy']}>
                   <TicketCopy username={username} />
                 </div>

@@ -84,3 +84,24 @@
     display: grid !important;
   }
 }
+
+.ticket-actions {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  .ticket-actions {
+    flex-direction: row;
+  }
+}
+
+.button-mint {
+  max-width: 100%;
+  width: 96%;
+  margin: 0 auto;
+}
