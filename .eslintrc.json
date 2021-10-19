@@ -22,5 +22,19 @@
     "@typescript-eslint/no-unsafe-assignment": 0,
     "@typescript-eslint/restrict-template-expressions": 0,
     "@typescript-eslint/no-empty-function": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        [
+          "@components",
+          "./components"
+        ],
+        [
+          "@classes",
+          "./classes"
+        ]
+      ]
+    }
   }
 }

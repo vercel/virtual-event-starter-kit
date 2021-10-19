@@ -1,6 +1,6 @@
-import SpeakerSection from '../speaker-section';
 import { render, screen } from '@testing-library/react';
 import { Speaker } from '@lib/types';
+import SpeakerSection from '@components/speaker-section/speaker-section';
 
 const defaultSpeaker: Speaker = {
   name: 'SpeakerName',

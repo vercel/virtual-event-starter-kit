@@ -60,6 +60,7 @@
     "@typescript-eslint/parser": "4.10.0",
     "eslint": "7.15.0",
     "eslint-config-prettier": "7.0.0",
+    "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
     "jest": "^27.3.0",
@@ -74,9 +75,17 @@
   "jest": {
     "preset": "ts-jest",
     "moduleNameMapper": {
-      "\\.(css|jpg|png|svg)$": "<rootDir>/node_modules/jest-css-modules"
+      "\\.(css|jpg|png|svg)$": "<rootDir>/node_modules/jest-css-modules",
+      "^@components(.*)$": "<rootDir>/components$1"
     },
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["<rootDir>/jest-setup.ts"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest-setup.ts"
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "tsconfig.jest.json"
+      }
+    }
   }
 }
