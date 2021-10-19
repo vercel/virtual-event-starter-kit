@@ -17,7 +17,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import cn from 'classnames';
-import GithubIcon from '@components/icons/icon-github';
+import GithubIcon from '../icons/icon-github';
 import { Speaker } from '@lib/types';
 import styles from './speaker-section.module.css';
 
