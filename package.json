@@ -13,7 +13,9 @@
     "dev": "next",
     "start": "next start",
     "build": "next build",
-    "license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js"
+    "license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js",
+    "test": "jest",
+    "test-watch": "npm run test -- --watch"
   },
   "dependencies": {
     "@agility/content-fetch": "1.0.0",
@@ -39,10 +41,13 @@
     "vanilla-tilt": "1.7.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
     "@types/classnames": "2.2.11",
     "@types/cookie": "0.4.0",
     "@types/htmlescape": "1.1.1",
     "@types/ioredis": "4.17.9",
+    "@types/jest": "^27.0.2",
     "@types/ms": "0.7.31",
     "@types/node": "12.19.8",
     "@types/nprogress": "0.2.0",
@@ -57,10 +62,21 @@
     "eslint-config-prettier": "7.0.0",
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
+    "jest": "^27.3.0",
+    "jest-css-modules": "^2.1.0",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-hover-media-feature": "1.0.0",
     "postcss-preset-env": "6.7.0",
     "prettier": "2.2.1",
+    "ts-jest": "^27.0.7",
     "typescript": "4.1.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "moduleNameMapper": {
+      "\\.(css|jpg|png|svg)$": "<rootDir>/node_modules/jest-css-modules"
+    },
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/jest-setup.ts"]
   }
 }
