@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "..",
     "target": "es5",
     "lib": [
       "dom",
@@ -31,12 +31,12 @@
     }
   },
   "exclude": [
-    "node_modules"
+    "../node_modules"
   ],
   "include": [
-    "next-env.d.ts",
+    "../next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "./jest-setup.ts"
+    "./test-config/jest-setup.ts"
   ]
 }

@@ -80,11 +80,11 @@
     },
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
-      "<rootDir>/jest-setup.ts"
+      "<rootDir>/test-config/jest-setup.ts"
     ],
     "globals": {
       "ts-jest": {
-        "tsconfig": "tsconfig.jest.json"
+        "tsconfig": "<rootDir>/test-config/tsconfig.jest.json"
       }
     }
   }
