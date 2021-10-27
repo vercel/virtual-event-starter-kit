@@ -15,7 +15,8 @@
  */
 
 import cn from 'classnames';
-import { useCallback, useState } from 'react';
+import { useRef, useCallback, useState } from 'react';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 import styleUtils from './utils.module.css';
 import styles from './conf-entry.module.css';
 import LoadingDots from './loading-dots';
@@ -41,31 +42,33 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
   const [focused, setFocused] = useState(false);
   const [formState, setFormState] = useState<FormState>('default');
   const [errorMsg, setErrorMsg] = useState('');
+  const captchaRef = useRef<HCaptcha>(null);
 
-  const onSubmit = useCallback(
-    async e => {
+  const onSubmit = useCallback(e => {
       try {
         e.preventDefault();
         setFormState('loading');
-
-        const res = await register(emailInput);
-
-        if (!res.ok) {
-          const json = await res.json();
-          setErrorMsg(getErrorMsg(json.error.code));
-          setFormState('error');
-          return;
-        }
-
-        onRegister();
       } catch (err) {
         console.error(err);
         setErrorMsg(DEFAULT_ERROR_MSG);
         setFormState('error');
       }
     },
-    [emailInput, onRegister]
+    []
   );
+
+  const onVerify = useCallback(async (token: string) => {
+    const res = await register(emailInput, token);
+
+    if (!res.ok) {
+      const json = await res.json();
+      setErrorMsg(getErrorMsg(json.error.code));
+      setFormState('error');
+      return;
+    }
+
+    onRegister();
+  }, [emailInput, onRegister])
 
   useEmailQueryParam('login', setEmailInput);
 
@@ -119,6 +122,12 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
             )}
           </button>
         </div>
+        <HCaptcha
+          ref={captchaRef}
+          size="invisible"
+          sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY as string}
+          onVerify={onVerify}
+        />
       </form>
     </div>
   );
