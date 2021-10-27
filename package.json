@@ -18,6 +18,7 @@
   "dependencies": {
     "@agility/content-fetch": "1.0.0",
     "@agility/content-sync": "0.1.23",
+    "@hcaptcha/react-hcaptcha": "^0.3.7",
     "@reach/skip-nav": "0.12.1",
     "chrome-aws-lambda": "5.5.0",
     "classnames": "2.2.6",

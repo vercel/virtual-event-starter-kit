@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import cn from 'classnames';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
 import useConfData from '@lib/hooks/use-conf-data';
 import { useRouter } from 'next/router';
 import FormError from '@lib/form-error';
@@ -39,6 +40,7 @@ export default function Form({ sharePage }: Props) {
   const [formState, setFormState] = useState<FormState>('default');
   const { setPageState, setUserData } = useConfData();
   const router = useRouter();
+  const captchaRef = useRef<HCaptcha>(null);
   useEmailQueryParam('email', setEmail);
 
   return formState === 'error' ? (
@@ -74,7 +76,49 @@ export default function Form({ sharePage }: Props) {
       onSubmit={e => {
         if (formState === 'default') {
           setFormState('loading');
-          register(email)
+
+          captchaRef?.current?.execute();
+        } else {
+          setFormState('default');
+        }
+        e.preventDefault();
+      }}
+    >
+      <div className={styles['form-row']}>
+        <label
+          htmlFor="email-input-field"
+          className={cn(styles['input-label'], {
+            [styles.focused]: focused
+          })}
+        >
+          <input
+            className={styles.input}
+            autoComplete="off"
+            type="email"
+            id="email-input-field"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            placeholder="Enter email to register free"
+            aria-label="Your email address"
+            required
+          />
+        </label>
+        <button
+          type="submit"
+          className={cn(styles.submit, styles.register, styles[formState])}
+          disabled={formState === 'loading'}
+        >
+          {formState === 'loading' ? <LoadingDots size={4} /> : <>Register</>}
+        </button>
+      </div>
+      <HCaptcha
+        ref={captchaRef}
+        size="invisible"
+        sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY as string}
+        onVerify={(token: string) => {
+          register(email, token)
             .then(async res => {
               if (!res.ok) {
                 throw new FormError(res);
@@ -120,41 +164,8 @@ export default function Form({ sharePage }: Props) {
               setErrorMsg(message);
               setFormState('error');
             });
-        } else {
-          setFormState('default');
-        }
-        e.preventDefault();
-      }}
-    >
-      <div className={styles['form-row']}>
-        <label
-          htmlFor="email-input-field"
-          className={cn(styles['input-label'], {
-            [styles.focused]: focused
-          })}
-        >
-          <input
-            className={styles.input}
-            autoComplete="off"
-            type="email"
-            id="email-input-field"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
-            placeholder="Enter email to register free"
-            aria-label="Your email address"
-            required
-          />
-        </label>
-        <button
-          type="submit"
-          className={cn(styles.submit, styles.register, styles[formState])}
-          disabled={formState === 'loading'}
-        >
-          {formState === 'loading' ? <LoadingDots size={4} /> : <>Register</>}
-        </button>
-      </div>
+        }}
+      />
     </form>
   );
 }

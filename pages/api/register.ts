@@ -44,11 +44,29 @@ export default async function register(
   }
 
   const email: string = ((req.body.email as string) || '').trim().toLowerCase();
+  const token: string = req.body.token as string;
   if (!validator.isEmail(email)) {
     return res.status(400).json({
       error: {
         code: 'bad_email',
         message: 'Invalid email'
+      }
+    });
+  }
+
+  const {success} = await fetch('https://hcaptcha.com/siteverify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: `secret=${process.env.HCAPTCHA_SECRET_KEY}&response=${token}`
+  }).then(res => res.json());
+
+  if (!success) {
+    return res.status(400).json({
+      error: {
+        code: 'bad_captcha',
+        message: 'Invalid captcha'
       }
     });
   }
