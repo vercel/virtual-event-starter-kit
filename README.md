@@ -141,7 +141,8 @@ If you do not want to maintain a Redis server, you can use [Upstash](https://ups
 ## More Details
 
 ### Captcha
-If you want to have captcha validation (strongly advised) using hCaptcha, fill your site key and secret on the environment file, otherwise remove them.
+
+To help protect your event registration, we've added captcha validation (as an option) with hcaptcha. To use this, popular `NEXT_PUBLIC_HCAPTCHA_SITE_KEY` and `HCAPTCHA_SECRET_KEY` in your `.env` file.
 
 ### Stages
 
