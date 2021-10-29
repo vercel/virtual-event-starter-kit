@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export async function register(email: string, token: string) {
+export async function register(email: string, token?: string) {
   return await fetch('/api/register', {
     method: 'POST',
     headers: {

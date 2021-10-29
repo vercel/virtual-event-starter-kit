@@ -25,3 +25,5 @@ export async function validateCaptchaResult(result: string): Promise<boolean> {
 
   return success;
 }
+
+export const IS_CAPTCHA_ENABLED = Boolean(process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY);
