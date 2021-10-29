@@ -42,7 +42,7 @@ export default function Form({ sharePage }: Props) {
   const router = useRouter();
   const {ref: captchaRef, execute: executeCaptcha, reset: resetCaptcha, isEnabled: isCaptchaEnabled} = useCaptcha();
 
-  const onVerify = useCallback((token?: string) => {
+  const handleRegister = useCallback((token?: string) => {
     register(email, token)
       .then(async res => {
         if (!res.ok) {
@@ -102,12 +102,12 @@ export default function Form({ sharePage }: Props) {
           return executeCaptcha()
         }
         
-        return onVerify();
+        return handleRegister();
       } else {
         setFormState('default');
       }
     },
-    [executeCaptcha, formState, isCaptchaEnabled, onVerify]
+    [executeCaptcha, formState, isCaptchaEnabled, handleRegister]
   );
 
   const onTryAgainClick = useCallback((e: React.MouseEvent) => {
@@ -180,7 +180,7 @@ export default function Form({ sharePage }: Props) {
       </div>
       <Captcha
         ref={captchaRef}
-        onVerify={onVerify}
+        onVerify={handleRegister}
       />
     </form>
   );

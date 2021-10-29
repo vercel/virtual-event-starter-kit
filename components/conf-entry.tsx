@@ -44,7 +44,7 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
   const [errorMsg, setErrorMsg] = useState('');
   const {ref: captchaRef, reset: resetCaptcha, execute: executeCaptcha, isEnabled: isCaptchaEnabled} = useCaptcha();
 
-  const onVerify = useCallback(async (token?: string) => {
+  const handleRegister = useCallback(async (token?: string) => {
     const res = await register(emailInput, token);
 
     if (!res.ok) {
@@ -68,14 +68,14 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
           return executeCaptcha()
         }
         
-        return onVerify();
+        return handleRegister();
       } catch (err) {
         console.error(err);
         setErrorMsg(DEFAULT_ERROR_MSG);
         setFormState('error');
       }
     },
-    [executeCaptcha, isCaptchaEnabled, onVerify]
+    [executeCaptcha, isCaptchaEnabled, handleRegister]
   );
 
   const onTryAgainClick = useCallback((e: React.MouseEvent) => {
@@ -134,7 +134,7 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
         </div>
         <Captcha
           ref={captchaRef}
-          onVerify={onVerify}
+          onVerify={handleRegister}
         />
       </form>
     </div>
