@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-import HCaptcha from "@hcaptcha/react-hcaptcha";
-import { ComponentProps, forwardRef, useCallback, useRef } from "react";
+import type HCaptcha from "@hcaptcha/react-hcaptcha";
+
+import { ComponentProps, Suspense, forwardRef, useCallback, useRef, lazy } from "react";
+
+const LazyCaptcha = lazy(() => import("@hcaptcha/react-hcaptcha"))
 
 type Props = Omit<ComponentProps<typeof HCaptcha>, 'sitekey'>;
 
@@ -29,13 +32,19 @@ export function useCaptcha() {
 }
 
 const Captcha = forwardRef<HCaptcha, Props>((props, ref) => {
+  if (!process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY) {
+    return null;
+  }
+
   return (
-    <HCaptcha
-      ref={ref}
-      sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY as string}
-      size="invisible"
-      {...props}
-    />
+    <Suspense fallback={null}>
+      <LazyCaptcha
+        ref={ref}
+        sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY}
+        size="invisible"
+        {...props}
+      />
+    </Suspense>
   )
 });
 
