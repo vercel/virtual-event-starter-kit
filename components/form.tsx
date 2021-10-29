@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import cn from 'classnames';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
 import useConfData from '@lib/hooks/use-conf-data';
 import { useRouter } from 'next/router';
 import FormError from '@lib/form-error';
@@ -25,6 +24,7 @@ import styleUtils from './utils.module.css';
 import styles from './form.module.css';
 import useEmailQueryParam from '@lib/hooks/use-email-query-param';
 import { register } from '@lib/user-api';
+import Captcha, {useCaptcha} from './captcha';
 
 type FormState = 'default' | 'loading' | 'error';
 
@@ -40,7 +40,8 @@ export default function Form({ sharePage }: Props) {
   const [formState, setFormState] = useState<FormState>('default');
   const { setPageState, setUserData } = useConfData();
   const router = useRouter();
-  const captchaRef = useRef<HCaptcha>(null);
+  const {ref: captchaRef, execute: executeCaptcha, reset: resetCaptcha} = useCaptcha();
+
   useEmailQueryParam('email', setEmail);
 
   return formState === 'error' ? (
@@ -58,6 +59,7 @@ export default function Form({ sharePage }: Props) {
             onClick={() => {
               setFormState('default');
               setErrorTryAgain(true);
+              executeCaptcha();
             }}
           >
             Try Again
@@ -77,7 +79,7 @@ export default function Form({ sharePage }: Props) {
         if (formState === 'default') {
           setFormState('loading');
 
-          captchaRef?.current?.execute();
+          executeCaptcha();
         } else {
           setFormState('default');
         }
@@ -113,10 +115,8 @@ export default function Form({ sharePage }: Props) {
           {formState === 'loading' ? <LoadingDots size={4} /> : <>Register</>}
         </button>
       </div>
-      <HCaptcha
+      <Captcha
         ref={captchaRef}
-        size="invisible"
-        sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY as string}
         onVerify={(token: string) => {
           register(email, token)
             .then(async res => {

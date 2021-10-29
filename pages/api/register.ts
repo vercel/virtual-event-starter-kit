@@ -22,6 +22,7 @@ import { SAMPLE_TICKET_NUMBER, COOKIE } from '@lib/constants';
 import cookie from 'cookie';
 import ms from 'ms';
 import redis, { emailToId } from '@lib/redis';
+import { validateCaptchaResult } from '@lib/captcha';
 
 type ErrorResponse = {
   error: {
@@ -54,15 +55,9 @@ export default async function register(
     });
   }
 
-  const {success} = await fetch('https://hcaptcha.com/siteverify', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: `secret=${process.env.HCAPTCHA_SECRET_KEY}&response=${token}`
-  }).then(res => res.json());
+  const isCaptchaValid = await validateCaptchaResult(token);
 
-  if (!success) {
+  if (!isCaptchaValid) {
     return res.status(400).json({
       error: {
         code: 'bad_captcha',

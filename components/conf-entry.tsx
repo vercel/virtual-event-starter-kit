@@ -15,14 +15,14 @@
  */
 
 import cn from 'classnames';
-import { useRef, useCallback, useState } from 'react';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { useCallback, useState } from 'react';
 import styleUtils from './utils.module.css';
 import styles from './conf-entry.module.css';
 import LoadingDots from './loading-dots';
 import { register } from '@lib/user-api';
 import { SITE_DESCRIPTION } from '@lib/constants';
 import useEmailQueryParam from '@lib/hooks/use-email-query-param';
+import Captcha, {useCaptcha} from './captcha';
 
 type FormState = 'default' | 'loading' | 'error';
 
@@ -42,7 +42,7 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
   const [focused, setFocused] = useState(false);
   const [formState, setFormState] = useState<FormState>('default');
   const [errorMsg, setErrorMsg] = useState('');
-  const captchaRef = useRef<HCaptcha>(null);
+  const {ref: captchaRef, reset: resetCaptcha} = useCaptcha();
 
   const onSubmit = useCallback(e => {
       try {
@@ -76,7 +76,8 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
     e.preventDefault();
     setErrorMsg('');
     setFormState('default');
-  }, []);
+    resetCaptcha();
+  }, [resetCaptcha]);
 
   return (
     <div className={cn(styles.container, styleUtils.appear, styleUtils['appear-first'])}>
@@ -122,10 +123,8 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
             )}
           </button>
         </div>
-        <HCaptcha
+        <Captcha
           ref={captchaRef}
-          size="invisible"
-          sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY as string}
           onVerify={onVerify}
         />
       </form>
