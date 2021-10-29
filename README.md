@@ -140,6 +140,9 @@ If you do not want to maintain a Redis server, you can use [Upstash](https://ups
 
 ## More Details
 
+### Captcha
+If you want to have captcha validation (strongly advised) using hCaptcha, fill your site key and secret on the environment file, otherwise remove them.
+
 ### Stages
 
 There are four different stages included in the seed data. Feel free to add or remove these based on your schedule. Each stage requires the user to enter their email to register with the conference before entering the event. After successfully entering their email and saving the user with your database of choice, the user is able to view the embedded YouTube stream. The login state is persisted as a `httponly` cookie.
