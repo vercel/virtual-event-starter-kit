@@ -22,6 +22,7 @@ import { SAMPLE_TICKET_NUMBER, COOKIE } from '@lib/constants';
 import cookie from 'cookie';
 import ms from 'ms';
 import redis, { emailToId } from '@lib/redis';
+import { validateCaptchaResult, IS_CAPTCHA_ENABLED } from '@lib/captcha';
 
 type ErrorResponse = {
   error: {
@@ -44,6 +45,7 @@ export default async function register(
   }
 
   const email: string = ((req.body.email as string) || '').trim().toLowerCase();
+  const token: string = req.body.token as string;
   if (!validator.isEmail(email)) {
     return res.status(400).json({
       error: {
@@ -51,6 +53,19 @@ export default async function register(
         message: 'Invalid email'
       }
     });
+  }
+
+  if (IS_CAPTCHA_ENABLED) {
+    const isCaptchaValid = await validateCaptchaResult(token);
+
+    if (!isCaptchaValid) {
+      return res.status(400).json({
+        error: {
+          code: 'bad_captcha',
+          message: 'Invalid captcha'
+        }
+      });
+    }
   }
 
   let id;

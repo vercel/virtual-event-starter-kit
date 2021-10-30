@@ -22,6 +22,7 @@ import LoadingDots from './loading-dots';
 import { register } from '@lib/user-api';
 import { SITE_DESCRIPTION } from '@lib/constants';
 import useEmailQueryParam from '@lib/hooks/use-email-query-param';
+import Captcha, {useCaptcha} from './captcha';
 
 type FormState = 'default' | 'loading' | 'error';
 
@@ -41,39 +42,51 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
   const [focused, setFocused] = useState(false);
   const [formState, setFormState] = useState<FormState>('default');
   const [errorMsg, setErrorMsg] = useState('');
+  const {ref: captchaRef, reset: resetCaptcha, execute: executeCaptcha, isEnabled: isCaptchaEnabled} = useCaptcha();
+
+  const handleRegister = useCallback(async (token?: string) => {
+    const res = await register(emailInput, token);
+
+    if (!res.ok) {
+      const json = await res.json();
+      setErrorMsg(getErrorMsg(json.error.code));
+      setFormState('error');
+      return;
+    }
+
+    onRegister();
+  }, [emailInput, onRegister])
 
   const onSubmit = useCallback(
-    async e => {
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+
       try {
-        e.preventDefault();
         setFormState('loading');
 
-        const res = await register(emailInput);
-
-        if (!res.ok) {
-          const json = await res.json();
-          setErrorMsg(getErrorMsg(json.error.code));
-          setFormState('error');
-          return;
+        if (isCaptchaEnabled) {
+          return executeCaptcha()
         }
-
-        onRegister();
+        
+        return handleRegister();
       } catch (err) {
         console.error(err);
         setErrorMsg(DEFAULT_ERROR_MSG);
         setFormState('error');
       }
     },
-    [emailInput, onRegister]
+    [executeCaptcha, isCaptchaEnabled, handleRegister]
   );
 
-  useEmailQueryParam('login', setEmailInput);
-
-  const onTryAgainClick = useCallback(e => {
+  const onTryAgainClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
+
     setErrorMsg('');
     setFormState('default');
-  }, []);
+    resetCaptcha();
+  }, [resetCaptcha]);
+
+  useEmailQueryParam('login', setEmailInput);
 
   return (
     <div className={cn(styles.container, styleUtils.appear, styleUtils['appear-first'])}>
@@ -119,6 +132,10 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
             )}
           </button>
         </div>
+        <Captcha
+          ref={captchaRef}
+          onVerify={handleRegister}
+        />
       </form>
     </div>
   );
