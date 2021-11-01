@@ -41,7 +41,7 @@ export default function TalkCard({ talk: { title, speaker, start, end }, showTim
     const now = Date.now();
     setIsTalkLive(isAfter(now, parseISO(start)) && isBefore(now, parseISO(end)));
     setStartAndEndTime(`${formatDate(start)} – ${formatDate(end)}`);
-  }, []);
+  }, [end, start]);
 
   const firstSpeakerLink = `/speakers/${speaker[0].slug}`;
 
