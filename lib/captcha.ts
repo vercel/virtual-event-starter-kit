@@ -14,25 +14,16 @@
  * limitations under the License.
  */
 
-export async function register(email: string, token?: string) {
-  return await fetch('/api/register', {
+export async function validateCaptchaResult(result: string): Promise<boolean> {
+  const {success}: {success: boolean} = await fetch('https://hcaptcha.com/siteverify', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/x-www-form-urlencoded'
     },
-    body: JSON.stringify({ email, token })
-  });
+    body: `secret=${process.env.HCAPTCHA_SECRET_KEY}&response=${result}`
+  }).then(res => res.json());
+
+  return success;
 }
 
-export async function saveGithubToken({ id, token }: { id?: string; token: string }) {
-  return await fetch('/api/save-github-token', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      id,
-      token
-    })
-  });
-}
+export const IS_CAPTCHA_ENABLED = Boolean(process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY);

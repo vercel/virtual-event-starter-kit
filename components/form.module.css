@@ -17,7 +17,10 @@
 .form {
   display: flex;
   justify-content: center;
-  margin-bottom: 24px;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 12px;
+  gap: 12px;
 }
 
 @media (min-width: 1200px) {
