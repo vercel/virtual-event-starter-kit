@@ -34,7 +34,7 @@ export default function TicketCopy({ username }: Props) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const url = `${SITE_URL}/tickets/${username}`;
   useEffect(() => {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
+    if (navigator.clipboard) {
       setCopyEnabled(true);
     }
   }, []);

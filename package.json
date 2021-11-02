@@ -18,8 +18,8 @@
     "test-watch": "npm run test -- --watch"
   },
   "dependencies": {
-    "@agility/content-fetch": "1.0.0",
-    "@agility/content-sync": "0.1.23",
+    "@agility/content-fetch": "1.1.1",
+    "@agility/content-sync": "1.0.3",
     "@hcaptcha/react-hcaptcha": "^0.3.7",
     "@reach/skip-nav": "0.12.1",
     "chrome-aws-lambda": "5.5.0",
