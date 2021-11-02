@@ -58,9 +58,11 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
         }
         image {
           url(imgixParams: {fm: jpg, fit: crop, w: 300, h: 400})
+          blurDataURL: blurUpThumb
         }
         imageSquare: image {
           url(imgixParams: {fm: jpg, fit: crop, w: 192, h: 192})
+          blurDataURL: blurUpThumb
         }
       }
     }
@@ -86,6 +88,7 @@ export async function getAllStages(): Promise<Stage[]> {
             slug
             image {
               url(imgixParams: {fm: jpg, fit: crop, w: 120, h: 120})
+              blurDataURL: blurUpThumb
             }
           }
         }

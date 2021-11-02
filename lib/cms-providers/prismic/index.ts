@@ -36,7 +36,7 @@ async function fetchCmsMasterRef() {
   return masterRef;
 }
 
-async function fetchCmsAPI(query: string, { variables }: { variables?: Record<string, any> } = {}) {
+async function fetchCmsAPI(query: string) {
   const masterRef = await fetchCmsMasterRef();
 
   const res = await fetch(`${API_URL}?query=${encodeURIComponent(query)}`, {

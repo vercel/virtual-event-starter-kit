@@ -25,7 +25,7 @@ export default function Progress() {
     let timeout: NodeJS.Timeout;
 
     const start = () => {
-      timeout = setTimeout(NProgress.start, 100);
+      timeout = setTimeout(() => NProgress.start(), 100);
     };
 
     const done = () => {
@@ -41,6 +41,6 @@ export default function Progress() {
       router.events.off('routeChangeComplete', done);
       router.events.off('routeChangeError', done);
     };
-  }, []);
+  }, [router.events]);
   return <></>;
 }
