@@ -17,7 +17,7 @@
 import { GetStaticProps } from 'next';
 
 import Page from '@components/page';
-import SpeakersGrid from '@components/speakers-grid';
+import SpeakersGrid from '@components/speaker-grid/speakers-grid';
 import Layout from '@components/layout';
 import Header from '@components/header';
 
