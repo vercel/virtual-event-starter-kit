@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import Image from 'next/image';
 
 export default function IconLogo({
   backgroundColor = 'transparent',
@@ -20,7 +21,22 @@ export default function IconLogo({
   ...props
 }) {
   return (
-    <svg
+    <Image
+      alt={""}
+      title={""}
+      src='/uw-logo.svg'
+      className={''}
+      loading="eager"
+      height={72}
+      width={100}
+    />
+  );
+}
+
+/**
+ * 
+ * 
+ *   <svg
       width="100%"
       height="100%"
       viewBox="0 0 32 32"
@@ -36,5 +52,4 @@ export default function IconLogo({
         fill={foregroundColor}
       />
     </svg>
-  );
-}
+ */
