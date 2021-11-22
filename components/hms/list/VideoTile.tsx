@@ -6,6 +6,7 @@ import {
 } from '@100mslive/hms-video-store';
 import { MicOnIcon, MicOffIcon } from '@100mslive/react-icons';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
+import MenuIcon from '@components/icons/icon-menu';
 import React, { useEffect } from 'react';
 import { getAvatarBg } from '../getAvatarBg';
 import s from './index.module.css';
@@ -44,6 +45,9 @@ const VideoTile: React.FC<VideoTileProps> = ({ peer, width, height }) => {
       )}
       <div className={s['tile-overlay']}>
         <div className={s['tile-info']}>{isLocalAudioEnabled ? <MicOnIcon /> : <MicOffIcon />}</div>
+      </div>
+      <div className={s['tile-menu-btn']}>
+        <MenuIcon />
       </div>
     </div>
   );

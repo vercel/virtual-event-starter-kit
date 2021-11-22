@@ -1,5 +1,5 @@
 import { selectLocalPeerRole } from '@100mslive/hms-video-store';
-import { useAVToggle, useHMSStore } from '@100mslive/react-sdk';
+import { useAVToggle, useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import {
   VideoOffIcon,
   VideoOnIcon,
@@ -21,6 +21,8 @@ const Footer = () => {
     toggleAudio,
     toggleVideo
   } = useAVToggle();
+  const actions = useHMSActions();
+  const leaveRoom = () => actions.leave();
   const startScreenshare = () => {};
   return (
     <div className={s['footer']}>
@@ -44,7 +46,7 @@ const Footer = () => {
           <RecordIcon />
         </button>
       ) : null}
-      <button className={s['btn']} onClick={() => {}}>
+      <button className={s['btn']} onClick={leaveRoom}>
         <HangUpIcon />
       </button>
     </div>

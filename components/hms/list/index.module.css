@@ -65,3 +65,12 @@
   bottom: 25px;
   left: 25px;
 }
+.tile-container:hover .tile-menu-btn {
+  top: 25px;
+  right: 25px;
+  display: flex;
+  position: absolute;
+}
+.tile-menu-btn {
+  display: none;
+}
