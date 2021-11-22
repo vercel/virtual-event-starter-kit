@@ -37,7 +37,6 @@ export default function StageContainer({ stage, allStages }: Props) {
   const updatedStages = response.data || [];
   const updatedStage = updatedStages.find((s: Stage) => s.slug === stage.slug) || stage;
   const { loginStatus, mutate } = useLoginStatus();
-  console.log(stage);
   return (
     <div className={styles.container}>
       <div className={styles.streamContainer}>
@@ -82,7 +81,11 @@ export default function StageContainer({ stage, allStages }: Props) {
               </div>
             </div>
           ) : (
-            <Room roomId={stage.roomId} />
+            <Room
+              backstagePeers={stage.backstagePeers}
+              stagePeers={stage.stagePeers}
+              roomId={stage.roomId}
+            />
           )
         ) : loginStatus === 'loading' ? null : (
           <ConfEntry onRegister={() => mutate()} />
