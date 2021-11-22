@@ -1,8 +1,45 @@
+import { selectPeersByRole } from '@100mslive/hms-video-store';
+import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
+import { useResizeDetector } from 'react-resize-detector';
 import React from 'react';
 import s from './index.module.css';
+import VideoTile from './VideoTile';
 
 const List = () => {
-  return <div className={s['video-list']}>Video List</div>;
+  const stagePeers = useHMSStore(selectPeersByRole('stage'));
+  const { width = 0, height = 0, ref } = useResizeDetector();
+  const { chunkedTracksWithPeer } = useVideoList({
+    maxColCount: 2,
+    maxRowCount: 2,
+    maxTileCount: 4,
+    width,
+    height,
+    showScreenFn: () => false,
+    overflow: 'scroll-x',
+    peers: stagePeers,
+    aspectRatio: {
+      width: 1.8,
+      height: 1
+    }
+  });
+  return (
+    <div>
+      {chunkedTracksWithPeer &&
+        chunkedTracksWithPeer.length > 0 &&
+        chunkedTracksWithPeer.map((tracksPeersOnOnePage, page) => (
+          <div className={s['video-list']} ref={ref} key={page}>
+            {tracksPeersOnOnePage.map((trackPeer, _) => (
+              <VideoTile
+                key={trackPeer.track ? trackPeer.track.id : trackPeer.peer.id}
+                peer={trackPeer.peer}
+                width={trackPeer.width}
+                height={trackPeer.height}
+              />
+            ))}
+          </div>
+        ))}
+    </div>
+  );
 };
 
 export default List;

@@ -2,8 +2,66 @@
   /* background-color: green; */
   display: flex;
   width: 100%;
-  height: 100%;
   flex-wrap: wrap;
   place-content: center;
   align-items: center;
+  height: calc(100vh - 3 * var(--header-height));
+}
+
+/* VideoTile */
+.tile-container {
+  position: relative;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+.tile-video {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: var(--gray1);
+}
+.tile-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.tile-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  background-color: var(--error);
+  border-radius: 9999px;
+  padding: 5px;
+}
+.tile-avatar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-color: var(--error);
+  border-radius: 9999px;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  font-weight: 600;
+}
+.tile-name {
+  font-size: 15px;
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
 }
