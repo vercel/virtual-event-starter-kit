@@ -47,20 +47,11 @@ export default function Conf({
     >
       <Layout>
         <ConfContainer>
-          {pageState === 'registration' && !sharePage ? (
-            <>
-              <Hero />
-              <Form />
-              <LearnMore />
-            </>
-          ) : (
-            <Ticket
-              username={userData.username}
-              name={userData.name}
-              ticketNumber={userData.ticketNumber}
-              sharePage={sharePage}
-            />
-          )}
+          <>
+            <Hero />
+            <Form />
+            <LearnMore />
+          </>
         </ConfContainer>
       </Layout>
     </ConfDataContext.Provider>
