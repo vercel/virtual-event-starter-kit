@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export type Image = {
+ export type Image = {
   url: string;
   blurDataURL?: string;
 };
@@ -38,6 +38,10 @@ export type Stage = {
   stream: string;
   discord: string;
   schedule: Talk[];
+  isLive: boolean;
+  roomId: string;
+  stagePeers: string[]
+  backstagePeers: string[]
 };
 
 export type Talk = {

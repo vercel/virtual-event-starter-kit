@@ -24,7 +24,7 @@ import styleUtils from './utils.module.css';
 import styles from './form.module.css';
 import useEmailQueryParam from '@lib/hooks/use-email-query-param';
 import { register } from '@lib/user-api';
-import Captcha, {useCaptcha} from './captcha';
+import Captcha, { useCaptcha } from './captcha';
 
 type FormState = 'default' | 'loading' | 'error';
 
@@ -40,68 +40,77 @@ export default function Form({ sharePage }: Props) {
   const [formState, setFormState] = useState<FormState>('default');
   const { setPageState, setUserData } = useConfData();
   const router = useRouter();
-  const {ref: captchaRef, execute: executeCaptcha, reset: resetCaptcha, isEnabled: isCaptchaEnabled} = useCaptcha();
+  const {
+    ref: captchaRef,
+    execute: executeCaptcha,
+    reset: resetCaptcha,
+    isEnabled: isCaptchaEnabled
+  } = useCaptcha();
 
-  const handleRegister = useCallback((token?: string) => {
-    register(email, token)
-      .then(async res => {
-        if (!res.ok) {
-          throw new FormError(res);
-        }
-
-        const data = await res.json();
-        const params = {
-          id: data.id,
-          ticketNumber: data.ticketNumber,
-          name: data.name,
-          username: data.username
-        };
-
-        if (sharePage) {
-          const queryString = Object.keys(params)
-            .map(
-              key =>
-                `${encodeURIComponent(key)}=${encodeURIComponent(
-                  params[key as keyof typeof params] || ''
-                )}`
-            )
-            .join('&');
-          await router.replace(`/?${queryString}`, '/');
-        } else {
-          setUserData(params);
-          setPageState('ticket');
-        }
-      })
-      .catch(async err => {
-        let message = 'Error! Please try again.';
-
-        if (err instanceof FormError) {
-          const { res } = err;
-          const data = res.headers.get('Content-Type')?.includes('application/json')
-            ? await res.json()
-            : null;
-
-          if (data?.error?.code === 'bad_email') {
-            message = 'Please enter a valid email';
+  const handleRegister = useCallback(
+    (token?: string) => {
+      register(email, token)
+        .then(async res => {
+          if (!res.ok) {
+            throw new FormError(res);
           }
-        }
 
-        setErrorMsg(message);
-        setFormState('error');
-      });
-  }, [email, router, setPageState, setUserData, sharePage])
+          const data = await res.json();
+          const params = {
+            id: data.id,
+            ticketNumber: data.ticketNumber,
+            name: data.name,
+            username: data.username
+          };
+
+          if (sharePage) {
+            const queryString = Object.keys(params)
+              .map(
+                key =>
+                  `${encodeURIComponent(key)}=${encodeURIComponent(
+                    params[key as keyof typeof params] || ''
+                  )}`
+              )
+              .join('&');
+            await router.replace(`/?${queryString}`, '/');
+          } else {
+            setUserData(params);
+            setPageState('ticket');
+          }
+        })
+        .catch(async err => {
+          let message = 'Error! Please try again.';
+
+          if (err instanceof FormError) {
+            const { res } = err;
+            const data = res.headers.get('Content-Type')?.includes('application/json')
+              ? await res.json()
+              : null;
+
+            if (data?.error?.code === 'bad_email') {
+              message = 'Please enter a valid email';
+            }
+          }
+
+          setErrorMsg(message);
+          setFormState('error');
+        });
+    },
+    [email, router, setPageState, setUserData, sharePage]
+  );
 
   const onSubmit = useCallback(
     (e: React.FormEvent) => {
+      localStorage.setItem('email', email);
       e.preventDefault();
 
       if (formState === 'default') {
         setFormState('loading');
 
         if (isCaptchaEnabled) {
-          return executeCaptcha()
+          return executeCaptcha();
         }
-        
+
         return handleRegister();
       } else {
         setFormState('default');
@@ -110,13 +119,16 @@ export default function Form({ sharePage }: Props) {
     [executeCaptcha, formState, isCaptchaEnabled, handleRegister]
   );
 
-  const onTryAgainClick = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    
-    setFormState('default');
-    setErrorTryAgain(true);
-    resetCaptcha();
-  }, [resetCaptcha]);
+  const onTryAgainClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+
+      setFormState('default');
+      setErrorTryAgain(true);
+      resetCaptcha();
+    },
+    [resetCaptcha]
+  );
 
   useEmailQueryParam('email', setEmail);
 
@@ -178,10 +190,7 @@ export default function Form({ sharePage }: Props) {
           {formState === 'loading' ? <LoadingDots size={4} /> : <>Register</>}
         </button>
       </div>
-      <Captcha
-        ref={captchaRef}
-        onVerify={handleRegister}
-      />
+      <Captcha ref={captchaRef} onVerify={handleRegister} />
     </form>
   );
 }
