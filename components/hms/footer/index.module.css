@@ -1,0 +1,26 @@
+.footer {
+  /* background-color: red; */
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.btn {
+  color: white;
+  cursor: pointer;
+  background-color: #111111;
+  border: 1px solid var(--accents-7);
+  border-radius: 5px;
+  width: 40px;
+  height: 40px;
+  transition: all ease 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn:hover {
+  color: white;
+  background-color: transparent;
+}
