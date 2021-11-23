@@ -10,9 +10,9 @@ const List = () => {
   const inviteePeers = useHMSStore(selectPeersByRole('invitee'));
   const { width = 0, height = 0, ref } = useResizeDetector();
   const { chunkedTracksWithPeer } = useVideoList({
-    maxColCount: 1,
-    maxRowCount: 1,
-    maxTileCount: 2,
+    maxColCount: 2,
+    maxRowCount: 2,
+    maxTileCount: 4,
     width,
     height,
     showScreenFn: () => false,
