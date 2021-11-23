@@ -74,3 +74,31 @@
 .tile-menu-btn {
   display: none;
 }
+
+/* Menu */
+.menu-btn {
+  color: white;
+  background-color: transparent;
+  border: none;
+}
+.menu-content {
+  width: 200px;
+  background: #323332;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: none;
+  color: white;
+  margin: 5px 0;
+}
+.menu-item:focus {
+  outline: none;
+  background-color: var(--accents-6);
+}

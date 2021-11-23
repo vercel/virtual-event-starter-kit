@@ -23,23 +23,21 @@ const List = () => {
       height: 1
     }
   });
-  console.log(chunkedTracksWithPeer);
+  console.log(chunkedTracksWithPeer[0]);
   return (
     <div ref={ref} style={{ width: '100%' }}>
-      {chunkedTracksWithPeer &&
-        chunkedTracksWithPeer.length > 0 &&
-        chunkedTracksWithPeer.map((tracksPeersOnOnePage, page) => (
-          <div className={s['video-list']} key={page}>
-            {tracksPeersOnOnePage.map((trackPeer, _) => (
-              <VideoTile
-                key={trackPeer.track ? trackPeer.track.id : trackPeer.peer.id}
-                peer={trackPeer.peer}
-                width={trackPeer.width}
-                height={trackPeer.height}
-              />
-            ))}
-          </div>
-        ))}
+      {chunkedTracksWithPeer && chunkedTracksWithPeer.length > 0 && (
+        <div className={s['video-list']}>
+          {chunkedTracksWithPeer[0].map((trackPeer, _) => (
+            <VideoTile
+              key={trackPeer.track ? trackPeer.track.id : trackPeer.peer.id}
+              peer={trackPeer.peer}
+              width={trackPeer.width}
+              height={trackPeer.height}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
