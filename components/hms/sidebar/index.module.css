@@ -1,0 +1,66 @@
+.container {
+  width: 100%;
+  background: var(--sidebar);
+  padding: var(--space-4x) 0;
+  color: var(--secondary-color);
+  font-size: 14px;
+  min-height: 1px;
+  height: 40vh;
+  max-height: calc(var(--100vh) - var(--header-height) - 400px);
+  --talk-card-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (min-width: 1032px) {
+  .container {
+    height: unset;
+    min-height: 340px;
+    max-width: 303px;
+    max-height: calc(var(--100vh) - var(--header-height));
+    --talk-card-width: unset;
+  }
+}
+
+.tabs {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.tab-btn {
+  width: 50%;
+  background-color: transparent;
+  color: var(--accents-3);
+  height: 35px;
+  border: none;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.tab-left {
+  border-left: 1px solid var(--accents-7);
+  border-top: 1px solid var(--accents-7);
+  border-bottom: 1px solid var(--accents-7);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.tab-right {
+  border-right: 1px solid var(--accents-7);
+  border-top: 1px solid var(--accents-7);
+  border-bottom: 1px solid var(--accents-7);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.tab-active {
+  background-color: var(--accents-7);
+  font-weight: bold;
+  color: white;
+}

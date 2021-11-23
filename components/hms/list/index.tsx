@@ -7,6 +7,7 @@ import VideoTile from './VideoTile';
 
 const List = () => {
   const stagePeers = useHMSStore(selectPeersByRole('stage'));
+  const inviteePeers = useHMSStore(selectPeersByRole('invitee'));
   const { width = 0, height = 0, ref } = useResizeDetector();
   const { chunkedTracksWithPeer } = useVideoList({
     maxColCount: 2,
@@ -16,18 +17,19 @@ const List = () => {
     height,
     showScreenFn: () => false,
     overflow: 'scroll-x',
-    peers: stagePeers,
+    peers: [...stagePeers, ...inviteePeers],
     aspectRatio: {
       width: 1.8,
       height: 1
     }
   });
+  console.log(chunkedTracksWithPeer);
   return (
-    <div>
+    <div ref={ref} style={{ width: '100%' }}>
       {chunkedTracksWithPeer &&
         chunkedTracksWithPeer.length > 0 &&
         chunkedTracksWithPeer.map((tracksPeersOnOnePage, page) => (
-          <div className={s['video-list']} ref={ref} key={page}>
+          <div className={s['video-list']} key={page}>
             {tracksPeersOnOnePage.map((trackPeer, _) => (
               <VideoTile
                 key={trackPeer.track ? trackPeer.track.id : trackPeer.peer.id}

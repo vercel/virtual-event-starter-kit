@@ -20,9 +20,9 @@ import { Stage } from '@lib/types';
 import useLoginStatus from '@lib/hooks/use-login-status';
 import styles from './stage-container.module.css';
 import styleUtils from './utils.module.css';
-import ScheduleSidebar from './schedule-sidebar';
 import ConfEntry from './conf-entry';
 import Room from './hms/Room';
+import Sidebar from './hms/sidebar';
 
 type Props = {
   stage: Stage;
@@ -91,7 +91,7 @@ export default function StageContainer({ stage, allStages }: Props) {
           <ConfEntry onRegister={() => mutate()} />
         )}
       </div>
-      <ScheduleSidebar allStages={updatedStages} />
+      <Sidebar />
     </div>
   );
 }
