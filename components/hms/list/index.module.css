@@ -102,3 +102,21 @@
   outline: none;
   background-color: var(--accents-6);
 }
+/* Pagination */
+.pagin-ctx {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.pagin-btn {
+  cursor: pointer;
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: var(--accents-4);
+  border: none;
+}

@@ -3,7 +3,7 @@
   width: 100%;
   height: var(--header-height);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   gap: 1rem;
 }

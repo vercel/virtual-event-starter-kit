@@ -164,3 +164,7 @@ svg circle {
   height: auto;
   clip: auto;
 }
+button {
+  background-color: transparent;
+  border: none;
+}
