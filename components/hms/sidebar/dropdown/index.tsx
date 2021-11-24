@@ -7,12 +7,20 @@ import s from './index.module.css';
 
 const Dropdown: React.FC<{ id: string; role: string }> = ({ id, role }) => {
   const actions = useHMSActions();
-  const changeRole = () => {
+  const changeRole = async () => {
     const nextRole = role === 'viewer' ? 'invitee' : 'viewer';
-    actions.changeRole(id, nextRole, true);
+    try {
+      await actions.changeRole(id, nextRole, true);
+    } catch (error) {
+      console.log('Error: ', error);
+    }
   };
-  const removePeer = () => {
-    actions.removePeer(id, 'Bye');
+  const removePeer = async () => {
+    try {
+      await actions.removePeer(id, 'Bye');
+    } catch (error) {
+      console.log('Error: ', error);
+    }
   };
   return (
     <div>

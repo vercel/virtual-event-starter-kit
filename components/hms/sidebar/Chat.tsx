@@ -15,9 +15,15 @@ const Chat = () => {
     setMsg('');
   };
   const role = useHMSStore(selectLocalPeerRole);
+  React.useEffect(() => {
+    const el = document.getElementById('chat-feed');
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+    }
+  }, [msgs]);
   return (
     <>
-      <div className={s['chats-ctx']}>
+      <div id="chat-feed" className={s['chats-ctx']}>
         {msgs.map(m => (
           <div key={m.id} className={s['chat-box']}>
             <Avatar name={m.senderName} />

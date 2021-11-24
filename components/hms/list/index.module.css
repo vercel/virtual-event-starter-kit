@@ -120,6 +120,9 @@
   background-color: var(--accents-4);
   border: none;
 }
+.pagin-active {
+  background-color: white;
+}
 
 /* Screenshare */
 
