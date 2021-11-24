@@ -120,3 +120,27 @@
   background-color: var(--accents-4);
   border: none;
 }
+
+/* Screenshare */
+
+.screenshare {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: 600;
+  height: calc(100vh - 3 * var(--header-height));
+}
+.screenshare-btn {
+  color: white;
+  background-color: #e60000;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Inter';
+  cursor: pointer;
+}
+.screenshare-btn:hover {
+  opacity: 0.8;
+}

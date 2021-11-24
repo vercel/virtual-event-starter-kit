@@ -23,7 +23,13 @@ const Footer = () => {
   } = useAVToggle();
   const actions = useHMSActions();
   const leaveRoom = () => actions.leave();
-  const startScreenshare = () => {};
+  const startScreenshare = async () => {
+    try {
+      await actions.setScreenShareEnabled(true);
+    } catch (error) {
+      console.log('Error: ', error);
+    }
+  };
   return (
     <div className={s['footer']}>
       {isAllowedToPublish.audio ? (
@@ -46,9 +52,11 @@ const Footer = () => {
           <RecordIcon />
         </button>
       ) : null}
-      <button className={s['btn']} onClick={leaveRoom}>
-        <HangUpIcon />
-      </button>
+      {role?.name === 'backstage' || role?.name === 'stage' ? (
+        <button className={s['btn']} onClick={leaveRoom}>
+          <HangUpIcon />
+        </button>
+      ) : null}
     </div>
   );
 };
