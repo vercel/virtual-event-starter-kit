@@ -43,7 +43,7 @@ const VideoList = () => {
   };
   console.log(chunkedTracksWithPeer);
   return (
-    <div ref={ref} style={{ width: '100%', position: 'relative' }}>
+    <div ref={ref} style={{ width: '100%', position: 'relative', padding: '0 1rem' }}>
       {chunkedTracksWithPeer && chunkedTracksWithPeer.length > 0 && (
         <div className={s['video-list']}>
           {chunkedTracksWithPeer[page].map((trackPeer, _) => (

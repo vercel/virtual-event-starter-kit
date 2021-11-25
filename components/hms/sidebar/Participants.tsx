@@ -1,4 +1,4 @@
-import { selectPeersByRole } from '@100mslive/hms-video-store';
+import { selectLocalPeerID, selectPeersByRole } from '@100mslive/hms-video-store';
 import { useHMSStore } from '@100mslive/react-sdk';
 import s from './participant.module.css';
 import React from 'react';
@@ -9,6 +9,7 @@ const Participants = () => {
   const stagePeers = useHMSStore(selectPeersByRole('stage'));
   const inviteePeers = useHMSStore(selectPeersByRole('invitee'));
   const viewerPeers = useHMSStore(selectPeersByRole('viewer'));
+  const localPeerId = useHMSStore(selectLocalPeerID);
   return (
     <div className={s['part-ctx']}>
       {stagePeers.length > 0 ? (
@@ -18,7 +19,7 @@ const Participants = () => {
             <div key={p.id} className={s['part-box']}>
               <Avatar name={p.name} />
               <div className={s['part-name']}>{p.name}</div>
-              <Dropdown role={p.roleName || 'viewer'} id={p.id} />
+              {p.id !== localPeerId ? <Dropdown role={p.roleName || 'viewer'} id={p.id} /> : null}
             </div>
           ))}
         </div>

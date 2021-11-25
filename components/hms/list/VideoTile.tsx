@@ -2,9 +2,10 @@ import {
   selectVideoTrackByPeerID,
   selectIsPeerVideoEnabled,
   selectIsPeerAudioEnabled,
-  HMSPeer
+  HMSPeer,
+  selectPeerAudioByID
 } from '@100mslive/hms-video-store';
-import { MicOnIcon, MicOffIcon } from '@100mslive/react-icons';
+import { MicOffIcon } from '@100mslive/react-icons';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import MenuIcon from '@components/icons/icon-menu';
 import React, { useEffect } from 'react';
@@ -36,19 +37,34 @@ const VideoTile: React.FC<VideoTileProps> = ({ peer, width, height }) => {
     }
   }, [videoTrack, hmsActions]);
   const { initials, color } = getAvatarBg(peer.name);
+  const audioLevel = useHMSStore(selectPeerAudioByID(peer.id)) > 0;
   return (
     <div className={s['tile-container']} style={{ width, height }}>
-      <video ref={videoRef} className={s['tile-video']} autoPlay muted playsInline />
+      <video
+        ref={videoRef}
+        className={`${s['tile-video']} ${audioLevel ? s['tile-audio-level'] : null}`}
+        autoPlay
+        muted
+        playsInline
+      />
       {!isLocalVideoEnabled ? (
         <div style={{ backgroundColor: color }} className={s['tile-avatar']}>
           {initials}
         </div>
       ) : (
-        <div className={s['tile-name']}>{peer.name}</div>
+        <>
+          <div className={s['tile-name']}>{peer.name}</div>
+          <img src="/hms-coachmark.svg" className={s['tile-coachmark']} />
+        </>
       )}
       <div className={s['tile-overlay']}>
-        <div className={s['tile-info']}>{isLocalAudioEnabled ? <MicOnIcon /> : <MicOffIcon />}</div>
+        {isLocalAudioEnabled ? null : (
+          <div className={s['tile-info']}>
+            <MicOffIcon />
+          </div>
+        )}
       </div>
+
       {/* <div className={s['tile-menu-btn']}>
         <Dropdown id={peer.id} />
       </div> */}

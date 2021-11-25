@@ -1,9 +1,10 @@
-import { useHMSActions } from '@100mslive/react-sdk';
+import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import HorizontalMenuIcon from '@components/icons/icon-menu-hor';
 import RemoveUserIcon from '@components/icons/icon-remove-user';
 import BringToStageIcon from '@components/icons/icon-bring-stage';
 import s from './index.module.css';
+import { selectLocalPeerRole } from '@100mslive/hms-video-store';
 
 const Dropdown: React.FC<{ id: string; role: string }> = ({ id, role }) => {
   const actions = useHMSActions();
@@ -22,6 +23,7 @@ const Dropdown: React.FC<{ id: string; role: string }> = ({ id, role }) => {
       console.log('Error: ', error);
     }
   };
+  const localRole = useHMSStore(selectLocalPeerRole);
   return (
     <div>
       <DropdownMenu.Root>
@@ -37,11 +39,13 @@ const Dropdown: React.FC<{ id: string; role: string }> = ({ id, role }) => {
               {role === 'viewer' ? 'Bring user to stage' : 'Remove user from stage'}
             </button>
           </DropdownMenu.Item>
-          <DropdownMenu.Item asChild>
-            <button className={s['menu-item']} onClick={removePeer}>
-              <RemoveUserIcon /> Remove user
-            </button>
-          </DropdownMenu.Item>
+          {localRole?.name === 'backstage' ? (
+            <DropdownMenu.Item asChild>
+              <button className={s['menu-item']} onClick={removePeer}>
+                <RemoveUserIcon /> Remove user
+              </button>
+            </DropdownMenu.Item>
+          ) : null}
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     </div>

@@ -1,5 +1,9 @@
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
-import { selectHMSMessages, selectLocalPeerRole } from '@100mslive/hms-video-store';
+import {
+  selectHMSMessages,
+  selectLocalPeerID,
+  selectLocalPeerRole
+} from '@100mslive/hms-video-store';
 import React, { FormEvent } from 'react';
 import s from './chat.module.css';
 import Avatar from '../avatar';
@@ -21,6 +25,7 @@ const Chat = () => {
       el.scrollTop = el.scrollHeight;
     }
   }, [msgs]);
+  const localPeerId = useHMSStore(selectLocalPeerID);
   return (
     <>
       <div id="chat-feed" className={s['chats-ctx']}>
@@ -29,12 +34,19 @@ const Chat = () => {
             <Avatar name={m.senderName} />
             <div className={s['chat-meta']}>
               <div className={s['chat-name']}>
-                {m.senderName} <span className={s['chat-time']}>12:30</span>
+                {m.senderName}{' '}
+                <span className={s['chat-time']}>
+                  {m.time.getHours()}:{m.time.getMinutes()}
+                </span>
               </div>
               <div className={s['chat-text']}>{m.message}</div>
             </div>
             {role?.name === 'stage' || role?.name === 'backstage' ? (
-              <Dropdown role={m.senderRole || 'viewer'} id={m.sender} />
+              <>
+                {localPeerId !== m.sender ? (
+                  <Dropdown role={m.senderRole || 'viewer'} id={m.sender} />
+                ) : null}
+              </>
             ) : null}
           </div>
         ))}
@@ -47,7 +59,6 @@ const Chat = () => {
           placeholder="Send a message..."
         />
       </form>
-      <div></div>
     </>
   );
 };
