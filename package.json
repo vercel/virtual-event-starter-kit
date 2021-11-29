@@ -61,6 +61,7 @@
     "postcss-hover-media-feature": "1.0.0",
     "postcss-preset-env": "6.7.0",
     "prettier": "2.2.1",
-    "typescript": "4.3.2"
+    "typescript": "4.3.2",
+    "webpack": "^5.64.4"
   }
 }
