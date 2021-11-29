@@ -15,7 +15,6 @@
  */
 
 module.exports = {
-  target: 'serverless',
   images: {
     domains: [
       'www.datocms-assets.com',
