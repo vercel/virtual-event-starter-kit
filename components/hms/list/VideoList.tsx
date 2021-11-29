@@ -56,20 +56,22 @@ const VideoList = () => {
           ))}
         </div>
       )}
-      <div className={s['pagin-ctx']}>
-        <div onClick={prevPage}>
-          <ChevronLeft />
+      {chunkedTracksWithPeer.length > 1 ? (
+        <div className={s['pagin-ctx']}>
+          <div onClick={prevPage}>
+            <ChevronLeft />
+          </div>
+          {chunkedTracksWithPeer.map((_, i: number) => (
+            <div
+              className={`${s['pagin-btn']} ${i === page ? s['pagin-active'] : null}`}
+              onClick={() => setPage(i)}
+            />
+          ))}
+          <div onClick={nextPage}>
+            <ChevronRight />
+          </div>
         </div>
-        {chunkedTracksWithPeer.map((_, i: number) => (
-          <div
-            className={`${s['pagin-btn']} ${i === page ? s['pagin-active'] : null}`}
-            onClick={() => setPage(i)}
-          />
-        ))}
-        <div onClick={nextPage}>
-          <ChevronRight />
-        </div>
-      </div>
+      ) : null}
     </div>
   );
 };

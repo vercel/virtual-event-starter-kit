@@ -1,6 +1,7 @@
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import {
   selectHMSMessages,
+  selectLocalPeer,
   selectLocalPeerID,
   selectLocalPeerRole
 } from '@100mslive/hms-video-store';
@@ -18,32 +19,31 @@ const Chat = () => {
     actions.sendBroadcastMessage(msg);
     setMsg('');
   };
-  const role = useHMSStore(selectLocalPeerRole);
   React.useEffect(() => {
     const el = document.getElementById('chat-feed');
     if (el) {
       el.scrollTop = el.scrollHeight;
     }
   }, [msgs]);
-  const localPeerId = useHMSStore(selectLocalPeerID);
+  const localPeer = useHMSStore(selectLocalPeer);
   return (
     <>
       <div id="chat-feed" className={s['chats-ctx']}>
         {msgs.map(m => (
           <div key={m.id} className={s['chat-box']}>
-            <Avatar name={m.senderName} />
+            <Avatar name={m.sender === localPeer.id ? localPeer.name : m.senderName} />
             <div className={s['chat-meta']}>
               <div className={s['chat-name']}>
-                {m.senderName}{' '}
+                {m.sender === localPeer.id ? localPeer.name : m.senderName}{' '}
                 <span className={s['chat-time']}>
                   {m.time.getHours()}:{m.time.getMinutes()}
                 </span>
               </div>
               <div className={s['chat-text']}>{m.message}</div>
             </div>
-            {role?.name === 'stage' || role?.name === 'backstage' ? (
+            {localPeer.roleName === 'stage' || localPeer.roleName === 'backstage' ? (
               <>
-                {localPeerId !== m.sender ? (
+                {localPeer.id !== m.sender ? (
                   <Dropdown role={m.senderRole || 'viewer'} id={m.sender} />
                 ) : null}
               </>

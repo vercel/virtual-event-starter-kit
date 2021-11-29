@@ -7,3 +7,14 @@
   width: 100%;
   height: var(--header-height);
 }
+
+.participants-count {
+  display: flex;
+  align-items: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  gap: 0.5rem;
+}
