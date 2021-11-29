@@ -19,7 +19,6 @@
     "@agility/content-fetch": "1.1.1",
     "@agility/content-sync": "1.0.3",
     "@hcaptcha/react-hcaptcha": "^0.3.7",
-    "@netlify/plugin-nextjs": "^3.9.2",
     "@reach/skip-nav": "0.12.1",
     "chrome-aws-lambda": "5.5.0",
     "classnames": "2.2.6",
