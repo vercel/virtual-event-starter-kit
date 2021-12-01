@@ -23,6 +23,8 @@ import styleUtils from './utils.module.css';
 import ConfEntry from './conf-entry';
 import Room from './hms/Room';
 import Sidebar from './hms/sidebar';
+import { useHMSStore } from '@100mslive/react-sdk';
+import { selectIsConnectedToRoom } from '@100mslive/hms-video-store';
 
 type Props = {
   stage: Stage;
@@ -37,9 +39,10 @@ export default function StageContainer({ stage, allStages }: Props) {
   const updatedStages = response.data || [];
   const updatedStage = updatedStages.find((s: Stage) => s.slug === stage.slug) || stage;
   const { loginStatus, mutate } = useLoginStatus();
+  const isConnected = useHMSStore(selectIsConnectedToRoom);
   return (
     <div className={styles.container}>
-      <div className={styles.streamContainer}>
+      <div className={`${styles.streamContainer} ${isConnected ? '' : styles.streamYt}`}>
         {loginStatus === 'loggedIn' ? (
           !stage.isLive ? (
             <div className={cn(styles.stream, styleUtils.appear, styleUtils['appear-first'])}>
@@ -91,7 +94,7 @@ export default function StageContainer({ stage, allStages }: Props) {
           <ConfEntry onRegister={() => mutate()} />
         )}
       </div>
-      <Sidebar />
+      {isConnected || !stage.isLive ? <Sidebar /> : null}
     </div>
   );
 }

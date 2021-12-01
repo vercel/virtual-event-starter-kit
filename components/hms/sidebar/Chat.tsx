@@ -34,7 +34,7 @@ const Chat = () => {
             <Avatar name={m.sender === localPeer.id ? localPeer.name : m.senderName} />
             <div className={s['chat-meta']}>
               <div className={s['chat-name']}>
-                {m.sender === localPeer.id ? localPeer.name : m.senderName}{' '}
+                {m.sender === localPeer.id ? `${localPeer.name} (You)` : m.senderName}{' '}
                 <span className={s['chat-time']}>
                   {m.time.getHours()}:{m.time.getMinutes()}
                 </span>
