@@ -74,12 +74,18 @@ export default async function register(
   let statusCode: number;
   let name: string | undefined = undefined;
   let username: string | undefined = undefined;
+
   if (redis) {
     id = emailToId(email);
+    console.log({ id })
     const existingTicketNumberString = await redis.hget(`id:${id}`, 'ticketNumber');
 
+    console.log('existingTicketNumberString', existingTicketNumberString);
+    
     if (existingTicketNumberString) {
       const item = await redis.hmget(`id:${id}`, 'name', 'username', 'createdAt');
+      console.log('item', item);
+      
       name = item[0]!;
       username = item[1]!;
       ticketNumber = parseInt(existingTicketNumberString, 10);
@@ -88,7 +94,7 @@ export default async function register(
     } else {
       ticketNumber = await redis.incr('count');
       createdAt = Date.now();
-      await redis.hmset(
+      const res = await redis.hmset(
         `id:${id}`,
         'email',
         email,
@@ -97,6 +103,12 @@ export default async function register(
         'createdAt',
         createdAt
       );
+      console.log('res', res);
+      const u = await redis.hmget(`id:${id}`, 'ticketNumber', 'name', 'username', 'email', 'createdAt');
+      const keys = await redis.keys('*')
+      console.log('u', u);
+      console.log('keys', keys);
+
       statusCode = 201;
     }
   } else {

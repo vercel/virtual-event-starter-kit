@@ -22,7 +22,7 @@ import { NAVIGATION } from '@lib/constants';
 import styles from './layout.module.css';
 import Logo from './icons/icon-logo';
 import MobileMenu from './mobile-menu';
-import Footer, { HostedByVercel } from './footer';
+import Footer from './footer';
 import ViewSource from '@components/view-source';
 
 type Props = {
@@ -64,9 +64,7 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
                 </Link>
               ))}
             </div>
-            <div className={cn(styles['header-right'])}>
-              <HostedByVercel />
-            </div>
+            <div className={cn(styles['header-right'])}/>
           </header>
         )}
         <div className={styles.page}>
