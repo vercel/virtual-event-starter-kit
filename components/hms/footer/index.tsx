@@ -11,6 +11,7 @@ import {
 } from '@100mslive/react-icons';
 import React from 'react';
 import s from './index.module.css';
+import Settings from './Settings';
 
 const Footer = () => {
   const role = useHMSStore(selectLocalPeerRole);
@@ -56,6 +57,9 @@ const Footer = () => {
         <button className={s['btn']} onClick={leaveRoom}>
           <HangUpIcon />
         </button>
+      ) : null}
+      {role?.name === 'backstage' || role?.name === 'stage' || role?.name === 'invitee' ? (
+        <Settings />
       ) : null}
     </div>
   );

@@ -23,6 +23,7 @@
     "@agility/content-fetch": "1.1.1",
     "@agility/content-sync": "1.0.3",
     "@hcaptcha/react-hcaptcha": "^0.3.7",
+    "@radix-ui/react-dialog": "^0.1.1",
     "@radix-ui/react-dropdown-menu": "^0.1.1",
     "@reach/skip-nav": "0.12.1",
     "chrome-aws-lambda": "5.5.0",

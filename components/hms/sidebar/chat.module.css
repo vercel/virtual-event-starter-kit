@@ -45,3 +45,11 @@
   word-break: break-all;
   width: 180px;
 }
+.role-badge {
+  background: #323332;
+  border: 1px solid #2f80ff;
+  border-radius: 4px;
+  padding: 2px 4px 3px;
+  font-size: 10px;
+  margin: 0 5px;
+}

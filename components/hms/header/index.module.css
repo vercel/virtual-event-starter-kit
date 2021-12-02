@@ -9,6 +9,9 @@
 }
 
 .participants-count {
+  border: 1px solid #3b3b3b;
+  border-radius: 22px;
+  padding: 8px 16px 8px 12px;
   display: flex;
   align-items: center;
   font-family: Inter;
@@ -17,4 +20,47 @@
   font-size: 13px;
   line-height: 16px;
   gap: 0.5rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.title {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 32px;
+}
+.live-badge {
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  background: #ed4c5a;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 11px;
+}
+.time {
+  font-size: 15px;
+  line-height: 20px;
+  color: #999a99;
+}
+.box {
+  display: flex;
+  align-items: center;
+}
+.leave-btn {
+  margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  background: #3b3b3b;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 17px;
+  color: #ffffff;
+  gap: 0.5rem;
+  cursor: pointer;
 }
