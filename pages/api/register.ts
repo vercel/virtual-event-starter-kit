@@ -22,6 +22,7 @@ import { SAMPLE_TICKET_NUMBER, COOKIE } from '@lib/constants';
 import cookie from 'cookie';
 import ms from 'ms';
 import redis, { emailToId } from '@lib/redis';
+import { supabase } from '@lib/supabase';
 import { validateCaptchaResult, IS_CAPTCHA_ENABLED } from '@lib/captcha';
 
 type ErrorResponse = {
@@ -77,15 +78,11 @@ export default async function register(
 
   if (redis) {
     id = emailToId(email);
-    console.log({ id })
     const existingTicketNumberString = await redis.hget(`id:${id}`, 'ticketNumber');
 
-    console.log('existingTicketNumberString', existingTicketNumberString);
-    
     if (existingTicketNumberString) {
       const item = await redis.hmget(`id:${id}`, 'name', 'username', 'createdAt');
-      console.log('item', item);
-      
+
       name = item[0]!;
       username = item[1]!;
       ticketNumber = parseInt(existingTicketNumberString, 10);
@@ -94,7 +91,7 @@ export default async function register(
     } else {
       ticketNumber = await redis.incr('count');
       createdAt = Date.now();
-      const res = await redis.hmset(
+      await redis.hmset(
         `id:${id}`,
         'email',
         email,
@@ -103,12 +100,40 @@ export default async function register(
         'createdAt',
         createdAt
       );
-      console.log('res', res);
-      const u = await redis.hmget(`id:${id}`, 'ticketNumber', 'name', 'username', 'email', 'createdAt');
-      const keys = await redis.keys('*')
-      console.log('u', u);
-      console.log('keys', keys);
 
+      statusCode = 201;
+    }
+  } else if (supabase) {
+    const { data: existingRegistration } = await supabase
+      .from('registrations')
+      .select('*')
+      .eq('email', email)
+      .single()
+
+    if (existingRegistration) {
+      const item = existingRegistration
+
+      name = item.name!;
+      username = item.username!;
+      ticketNumber = parseInt(item.ticket_number, 10);
+      createdAt = parseInt(item.created_at!, 10);
+      statusCode = 200;
+    } else {
+      const { count } = await supabase
+        .from('registrations')
+        .select('email', { count: 'exact' })
+      let total: number = count as number
+      ticketNumber = ++total
+
+      const { data } = await supabase
+        .from('registrations')
+        .insert([
+          { ticket_number: ticketNumber, name, email, username },
+        ])
+        .single()
+
+      id = data.id
+      createdAt = parseInt(data.created_at!, 10);
       statusCode = 201;
     }
   } else {

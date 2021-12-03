@@ -31,13 +31,14 @@ import { DATE, SITE_NAME } from '@lib/constants';
 import Form from './form';
 
 type Props = {
+  userId: UserData['id']
   username: UserData['username'];
   ticketNumber: UserData['ticketNumber'];
   name: UserData['name'];
   sharePage?: boolean;
 };
 
-export default function Ticket({ username, name, ticketNumber, sharePage }: Props) {
+export default function Ticket({ username, name, ticketNumber, sharePage, userId }: Props) {
   const ticketRef = useRef<HTMLDivElement>(null);
   const [ticketGenerationState, setTicketGenerationState] = useState<TicketGenerationState>(
     'default'
@@ -98,6 +99,8 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
         <div className={cn(styleUtils.appear, styleUtils['appear-third'])}>
           {!sharePage ? (
             <TicketForm
+              name={name}
+              userId={userId}
               defaultUsername={username}
               setTicketGenerationState={setTicketGenerationState}
             />

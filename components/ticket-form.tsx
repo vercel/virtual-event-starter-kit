@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { scrollTo } from '@lib/smooth-scroll';
 import cn from 'classnames';
 import GithubIcon from '@components/icons/icon-github';
@@ -27,22 +27,36 @@ import formStyles from './form.module.css';
 import ticketFormStyles from './ticket-form.module.css';
 import { saveGithubToken } from '@lib/user-api';
 import { GitHubOAuthData } from '@lib/types';
+import { supabase } from '@lib/supabase';
 
 type FormState = 'default' | 'loading' | 'error';
 
 type Props = {
+  name?: string;
+  userId?: string;
   defaultUsername?: string;
   setTicketGenerationState: React.Dispatch<React.SetStateAction<TicketGenerationState>>;
 };
 
 const githubEnabled = Boolean(process.env.NEXT_PUBLIC_GITHUB_OAUTH_CLIENT_ID);
 
-export default function Form({ defaultUsername = '', setTicketGenerationState }: Props) {
+export default function Form({ defaultUsername = '', setTicketGenerationState, name, userId }: Props) {
   const [username, setUsername] = useState(defaultUsername);
   const [formState, setFormState] = useState<FormState>('default');
   const [errorMsg, setErrorMsg] = useState('');
   const { userData, setUserData } = useConfData();
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    async function updateRegistration() {
+      if (supabase && userId && name && username) {
+        await supabase
+          .from('registrations')
+          .upsert({ id: userId, username: username, name })
+      }
+    }
+    updateRegistration()
+  }, [userId, name, username])
 
   return formState === 'error' ? (
     <div>

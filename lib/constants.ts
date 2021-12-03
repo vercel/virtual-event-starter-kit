@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export const SITE_URL = 'https://open-components-hackathon.netlify.app/';
+export const SITE_URL = 'https://opencomponentshackathon.netlify.app';
 export const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_ORIGIN || new URL(SITE_URL).origin;
 export const TWITTER_USER_NAME = 'unfoldingWord';
 export const BRAND_NAME = 'Open Components';
@@ -37,24 +37,12 @@ export const COPYRIGHT_HOLDER = process.env.NEXT_PUBLIC_COPYRIGHT_HOLDER;
 
 export const CODE_OF_CONDUCT =
   'https://www.notion.so/vercel/Code-of-Conduct-Example-7ddd8d0e9c354bb597a0faed87310a78';
-export const REPO = 'https://github.com/unfoldingword-box3/virtual-event-starter-kit';
+export const REPO = 'https://github.com/unfoldingWord/open-components-hackathon-website';
 export const SAMPLE_TICKET_NUMBER = 1234;
 export const NAVIGATION = [
   {
     name: 'Stage A',
     route: '/stage/a'
-  },
-  {
-    name: 'Stage C',
-    route: '/stage/c'
-  },
-  {
-    name: 'Stage M',
-    route: '/stage/m'
-  },
-  {
-    name: 'Stage E',
-    route: '/stage/e'
   },
   {
     name: 'Schedule',
@@ -67,10 +55,6 @@ export const NAVIGATION = [
   {
     name: 'Expo',
     route: '/expo'
-  },
-  {
-    name: 'Jobs',
-    route: '/jobs'
   }
 ];
 

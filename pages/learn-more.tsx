@@ -15,7 +15,6 @@
  */
 
  import Page from '@components/page';
- import JobsGrid from '@components/jobs-grid';
  import Layout from '@components/layout';
  import Header from '@components/header';
  
@@ -28,7 +27,7 @@
  
  export default function LearnMore({ }: Props) {
    const meta = {
-     title: 'Learn More- Open Components Hackathon',
+     title: 'Learn More - Open Components Hackathon',
      description: META_DESCRIPTION
    };
  

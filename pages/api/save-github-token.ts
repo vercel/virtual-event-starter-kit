@@ -16,8 +16,11 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import redis from '@lib/redis';
+import { supabase } from '@lib/supabase';
 
 export default async function saveGithubToken(req: NextApiRequest, res: NextApiResponse) {
+  console.log('saveGithubToken');
+  
   if (req.method !== 'POST') {
     return res.status(501).json({
       error: {
@@ -28,6 +31,8 @@ export default async function saveGithubToken(req: NextApiRequest, res: NextApiR
   }
 
   const body = req.body;
+  console.log({body});
+  
 
   if (!body.token || !body.id) {
     return res.status(400).json({
@@ -38,31 +43,60 @@ export default async function saveGithubToken(req: NextApiRequest, res: NextApiR
     });
   }
 
-  if (!redis) {
-    throw new Error('Redis must be set up');
+  if (redis) {
+    const ticketNumber = await redis.hget(`id:${body.id}`, 'ticketNumber');
+    if (!ticketNumber) {
+      return res.status(404).json({ code: 'invalid_id', message: 'The registration does not exist' });
+    }
+  
+    const [username, name] = await redis.hmget(`github-user:${body.token}`, 'login', 'name');
+    if (!username) {
+      return res.status(400).json({ code: 'invalid_token', message: 'Invalid or expired token' });
+    }
+  
+    const key = `id:${body.id}`;
+    const userKey = `user:${username}`;
+  
+    await redis
+      .multi()
+      .hsetnx(key, 'username', username)
+      .hsetnx(key, 'name', name || '')
+      // Also save username → data pair
+      .hsetnx(userKey, 'name', name || '')
+      .hsetnx(userKey, 'ticketNumber', ticketNumber)
+      .exec();
+
+    res.json({ username, name });
+  // } else if (supabase) {
+    // const { data } = await supabase
+    //   .from('registrations')
+    //   .select('*')
+    //   .eq('id', body.id)
+    //   .single()
+    // const ticketNumber = data.ticket_number
+    // if (!ticketNumber) {
+    //   return res.status(404).json({ code: 'invalid_id', message: 'The registration does not exist' });
+    // }
+    // // TODO:
+    // const username = data.username
+    // const name = data.name
+    // if (!username) {
+    //   return res.status(400).json({ code: 'invalid_token', message: 'Invalid or expired token' });
+    // }
+  
+    // const key = `id:${body.id}`;
+    // const userKey = `user:${username}`;
+    // await redis
+    // .multi()
+    // .hsetnx(key, 'username', username)
+    // .hsetnx(key, 'name', name || '')
+    // // Also save username → data pair
+    // .hsetnx(userKey, 'name', name || '')
+    // .hsetnx(userKey, 'ticketNumber', ticketNumber)
+    // .exec();
+
+
+  } else if (!redis || !supabase) {
+    throw new Error('Redis or Supabase must be set up');
   }
-
-  const ticketNumber = await redis.hget(`id:${body.id}`, 'ticketNumber');
-  if (!ticketNumber) {
-    return res.status(404).json({ code: 'invalid_id', message: 'The registration does not exist' });
-  }
-
-  const [username, name] = await redis.hmget(`github-user:${body.token}`, 'login', 'name');
-  if (!username) {
-    return res.status(400).json({ code: 'invalid_token', message: 'Invalid or expired token' });
-  }
-
-  const key = `id:${body.id}`;
-  const userKey = `user:${username}`;
-
-  await redis
-    .multi()
-    .hsetnx(key, 'username', username)
-    .hsetnx(key, 'name', name || '')
-    // Also save username → data pair
-    .hsetnx(userKey, 'name', name || '')
-    .hsetnx(userKey, 'ticketNumber', ticketNumber)
-    .exec();
-
-  res.json({ username, name });
 }
