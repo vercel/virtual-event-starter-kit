@@ -29,28 +29,36 @@ const Chat = () => {
   return (
     <>
       <div id="chat-feed" className={s['chats-ctx']}>
-        {msgs.map(m => (
-          <div key={m.id} className={s['chat-box']}>
-            <Avatar name={m.sender === localPeer.id ? localPeer.name : m.senderName} />
-            <div className={s['chat-meta']}>
-              <div className={s['chat-name']}>
-                {m.sender === localPeer.id ? `${localPeer.name} (You)` : m.senderName}{' '}
-                {/* <span className={s['role-badge']}>{m.senderRole}</span> */}
-                <span className={s['chat-time']}>
-                  {m.time.getHours()}:{m.time.getMinutes()}
-                </span>
+        {msgs.length > 0 ? (
+          msgs.map(m => (
+            <div key={m.id} className={s['chat-box']}>
+              <Avatar name={m.sender === localPeer.id ? localPeer.name : m.senderName} />
+              <div className={s['chat-meta']}>
+                <div className={s['chat-name']}>
+                  {m.sender === localPeer.id ? `${localPeer.name} (You)` : m.senderName}{' '}
+                  <span className={s['chat-time']}>
+                    {m.time.getHours()}:{m.time.getMinutes()}
+                  </span>
+                </div>
+                <div className={s['chat-text']}>{m.message}</div>
               </div>
-              <div className={s['chat-text']}>{m.message}</div>
+              {localPeer.roleName === 'stage' || localPeer.roleName === 'backstage' ? (
+                <>
+                  {localPeer.id !== m.sender ? (
+                    <Dropdown role={m.senderRole || 'viewer'} id={m.sender} />
+                  ) : null}
+                </>
+              ) : null}
             </div>
-            {localPeer.roleName === 'stage' || localPeer.roleName === 'backstage' ? (
-              <>
-                {localPeer.id !== m.sender ? (
-                  <Dropdown role={m.senderRole || 'viewer'} id={m.sender} />
-                ) : null}
-              </>
-            ) : null}
+          ))
+        ) : (
+          <div className={s['chat-none']}>
+            <div className={s['chat-none-message']}>
+              <img src="/chat.svg" width={60} className={s['chat-none-image']}></img>
+              <p>Welcome to the webinar. You can moderate conversations from here.</p>
+            </div>
           </div>
-        ))}
+        )}
       </div>
       <form className={s['chat-ctx']} onSubmit={sendMessage}>
         <input
