@@ -4,8 +4,14 @@ import React from 'react';
 import Chat from './Chat';
 import s from './index.module.css';
 import Participants from './Participants';
+import ScheduleSidebar from '@components/schedule-sidebar-individual';
+import { Stage } from '@lib/types';
 
-const Sidebar = () => {
+type Props = {
+  allStages: Stage[];
+};
+
+const Sidebar = ({ allStages }: Props) => {
   const [tab, setTab] = React.useState(0);
   const localRole = useHMSStore(selectLocalPeerRole);
   return (
@@ -35,6 +41,7 @@ const Sidebar = () => {
       </div>
       {tab === 0 ? <Chat /> : null}
       {tab === 1 ? <Participants /> : null}
+      {tab === 2 ? <ScheduleSidebar allStages={allStages} /> : null}
     </div>
   );
 };
