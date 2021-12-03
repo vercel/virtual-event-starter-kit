@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   place-content: center;
   align-items: center;
-  height: calc(100vh - 3 * var(--header-height));
+  height: calc(100vh - 3.2 * var(--header-height));
 }
 
 /* VideoTile */
@@ -151,7 +151,7 @@
   flex-direction: column;
   font-size: 20px;
   font-weight: 600;
-  height: calc(100vh - 3 * var(--header-height));
+  height: calc(100vh - 3.2 * var(--header-height));
 }
 .screenshare-btn {
   color: white;
@@ -167,7 +167,7 @@
 }
 
 .empty-room {
-  height: calc(100vh - 3 * var(--header-height));
+  height: calc(100vh - 3.2 * var(--header-height));
   display: flex;
   align-items: center;
   justify-content: center;

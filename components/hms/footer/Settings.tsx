@@ -1,71 +1,73 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { SettingIcon } from '@100mslive/react-icons';
 import React from 'react';
 import s from './index.module.css';
 import { useDevices } from '@100mslive/react-sdk';
-import * as Dialog from '@radix-ui/react-dialog';
-import Select from '@components/select';
+import { Dialog, Flex, Text, Select } from '@100mslive/react-ui';
 
 const Settings = () => {
-  const st = useDevices();
+  const d = useDevices();
   return (
-    <Dialog.Root>
+    <Dialog>
       <Dialog.Trigger asChild>
-        <button className={s['btn']}>
-          <SettingIcon />
-        </button>
+        <div className={s['btn-wrapper']}>
+          <button className={s['btn']}>
+            <SettingIcon />
+          </button>
+          <p className={s['btn-text']}>Setting</p>
+        </div>
       </Dialog.Trigger>
-      <Dialog.Overlay className={s['dialog-overlay']} />
-      <Dialog.Content className={s['dialog-content']}>
-        {st!.showAudio ? (
-          <div className={s['fieldset']}>
-            <p>Microphone:</p>
+      <Dialog.Content title="Settings">
+        {d!.showVideo ? (
+          <Flex align="center" justify="between" css={{ my: '1rem' }}>
+            <Text variant="heading-sm">Camera:</Text>
             <Select
-              className={s['select']}
-              onChange={st!.handleInputChange}
-              value={st!.selectedDevices.audioInputDeviceId}
+              // @ts-ignore
+              onChange={d!.handleInputChange}
+              value={d!.selectedDevices.videoInputDeviceId}
             >
-              {st!.audioInput.map(device => (
+              {d!.videoInput.map(device => (
                 <option value={device.deviceId} key={device.deviceId}>
                   {device.label}
                 </option>
               ))}
             </Select>
-          </div>
+          </Flex>
         ) : null}
-        {st!.showVideo ? (
-          <div className={s['fieldset']}>
-            <p>Camera:</p>
+        {d!.showAudio ? (
+          <Flex align="center" justify="between" css={{ my: '1rem' }}>
+            <Text variant="heading-sm">Microphone:</Text>
             <Select
-              className={s['select']}
-              onChange={st!.handleInputChange}
-              value={st!.selectedDevices.videoInputDeviceId}
+              // @ts-ignore
+              onChange={d!.handleInputChange}
+              value={d!.selectedDevices.audioInputDeviceId}
             >
-              {st!.videoInput.map(device => (
+              {d!.audioInput.map(device => (
                 <option value={device.deviceId} key={device.deviceId}>
                   {device.label}
                 </option>
               ))}
             </Select>
-          </div>
+          </Flex>
         ) : null}
-        {st!.isSubscribing && st!.audioOutput.length > 0 ? (
-          <div className={s['fieldset']}>
-            <p>Speaker:</p>
+        {d!.isSubscribing && d!.audioOutput.length > 0 ? (
+          <Flex align="center" justify="between" css={{ my: '1rem' }}>
+            <Text variant="heading-sm">Speaker:</Text>
             <Select
-              className={s['select']}
-              onChange={st!.handleInputChange}
-              value={st!.selectedDevices.audioOutputDeviceId}
+              // @ts-ignore
+              onChange={d!.handleInputChange}
+              value={d!.selectedDevices.audioOutputDeviceId}
             >
-              {st!.audioOutput.map(device => (
+              {d!.audioOutput.map(device => (
                 <option value={device.deviceId} key={device.deviceId}>
                   {device.label}
                 </option>
               ))}
             </Select>
-          </div>
+          </Flex>
         ) : null}
       </Dialog.Content>
-    </Dialog.Root>
+    </Dialog>
   );
 };
 

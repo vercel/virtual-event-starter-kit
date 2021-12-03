@@ -1,20 +1,31 @@
 .footer {
   /* background-color: red; */
   width: 100%;
-  height: var(--header-height);
+  height: calc(var(--header-height) * 1.2);
   display: flex;
-  padding-top: 20px;
   justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.2rem;
+}
+.btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.btn-text {
+  margin: 0;
+  margin-top: 5px;
+  font-size: 10px;
+  font-family: Inter;
 }
 .btn {
   color: white;
   cursor: pointer;
   background-color: #111111;
-  border: 1px solid var(--accents-7);
-  border-radius: 5px;
-  width: 40px;
-  height: 40px;
+  border: 2px solid #323332;
+  border-radius: 24px;
+  width: 44px;
+  height: 44px;
   transition: all ease 0.3s;
   display: flex;
   justify-content: center;

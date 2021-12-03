@@ -34,29 +34,36 @@ const Footer = () => {
   return (
     <div className={s['footer']}>
       {isAllowedToPublish.audio ? (
-        <button className={s['btn']} onClick={toggleAudio}>
-          {isLocalAudioEnabled ? <MicOnIcon /> : <MicOffIcon />}
-        </button>
+        <div className={s['btn-wrapper']}>
+          <button className={s['btn']} onClick={toggleAudio}>
+            {isLocalAudioEnabled ? <MicOnIcon /> : <MicOffIcon />}
+          </button>
+          <p className={s['btn-text']}>Mic</p>
+        </div>
       ) : null}
       {isAllowedToPublish.video ? (
-        <button className={s['btn']} onClick={toggleVideo}>
-          {isLocalVideoEnabled ? <VideoOnIcon /> : <VideoOffIcon />}
-        </button>
+        <div className={s['btn-wrapper']}>
+          <button className={s['btn']} onClick={toggleVideo}>
+            {isLocalVideoEnabled ? <VideoOnIcon /> : <VideoOffIcon />}
+          </button>
+          <p className={s['btn-text']}>Video</p>
+        </div>
       ) : null}
       {isAllowedToPublish.screen ? (
-        <button className={s['btn']} onClick={startScreenshare}>
-          <ShareScreenIcon />
-        </button>
+        <div className={s['btn-wrapper']}>
+          <button className={s['btn']} onClick={startScreenshare}>
+            <ShareScreenIcon />
+          </button>
+          <p className={s['btn-text']}>Screen Share</p>
+        </div>
       ) : null}
       {role?.name === 'backstage' ? (
-        <button className={s['btn']} onClick={() => {}}>
-          <RecordIcon />
-        </button>
-      ) : null}
-      {role?.name === 'backstage' || role?.name === 'stage' ? (
-        <button className={s['btn']} onClick={leaveRoom}>
-          <HangUpIcon />
-        </button>
+        <div className={s['btn-wrapper']}>
+          <button className={s['btn']} onClick={() => {}}>
+            <RecordIcon />
+          </button>
+          <p className={s['btn-text']}>Record</p>
+        </div>
       ) : null}
       {role?.name === 'backstage' || role?.name === 'stage' || role?.name === 'invitee' ? (
         <Settings />
