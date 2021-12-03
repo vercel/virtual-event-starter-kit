@@ -165,3 +165,10 @@
 .screenshare-btn:hover {
   opacity: 0.8;
 }
+
+.empty-room {
+  height: calc(100vh - 3 * var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

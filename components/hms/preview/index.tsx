@@ -50,6 +50,8 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
         <form onSubmit={joinRoom}>
           <p className={s['label']}>Enter name:</p>
           <input
+            required
+            maxLength={20}
             className={s['input']}
             value={name}
             onChange={e => setName(e.target.value)}

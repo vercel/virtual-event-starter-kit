@@ -18,7 +18,7 @@
   "dependencies": {
     "@100mslive/hms-video": "^0.1.32",
     "@100mslive/hms-video-store": "^0.2.79",
-    "@100mslive/react-icons": "^0.0.0-alpha",
+    "@100mslive/react-icons": "^0.0.1-alpha",
     "@100mslive/react-sdk": "^0.0.1-alpha",
     "@100mslive/react-ui": "^0.0.0-alpha",
     "@agility/content-fetch": "1.1.1",
@@ -26,6 +26,7 @@
     "@hcaptcha/react-hcaptcha": "^0.3.7",
     "@radix-ui/react-dialog": "^0.1.1",
     "@radix-ui/react-dropdown-menu": "^0.1.1",
+    "@radix-ui/react-popover": "^0.1.1",
     "@reach/skip-nav": "0.12.1",
     "chrome-aws-lambda": "5.5.0",
     "classnames": "2.2.6",
