@@ -172,3 +172,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.is-local {
+  transform: scaleX(-1);
+}

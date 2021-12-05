@@ -25,30 +25,34 @@ const Dropdown: React.FC<{ id: string; role: string }> = ({ id, role }) => {
   };
   const localRole = useHMSStore(selectLocalPeerRole);
   return (
-    <div>
-      <DropdownMenu.Root>
-        <DropdownMenu.Trigger asChild>
-          <button className={s['menu-btn']}>
-            <HorizontalMenuIcon />
-          </button>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content className={s['menu-content']}>
-          <DropdownMenu.Item asChild>
-            <button className={s['menu-item']} onClick={changeRole}>
-              <BringToStageIcon />{' '}
-              {role === 'viewer' ? 'Bring user to stage' : 'Remove user from stage'}
-            </button>
-          </DropdownMenu.Item>
-          {localRole?.name === 'backstage' ? (
-            <DropdownMenu.Item asChild>
-              <button className={s['menu-item']} onClick={removePeer}>
-                <RemoveUserIcon /> Remove user
+    <>
+      {role === 'backstage' ? null : (
+        <div>
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <button className={s['menu-btn']}>
+                <HorizontalMenuIcon />
               </button>
-            </DropdownMenu.Item>
-          ) : null}
-        </DropdownMenu.Content>
-      </DropdownMenu.Root>
-    </div>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content className={s['menu-content']}>
+              <DropdownMenu.Item asChild>
+                <button className={s['menu-item']} onClick={changeRole}>
+                  <BringToStageIcon />{' '}
+                  {role === 'viewer' ? 'Bring user to stage' : 'Remove user from stage'}
+                </button>
+              </DropdownMenu.Item>
+              {localRole?.name === 'backstage' ? (
+                <DropdownMenu.Item asChild>
+                  <button className={s['menu-item']} onClick={removePeer}>
+                    <RemoveUserIcon /> Remove user
+                  </button>
+                </DropdownMenu.Item>
+              ) : null}
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
+        </div>
+      )}
+    </>
   );
 };
 

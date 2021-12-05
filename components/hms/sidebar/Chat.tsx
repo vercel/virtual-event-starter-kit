@@ -36,7 +36,15 @@ const Chat = () => {
               <div className={s['chat-meta']}>
                 <div className={s['chat-name']}>
                   {m.sender === localPeer.id ? `${localPeer.name} (You)` : m.senderName}{' '}
-                  <span className={s['chat-badge']}>{m.senderRole}</span>
+                  {m.senderRole === 'stage' || m.senderRole === 'backstage' ? (
+                    <span
+                      className={`${s['chat-badge']} ${
+                        m.senderRole === 'backstage' ? s['mod-badge'] : ''
+                      }`}
+                    >
+                      {m.senderRole === 'stage' ? 'speaker' : 'moderator'}
+                    </span>
+                  ) : null}
                   <span className={s['chat-time']}>
                     {m.time.getHours()}:{m.time.getMinutes()}
                   </span>

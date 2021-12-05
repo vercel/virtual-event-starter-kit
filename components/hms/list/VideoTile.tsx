@@ -38,11 +38,14 @@ const VideoTile: React.FC<VideoTileProps> = ({ peer, width, height }) => {
   }, [videoTrack, hmsActions]);
   const { initials, color } = getAvatarBg(peer.name);
   const audioLevel = useHMSStore(selectPeerAudioByID(peer.id)) > 0;
+
   return (
     <div className={s['tile-container']} style={{ width, height }}>
       <video
         ref={videoRef}
-        className={`${s['tile-video']} ${audioLevel ? s['tile-audio-level'] : null}`}
+        className={`${s['tile-video']} ${audioLevel ? s['tile-audio-level'] : null} ${
+          peer.isLocal ? s['is-local'] : ''
+        }`}
         autoPlay
         muted
         playsInline

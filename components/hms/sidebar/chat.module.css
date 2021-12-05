@@ -48,6 +48,9 @@
   font-family: Inter;
   margin: 0 5px;
 }
+.mod-badge {
+  border: 1px solid #323332;
+}
 .chat-text {
   color: #eaeae9;
   font-size: 15px;
