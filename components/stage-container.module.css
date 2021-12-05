@@ -42,6 +42,10 @@
   .streamContainer {
     width: calc(100vw - 303px);
   }
+
+  .streamYt {
+    width: 100%;
+  }
 }
 
 .bottom {

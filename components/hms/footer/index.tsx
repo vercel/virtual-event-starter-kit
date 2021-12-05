@@ -6,11 +6,11 @@ import {
   MicOffIcon,
   MicOnIcon,
   ShareScreenIcon,
-  HangUpIcon,
   RecordIcon
 } from '@100mslive/react-icons';
 import React from 'react';
 import s from './index.module.css';
+import Settings from './Settings';
 
 const Footer = () => {
   const role = useHMSStore(selectLocalPeerRole);
@@ -22,7 +22,7 @@ const Footer = () => {
     toggleVideo
   } = useAVToggle();
   const actions = useHMSActions();
-  const leaveRoom = () => actions.leave();
+  // const leaveRoom = () => actions.leave();
   const startScreenshare = async () => {
     try {
       await actions.setScreenShareEnabled(true);
@@ -33,29 +33,39 @@ const Footer = () => {
   return (
     <div className={s['footer']}>
       {isAllowedToPublish.audio ? (
-        <button className={s['btn']} onClick={toggleAudio}>
-          {isLocalAudioEnabled ? <MicOnIcon /> : <MicOffIcon />}
-        </button>
+        <div className={s['btn-wrapper']}>
+          <button className={s['btn']} onClick={toggleAudio}>
+            {isLocalAudioEnabled ? <MicOnIcon /> : <MicOffIcon />}
+          </button>
+          <p className={s['btn-text']}>Mic</p>
+        </div>
       ) : null}
       {isAllowedToPublish.video ? (
-        <button className={s['btn']} onClick={toggleVideo}>
-          {isLocalVideoEnabled ? <VideoOnIcon /> : <VideoOffIcon />}
-        </button>
+        <div className={s['btn-wrapper']}>
+          <button className={s['btn']} onClick={toggleVideo}>
+            {isLocalVideoEnabled ? <VideoOnIcon /> : <VideoOffIcon />}
+          </button>
+          <p className={s['btn-text']}>Video</p>
+        </div>
       ) : null}
       {isAllowedToPublish.screen ? (
-        <button className={s['btn']} onClick={startScreenshare}>
-          <ShareScreenIcon />
-        </button>
+        <div className={s['btn-wrapper']}>
+          <button className={s['btn']} onClick={startScreenshare}>
+            <ShareScreenIcon />
+          </button>
+          <p className={s['btn-text']}>Screen Share</p>
+        </div>
       ) : null}
       {role?.name === 'backstage' ? (
-        <button className={s['btn']} onClick={() => {}}>
-          <RecordIcon />
-        </button>
+        <div className={s['btn-wrapper']}>
+          <button className={s['btn']} onClick={() => {}}>
+            <RecordIcon />
+          </button>
+          <p className={s['btn-text']}>Record</p>
+        </div>
       ) : null}
-      {role?.name === 'backstage' || role?.name === 'stage' ? (
-        <button className={s['btn']} onClick={leaveRoom}>
-          <HangUpIcon />
-        </button>
+      {role?.name === 'backstage' || role?.name === 'stage' || role?.name === 'invitee' ? (
+        <Settings />
       ) : null}
     </div>
   );

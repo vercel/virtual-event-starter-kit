@@ -39,9 +39,56 @@
   font-size: 15px;
   color: white;
 }
+.chat-badge {
+  padding: 2px 4px 3px;
+  background: #323332;
+  border: 1px solid #2f6eeb;
+  border-radius: 4px;
+  font-size: 10px;
+  font-family: Inter;
+  margin: 0 5px;
+}
 .chat-text {
   color: #eaeae9;
-  font-size: 13px;
+  font-size: 15px;
   word-break: break-all;
   width: 180px;
+}
+.role-badge {
+  background: #323332;
+  border: 1px solid #2f80ff;
+  border-radius: 4px;
+  padding: 2px 4px 3px;
+  font-size: 10px;
+  margin: 0 5px;
+}
+.chat-none {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.chat-none-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: 13px;
+}
+
+.chat-none-image {
+  background-color: #323332;
+  border-radius: 50%;
+  padding: 1em 1em 1em 1em;
+}
+
+@media screen and (max-width: 1032px) {
+  .chat-none-image {
+    display: none;
+    background-color: #323332;
+    border-radius: 50%;
+    padding: 1em 1em 1em 1em;
+  }
 }

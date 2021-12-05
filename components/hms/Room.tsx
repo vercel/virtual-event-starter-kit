@@ -40,17 +40,7 @@ const Room = ({ roomId, stagePeers, backstagePeers }: Props) => {
       actions.leave();
     };
   }, [actions]);
-  const joinRoom = (username: string) => {
-    actions.join({
-      authToken: token,
-      userName: username || 'Anonymous',
-      settings: {
-        isAudioMuted: true,
-        isVideoMuted: true
-      }
-    });
-  };
-  return <>{isConnected ? <Live /> : <Join joinRoom={joinRoom} />}</>;
+  return <>{isConnected ? <Live /> : <Join token={token} />}</>;
 };
 
 export default Room;

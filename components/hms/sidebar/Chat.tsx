@@ -1,6 +1,7 @@
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import {
   selectHMSMessages,
+  selectLocalPeer,
   selectLocalPeerID,
   selectLocalPeerRole
 } from '@100mslive/hms-video-store';
@@ -18,38 +19,52 @@ const Chat = () => {
     actions.sendBroadcastMessage(msg);
     setMsg('');
   };
-  const role = useHMSStore(selectLocalPeerRole);
+
   React.useEffect(() => {
     const el = document.getElementById('chat-feed');
     if (el) {
       el.scrollTop = el.scrollHeight;
     }
+    console.log(msgs);
   }, [msgs]);
-  const localPeerId = useHMSStore(selectLocalPeerID);
+  const localPeer = useHMSStore(selectLocalPeer);
   return (
     <>
       <div id="chat-feed" className={s['chats-ctx']}>
-        {msgs.map(m => (
-          <div key={m.id} className={s['chat-box']}>
-            <Avatar name={m.senderName} />
-            <div className={s['chat-meta']}>
-              <div className={s['chat-name']}>
-                {m.senderName}{' '}
-                <span className={s['chat-time']}>
-                  {m.time.getHours()}:{m.time.getMinutes()}
-                </span>
+        {msgs.length > 0 ? (
+          msgs.map(m => (
+            <div key={m.id} className={s['chat-box']}>
+              <Avatar name={m.sender === localPeer.id ? localPeer.name : m.senderName} />
+              <div className={s['chat-meta']}>
+                <div className={s['chat-name']}>
+                  {m.sender === localPeer.id ? `${localPeer.name} (You)` : m.senderName}{' '}
+                  <span className={s['chat-badge']}>{m.senderRole}</span>
+                  <span className={s['chat-time']}>
+                    {m.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                </div>
+                <div className={s['chat-text']}>{m.message}</div>
               </div>
-              <div className={s['chat-text']}>{m.message}</div>
+              {localPeer.roleName === 'stage' || localPeer.roleName === 'backstage' ? (
+                <>
+                  {localPeer.id !== m.sender ? (
+                    <Dropdown role={m.senderRole || 'viewer'} id={m.sender} />
+                  ) : null}
+                </>
+              ) : null}
             </div>
-            {role?.name === 'stage' || role?.name === 'backstage' ? (
-              <>
-                {localPeerId !== m.sender ? (
-                  <Dropdown role={m.senderRole || 'viewer'} id={m.sender} />
-                ) : null}
-              </>
-            ) : null}
+          ))
+        ) : (
+          <div className={s['chat-none']}>
+            <div className={s['chat-none-message']}>
+              <img src="/chat.svg" width={60} className={s['chat-none-image']}></img>
+              <p>
+                Welcome to the Webinar. You can engage with the speak and other participants through
+                the chat below.
+              </p>
+            </div>
           </div>
-        ))}
+        )}
       </div>
       <form className={s['chat-ctx']} onSubmit={sendMessage}>
         <input

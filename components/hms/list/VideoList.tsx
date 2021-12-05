@@ -44,7 +44,7 @@ const VideoList = () => {
   console.log(chunkedTracksWithPeer);
   return (
     <div ref={ref} style={{ width: '100%', position: 'relative', padding: '0 1rem' }}>
-      {chunkedTracksWithPeer && chunkedTracksWithPeer.length > 0 && (
+      {chunkedTracksWithPeer && chunkedTracksWithPeer.length > 0 ? (
         <div className={s['video-list']}>
           {chunkedTracksWithPeer[page].map((trackPeer, _) => (
             <VideoTile
@@ -55,21 +55,27 @@ const VideoList = () => {
             />
           ))}
         </div>
+      ) : (
+        <div className={s['empty-room']}>
+          <h2>No Speakers Present</h2>
+        </div>
       )}
-      <div className={s['pagin-ctx']}>
-        <div onClick={prevPage}>
-          <ChevronLeft />
+      {chunkedTracksWithPeer.length > 1 ? (
+        <div className={s['pagin-ctx']}>
+          <div onClick={prevPage}>
+            <ChevronLeft />
+          </div>
+          {chunkedTracksWithPeer.map((_, i: number) => (
+            <div
+              className={`${s['pagin-btn']} ${i === page ? s['pagin-active'] : null}`}
+              onClick={() => setPage(i)}
+            />
+          ))}
+          <div onClick={nextPage}>
+            <ChevronRight />
+          </div>
         </div>
-        {chunkedTracksWithPeer.map((_, i: number) => (
-          <div
-            className={`${s['pagin-btn']} ${i === page ? s['pagin-active'] : null}`}
-            onClick={() => setPage(i)}
-          />
-        ))}
-        <div onClick={nextPage}>
-          <ChevronRight />
-        </div>
-      </div>
+      ) : null}
     </div>
   );
 };

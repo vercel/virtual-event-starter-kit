@@ -2,8 +2,133 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 0 2rem;
   /* background-color: blue; */
   width: 100%;
   height: var(--header-height);
+}
+
+.participants-count {
+  border: 1px solid #3b3b3b;
+  border-radius: 22px;
+  padding: 8px 16px 8px 12px;
+  display: flex;
+  align-items: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  gap: 0.5rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.title {
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 32px;
+}
+.live-badge {
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  background: #ed4c5a;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 11px;
+}
+.time {
+  font-size: 15px;
+  line-height: 20px;
+  color: #999a99;
+}
+.box {
+  display: flex;
+  align-items: center;
+}
+.leave-btn {
+  margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  background: #3b3b3b;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 17px;
+  color: #ffffff;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.exit-btn {
+  color: white;
+  background-color: #323332;
+  transform: scaleX(-1);
+  padding: 5px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pop-content {
+  position: absolute;
+  top: 150px;
+  left: 32px;
+  font-family: Inter;
+  background: #323332;
+  border-radius: 8px;
+  padding: 24px;
+  color: white;
+}
+.pop-content p {
+  margin: 0;
+}
+.pop-head {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+}
+.pop-text {
+  margin-top: 0.5rem;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+}
+.pop-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0;
+}
+.cta-wrapper {
+  display: flex;
+  margin-top: 1.5rem;
+}
+.cta-wrapper button {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  line-height: 24px;
+  width: 150px;
+  cursor: pointer;
+}
+.leave-btn {
+  background: #ed4c5a;
+  border-radius: 8px;
+  margin-left: 0.5rem;
+}
+.cancel-btn {
+  color: white;
+  background: #444443;
+  border-radius: 8px;
 }

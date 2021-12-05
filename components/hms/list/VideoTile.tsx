@@ -53,10 +53,10 @@ const VideoTile: React.FC<VideoTileProps> = ({ peer, width, height }) => {
         </div>
       ) : (
         <>
-          <div className={s['tile-name']}>{peer.name}</div>
           <img src="/hms-coachmark.svg" className={s['tile-coachmark']} />
         </>
       )}
+      <div className={s['tile-name']}>{peer.name}</div>
       <div className={s['tile-overlay']}>
         {isLocalAudioEnabled ? null : (
           <div className={s['tile-info']}>
