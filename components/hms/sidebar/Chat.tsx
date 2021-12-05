@@ -36,6 +36,7 @@ const Chat = () => {
               <div className={s['chat-meta']}>
                 <div className={s['chat-name']}>
                   {m.sender === localPeer.id ? `${localPeer.name} (You)` : m.senderName}{' '}
+                  <span className={s['chat-badge']}>{m.senderRole}</span>
                   <span className={s['chat-time']}>
                     {m.time.getHours()}:{m.time.getMinutes()}
                   </span>
@@ -55,7 +56,10 @@ const Chat = () => {
           <div className={s['chat-none']}>
             <div className={s['chat-none-message']}>
               <img src="/chat.svg" width={60} className={s['chat-none-image']}></img>
-              <p>Welcome to the webinar. You can moderate conversations from here.</p>
+              <p>
+                Welcome to the Webinar. You can engage with the speak and other participants through
+                the chat below.
+              </p>
             </div>
           </div>
         )}

@@ -21,7 +21,7 @@
   .container {
     height: unset;
     min-height: 340px;
-    max-width: 500px;
+    max-width: 303px;
     max-height: calc(var(--100vh) - var(--header-height));
     --talk-card-width: unset;
   }

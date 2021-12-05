@@ -2,11 +2,27 @@
 import { SettingIcon } from '@100mslive/react-icons';
 import React from 'react';
 import s from './index.module.css';
-import { useDevices } from '@100mslive/react-sdk';
-import { Dialog, Flex, Text, Select } from '@100mslive/react-ui';
+import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
+import { Dialog, Flex, Text } from '@100mslive/react-ui';
+import { selectDevices, selectLocalMediaSettings } from '@100mslive/hms-video-store';
+import Select from '../select';
 
 const Settings = () => {
-  const d = useDevices();
+  const actions = useHMSActions();
+  const devices = useHMSStore(selectDevices);
+  const videoInput = devices['videoInput'] || [];
+  const audioInput = devices['audioInput'] || [];
+  const audioOutput = devices['audioOutput'] || [];
+  const selectedDevices = useHMSStore(selectLocalMediaSettings);
+  const handleAudioInput = (a: string) => {
+    actions.setAudioSettings({ deviceId: a });
+  };
+  const handleAudioOutput = (a: string) => {
+    actions.setAudioOutputDevice(a);
+  };
+  const handleVideoInput = (a: string) => {
+    actions.setVideoSettings({ deviceId: a });
+  };
   return (
     <Dialog>
       <Dialog.Trigger asChild>
@@ -18,15 +34,14 @@ const Settings = () => {
         </div>
       </Dialog.Trigger>
       <Dialog.Content title="Settings">
-        {d!.showVideo ? (
+        {videoInput.length > 0 ? (
           <Flex align="center" justify="between" css={{ my: '1rem' }}>
-            <Text variant="heading-sm">Camera:</Text>
+            <Text variant="heading-sm">Video:</Text>
             <Select
-              // @ts-ignore
-              onChange={d!.handleInputChange}
-              value={d!.selectedDevices.videoInputDeviceId}
+              onChange={e => handleVideoInput(e.target.value)}
+              value={selectedDevices.videoInputDeviceId}
             >
-              {d!.videoInput.map(device => (
+              {videoInput.map((device: MediaDeviceInfo) => (
                 <option value={device.deviceId} key={device.deviceId}>
                   {device.label}
                 </option>
@@ -34,15 +49,14 @@ const Settings = () => {
             </Select>
           </Flex>
         ) : null}
-        {d!.showAudio ? (
+        {audioInput.length > 0 ? (
           <Flex align="center" justify="between" css={{ my: '1rem' }}>
             <Text variant="heading-sm">Microphone:</Text>
             <Select
-              // @ts-ignore
-              onChange={d!.handleInputChange}
-              value={d!.selectedDevices.audioInputDeviceId}
+              onChange={e => handleAudioInput(e.target.value)}
+              value={selectedDevices.audioInputDeviceId}
             >
-              {d!.audioInput.map(device => (
+              {audioInput.map((device: MediaDeviceInfo) => (
                 <option value={device.deviceId} key={device.deviceId}>
                   {device.label}
                 </option>
@@ -50,15 +64,14 @@ const Settings = () => {
             </Select>
           </Flex>
         ) : null}
-        {d!.isSubscribing && d!.audioOutput.length > 0 ? (
+        {audioOutput.length > 0 ? (
           <Flex align="center" justify="between" css={{ my: '1rem' }}>
             <Text variant="heading-sm">Speaker:</Text>
             <Select
-              // @ts-ignore
-              onChange={d!.handleInputChange}
-              value={d!.selectedDevices.audioOutputDeviceId}
+              onChange={e => handleAudioOutput(e.target.value)}
+              value={selectedDevices.audioOutputDeviceId}
             >
-              {d!.audioOutput.map(device => (
+              {audioOutput.map((device: MediaDeviceInfo) => (
                 <option value={device.deviceId} key={device.deviceId}>
                   {device.label}
                 </option>

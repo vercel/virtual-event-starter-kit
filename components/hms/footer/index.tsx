@@ -6,7 +6,6 @@ import {
   MicOffIcon,
   MicOnIcon,
   ShareScreenIcon,
-  HangUpIcon,
   RecordIcon
 } from '@100mslive/react-icons';
 import React from 'react';
@@ -23,7 +22,7 @@ const Footer = () => {
     toggleVideo
   } = useAVToggle();
   const actions = useHMSActions();
-  const leaveRoom = () => actions.leave();
+  // const leaveRoom = () => actions.leave();
   const startScreenshare = async () => {
     try {
       await actions.setScreenShareEnabled(true);

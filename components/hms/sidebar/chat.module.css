@@ -36,8 +36,17 @@
   font-size: 10px;
 }
 .chat-name {
-  font-size: 16px;
+  font-size: 15px;
   color: white;
+}
+.chat-badge {
+  padding: 2px 4px 3px;
+  background: #323332;
+  border: 1px solid #2f6eeb;
+  border-radius: 4px;
+  font-size: 10px;
+  font-family: Inter;
+  margin: 0 5px;
 }
 .chat-text {
   color: #eaeae9;
@@ -66,6 +75,7 @@
   justify-content: center;
   text-align: center;
   align-items: center;
+  font-size: 13px;
 }
 
 .chat-none-image {
