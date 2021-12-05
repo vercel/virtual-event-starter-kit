@@ -19,11 +19,13 @@ const Chat = () => {
     actions.sendBroadcastMessage(msg);
     setMsg('');
   };
+
   React.useEffect(() => {
     const el = document.getElementById('chat-feed');
     if (el) {
       el.scrollTop = el.scrollHeight;
     }
+    console.log(msgs);
   }, [msgs]);
   const localPeer = useHMSStore(selectLocalPeer);
   return (
@@ -46,7 +48,7 @@ const Chat = () => {
                     </span>
                   ) : null}
                   <span className={s['chat-time']}>
-                    {m.time.getHours()}:{m.time.getMinutes()}
+                    {m.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
                 <div className={s['chat-text']}>{m.message}</div>
