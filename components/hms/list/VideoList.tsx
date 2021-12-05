@@ -4,6 +4,7 @@ import React from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import VideoTile from './VideoTile';
 import s from './index.module.css';
+import RoleChangeDialog from '../request';
 
 const VideoList = () => {
   const stagePeers = useHMSStore(selectPeersByRole('stage'));
@@ -44,6 +45,7 @@ const VideoList = () => {
   console.log(chunkedTracksWithPeer);
   return (
     <div ref={ref} style={{ width: '100%', position: 'relative', padding: '0 1rem' }}>
+      <RoleChangeDialog />
       {chunkedTracksWithPeer && chunkedTracksWithPeer.length > 0 ? (
         <div className={s['video-list']}>
           {chunkedTracksWithPeer[page].map((trackPeer, _) => (

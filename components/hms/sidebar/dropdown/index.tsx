@@ -11,7 +11,11 @@ const Dropdown: React.FC<{ id: string; role: string }> = ({ id, role }) => {
   const changeRole = async () => {
     const nextRole = role === 'viewer' ? 'invitee' : 'viewer';
     try {
-      await actions.changeRole(id, nextRole, true);
+      if (nextRole === 'invitee') {
+        await actions.changeRole(id, nextRole, false);
+      } else {
+        await actions.changeRole(id, nextRole, true);
+      }
     } catch (error) {
       console.log('Error: ', error);
     }
