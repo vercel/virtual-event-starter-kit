@@ -6,7 +6,7 @@ import {
   MicOffIcon,
   MicOnIcon,
   ShareScreenIcon,
-  RecordIcon,
+  // RecordIcon,
   HangUpIcon
 } from '@100mslive/react-icons';
 import React from 'react';
@@ -65,14 +65,14 @@ const Footer = () => {
           <p className={s['btn-text']}>Screen Share</p>
         </div>
       ) : null}
-      {role?.name === 'backstage' ? (
+      {/* {role?.name === 'backstage' ? (
         <div className={s['btn-wrapper']}>
           <button className={s['btn']} onClick={() => {}}>
             <RecordIcon />
           </button>
           <p className={s['btn-text']}>Record</p>
         </div>
-      ) : null}
+      ) : null} */}
       {role?.name === 'backstage' || role?.name === 'stage' || role?.name === 'invitee' ? (
         <Settings />
       ) : null}

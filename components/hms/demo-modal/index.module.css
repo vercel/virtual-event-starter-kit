@@ -13,6 +13,7 @@
 
 .box {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   padding: 1rem 0;
   color: white;
@@ -94,4 +95,14 @@
   align-items: center;
   justify-content: center;
   margin-top: 1rem;
+}
+
+@media (max-width: 700px) {
+  .box {
+    flex-direction: column;
+    min-width: 320px;
+  }
+  .right {
+    margin-top: 1rem;
+  }
 }

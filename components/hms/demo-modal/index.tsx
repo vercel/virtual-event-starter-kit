@@ -1,28 +1,30 @@
 import { ArrowRightIcon } from '@100mslive/react-icons';
-import { Button } from '@100mslive/react-ui';
 import HmsLogo from '@components/icons/icon-hms';
-import Link from 'next/link';
 import React from 'react';
 import s from './index.module.css';
 
 const data = [
   {
     name: 'Daniel',
-    role: 'moderator',
+    roleName: 'moderator',
+    role: 'backstage',
     desc: 'Let’s describe moderator role in a human readable format here'
   },
   {
     name: 'Alexis',
-    role: 'speaker',
+    roleName: 'speaker',
+    role: 'stage',
     desc: 'Let’s describe moderator role in a human readable format here'
   },
   {
     name: 'Alexis',
-    role: 'speaker',
+    roleName: 'speaker',
+    role: 'stage',
     desc: 'Let’s describe moderator role in a human readable format here'
   },
   {
     name: 'Guest',
+    roleName: 'viewer',
     role: 'viewer',
     desc: 'Let’s describe moderator role in a human readable format here'
   }
@@ -40,17 +42,17 @@ const DemoModal = () => {
         {data.map(m => (
           <div className={s['box']} key={m.role}>
             <div className={s['left']}>
-              <span className={`${s['badge']} ${s[m.role]}`}>{m.role}</span>
+              <span className={`${s['badge']} ${s[m.roleName]}`}>{m.roleName}</span>
               <p className={s['name']}>{m.name}</p>
               <p className={s['desc']}>{m.desc}</p>
             </div>
             <div className={s['right']}>
-              <CopyButton text={`/stage/a?role=${m.role}`} />
-              <Link href={`/stage/a?role=${m.role}`}>
+              <CopyButton text={`${window.location.host}/stage/a?role=${m.role}`} />
+              <a href={`/stage/a?role=${m.role}`}>
                 <button className={s['join']}>
                   Join as {m.name} <ArrowRightIcon height={20} />
                 </button>
-              </Link>
+              </a>
             </div>
           </div>
         ))}
