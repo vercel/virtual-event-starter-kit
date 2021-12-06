@@ -4,6 +4,7 @@ import { selectIsConnectedToRoom } from '@100mslive/hms-video-store';
 import { getToken } from './getToken';
 import Join from './Join';
 import Live from './Live';
+import { useRouter } from 'next/router';
 
 interface Props {
   stagePeers: string[];
@@ -15,26 +16,17 @@ interface Props {
  * Entry components for 100ms
  */
 const Room = ({ roomId, stagePeers, backstagePeers }: Props) => {
+  const router = useRouter();
   const [token, setToken] = React.useState('');
   const actions = useHMSActions();
   const isConnected = useHMSStore(selectIsConnectedToRoom);
   React.useEffect(() => {
-    const email = localStorage.getItem('email') || 'test@gmail.com';
-    const getRole = () => {
-      if (stagePeers.includes(email)) {
-        return 'stage';
-      } else if (backstagePeers.includes(email)) {
-        return 'backstage';
-      } else {
-        return 'viewer';
-      }
-    };
-    const role = getRole();
-    console.log('Role: ', role);
-    getToken(role || 'viewer', roomId)
+    const role = router.query ? (router.query.role as string) : 'viewer';
+    console.log(role);
+    getToken(role, roomId)
       .then(t => setToken(t))
       .catch(e => console.error(e));
-  }, [roomId, backstagePeers, stagePeers]);
+  }, [roomId, backstagePeers, stagePeers, router.query]);
   React.useEffect(() => {
     window.onunload = () => {
       actions.leave();

@@ -115,3 +115,46 @@
   display: flex;
   width: 40px;
 }
+
+.cta-btn {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  color: white;
+  background: #323332;
+  border: 2px solid #8465cb;
+  border-radius: 8px;
+  padding: 10px 16px;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  inset: 0;
+}
+
+.content {
+  max-height: 760px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Inter;
+  background: #111111;
+  border-radius: 8px;
+  padding: 24px;
+  color: white;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.content p {
+  margin: 0;
+}
+
+.close-btn {
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+}

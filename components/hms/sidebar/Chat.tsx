@@ -1,10 +1,5 @@
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
-import {
-  selectHMSMessages,
-  selectLocalPeer,
-  selectLocalPeerID,
-  selectLocalPeerRole
-} from '@100mslive/hms-video-store';
+import { selectHMSMessages, selectLocalPeer } from '@100mslive/hms-video-store';
 import React, { FormEvent } from 'react';
 import s from './chat.module.css';
 import Avatar from '../avatar';

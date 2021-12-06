@@ -22,8 +22,10 @@ import { NAVIGATION } from '@lib/constants';
 import styles from './layout.module.css';
 import Logo from './icons/icon-logo';
 import MobileMenu from './mobile-menu';
-import Footer, { HostedByVercel } from './footer';
-import ViewSource from '@components/view-source';
+import Footer from './footer';
+import * as Dialog from '@radix-ui/react-dialog';
+import DemoModal from './hms/demo-modal';
+import { CrossIcon } from '@100mslive/react-icons';
 
 type Props = {
   children: React.ReactNode;
@@ -38,7 +40,6 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
 
   return (
     <>
-      <ViewSource />
       <div className={styles.background}>
         {!hideNav && (
           <header className={cn(styles.header)}>
@@ -65,7 +66,21 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
               ))}
             </div>
             <div className={cn(styles['header-right'])}>
-              <HostedByVercel />
+              <Dialog.Root>
+                <Dialog.Overlay className={cn(styles['overlay'])} />
+
+                <Dialog.Trigger asChild>
+                  <button className={cn(styles['cta-btn'])}>Try Demo</button>
+                </Dialog.Trigger>
+                <Dialog.Content className={cn(styles['content'])}>
+                  <Dialog.Close asChild className={cn(styles['close-btn'])}>
+                    <button>
+                      <CrossIcon />
+                    </button>
+                  </Dialog.Close>
+                  <DemoModal />
+                </Dialog.Content>
+              </Dialog.Root>
             </div>
           </header>
         )}

@@ -31,6 +31,7 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
       rememberDeviceSelection: true
     });
   };
+  console.log(localPeer);
   return (
     <div className={s['preview-container']}>
       {localPeer ? <PreviewVideo name={name} peer={localPeer} /> : <VideoLoader />}

@@ -116,7 +116,7 @@ export default function Form({ sharePage }: Props) {
         setFormState('default');
       }
     },
-    [executeCaptcha, formState, isCaptchaEnabled, handleRegister]
+    [executeCaptcha, formState, isCaptchaEnabled, handleRegister, email]
   );
 
   const onTryAgainClick = useCallback(
