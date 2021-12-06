@@ -14,16 +14,19 @@ const Participants = () => {
   return (
     <div className={s['part-ctx']}>
       {backstagePeers.length > 0 ? (
-        <div>
-          <p className={s['part-role']}>Moderator ({backstagePeers.length})</p>
-          {backstagePeers.map(p => (
-            <div key={p.id} className={s['part-box']}>
-              <Avatar name={p.name} />
-              <div className={s['part-name']}>{p.name}</div>
-              {p.id !== localPeerId ? <Dropdown role={p.roleName || 'viewer'} id={p.id} /> : null}
-            </div>
-          ))}
-        </div>
+        <>
+          <div>
+            <p className={s['part-role']}>Moderator ({backstagePeers.length})</p>
+            {backstagePeers.map(p => (
+              <div key={p.id} className={s['part-box']}>
+                <Avatar name={p.name} />
+                <div className={s['part-name']}>{p.name}</div>
+                {p.id !== localPeerId ? <Dropdown role={p.roleName || 'viewer'} id={p.id} /> : null}
+              </div>
+            ))}
+          </div>
+          <div className={s['divider']} />
+        </>
       ) : null}
       {stagePeers.length > 0 ? (
         <div>
