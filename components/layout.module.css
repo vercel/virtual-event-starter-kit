@@ -134,6 +134,7 @@
 }
 
 .content {
+  max-height: 760px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -143,4 +144,17 @@
   border-radius: 8px;
   padding: 24px;
   color: white;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.content p {
+  margin: 0;
+}
+
+.close-btn {
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
 }
