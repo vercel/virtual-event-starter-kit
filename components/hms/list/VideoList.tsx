@@ -60,6 +60,10 @@ const VideoList = () => {
       ) : (
         <div className={s['empty-room']}>
           <h2>No Speakers Present</h2>
+          <p>
+            Looks like nobody has joined as a speaker. Invite someone to speak or change your role.
+          </p>
+          <div className={s['empty-room-box']}></div>
         </div>
       )}
       {chunkedTracksWithPeer.length > 1 ? (

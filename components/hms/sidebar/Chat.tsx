@@ -9,9 +9,11 @@ import React, { FormEvent } from 'react';
 import s from './chat.module.css';
 import Avatar from '../avatar';
 import Dropdown from './dropdown';
+import { Flex } from '@100mslive/react-ui';
 
 const Chat = () => {
   const [msg, setMsg] = React.useState('');
+  const [displayMessage, setDisplayMessage] = React.useState(true);
   const actions = useHMSActions();
   const msgs = useHMSStore(selectHMSMessages);
   const sendMessage = (e: FormEvent) => {
@@ -74,6 +76,23 @@ const Chat = () => {
           </div>
         )}
       </div>
+      {displayMessage && (
+        <div id="chat-intro-message" className={s['chat-intro-message']}>
+          <div className={s['chat-name-intro-message']}>
+            <p>Welcome{' ' + localPeer.name}</p>
+            <button onClick={e => setDisplayMessage(!displayMessage)}>
+              <img src="/cross.svg" width={30}></img>
+            </button>
+          </div>
+          <p className={s['chat-intro-message']}>
+            Some information about how to participate and behave on chat while respecting community
+            guidelines
+          </p>
+          <hr className={s['chat-intro-line']} />
+          <p className={s['chat-intro-message']}>Remember to be kind and have fun</p>
+        </div>
+      )}
+
       <form className={s['chat-ctx']} onSubmit={sendMessage}>
         <input
           value={msg}

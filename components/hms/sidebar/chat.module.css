@@ -79,6 +79,7 @@
   text-align: center;
   align-items: center;
   font-size: 13px;
+  padding: 1em 1em 1em 1em;
 }
 
 .chat-none-image {
@@ -94,4 +95,37 @@
     border-radius: 50%;
     padding: 1em 1em 1em 1em;
   }
+}
+
+.chat-intro-message {
+  background-color: #323332;
+}
+
+.chat-name-intro-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #ffffff;
+  font-size: medium;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+.chat-name-intro-message img {
+  width: 20px;
+  aspect-ratio: 1 / 1;
+}
+
+.chat-name-intro-message img:hover {
+  opacity: 20%;
+}
+
+.chat-intro-message {
+  font-size: small;
+  padding: 0.25em 0.5em 0.25em 0.5em;
+  color: #eaeae9;
+}
+
+.chat-intro-line {
+  opacity: 10%;
 }
