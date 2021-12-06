@@ -84,7 +84,7 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
         setFormState('error');
       }
     },
-    [executeCaptcha, isCaptchaEnabled, handleRegister]
+    [executeCaptcha, isCaptchaEnabled, handleRegister, emailInput]
   );
 
   const onTryAgainClick = useCallback(

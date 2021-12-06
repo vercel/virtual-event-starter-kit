@@ -115,3 +115,32 @@
   display: flex;
   width: 40px;
 }
+
+.cta-btn {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  color: white;
+  background: #323332;
+  border: 2px solid #8465cb;
+  border-radius: 8px;
+  padding: 10px 16px;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  inset: 0;
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Inter;
+  background: #111111;
+  border-radius: 8px;
+  padding: 24px;
+  color: white;
+}
