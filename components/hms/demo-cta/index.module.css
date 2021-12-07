@@ -58,3 +58,25 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.cta-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cta-role {
+  font-family: Inter;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #323332;
+  gap: 0.5rem;
+}

@@ -25,6 +25,7 @@ import MobileMenu from './mobile-menu';
 import Footer from './footer';
 import React from 'react';
 import DemoButton from './hms/demo-cta';
+import RoomCta from './hms/demo-cta/room-cta';
 
 type Props = {
   children: React.ReactNode;
@@ -64,7 +65,7 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
               ))}
             </div>
             <div className={cn(styles['header-right'])}>
-              {activeRoute === '/' ? <DemoButton /> : null}
+              {activeRoute === '/' ? <DemoButton /> : <RoomCta />}
             </div>
           </header>
         )}

@@ -66,7 +66,7 @@ const DemoModal = () => {
 
 export default DemoModal;
 
-const CopyButton = ({ text = '' }) => {
+export const CopyButton = ({ text = '' }) => {
   const copy = () => {
     // setCopy(true);
     navigator.clipboard.writeText(text);
