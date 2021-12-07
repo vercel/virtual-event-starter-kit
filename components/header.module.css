@@ -30,6 +30,15 @@
   margin-left: 24px;
 }
 
+.learn-more-description {
+  font-size: var(--text-xxl);
+  line-height: 1.4;
+  color: #ffffff;
+  margin-top: 0;
+  margin-left: 24px;
+  margin-right: 32px;
+}
+
 @media (min-width: 768px) {
   .hero {
     font-size: 40px;
@@ -37,6 +46,10 @@
   }
 
   .description {
+    margin-left: var(--space-8x);
+  }
+
+  .learn-more-description {
     margin-left: var(--space-8x);
   }
 }
