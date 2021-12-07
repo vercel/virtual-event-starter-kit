@@ -16,7 +16,6 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import redis from '@lib/redis';
-import { supabase } from '@lib/supabase';
 
 export default async function saveGithubToken(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -63,36 +62,7 @@ export default async function saveGithubToken(req: NextApiRequest, res: NextApiR
       .exec();
 
     res.json({ username, name });
-  // } else if (supabase) {
-    // const { data } = await supabase
-    //   .from('registrations')
-    //   .select('*')
-    //   .eq('id', body.id)
-    //   .single()
-    // const ticketNumber = data.ticket_number
-    // if (!ticketNumber) {
-    //   return res.status(404).json({ code: 'invalid_id', message: 'The registration does not exist' });
-    // }
-    // // TODO:
-    // const username = data.username
-    // const name = data.name
-    // if (!username) {
-    //   return res.status(400).json({ code: 'invalid_token', message: 'Invalid or expired token' });
-    // }
-  
-    // const key = `id:${body.id}`;
-    // const userKey = `user:${username}`;
-    // await redis
-    // .multi()
-    // .hsetnx(key, 'username', username)
-    // .hsetnx(key, 'name', name || '')
-    // // Also save username → data pair
-    // .hsetnx(userKey, 'name', name || '')
-    // .hsetnx(userKey, 'ticketNumber', ticketNumber)
-    // .exec();
-
-
-  } else if (!redis || !supabase) {
-    throw new Error('Redis or Supabase must be set up');
+  } else if (!redis) {
+    throw new Error('Redis must be set up');
   }
 }
