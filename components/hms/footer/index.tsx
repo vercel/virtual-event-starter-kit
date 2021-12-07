@@ -13,6 +13,7 @@ import React from 'react';
 import s from './index.module.css';
 import Settings from './Settings';
 import * as Dialog from '@radix-ui/react-dialog';
+import router from 'next/router';
 
 const Footer = () => {
   const role = useHMSStore(selectLocalPeerRole);
@@ -34,7 +35,7 @@ const Footer = () => {
   };
   const leave = () => {
     try {
-      actions.leave();
+      actions.leave().then(() => router.push('/'));
     } catch (error) {
       console.log(error);
     }
