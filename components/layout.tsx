@@ -26,6 +26,9 @@ import Footer from './footer';
 import * as Dialog from '@radix-ui/react-dialog';
 import DemoModal from './hms/demo-modal';
 import { CrossIcon } from '@100mslive/react-icons';
+import React from 'react';
+import useClickOutside from '@lib/hooks/use-click-outside';
+import InfoIcon from './icons/icon-info';
 
 type Props = {
   children: React.ReactNode;
@@ -37,7 +40,22 @@ type Props = {
 export default function Layout({ children, className, hideNav, layoutStyles }: Props) {
   const router = useRouter();
   const activeRoute = router.asPath;
-
+  React.useEffect(() => {
+    setTimeout(() => {
+      const el = document.getElementById('cta-btn');
+      el?.classList.add('show-overlay');
+      const tooltip = document.getElementById('cta-tooltip');
+      tooltip?.classList.add('fade-in');
+    }, 3000);
+  }, []);
+  const ctaRef = React.useRef(null);
+  const clickedOutside = () => {
+    const el = document.getElementById('cta-btn');
+    const tooltip = document.getElementById('cta-tooltip');
+    tooltip?.remove();
+    el?.classList.remove('show-overlay');
+  };
+  useClickOutside(ctaRef, clickedOutside);
   return (
     <>
       <div className={styles.background}>
@@ -68,10 +86,15 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
             <div className={cn(styles['header-right'])}>
               <Dialog.Root>
                 <Dialog.Overlay className={cn(styles['overlay'])} />
-
                 <Dialog.Trigger asChild>
-                  <button className={cn(styles['cta-btn'])}>Try Demo</button>
+                  <button ref={ctaRef} id="cta-btn" className={cn(styles['cta-btn'])}>
+                    Try Demo
+                  </button>
                 </Dialog.Trigger>
+                <div id="cta-tooltip" className={cn(styles['tooltip'])}>
+                  <InfoIcon />
+                  Click here to demo a live webinar powered by 100ms
+                </div>
                 <Dialog.Content className={cn(styles['content'])}>
                   <Dialog.Close asChild className={cn(styles['close-btn'])}>
                     <button>
