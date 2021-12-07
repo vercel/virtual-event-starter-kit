@@ -40,29 +40,29 @@ export default async function saveGithubToken(req: NextApiRequest, res: NextApiR
 
   if (!redis) {
     throw new Error('Redis must be set up');
+  } else if (redis) {
+    const ticketNumber = await redis.hget(`id:${body.id}`, 'ticketNumber');
+    if (!ticketNumber) {
+      return res.status(404).json({ code: 'invalid_id', message: 'The registration does not exist' });
+    }
+  
+    const [username, name] = await redis.hmget(`github-user:${body.token}`, 'login', 'name');
+    if (!username) {
+      return res.status(400).json({ code: 'invalid_token', message: 'Invalid or expired token' });
+    }
+  
+    const key = `id:${body.id}`;
+    const userKey = `user:${username}`;
+  
+    await redis
+      .multi()
+      .hsetnx(key, 'username', username)
+      .hsetnx(key, 'name', name || '')
+      // Also save username → data pair
+      .hsetnx(userKey, 'name', name || '')
+      .hsetnx(userKey, 'ticketNumber', ticketNumber)
+      .exec();
+
+    res.json({ username, name });
   }
-
-  const ticketNumber = await redis.hget(`id:${body.id}`, 'ticketNumber');
-  if (!ticketNumber) {
-    return res.status(404).json({ code: 'invalid_id', message: 'The registration does not exist' });
-  }
-
-  const [username, name] = await redis.hmget(`github-user:${body.token}`, 'login', 'name');
-  if (!username) {
-    return res.status(400).json({ code: 'invalid_token', message: 'Invalid or expired token' });
-  }
-
-  const key = `id:${body.id}`;
-  const userKey = `user:${username}`;
-
-  await redis
-    .multi()
-    .hsetnx(key, 'username', username)
-    .hsetnx(key, 'name', name || '')
-    // Also save username → data pair
-    .hsetnx(userKey, 'name', name || '')
-    .hsetnx(userKey, 'ticketNumber', ticketNumber)
-    .exec();
-
-  res.json({ username, name });
 }
