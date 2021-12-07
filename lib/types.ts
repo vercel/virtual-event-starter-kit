@@ -101,3 +101,7 @@ export type GitHubOAuthData =
       name: string;
       login: string;
     };
+
+export type Step = {
+  [key: string]: number | string,
+};
