@@ -125,6 +125,24 @@
   border: 2px solid #8465cb;
   border-radius: 8px;
   padding: 10px 16px;
+  position: relative;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: 65px;
+  background: #444443;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 20px;
+  width: 250px;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: flex-start;
 }
 
 .overlay {

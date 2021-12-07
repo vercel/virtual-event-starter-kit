@@ -168,3 +168,22 @@ button {
   background-color: transparent;
   border: none;
 }
+
+.show-overlay {
+  transition: all 0.5s ease;
+  box-shadow: rgb(33 33 33 / 80%) 0px 0px 1px 2px, rgb(0 0 0 / 75%) 0px 0px 0px 5000px;
+}
+
+.fade-in {
+  display: flex !important;
+  animation: fadein 1s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
