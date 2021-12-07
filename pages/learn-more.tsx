@@ -20,7 +20,8 @@
  
  import { Job } from '@lib/types';
  import { META_DESCRIPTION } from '@lib/constants';
- 
+ import styles from '../components/header.module.css';
+
  type Props = {
    jobs: Job[];
  };
@@ -31,11 +32,17 @@
      description: META_DESCRIPTION
    };
  
-   return (
-     <Page meta={meta}>
-       <Layout>
-         <Header hero="Learn More" description={meta.description} />
-       </Layout>
-     </Page>
+  return (
+    <Page meta={meta}>
+      <Layout>
+        <Header hero="Learn More" description={meta.description} />
+        <p className={styles['learn-more-description']}>
+          unfoldingWord invites you to join our first Open Components Hackathon from Feb 28 till Mar 3, 2022 with a learner focused pre-event from Feb 21 till Feb 25. We will be focused on identifying and developing solutions for challenges within Bible translation. We hope this hackathon will inspire breakthrough ideas that help accelerate the global Bible translation efforts.
+        </p>
+        <p className={styles['learn-more-description']}>
+          The vision of the Open Components Ecosystem is a global community of Bible technologists focused on creating open source modular and reusable Bible software.The reuse of Open components in a decentralized and collaborative model of development will lead to innovative and creative technologies that will further equip the global church to produce, distribute, and use Bible translations and biblical content in any language,on any technology, and in any format needed. We would love for you to join this growing community and explore Bible technology in collaboration with others.
+        </p>
+      </Layout>
+    </Page>
    );
  }

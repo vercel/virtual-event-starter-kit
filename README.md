@@ -29,7 +29,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/unfoldingWord-box3/open-components-hackathon-website">
+  <a href="https://github.com/unfoldingWord/open-components-hackathon-website">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -38,14 +38,14 @@
   <p align="center">
     Website for Open Components Hackathon Events by unfoldingWord Developers.
     <br />
-    <a href="https://github.com/unfoldingWord-box3/open-components-hackathon-website"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/unfoldingWord/open-components-hackathon-website"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://open-components-hackathon.netlify.app">View Demo</a>
     ·
-    <a href="https://github.com/unfoldingWord-box3/open-components-hackathon-website/issues">Report Bug</a>
+    <a href="https://github.com/unfoldingWord/open-components-hackathon-website/issues">Report Bug</a>
     ·
-    <a href="https://github.com/unfoldingWord-box3/open-components-hackathon-website/issues">Request Feature</a>
+    <a href="https://github.com/unfoldingWord/open-components-hackathon-website/issues">Request Feature</a>
   </p>
 </div>
 
@@ -133,7 +133,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/unfoldingWord-box3/open-components-hackathon-website.git
+   git clone https://github.com/unfoldingWord/open-components-hackathon-website.git
    ```
 3. Install NPM packages
    ```sh
@@ -169,7 +169,7 @@ _For more details, please refer to the [virtual-event-starter-kit Documentation]
 - [] Feature 3
     - [] Nested Feature
 
-See the [open issues](https://github.com/unfoldingWord-box3/open-components-hackathon-website/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/unfoldingWord/open-components-hackathon-website/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -209,7 +209,7 @@ Distributed under the GPL2.0 License. See `LICENSE.txt` for more information.
 
 Manny Colon - [@_mannycolon](https://twitter.com/_mannycolon) - colonmanuel7@gmail.com
 
-Project Link: [https://github.com/unfoldingWord-box3/open-components-hackathon-website](https://github.com/unfoldingWord-box3/open-components-hackathon-website)
+Project Link: [https://github.com/unfoldingWord/open-components-hackathon-website](https://github.com/unfoldingWord/open-components-hackathon-website)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -228,16 +228,16 @@ Project Link: [https://github.com/unfoldingWord-box3/open-components-hackathon-w
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/unfoldingWord-box3/open-components-hackathon-website.svg?style=for-the-badge
-[contributors-url]: https://github.com/unfoldingWord-box3/open-components-hackathon-website/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/unfoldingWord-box3/open-components-hackathon-website.svg?style=for-the-badge
-[forks-url]: https://github.com/unfoldingWord-box3/open-components-hackathon-website/network/members
-[stars-shield]: https://img.shields.io/github/stars/unfoldingWord-box3/open-components-hackathon-website.svg?style=for-the-badge
-[stars-url]: https://github.com/unfoldingWord-box3/open-components-hackathon-website/stargazers
-[issues-shield]: https://img.shields.io/github/issues/unfoldingWord-box3/open-components-hackathon-website.svg?style=for-the-badge
-[issues-url]: https://github.com/unfoldingWord-box3/open-components-hackathon-website/issues
-[license-shield]: https://img.shields.io/github/license/unfoldingWord-box3/open-components-hackathon-website.svg?style=for-the-badge
-[license-url]: https://github.com/unfoldingWord-box3/open-components-hackathon-website/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/unfoldingWord/open-components-hackathon-website.svg?style=for-the-badge
+[contributors-url]: https://github.com/unfoldingWord/open-components-hackathon-website/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/unfoldingWord/open-components-hackathon-website.svg?style=for-the-badge
+[forks-url]: https://github.com/unfoldingWord/open-components-hackathon-website/network/members
+[stars-shield]: https://img.shields.io/github/stars/unfoldingWord/open-components-hackathon-website.svg?style=for-the-badge
+[stars-url]: https://github.com/unfoldingWord/open-components-hackathon-website/stargazers
+[issues-shield]: https://img.shields.io/github/issues/unfoldingWord/open-components-hackathon-website.svg?style=for-the-badge
+[issues-url]: https://github.com/unfoldingWord/open-components-hackathon-website/issues
+[license-shield]: https://img.shields.io/github/license/unfoldingWord/open-components-hackathon-website.svg?style=for-the-badge
+[license-url]: https://github.com/unfoldingWord/open-components-hackathon-website/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/company/unfoldingword
 [product-screenshot]: images/screenshot.png
