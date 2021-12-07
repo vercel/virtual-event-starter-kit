@@ -15,8 +15,6 @@
  */
 
 export async function register(email: string, token?: string) {
-  console.log('register()');
-  
   return await fetch('/api/register', {
     method: 'POST',
     headers: {
@@ -27,8 +25,6 @@ export async function register(email: string, token?: string) {
 }
 
 export async function saveGithubToken({ id, token }: { id?: string; token: string }) {
-  console.log('saveGithubToken()');
-  
   return await fetch('/api/save-github-token', {
     method: 'POST',
     headers: {

@@ -19,8 +19,6 @@ import redis from '@lib/redis';
 import { supabase } from '@lib/supabase';
 
 export default async function saveGithubToken(req: NextApiRequest, res: NextApiResponse) {
-  console.log('saveGithubToken');
-  
   if (req.method !== 'POST') {
     return res.status(501).json({
       error: {
@@ -31,8 +29,6 @@ export default async function saveGithubToken(req: NextApiRequest, res: NextApiR
   }
 
   const body = req.body;
-  console.log({body});
-  
 
   if (!body.token || !body.id) {
     return res.status(400).json({
