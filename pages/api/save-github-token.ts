@@ -38,7 +38,9 @@ export default async function saveGithubToken(req: NextApiRequest, res: NextApiR
     });
   }
 
-  if (redis) {
+  if (!redis) {
+    throw new Error('Redis must be set up');
+  } else if (redis) {
     const ticketNumber = await redis.hget(`id:${body.id}`, 'ticketNumber');
     if (!ticketNumber) {
       return res.status(404).json({ code: 'invalid_id', message: 'The registration does not exist' });
@@ -62,7 +64,5 @@ export default async function saveGithubToken(req: NextApiRequest, res: NextApiR
       .exec();
 
     res.json({ username, name });
-  } else if (!redis) {
-    throw new Error('Redis must be set up');
   }
 }
