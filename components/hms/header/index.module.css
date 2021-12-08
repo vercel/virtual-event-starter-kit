@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 1rem;
   /* background-color: blue; */
   width: 100%;
   height: var(--header-height);
@@ -49,4 +49,16 @@
 .box {
   display: flex;
   align-items: center;
+}
+
+.exit-btn {
+  color: white;
+  padding: 8px;
+  position: static;
+  width: 40px;
+  height: 40px;
+  background: #323332;
+  border-radius: 8px;
+  transform: scaleX(-1);
+  cursor: pointer;
 }

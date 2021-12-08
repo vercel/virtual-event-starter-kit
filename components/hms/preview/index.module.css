@@ -78,3 +78,20 @@
     margin-left: 0rem;
   }
 }
+
+.btn-wrapper {
+  display: flex;
+}
+
+.back-btn {
+  background: #444443;
+  margin-right: 1rem;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #eaeae9;
+  gap: 5px;
+}

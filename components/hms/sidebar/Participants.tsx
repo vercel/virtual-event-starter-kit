@@ -46,7 +46,7 @@ const Participants = () => {
 
       {inviteePeers.length > 0 ? (
         <div>
-          <p className={s['part-role']}>Invitee ({inviteePeers.length})</p>
+          <p className={s['part-role']}>Guest Speakers ({inviteePeers.length})</p>
           {inviteePeers.map(p => (
             <div key={p.id} className={s['part-box']}>
               <Avatar name={p.name} />

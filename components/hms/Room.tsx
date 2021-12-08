@@ -32,7 +32,15 @@ const Room = ({ roomId, stagePeers, backstagePeers }: Props) => {
       actions.leave();
     };
   }, [actions]);
-  return <>{isConnected ? <Live /> : <Join token={token} />}</>;
+  return (
+    <>
+      {isConnected ? (
+        <Live />
+      ) : (
+        <Join role={router.query.role ? (router.query.role as string) : 'viewer'} token={token} />
+      )}
+    </>
+  );
 };
 
 export default Room;

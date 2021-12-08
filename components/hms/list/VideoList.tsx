@@ -87,7 +87,6 @@ export default VideoList;
 const ChevronLeft = () => (
   <svg
     width={14}
-    height={14}
     viewBox="0 0 24 24"
     stroke="currentColor"
     strokeWidth={1.5}
@@ -96,6 +95,7 @@ const ChevronLeft = () => (
     fill="none"
     shapeRendering="geometricPrecision"
     color="white"
+    className="cursor-pointer"
   >
     <path d="M15 18l-6-6 6-6" />
   </svg>
@@ -113,6 +113,7 @@ const ChevronRight = () => (
     fill="none"
     shapeRendering="geometricPrecision"
     color="white"
+    className="cursor-pointer"
   >
     <path d="M9 18l6-6-6-6" />
   </svg>
