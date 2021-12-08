@@ -1,11 +1,11 @@
-import { selectPeers } from '@100mslive/hms-video-store';
+import { selectPeers, selectPeersByRole } from '@100mslive/hms-video-store';
 import { useHMSStore } from '@100mslive/react-sdk';
 import UsersIcon from '@components/icons/icon-users';
 import React from 'react';
 import s from './index.module.css';
 
 const Header = () => {
-  const peers = useHMSStore(selectPeers);
+  const peers = useHMSStore(selectPeersByRole('viewer'));
   return (
     <div className={s['header']}>
       <div className={s['meta']}>

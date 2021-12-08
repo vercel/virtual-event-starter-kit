@@ -20,7 +20,6 @@ const Chat = () => {
     if (el) {
       el.scrollTop = el.scrollHeight;
     }
-    console.log(msgs);
   }, [msgs]);
   const localPeer = useHMSStore(selectLocalPeer);
   return (

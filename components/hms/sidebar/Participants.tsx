@@ -1,4 +1,4 @@
-import { selectLocalPeerID, selectPeersByRole } from '@100mslive/hms-video-store';
+import { selectLocalPeer, selectPeersByRole } from '@100mslive/hms-video-store';
 import { useHMSStore } from '@100mslive/react-sdk';
 import s from './participant.module.css';
 import React from 'react';
@@ -10,10 +10,10 @@ const Participants = () => {
   const backstagePeers = useHMSStore(selectPeersByRole('backstage'));
   const inviteePeers = useHMSStore(selectPeersByRole('invitee'));
   const viewerPeers = useHMSStore(selectPeersByRole('viewer'));
-  const localPeerId = useHMSStore(selectLocalPeerID);
+  const localPeer = useHMSStore(selectLocalPeer);
   return (
     <div className={s['part-ctx']}>
-      {backstagePeers.length > 0 ? (
+      {backstagePeers.length > 0 && localPeer.roleName === 'backstage' ? (
         <>
           <div>
             <p className={s['part-role']}>Moderator ({backstagePeers.length})</p>
@@ -21,7 +21,9 @@ const Participants = () => {
               <div key={p.id} className={s['part-box']}>
                 <Avatar name={p.name} />
                 <div className={s['part-name']}>{p.name}</div>
-                {p.id !== localPeerId ? <Dropdown role={p.roleName || 'viewer'} id={p.id} /> : null}
+                {p.id !== localPeer.id ? (
+                  <Dropdown role={p.roleName || 'viewer'} id={p.id} />
+                ) : null}
               </div>
             ))}
           </div>
@@ -35,12 +37,12 @@ const Participants = () => {
             <div key={p.id} className={s['part-box']}>
               <Avatar name={p.name} />
               <div className={s['part-name']}>{p.name}</div>
-              {p.id !== localPeerId ? <Dropdown role={p.roleName || 'viewer'} id={p.id} /> : null}
+              {p.id !== localPeer.id ? <Dropdown role={p.roleName || 'viewer'} id={p.id} /> : null}
             </div>
           ))}
+          <div className={s['divider']} />
         </div>
       ) : null}
-      <div className={s['divider']} />
 
       {inviteePeers.length > 0 ? (
         <div>

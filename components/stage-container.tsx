@@ -36,7 +36,6 @@ export default function StageContainer({ stage, allStages }: Props) {
     initialData: allStages,
     refreshInterval: 5000
   });
-  console.log('res:', response);
   const updatedStages = response.data || [];
   const updatedStage = updatedStages.find((s: Stage) => s.slug === stage.slug) || stage;
   const { loginStatus, mutate } = useLoginStatus();
