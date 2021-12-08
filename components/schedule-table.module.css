@@ -1,0 +1,17 @@
+.container {
+  overflow: auto;
+  margin: 0px 32px;
+}
+
+.table {
+  border-spacing: 0.5rem;
+  width: 100%;
+}
+
+.discord {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}

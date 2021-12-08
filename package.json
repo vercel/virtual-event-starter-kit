@@ -35,7 +35,6 @@
     "react-aria": "3.2.0",
     "react-dom": "^18.0.0-alpha-9c8161ba8-20211028",
     "smoothscroll-polyfill": "0.4.4",
-    "styled-components": "^5.3.3",
     "swr": "0.3.9",
     "validator": "13.5.2",
     "vanilla-tilt": "1.7.0"

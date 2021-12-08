@@ -13,20 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ import { GetStaticProps } from 'next';
 
  import Page from '@components/page';
  import Layout from '@components/layout';
  import Header from '@components/header';
+ import ScheduleTable from '@components/ScheduleTable';
  
- import { Job } from '@lib/types';
+ import { Step } from '@lib/types';
+ import { getAllSteps } from '@lib/cms-api';
  import { META_DESCRIPTION } from '@lib/constants';
  import styles from '../components/header.module.css';
 
  type Props = {
-   jobs: Job[];
- };
- 
- export default function LearnMore({ }: Props) {
+  allSteps: Step[];
+};
+
+ export default function LearnMore({ allSteps }: Props) {
    const meta = {
      title: 'Learn More - Open Components Hackathon',
      description: META_DESCRIPTION
@@ -42,7 +45,20 @@
         <p className={styles['learn-more-description']}>
           The vision of the Open Components Ecosystem is a global community of Bible technologists focused on creating open source modular and reusable Bible software.The reuse of Open components in a decentralized and collaborative model of development will lead to innovative and creative technologies that will further equip the global church to produce, distribute, and use Bible translations and biblical content in any language,on any technology, and in any format needed. We would love for you to join this growing community and explore Bible technology in collaboration with others.
         </p>
+        <ScheduleTable allSteps={allSteps}/>
       </Layout>
     </Page>
    );
  }
+
+ export const getStaticProps: GetStaticProps<Props> = async () => {
+  const allSteps = await getAllSteps();
+
+  return {
+    props: {
+      allSteps
+    },
+    revalidate: 60
+  };
+};
+

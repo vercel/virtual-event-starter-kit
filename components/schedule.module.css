@@ -25,6 +25,7 @@
 
 .row-wrapper {
   display: inline-block;
+  width: 100%;
 }
 
 .row {
@@ -73,7 +74,7 @@
   }
 
   .talks {
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 0;
   }
 
