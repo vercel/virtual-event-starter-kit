@@ -18,7 +18,7 @@
  import Page from '@components/page';
  import Layout from '@components/layout';
  import Header from '@components/header';
- import ScheduleTable from '@components/ScheduleTable';
+ import ScheduleTable from '@components/schedule-table';
  
  import { Step } from '@lib/types';
  import { getAllSteps } from '@lib/cms-api';
