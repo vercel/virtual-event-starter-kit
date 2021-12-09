@@ -15,7 +15,7 @@ import s from './index.module.css';
 import { HMSPeer, selectDevices, selectLocalMediaSettings } from '@100mslive/hms-video-store';
 import Select from '@components/hms/select';
 import InfoIcon from '@components/icons/icon-info';
-import router from 'next/router';
+import router, { useRouter } from 'next/router';
 
 export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
   const actions = useHMSActions();
@@ -33,12 +33,14 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
       rememberDeviceSelection: true
     });
   };
+  const router = useRouter();
+  const name = router.query.name as string;
   return (
     <div className={s['preview-container']}>
-      {localPeer ? <PreviewVideo name="David" peer={localPeer} /> : <VideoLoader />}
+      {localPeer ? <PreviewVideo name={name} peer={localPeer} /> : <VideoLoader />}
       <div className={s['wrapper']}>
         <div>
-          <p className={s['head-text']}>Welcome David</p>
+          <p className={s['head-text']}>Welcome {name}</p>
           <p className={s['sub-text']}>Preview your video and audio before joining the stage</p>
         </div>
         <form onSubmit={joinRoom}>

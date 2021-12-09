@@ -1,4 +1,4 @@
-import { selectPeers, selectPeersByRole } from '@100mslive/hms-video-store';
+import { selectLocalPeer, selectPeers, selectPeersByRole } from '@100mslive/hms-video-store';
 import { ExitIcon } from '@100mslive/react-icons';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import UsersIcon from '@components/icons/icon-users';
@@ -17,12 +17,15 @@ const Header = () => {
       console.log(error);
     }
   };
+  const localPeer = useHMSStore(selectLocalPeer);
   return (
     <div className={s['header']}>
       <div className={s['meta']}>
-        <button onClick={leave} className={s['exit-btn']}>
-          <ExitIcon />
-        </button>
+        {localPeer.roleName === 'viewer' ? (
+          <button onClick={leave} className={s['exit-btn']}>
+            <ExitIcon />
+          </button>
+        ) : null}
         <p className={s['title']}>Demo Event</p>
         <span className={s['live-badge']}>LIVE</span>
         <span className={s['time']}>9:30 pm - 10:30 pm</span>

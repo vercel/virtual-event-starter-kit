@@ -11,7 +11,7 @@ const data = [
     desc: 'Let’s describe moderator role in a human readable format here'
   },
   {
-    name: 'Alexis',
+    name: 'David',
     roleName: 'speaker',
     role: 'stage',
     desc: 'Let’s describe moderator role in a human readable format here'
@@ -47,8 +47,8 @@ const DemoModal = () => {
               <p className={s['desc']}>{m.desc}</p>
             </div>
             <div className={s['right']}>
-              <CopyButton text={`${window.location.host}/stage/a?role=${m.role}`} />
-              <a href={`/stage/a?role=${m.role}`}>
+              <CopyButton text={`${window.location.host}/stage/a?role=${m.role}&name=${m.name}`} />
+              <a href={`/stage/a?role=${m.role}&name=${m.name}`}>
                 <button className={s['join']}>
                   Join as {m.name} <ArrowRightIcon height={20} />
                 </button>
