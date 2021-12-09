@@ -99,11 +99,14 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     };
   } else if (supabase) {
     if (username) {
-      const { data: { name, ticket_number: ticketNumber } } = await supabase
+      console.log({ username })
+      const { data } = await supabase
         .from('registrations')
         .select('*')
         .eq('username', username)
         .single()
+      console.log({ data })
+      const { name, ticket_number: ticketNumber } = data
 
       if (ticketNumber) {
         return {
