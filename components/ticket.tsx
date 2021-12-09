@@ -86,7 +86,7 @@ export default function Ticket({ username, name, ticketNumber, sharePage, userId
           <p className={cn(styles.description, styleUtils.appear, styleUtils['appear-second'])}>
             {sharePage ? (
               <>
-                Join {name || 'them'} on {DATE}.
+                Join {name ?? 'them'} on {DATE}.
               </>
             ) : (
               <>
