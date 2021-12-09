@@ -102,9 +102,11 @@
 
 ### Built With
 
-* [Next.js](https://nextjs.org/)
+* [TypeScript](https://www.typescriptlang.org/)
 * [React.js](https://reactjs.org/)
-* [datocms](https://www.datocms.com/)
+* [Next.js](https://nextjs.org/)
+* [DatoCMS](https://www.datocms.com/)
+* [Supabase](https://www.supabase.com/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
