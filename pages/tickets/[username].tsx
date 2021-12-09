@@ -70,7 +70,7 @@ export default function TicketShare({ username, ticketNumber, name, usernameFrom
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const username = params?.username?.toString() || null;
+  const username = params ? params.username.toString() : null;
 
   if (redis) {
     if (username) {
