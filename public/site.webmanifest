@@ -1,7 +1,7 @@
 {
-  "name": "Virtual Event Starter Kit",
-  "short_name": "Virtual Event Starter Kit",
-  "description": "Virtual Event Starter Kit -> https://demo.vercel.events",
+  "name": "Open Component Hackathon",
+  "short_name": "Open Component Hackathon",
+  "description": "Open Component Hackathon Website",
   "display": "standalone",
   "start_url": "/",
   "theme_color": "#fff",
