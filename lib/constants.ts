@@ -39,7 +39,7 @@ export const CODE_OF_CONDUCT =
   'https://github.com/unfoldingWord/tc-create-app/blob/develop/CODE_OF_CONDUCT.md';
 export const REPO = 'https://github.com/unfoldingWord/open-components-hackathon-website';
 export const SAMPLE_TICKET_NUMBER = 1234;
-export const DISCORD_SERVER = 'https://discord.gg/ejNmvUnN';
+export const DISCORD_SERVER = 'https://discord.gg/DDPyTrZx';
 export const NAVIGATION = [
   {
     name: 'Schedule',
