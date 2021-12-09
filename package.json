@@ -40,7 +40,7 @@
     "vanilla-tilt": "1.7.0"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.0.0-beta.11",
+    "@netlify/plugin-nextjs": "^4.0.0-rc.1",
     "@types/classnames": "2.2.11",
     "@types/cookie": "0.4.0",
     "@types/htmlescape": "1.1.1",

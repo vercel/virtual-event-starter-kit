@@ -45,10 +45,11 @@ export const NAVIGATION = [
     name: 'Schedule',
     route: '/schedule'
   },
-  {
-    name: 'Expo',
-    route: '/expo'
-  }
+  // TODO: #13
+  // {
+  //   name: 'Expo',
+  //   route: '/expo'
+  // }
 ];
 
 export type TicketGenerationState = 'default' | 'loading';

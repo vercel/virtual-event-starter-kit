@@ -23,6 +23,7 @@ import redis from '@lib/redis';
 import Page from '@components/page';
 import ConfContent from '@components/index';
 import { SITE_URL, SITE_NAME, META_DESCRIPTION, SAMPLE_TICKET_NUMBER } from '@lib/constants';
+import { supabase } from '@lib/supabase';
 
 type Props = {
   username: string | null;
@@ -76,6 +77,35 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       const [name, ticketNumber] = await redis.hmget(`user:${username}`, 'name', 'ticketNumber');
 
       if (ticketNumber) {
+        return {
+          props: {
+            username: username || null,
+            usernameFromParams: username || null,
+            name: name || username || null,
+            ticketNumber: parseInt(ticketNumber, 10) || null
+          },
+          revalidate: 5
+        };
+      }
+    }
+    return {
+      props: {
+        username: null,
+        usernameFromParams: username || null,
+        name: null,
+        ticketNumber: null
+      },
+      revalidate: 5
+    };
+  } else if (supabase) {
+    if (username) {
+      const { data: { name, ticket_number: ticketNumber }, error } = await supabase
+        .from('registrations')
+        .select('*')
+        .eq('username', username)
+        .single()
+
+      if (ticketNumber && !error) {
         return {
           props: {
             username: username || null,
