@@ -15,16 +15,18 @@ import s from './index.module.css';
 import { HMSPeer, selectDevices, selectLocalMediaSettings } from '@100mslive/hms-video-store';
 import Select from '@components/hms/select';
 import InfoIcon from '@components/icons/icon-info';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
   const actions = useHMSActions();
+  const router = useRouter();
+  const name = router.query.name as string;
   const { localPeer, audioEnabled, videoEnabled } = usePreview(token, 'preview');
   // const [name, setName] = React.useState('');
   const joinRoom = (e: React.FormEvent) => {
     e.preventDefault();
     actions.join({
-      userName: 'David',
+      userName: name || 'David',
       authToken: token,
       settings: {
         isAudioMuted: !audioEnabled,
@@ -33,8 +35,6 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
       rememberDeviceSelection: true
     });
   };
-  const router = useRouter();
-  const name = router.query.name as string;
   return (
     <div className={s['preview-container']}>
       {localPeer ? <PreviewVideo name={name} peer={localPeer} /> : <VideoLoader />}

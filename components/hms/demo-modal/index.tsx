@@ -8,25 +8,25 @@ const data = [
     name: 'Daniel',
     roleName: 'moderator',
     role: 'backstage',
-    desc: 'Let’s describe moderator role in a human readable format here'
+    desc: 'Can invite participants on stage, assign speakers and remove them'
   },
   {
     name: 'David',
     roleName: 'speaker',
     role: 'stage',
-    desc: 'Let’s describe moderator role in a human readable format here'
+    desc: 'Always remains on the stage. Can invite attendees on stage to speak.'
   },
   {
     name: 'Alexis',
     roleName: 'speaker',
     role: 'stage',
-    desc: 'Let’s describe moderator role in a human readable format here'
+    desc: 'Always remains on the stage. Can invite attendees on stage to speak.'
   },
   {
     name: 'Guest',
     roleName: 'viewer',
     role: 'viewer',
-    desc: 'Let’s describe moderator role in a human readable format here'
+    desc: `Can see and hear what's happening on the stage. Can chat with other participants`
   }
 ];
 

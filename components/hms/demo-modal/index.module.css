@@ -35,6 +35,7 @@
 
 .left {
   text-align: left;
+  max-width: 420px;
 }
 
 .badge {

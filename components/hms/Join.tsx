@@ -29,7 +29,7 @@ const ViewersJoin: React.FC<{ token: string }> = ({ token }) => {
   const joinRoom = (e: React.FormEvent) => {
     e.preventDefault();
     actions.join({
-      userName: name,
+      userName: name || 'David',
       authToken: token
     });
   };

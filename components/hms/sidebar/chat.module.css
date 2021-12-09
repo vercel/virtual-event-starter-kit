@@ -36,6 +36,8 @@
   font-size: 10px;
 }
 .chat-name {
+  display: flex;
+  align-items: center;
   font-size: 15px;
   color: white;
 }

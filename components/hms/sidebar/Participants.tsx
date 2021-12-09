@@ -20,7 +20,9 @@ const Participants = () => {
             {backstagePeers.map(p => (
               <div key={p.id} className={s['part-box']}>
                 <Avatar name={p.name} />
-                <div className={s['part-name']}>{p.name}</div>
+                <div className={s['part-name']}>
+                  {p.name} {p.id !== localPeer.id ? null : '(You)'}{' '}
+                </div>
                 {p.id !== localPeer.id ? (
                   <Dropdown role={p.roleName || 'viewer'} id={p.id} />
                 ) : null}
@@ -36,7 +38,9 @@ const Participants = () => {
           {stagePeers.map(p => (
             <div key={p.id} className={s['part-box']}>
               <Avatar name={p.name} />
-              <div className={s['part-name']}>{p.name}</div>
+              <div className={s['part-name']}>
+                {p.name} {p.id !== localPeer.id ? null : '(You)'}
+              </div>
               {p.id !== localPeer.id ? <Dropdown role={p.roleName || 'viewer'} id={p.id} /> : null}
             </div>
           ))}
@@ -50,7 +54,9 @@ const Participants = () => {
           {inviteePeers.map(p => (
             <div key={p.id} className={s['part-box']}>
               <Avatar name={p.name} />
-              <div className={s['part-name']}>{p.name}</div>
+              <div className={s['part-name']}>
+                {p.name} {p.id !== localPeer.id ? null : '(You)'}
+              </div>
               <Dropdown id={p.id} role={p.roleName || 'viewer'} />
             </div>
           ))}
@@ -63,7 +69,7 @@ const Participants = () => {
           {viewerPeers.map(p => (
             <div key={p.id} className={s['part-box']}>
               <Avatar name={p.name} />
-              <div className={s['part-name']}>{p.name}</div>
+              <div className={s['part-name']}>{p.name} </div>
               <Dropdown role={p.roleName || 'viewer'} id={p.id} />
             </div>
           ))}

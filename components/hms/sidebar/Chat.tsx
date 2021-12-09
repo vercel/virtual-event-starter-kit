@@ -38,7 +38,7 @@ const Chat = () => {
                         m.senderRole === 'backstage' ? s['mod-badge'] : ''
                       }`}
                     >
-                      {m.senderRole === 'stage' ? 'speaker' : 'moderator'}
+                      {m.senderRole === 'stage' ? 'Speaker' : 'Moderator'}
                     </span>
                   ) : null}
                   <span className={s['chat-time']}>
