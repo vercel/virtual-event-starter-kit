@@ -27,8 +27,8 @@ export default function IconLogo({
       src='/uw-logo.svg'
       className={''}
       loading="eager"
-      height={120}
-      width={180}
+      height={100}
+      width={160}
     />
   );
 }
