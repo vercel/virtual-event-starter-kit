@@ -50,10 +50,9 @@ export default function Form({ defaultUsername = '', setTicketGenerationState, n
   useEffect(() => {
     async function updateRegistration() {
       if (supabase && userId && name && username) {
-        const { data, error } = await supabase
+        await supabase
           .from('registrations')
           .upsert({ id: userId, username: username, name })
-        console.log({data, error})
       }
     }
     updateRegistration()

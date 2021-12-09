@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export const SITE_URL = 'https://deploy-preview-12--opencomponentshackathon.netlify.app';
+export const SITE_URL = 'https://opencomponentshackathon.netlify.app';
 export const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_ORIGIN || new URL(SITE_URL).origin;
 export const TWITTER_USER_NAME = 'unfoldingWord';
 export const BRAND_NAME = 'Open Components';
