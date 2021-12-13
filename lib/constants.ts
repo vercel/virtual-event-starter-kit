@@ -20,8 +20,7 @@ export const TWITTER_USER_NAME = 'unfoldingWord';
 export const BRAND_NAME = 'Open Components';
 export const SITE_NAME_MULTILINE = ['Open', 'Components', 'Hackathon'];
 export const SITE_NAME = 'Open Components Hackathon';
-export const META_DESCRIPTION =
-  'unfoldingWord Open Components Hackathon Event.';
+export const META_DESCRIPTION = 'Open Components Hackathon Event.';
 export const SITE_DESCRIPTION =
   'An interactive online experience by the community, free for everyone.';
 export const DATE = 'February 28th - March 4th, 2022';
@@ -44,7 +43,7 @@ export const NAVIGATION = [
   {
     name: 'Schedule',
     route: '/schedule'
-  },
+  }
   // TODO: #13
   // {
   //   name: 'Expo',

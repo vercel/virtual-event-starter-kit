@@ -2,7 +2,7 @@
   "name": "virtual-event-starter-kit",
   "description": "Starter kit for your virtual event.",
   "private": true,
-  "repository": "unfoldingWord-box3/virtual-event-starter-kit",
+  "repository": "unfoldingWord/open-components-hackathon-website",
   "author": "Vercel Inc.",
   "license": "Apache-2.0",
   "engines": {
