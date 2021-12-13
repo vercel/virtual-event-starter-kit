@@ -162,7 +162,7 @@
   padding: 0.8rem 1.2rem;
   border-radius: 10px;
   border: none;
-  font-family: 'Inter';
+  font-family: "Inter";
   cursor: pointer;
 }
 .screenshare-btn:hover {
@@ -174,8 +174,45 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+.empty-room p {
+  color: #999a99;
+}
+.empty-room-buttons {
+  display: flex;
+  flex-direction: row;
+  padding: 1em 1em;
+  margin: 0em 1em;
+}
+
+.empty-room-button {
+  align-items: center;
+  justify-content: center;
+  font-size: medium;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  border-radius: 12px;
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 0em 0.5em 0em 0.5em;
+}
+.empty-room-button:hover {
+  opacity: 70%;
+  border: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.empty-room-button p {
+  color: #ffffff;
+  margin: 0em 0em 0em 1em;
 }
 
 .is-local {
   transform: scaleX(-1);
+}
+
+.empty-room-small {
+  font-size: small;
 }

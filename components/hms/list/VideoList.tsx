@@ -1,14 +1,16 @@
-import { selectPeersByRole } from '@100mslive/hms-video-store';
-import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
-import React from 'react';
-import { useResizeDetector } from 'react-resize-detector';
-import VideoTile from './VideoTile';
-import s from './index.module.css';
-import RoleChangeDialog from '../request';
+import { selectPeersByRole, selectLocalPeer } from "@100mslive/hms-video-store";
+import { useHMSStore, useVideoList } from "@100mslive/react-sdk";
+import React from "react";
+import { useResizeDetector } from "react-resize-detector";
+import VideoTile from "./VideoTile";
+import s from "./index.module.css";
+import RoleChangeDialog from "../request";
+import InviteIcon from "@components/icons/icon-invite";
+import { PersonIcon } from "@100mslive/react-icons";
 
 const VideoList = () => {
-  const stagePeers = useHMSStore(selectPeersByRole('stage'));
-  const inviteePeers = useHMSStore(selectPeersByRole('invitee'));
+  const stagePeers = useHMSStore(selectPeersByRole("stage"));
+  const inviteePeers = useHMSStore(selectPeersByRole("invitee"));
   const { width = 0, height = 0, ref } = useResizeDetector();
   const renderPeers = [...stagePeers, ...inviteePeers];
   const { chunkedTracksWithPeer } = useVideoList({
@@ -18,12 +20,12 @@ const VideoList = () => {
     width,
     height,
     showScreenFn: () => false,
-    overflow: 'scroll-x',
+    overflow: "scroll-x",
     peers: renderPeers,
     aspectRatio: {
       width: 1.8,
-      height: 1
-    }
+      height: 1,
+    },
   });
   const [page, setPage] = React.useState(0);
   const nextPage = () => {
@@ -43,11 +45,15 @@ const VideoList = () => {
     }
   };
   console.log(chunkedTracksWithPeer);
+  const localPeer = useHMSStore(selectLocalPeer);
   return (
-    <div ref={ref} style={{ width: '100%', position: 'relative', padding: '0 1rem' }}>
+    <div
+      ref={ref}
+      style={{ width: "100%", position: "relative", padding: "0 1rem" }}
+    >
       <RoleChangeDialog />
       {chunkedTracksWithPeer && chunkedTracksWithPeer.length > 0 ? (
-        <div className={s['video-list']}>
+        <div className={s["video-list"]}>
           {chunkedTracksWithPeer[page].map((trackPeer, _) => (
             <VideoTile
               key={trackPeer.track ? trackPeer.track.id : trackPeer.peer.id}
@@ -58,18 +64,45 @@ const VideoList = () => {
           ))}
         </div>
       ) : (
-        <div className={s['empty-room']}>
+        <div className={s["empty-room"]}>
           <h2>No Speakers Present</h2>
+          <p>
+            Looks like nobody has joined as a speaker. Invite someone to speak
+            or change your role.
+          </p>
+          <div className={s["empty-room-buttons"]}>
+            <button
+              style={{ backgroundColor: "#323332" }}
+              className={s["empty-room-button"]}
+            >
+              <InviteIcon></InviteIcon>
+
+              <p>Invite</p>
+            </button>
+            <button
+              style={{ backgroundColor: "#702EC2" }}
+              className={s["empty-room-button"]}
+            >
+              <PersonIcon fill="#ffffff" stroke="#ffffff"></PersonIcon>
+              <p>Change Role</p>
+            </button>
+          </div>
+          <p className={s["empty-room-small"]}>
+            You can also invite a guest to the stage.
+            <span style={{ color: "#702EC2" }}> Learn how {"->"}</span>
+          </p>
         </div>
       )}
       {chunkedTracksWithPeer.length > 1 ? (
-        <div className={s['pagin-ctx']}>
+        <div className={s["pagin-ctx"]}>
           <div onClick={prevPage}>
             <ChevronLeft />
           </div>
           {chunkedTracksWithPeer.map((_, i: number) => (
             <div
-              className={`${s['pagin-btn']} ${i === page ? s['pagin-active'] : null}`}
+              className={`${s["pagin-btn"]} ${
+                i === page ? s["pagin-active"] : null
+              }`}
               onClick={() => setPage(i)}
             />
           ))}
