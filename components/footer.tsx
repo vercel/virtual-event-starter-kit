@@ -16,16 +16,13 @@
 
 import cn from 'classnames';
 import styles from './footer.module.css';
-import { COPYRIGHT_HOLDER, SITE_NAME, CODE_OF_CONDUCT, LEGAL_URL, REPO } from '@lib/constants';
+import { CODE_OF_CONDUCT, LEGAL_URL, REPO } from '@lib/constants';
 
 export default function Footer() {
   return (
     <footer className={cn(styles.footer)}>
       <div className={styles['footer-legal']}>
-        <div className={styles['footer-copyright']}>
-          Copyright © {`${new Date().getFullYear()} `} {COPYRIGHT_HOLDER || `${SITE_NAME}.`} All
-          rights reserved.
-        </div>
+        <div className={styles['footer-copyright']}></div>
         <div className={styles['footer-center-group']}>
           <p className={styles['footer-paragraph']}>
             <a
