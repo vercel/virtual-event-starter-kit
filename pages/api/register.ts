@@ -108,10 +108,10 @@ export default async function register(
       .from('registrations')
       .select('*')
       .eq('email', email)
-      .single()
+      .single();
 
     if (existingRegistration) {
-      const item = existingRegistration
+      const item = existingRegistration;
 
       name = item.name!;
       username = item.username!;
@@ -119,20 +119,16 @@ export default async function register(
       createdAt = parseInt(item.created_at!, 10);
       statusCode = 200;
     } else {
-      const { count } = await supabase
-        .from('registrations')
-        .select('email', { count: 'exact' })
-      let total: number = count as number
-      ticketNumber = ++total
+      const { count } = await supabase.from('registrations').select('email', { count: 'exact' });
+      let total: number = count as number;
+      ticketNumber = ++total;
 
       const { data } = await supabase
         .from('registrations')
-        .insert([
-          { ticket_number: ticketNumber, name, email, username },
-        ])
-        .single()
+        .insert([{ ticket_number: ticketNumber, name, email, username }])
+        .single();
 
-      id = data.id
+      id = data.id;
       createdAt = parseInt(data.created_at!, 10);
       statusCode = 201;
     }
