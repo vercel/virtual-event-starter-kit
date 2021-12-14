@@ -18,6 +18,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import screenshot from '@lib/screenshot';
 import { SITE_URL, SAMPLE_TICKET_NUMBER } from '@lib/constants';
 import redis from '@lib/redis';
+import { supabase } from '@lib/supabase';
 
 export default async function ticketImages(req: NextApiRequest, res: NextApiResponse) {
   let url: string;
@@ -30,6 +31,22 @@ export default async function ticketImages(req: NextApiRequest, res: NextApiResp
         'name',
         'ticketNumber'
       );
+      if (!ticketNumber) {
+        res.statusCode = 404;
+        return res.end('Not Found');
+      }
+      url = `${SITE_URL}/ticket-image?username=${encodeURIComponent(
+        usernameString
+      )}&ticketNumber=${encodeURIComponent(ticketNumber)}`;
+      if (name) {
+        url = `${url}&name=${encodeURIComponent(name)}`;
+      }
+    } else if (supabase) {
+      const usernameString = username.toString();
+      const {
+        data: { name, ticket_number: ticketNumber }
+      } = await supabase.from('registrations').select('*').eq('username', username).single();
+
       if (!ticketNumber) {
         res.statusCode = 404;
         return res.end('Not Found');
