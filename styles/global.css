@@ -25,6 +25,9 @@
     U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --space: 4px;
   --space-2x: 8px;
@@ -55,10 +58,14 @@
   --secondary-color: #8a8f98;
   --sidebar: #0e0e10;
   --header-height: 72px;
-  --brand: #845ef7;
-
-  --gray1: #212121;
+  --brand: #702ec2;
+  --brand-lighter: #d6ccee;
+  --brand-light: #8465cb;
+  --brand-dark: #472a84;
+  --gray1: #222222;
   --error: #ea3323;
+
+  --foreground: #fff;
 }
 
 html {
@@ -97,12 +104,12 @@ body {
 }
 html,
 body {
-  color: #fff;
-  background-color: #111;
+  color: var(--foreground);
+  background-color: var(--accents-8);
 }
 ::selection {
   background-color: #0070f3;
-  color: #fff;
+  color: var(--foreground);
 }
 [role='grid']:focus {
   outline: none;
@@ -158,35 +165,50 @@ svg circle {
   position: fixed;
   top: 10px;
   left: 10px;
-  background: #fff;
+
+  background: var(--foreground);
   z-index: 1;
   width: auto;
   height: auto;
   clip: auto;
 }
+
 button {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--foreground);
+  font-family: inherit;
   background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+  color: var(--foreground);
   border: none;
 }
 
-.show-overlay {
-  transition: all 0.5s ease;
-  box-shadow: rgb(33 33 33 / 80%) 0px 0px 1px 2px, rgb(0 0 0 / 75%) 0px 0px 0px 5000px;
+.mirror {
+  transform: scaleX(-1);
 }
 
-.fade-in {
-  display: flex !important;
-  animation: fadein 1s;
+.bottom-overlay {
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  z-index: 5;
+  height: 100px;
+  border-radius: 0.5rem;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), transparent);
 }
 
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.cursor-pointer {
-  cursor: pointer;
+.preview-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 20;
+  transform: translate(-50%, 0px);
+  display: flex;
 }
