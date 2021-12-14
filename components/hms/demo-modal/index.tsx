@@ -2,6 +2,7 @@ import { ArrowRightIcon } from '@100mslive/react-icons';
 import HmsLogo from '@components/icons/icon-hms';
 import React from 'react';
 import s from './index.module.css';
+import { useRouter } from 'next/router';
 
 const data = [
   {
@@ -31,24 +32,33 @@ const data = [
 ];
 
 const DemoModal = () => {
+  const [stage, setStage] = React.useState(``);
+  const router = useRouter();
+  React.useEffect(() => {
+    if (router.query.slug) {
+      setStage(router.query.slug as string);
+    }
+  }, [router]);
   return (
     <div>
-      <p className={s['modal-head']}>Take your Webinar for a test drive</p>
+      <p className={s['modal-head']}>Test your Webinar for a test drive</p>
       <p className={s['modal-text']}>
         We have setup a few profiles to make it easy for you or your team to experience each
         perspective. Join in one click or share access with anyone else.
       </p>
       <div>
         {data.map(m => (
-          <div className={s['box']} key={m.role}>
+          <div className={s['box']} key={`${m.roleName}-${m.name}`}>
             <div className={s['left']}>
               <span className={`${s['badge']} ${s[m.roleName]}`}>{m.roleName}</span>
               <p className={s['name']}>{m.name}</p>
               <p className={s['desc']}>{m.desc}</p>
             </div>
             <div className={s['right']}>
-              <CopyButton text={`${window.location.host}/stage/a?role=${m.role}&name=${m.name}`} />
-              <a href={`/stage/a?role=${m.role}&name=${m.name}`}>
+              <CopyButton
+                text={`${window.location.host}/stage/${stage || 'a'}?role=${m.role}&name=${m.name}`}
+              />
+              <a href={`/stage/${stage || 'a'}?role=${m.role}&name=${m.name}`}>
                 <button className={s['join']}>
                   Join as {m.name} <ArrowRightIcon height={20} />
                 </button>
