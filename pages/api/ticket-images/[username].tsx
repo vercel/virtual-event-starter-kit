@@ -44,8 +44,10 @@ export default async function ticketImages(req: NextApiRequest, res: NextApiResp
     } else if (supabase) {
       const usernameString = username.toString();
       const {
-        data: { name, ticket_number: ticketNumber }
+        data: { name, ticket_number: ticketNumber },
+        error
       } = await supabase.from('registrations').select('*').eq('username', username).single();
+      console.log({ username, error });
 
       if (!ticketNumber) {
         res.statusCode = 404;
