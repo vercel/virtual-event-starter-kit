@@ -62,6 +62,8 @@
   --brand-lighter: #d6ccee;
   --brand-light: #8465cb;
   --brand-dark: #472a84;
+  --gray1: #222222;
+  --error: #ea3323;
 
   --foreground: #fff;
 }
@@ -163,6 +165,7 @@ svg circle {
   position: fixed;
   top: 10px;
   left: 10px;
+
   background: var(--foreground);
   z-index: 1;
   width: auto;
@@ -175,7 +178,7 @@ button {
   font-weight: 500;
   color: var(--foreground);
   font-family: inherit;
-  background-color: none;
+  background-color: transparent;
   border: none;
   cursor: pointer;
 }
