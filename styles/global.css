@@ -218,3 +218,8 @@ input {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+/* Hides native (video) elements controls when in full screnn mode  */
+::-webkit-media-controls {
+  display: none !important;
+}
