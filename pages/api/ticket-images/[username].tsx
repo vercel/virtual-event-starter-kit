@@ -62,7 +62,12 @@ export default async function ticketImages(req: NextApiRequest, res: NextApiResp
     } else {
       url = `${SITE_URL}/ticket-image?ticketNumber=${encodeURIComponent(SAMPLE_TICKET_NUMBER)}`;
     }
+    console.log('bef screenshot');
+
+    console.log({ url });
     const file = await screenshot(url);
+    console.log({ file });
+
     res.setHeader('Content-Type', `image/png`);
     res.setHeader(
       'Cache-Control',
