@@ -10,18 +10,31 @@ import { selectLocalPeerRole } from '@100mslive/hms-video-store';
 
 const RoomCta = () => {
   const role = useHMSStore(selectLocalPeerRole) || 'viewer';
+  const [cp, setCp] = React.useState(false);
+  const copy = () => {
+    // @ts-ignore
+    navigator.clipboard.writeText(`${window.location.host}/stage/a?role=${role.name}`);
+    if (!cp) {
+      setCp(true);
+      setTimeout(() => {
+        setCp(false);
+      }, 3000);
+    }
+  };
   return (
     <div className={s['cta-wrapper']}>
-      <button
-        onClick={() =>
-          // @ts-ignore
-          navigator.clipboard.writeText(`${window.location.host}/stage/a?role=${role.name}`)
-        }
-        className={s['cta-role']}
-      >
-        <InviteIcon />
-        Invite
-      </button>
+      <div className="relative">
+        {cp ? (
+          <p className="absolute top-12 left-0 flex bg-gray-600 justify-center  rounded-lg w-48 p-2">
+            Copied to clipboard!
+          </p>
+        ) : null}
+        <button onClick={() => copy()} className={s['cta-role']}>
+          <InviteIcon />
+          Invite
+        </button>
+      </div>
+
       <Dialog.Root>
         <Dialog.Overlay className={s['overlay']} />
         <Dialog.Trigger asChild>

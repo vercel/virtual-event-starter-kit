@@ -77,16 +77,26 @@ const DemoModal = () => {
 export default DemoModal;
 
 export const CopyButton = ({ text = '' }) => {
+  const [cp, setCp] = React.useState(false);
   const copy = () => {
-    // setCopy(true);
     navigator.clipboard.writeText(text);
-    // setTimeout(() => {
-    //   setCopy(false);
-    // }, 2000);
+    if (!cp) {
+      setCp(true);
+      setTimeout(() => {
+        setCp(false);
+      }, 3000);
+    }
   };
   return (
-    <button onClick={copy} className={s['invite']}>
-      Invite
-    </button>
+    <div className="relative">
+      {cp ? (
+        <p className="absolute top-16 left-0 flex bg-gray-600 justify-center  rounded-lg w-48 p-2">
+          Copied to clipboard!
+        </p>
+      ) : null}
+      <button onClick={copy} className={s['invite']}>
+        Invite
+      </button>
+    </div>
   );
 };

@@ -141,3 +141,13 @@
   background: #444443;
   border-radius: 8px;
 }
+
+.leave {
+  background: linear-gradient(180deg, #ed4c5a 0%, #c61f5b 100%);
+  border: 2px solid #60191f;
+}
+
+.active-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #eaeae9;
+}

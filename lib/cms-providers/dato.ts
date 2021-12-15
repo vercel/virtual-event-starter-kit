@@ -81,8 +81,6 @@
          discord
          isLive
          roomId
-         stagePeers
-         backstagePeers
          schedule {
            title
            start

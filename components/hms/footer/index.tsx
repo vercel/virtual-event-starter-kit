@@ -1,4 +1,4 @@
-import { selectLocalPeerRole } from '@100mslive/hms-video-store';
+import { selectIsLocalScreenShared, selectLocalPeerRole } from '@100mslive/hms-video-store';
 import { useAVToggle, useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import {
   VideoOffIcon,
@@ -6,7 +6,7 @@ import {
   MicOffIcon,
   MicOnIcon,
   ShareScreenIcon,
-  // RecordIcon,
+  RecordIcon,
   HangUpIcon
 } from '@100mslive/react-icons';
 import React from 'react';
@@ -14,6 +14,7 @@ import s from './index.module.css';
 import Settings from './Settings';
 import * as Dialog from '@radix-ui/react-dialog';
 import router from 'next/router';
+import cn from 'classnames';
 
 const Footer = () => {
   const role = useHMSStore(selectLocalPeerRole);
@@ -40,13 +41,17 @@ const Footer = () => {
       console.log(error);
     }
   };
+  const isLocalScreenShare = useHMSStore(selectIsLocalScreenShared);
   return (
     <div className={s['footer']}>
       {role?.name !== 'viewer' ? (
         <>
           {isAllowedToPublish.audio ? (
             <div className={s['btn-wrapper']}>
-              <button className={s['btn']} onClick={toggleAudio}>
+              <button
+                className={cn(s['btn'], isLocalAudioEnabled ? s['active-btn'] : '')}
+                onClick={toggleAudio}
+              >
                 {isLocalAudioEnabled ? <MicOnIcon /> : <MicOffIcon />}
               </button>
               <p className={s['btn-text']}>Mic</p>
@@ -54,7 +59,10 @@ const Footer = () => {
           ) : null}
           {isAllowedToPublish.video ? (
             <div className={s['btn-wrapper']}>
-              <button className={s['btn']} onClick={toggleVideo}>
+              <button
+                className={cn(s['btn'], isLocalVideoEnabled ? s['active-btn'] : '')}
+                onClick={toggleVideo}
+              >
                 {isLocalVideoEnabled ? <VideoOnIcon /> : <VideoOffIcon />}
               </button>
               <p className={s['btn-text']}>Video</p>
@@ -62,20 +70,23 @@ const Footer = () => {
           ) : null}
           {isAllowedToPublish.screen ? (
             <div className={s['btn-wrapper']}>
-              <button className={s['btn']} onClick={startScreenshare}>
+              <button
+                className={`${s['btn']} ${isLocalScreenShare ? s['active-btn'] : ''}`}
+                onClick={startScreenshare}
+              >
                 <ShareScreenIcon />
               </button>
               <p className={s['btn-text']}>Screen Share</p>
             </div>
           ) : null}
-          {/* {role?.name === 'backstage' ? (
-        <div className={s['btn-wrapper']}>
-          <button className={s['btn']} onClick={() => {}}>
-            <RecordIcon />
-          </button>
-          <p className={s['btn-text']}>Record</p>
-        </div>
-      ) : null} */}
+          {isAllowedToPublish.screen ? (
+            <div className={s['btn-wrapper']}>
+              <button className={cn(s['btn'])}>
+                <RecordIcon />
+              </button>
+              <p className={s['btn-text']}>Record</p>
+            </div>
+          ) : null}
           {role?.name === 'backstage' || role?.name === 'stage' || role?.name === 'invitee' ? (
             <Settings />
           ) : null}
@@ -83,7 +94,7 @@ const Footer = () => {
             <Dialog.Overlay className={s['pop-overlay']} />
             <Dialog.Trigger asChild>
               <div className={s['btn-wrapper']}>
-                <button className={s['btn']} onClick={() => {}}>
+                <button className={cn(s['btn'], s['leave'])} onClick={() => {}}>
                   <HangUpIcon />
                 </button>
                 <p className={s['btn-text']}>Leave</p>
