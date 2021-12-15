@@ -4,7 +4,7 @@ import styles from './stage-container.module.css';
 export default function DiscordButton() {
   return (
     <a href={DISCORD_SERVER} target="_blank" rel="noopener noreferrer" className={styles.button}>
-      <span>Join the #oce-hackathon and introduce yourself to the Open Components community</span>
+      <span>Join the chat on</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 245 240">
         <path
           fill="white"
