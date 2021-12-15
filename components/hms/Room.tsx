@@ -21,12 +21,13 @@ const Room = ({ roomId, stagePeers, backstagePeers }: Props) => {
   const actions = useHMSActions();
   const isConnected = useHMSStore(selectIsConnectedToRoom);
   React.useEffect(() => {
+    if (!router.isReady) return;
     const role = router.query.role ? (router.query.role as string) : 'viewer';
     console.log(role);
     getToken(role, roomId)
       .then(t => setToken(t))
       .catch(e => console.error(e));
-  }, [roomId, backstagePeers, stagePeers, router.query]);
+  }, [roomId, backstagePeers, stagePeers, router.query, router.isReady]);
   React.useEffect(() => {
     window.onunload = () => {
       actions.leave();

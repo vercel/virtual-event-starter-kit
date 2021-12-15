@@ -212,3 +212,9 @@ input {
   transform: translate(-50%, 0px);
   display: flex;
 }
+
+.arrow-btn:disabled,
+.arrow-btn:disabled svg {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
