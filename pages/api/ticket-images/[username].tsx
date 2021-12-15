@@ -44,10 +44,8 @@ export default async function ticketImages(req: NextApiRequest, res: NextApiResp
     } else if (supabase) {
       const usernameString = username.toString();
       const {
-        data: { name, ticket_number: ticketNumber },
-        error
+        data: { name, ticket_number: ticketNumber }
       } = await supabase.from('registrations').select('*').eq('username', username).single();
-      console.log({ username, error });
 
       if (!ticketNumber) {
         res.statusCode = 404;
@@ -62,11 +60,7 @@ export default async function ticketImages(req: NextApiRequest, res: NextApiResp
     } else {
       url = `${SITE_URL}/ticket-image?ticketNumber=${encodeURIComponent(SAMPLE_TICKET_NUMBER)}`;
     }
-    console.log('bef screenshot');
-
-    console.log({ url });
     const file = await screenshot(url);
-    console.log({ file });
 
     res.setHeader('Content-Type', `image/png`);
     res.setHeader(
