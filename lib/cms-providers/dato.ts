@@ -154,6 +154,8 @@ export async function getAllSteps(): Promise<Step[]> {
         stepnumber
         name
         date
+        startTime
+        endTime
         description
       }
     }

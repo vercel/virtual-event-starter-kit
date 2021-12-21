@@ -76,12 +76,12 @@
   transition: background-color 0.2s ease;
   padding: 0 var(--space-4x);
   height: 50px;
-  /* width: 200px; */
-  min-width: 200px;
+  width: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: var(--space-4x);
+  margin-top: 100px;
+  margin: auto;
 }
 
 .button:hover,
@@ -111,10 +111,6 @@
   .bottom {
     align-items: center;
     flex-direction: row;
-  }
-
-  .button {
-    margin-top: 0;
   }
 }
 
