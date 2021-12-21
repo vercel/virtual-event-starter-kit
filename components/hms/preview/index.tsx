@@ -9,13 +9,14 @@ import {
   VideoOnIcon,
   ArrowRightIcon
 } from '@100mslive/react-icons';
-import { useHMSActions, useHMSStore, usePreview, useVideoTile } from '@100mslive/react-sdk';
+import { useHMSActions, useHMSStore, useVideoTile } from '@100mslive/react-sdk';
 import { getAvatarBg } from '../getAvatarBg';
 import s from './index.module.css';
 import { HMSPeer, selectDevices, selectLocalMediaSettings } from '@100mslive/hms-video-store';
 import Select from '@components/hms/select';
 import InfoIcon from '@components/icons/icon-info';
 import { useRouter } from 'next/router';
+import { usePreview } from './usePreview';
 
 export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
   const actions = useHMSActions();
@@ -32,7 +33,7 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
         isAudioMuted: !audioEnabled,
         isVideoMuted: !videoEnabled
       },
-      rememberDeviceSelection: true
+      initEndpoint: 'https://qa-init.100ms.live/init'
     });
   };
   return (
