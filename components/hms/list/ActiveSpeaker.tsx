@@ -62,18 +62,19 @@ const ActiveSpeaker = () => {
       }}
     >
       <div ref={ref} className="flex justify-center  w-full h-full">
-        {chunkedTracksWithPeer[0].map((p, i) => (
-          <div className="relative" style={{ width: p.width, height: p.height }}>
-            <img src="/hms-coachmark.svg" className="absolute right-4 top-4 z-10" />
-            <video
-              className="bg-gray w-full h-full rounded-lg object-cover relative"
-              ref={videoRef}
-              autoPlay
-              muted
-              playsInline
-            />
-          </div>
-        ))}
+        {chunkedTracksWithPeer &&
+          chunkedTracksWithPeer[0].map((p, i) => (
+            <div className="relative" style={{ width: p.width, height: p.height }}>
+              <img src="/hms-coachmark.svg" className="absolute right-4 top-4 z-10" />
+              <video
+                className="bg-gray w-full h-full rounded-lg object-cover relative"
+                ref={videoRef}
+                autoPlay
+                muted
+                playsInline
+              />
+            </div>
+          ))}
       </div>
     </div>
   );
