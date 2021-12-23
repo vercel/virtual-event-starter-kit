@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from './footer';
-import Header from './header';
+import Header from './Header';
 import List from './list';
 import s from './live.module.css';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAvatarBg } from '../getAvatarBg';
+import { getAvatarBg } from '../lib/getAvatarBg';
 import s from './index.module.css';
 
 interface Props {

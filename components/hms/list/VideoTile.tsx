@@ -8,7 +8,7 @@ import {
 import { MicOffIcon } from '@100mslive/react-icons';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import React, { useEffect } from 'react';
-import { getAvatarBg } from '../getAvatarBg';
+import { getAvatarBg } from '../lib/getAvatarBg';
 import s from './index.module.css';
 
 interface VideoTileProps {

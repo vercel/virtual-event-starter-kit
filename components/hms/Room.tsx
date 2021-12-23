@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import { selectIsConnectedToRoom } from '@100mslive/hms-video-store';
-import { getToken } from './getToken';
+import { getToken } from './lib/getToken';
 import Join from './Join';
 import Live from './Live';
 import { useRouter } from 'next/router';

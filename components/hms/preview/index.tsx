@@ -10,7 +10,7 @@ import {
   ArrowRightIcon
 } from '@100mslive/react-icons';
 import { useHMSActions, useHMSStore, useVideoTile } from '@100mslive/react-sdk';
-import { getAvatarBg } from '../getAvatarBg';
+import { getAvatarBg } from '../lib/getAvatarBg';
 import s from './index.module.css';
 import { HMSPeer, selectDevices, selectLocalMediaSettings } from '@100mslive/hms-video-store';
 import Select from '@components/hms/select';
@@ -32,7 +32,7 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
       settings: {
         isAudioMuted: !audioEnabled,
         isVideoMuted: !videoEnabled
-      },
+      }
       //initEndpoint: 'https://qa-init.100ms.live/init'
     });
   };

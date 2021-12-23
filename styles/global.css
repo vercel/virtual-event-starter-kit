@@ -242,3 +242,10 @@ input {
     opacity: 1;
   }
 }
+
+.audio-level {
+  border: 3px solid #702ec2;
+}
+.is-local {
+  transform: scaleX(-1);
+}

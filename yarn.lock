@@ -55,13 +55,14 @@
   resolved "https://registry.yarnpkg.com/@100mslive/react-icons/-/react-icons-0.0.1-alpha.tgz#b439bae55b79a3f45c5c23516239a0a575efc60e"
   integrity sha512-dT8Z20DGs1kZC36+y8ZIHWyCYQOuzQm51Caxui2XpCSQfrEq5hPXiufh5usVmT1irhSA+ioBJS27pDhJ0wDAVg==
 
-"@100mslive/react-sdk@^0.0.1-alpha":
-  version "0.0.1-alpha"
-  resolved "https://registry.yarnpkg.com/@100mslive/react-sdk/-/react-sdk-0.0.1-alpha.tgz#f5e47aa567f52b37364e4d1bb065991bde7e1242"
-  integrity sha512-pLaTtk700aH/j7IIH3ZqocJt0SabsnhTM9qTDO+1eZRcN7rgFsHvtM4Q6RF+r5o6BLYBD0ka+vFv2JXeQH4SyA==
+"@100mslive/react-sdk@^0.0.2-alpha":
+  version "0.0.2-alpha"
+  resolved "https://registry.yarnpkg.com/@100mslive/react-sdk/-/react-sdk-0.0.2-alpha.tgz#ac46c284224939726d5bc4e8c53a86eec325b7b4"
+  integrity sha512-S0bhaL6oEPlhNRhm9qbTO3TmjaBeMv2U+J3nPfzAuVHJpOdQqnBikGj/QDDciLhPfZIDz0YPr0KbXzPbDsojVA==
   dependencies:
     "@100mslive/hms-video" "^0.1.23"
     "@100mslive/hms-video-store" "^0.2.71"
+    react-intersection-observer "^8.33.1"
     zustand "^3.6.2"
 
 "@100mslive/react-ui@^0.0.0-alpha":
@@ -4424,6 +4425,11 @@ react-dom@^17.0.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
+
+react-intersection-observer@^8.33.1:
+  version "8.33.1"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.33.1.tgz#8e6442cac7052ed63056e191b7539e423e7d5c64"
+  integrity sha512-3v+qaJvp3D1MlGHyM+KISVg/CMhPiOlO6FgPHcluqHkx4YFCLuyXNlQ/LE6UkbODXlQcLOppfX6UMxCEkUhDLw==
 
 react-is@17.0.2:
   version "17.0.2"

@@ -1,10 +1,9 @@
-import { selectLocalPeer, selectPeers, selectPeersByRole } from '@100mslive/hms-video-store';
+import { selectLocalPeer, selectPeersByRole } from '@100mslive/hms-video-store';
 import { ExitIcon } from '@100mslive/react-icons';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import UsersIcon from '@components/icons/icon-users';
 import { useRouter } from 'next/router';
 import React from 'react';
-import s from './index.module.css';
 
 const Header = () => {
   const router = useRouter();
@@ -40,7 +39,7 @@ const Header = () => {
           <div className="flex flex-row items-center align-bottom md:gap-2 gap-x-2">
             <p className="font-semibold md:text-2xl my-0 text-sm md:leading-8 ">Demo Event</p>
             <span
-              className="flex md:py-0.5 md:px-1 px-0.5 font-semibold md:text-sm text-xs rounded-sm items-center "
+              className="flex md:px-1 px-0.5 font-semibold md:text-sm text-xs rounded-sm items-center "
               style={{ backgroundColor: '#ed4c5a' }}
             >
               LIVE
@@ -61,9 +60,6 @@ const Header = () => {
           <UsersIcon /> <span className="">{peers.length}</span>{' '}
           <span className="md:block hidden"> watching</span>
         </div>
-        {/* <button className={s['leave-btn']}>
-          <LeaveIcon /> Leave
-        </button> */}
       </div>
     </div>
   );

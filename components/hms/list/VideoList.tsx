@@ -2,7 +2,7 @@ import { selectPeersByRole } from '@100mslive/hms-video-store';
 import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
 import React from 'react';
 import { useResizeDetector } from 'react-resize-detector';
-import VideoTile from './VideoTile';
+import VideoTile from '../VideoTile';
 import s from './index.module.css';
 import RoleChangeDialog from '../request';
 import ActiveSpeaker from './ActiveSpeaker';
@@ -13,13 +13,11 @@ const VideoList = () => {
   const { width = 0, height = 0, ref } = useResizeDetector();
   const renderPeers = [...stagePeers, ...inviteePeers];
   const { chunkedTracksWithPeer } = useVideoList({
-    maxColCount: 4,
+    maxColCount: 5,
     maxRowCount: 1,
-    maxTileCount: 4,
+    maxTileCount: 5,
     width,
     height,
-    showScreenFn: () => false,
-    overflow: 'scroll-x',
     peers: renderPeers,
     aspectRatio: {
       width: 1.8,

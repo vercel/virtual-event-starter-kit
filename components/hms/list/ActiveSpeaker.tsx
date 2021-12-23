@@ -2,13 +2,12 @@ import {
   selectLocalPeer,
   selectDominantSpeaker,
   HMSPeer,
-  selectIsPeerAudioEnabled,
-  selectIsPeerVideoEnabled,
   selectVideoTrackByPeerID
 } from '@100mslive/hms-video-store';
 import { useHMSActions, useHMSStore, useVideoList } from '@100mslive/react-sdk';
 import React, { useState, useEffect } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
+import VideoTile from '../VideoTile';
 
 const ActiveSpeaker = () => {
   const localPeer = useHMSStore(selectLocalPeer);
@@ -28,8 +27,6 @@ const ActiveSpeaker = () => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const hmsActions = useHMSActions();
   const videoTrack = useHMSStore(selectVideoTrackByPeerID(activeSpeaker.id));
-  const isLocalVideoEnabled = useHMSStore(selectIsPeerVideoEnabled(activeSpeaker.id));
-  const isLocalAudioEnabled = useHMSStore(selectIsPeerAudioEnabled(activeSpeaker.id));
   useEffect(() => {
     if (videoRef && videoRef.current && videoTrack) {
       if (videoTrack.enabled) {
@@ -46,8 +43,6 @@ const ActiveSpeaker = () => {
     maxTileCount: 1,
     width,
     height,
-    showScreenFn: () => false,
-    overflow: 'scroll-x',
     peers: [activeSpeaker],
     aspectRatio: {
       width: 1.8,
@@ -63,17 +58,8 @@ const ActiveSpeaker = () => {
     >
       <div ref={ref} className="flex justify-center  w-full h-full">
         {chunkedTracksWithPeer &&
-          chunkedTracksWithPeer[0].map((p, i) => (
-            <div className="relative" style={{ width: p.width, height: p.height }}>
-              <img src="/hms-coachmark.svg" className="absolute right-4 top-4 z-10" />
-              <video
-                className="bg-gray w-full h-full rounded-lg object-cover relative"
-                ref={videoRef}
-                autoPlay
-                muted
-                playsInline
-              />
-            </div>
+          chunkedTracksWithPeer[0].map((p, _) => (
+            <VideoTile width={p.width} height={p.height} peer={p.peer} />
           ))}
       </div>
     </div>
