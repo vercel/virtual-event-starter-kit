@@ -13,9 +13,9 @@ const VideoList = () => {
   const { width = 0, height = 0, ref } = useResizeDetector();
   const renderPeers = [...stagePeers, ...inviteePeers];
   const { chunkedTracksWithPeer } = useVideoList({
-    maxColCount: 1,
+    maxColCount: 4,
     maxRowCount: 1,
-    maxTileCount: 2,
+    maxTileCount: 4,
     width,
     height,
     showScreenFn: () => false,
