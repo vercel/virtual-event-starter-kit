@@ -15,6 +15,7 @@ module.exports = {
           800: 'var(--accents-8)'
         },
         'gray-main': 'var(--gray)',
+        gray: 'var(--gray1)',
         secondary: 'var(--secondary-color)',
         sidebar: 'var(--sidebar)',
         brand: {

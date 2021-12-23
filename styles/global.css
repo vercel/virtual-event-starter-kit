@@ -66,6 +66,7 @@
   --error: #ea3323;
 
   --foreground: #fff;
+  --video-list-height: 150px;
 }
 
 html {

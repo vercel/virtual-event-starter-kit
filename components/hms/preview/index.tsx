@@ -33,7 +33,7 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
         isAudioMuted: !audioEnabled,
         isVideoMuted: !videoEnabled
       },
-      initEndpoint: 'https://qa-init.100ms.live/init'
+      //initEndpoint: 'https://qa-init.100ms.live/init'
     });
   };
   return (

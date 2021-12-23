@@ -30,8 +30,8 @@ const ViewersJoin: React.FC<{ token: string }> = ({ token }) => {
     e.preventDefault();
     actions.join({
       userName: name || 'David',
-      authToken: token,
-      initEndpoint: 'https://qa-init.100ms.live/init'
+      authToken: token
+      // initEndpoint: 'https://qa-init.100ms.live/init'
     });
   };
   return (

@@ -1,11 +1,11 @@
 .video-list {
-  /* background-color: green; */
+  background-color: green;
   display: flex;
   width: 100%;
   flex-wrap: wrap;
   place-content: center;
   align-items: center;
-  height: calc(100vh - 3.2 * var(--header-height));
+  height: var(--video-list-height);
 }
 
 /* VideoTile */
@@ -56,12 +56,12 @@
   transform: translateX(-50%) translateY(-50%);
   background-color: var(--error);
   border-radius: 9999px;
-  width: 140px;
-  height: 140px;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 50px;
+  font-size: 30px;
   font-weight: 600;
 }
 @media screen and (max-width: 600px) {
