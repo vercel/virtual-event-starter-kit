@@ -1,16 +1,14 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useEffect, useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import ControlButton from './ControlButton';
-import { CrossIcon, SettingIcon } from '@100mslive/react-icons';
+import { CrossIcon } from '@100mslive/react-icons';
 import { selectDevices, selectLocalMediaSettings } from '@100mslive/hms-video-store';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import Select from './select';
-
 import { AudioLevelIcon } from '@100mslive/react-icons';
 import Button from './Button';
 
-const SettingDialog = () => {
+const SettingDialog: React.FC = ({ children }) => {
   const actions = useHMSActions();
   const devices = useHMSStore(selectDevices);
   const videoInput = devices['videoInput'] || [];
@@ -31,11 +29,7 @@ const SettingDialog = () => {
   return (
     <Dialog.Root>
       <Dialog.Overlay className="fixed inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }} />
-      <Dialog.Trigger asChild>
-        <ControlButton text="Setting" onClick={() => {}}>
-          <SettingIcon />
-        </ControlButton>
-      </Dialog.Trigger>
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Content className="dialog-content bg-gray-700 md:w-[520px] rounded-2xl w-[90%]">
         <div className="w-full flex items-center justify-between">
           <span className="text-xl font-bold">Settings</span>

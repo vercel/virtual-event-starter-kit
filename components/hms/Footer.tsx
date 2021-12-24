@@ -5,7 +5,8 @@ import {
   VideoOnIcon,
   MicOffIcon,
   MicOnIcon,
-  ShareScreenIcon
+  ShareScreenIcon,
+  SettingIcon
   // RecordIcon,
 } from '@100mslive/react-icons';
 import React from 'react';
@@ -64,7 +65,11 @@ const Footer = () => {
             </ControlButton>
           ) : null} */}
           {role?.name === 'backstage' || role?.name === 'stage' || role?.name === 'invitee' ? (
-            <SettingDialog />
+            <SettingDialog>
+              <ControlButton text="Setting" onClick={() => {}}>
+                <SettingIcon />
+              </ControlButton>
+            </SettingDialog>
           ) : null}
           <LeaveDialog />
         </>

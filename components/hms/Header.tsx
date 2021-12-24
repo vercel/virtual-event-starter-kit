@@ -28,7 +28,7 @@ const Header = () => {
             <button
               onClick={leave}
               className={
-                'color-white p-2 md:static w-10 h-10 rounded-lg bg-gray-base -scale-x-100 cursor-pointer '
+                'color-white p-2 md:static w-10 h-10 rounded-lg bg-gray-base mirror cursor-pointer '
               }
             >
               <ExitIcon />

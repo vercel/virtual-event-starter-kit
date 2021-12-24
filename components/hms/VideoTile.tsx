@@ -25,7 +25,7 @@ const VideoTile: React.FC<Props> = ({ width, height, peer }) => {
       {isLocalVideoEnabled ? (
         <HmsWatermark />
       ) : (
-        <Avatar className="absolute z-10" name={peer.name} />
+        <Avatar size={width < 400 ? 'lg' : 'xl'} className="absolute z-10" name={peer.name} />
       )}
       <PeerName name={peer.name} />
       {peer.videoTrack ? (
