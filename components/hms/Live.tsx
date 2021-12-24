@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
-import List from './list';
+import List from './Conference';
 
 /**
  * Live Video/Audio component

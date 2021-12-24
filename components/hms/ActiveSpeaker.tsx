@@ -7,7 +7,7 @@ import {
 import { useHMSActions, useHMSStore, useVideoList } from '@100mslive/react-sdk';
 import React, { useState, useEffect } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
-import VideoTile from '../VideoTile';
+import VideoTile from './VideoTile';
 
 const ActiveSpeaker = () => {
   const localPeer = useHMSStore(selectLocalPeer);
@@ -68,7 +68,3 @@ const ActiveSpeaker = () => {
 };
 
 export default ActiveSpeaker;
-
-{
-  /*  */
-}
