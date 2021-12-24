@@ -15,25 +15,31 @@ const Sidebar = ({ allStages }: Props) => {
   const [tab, setTab] = React.useState(0);
   const localRole = useHMSStore(selectLocalPeerRole);
   return (
-    <div className={s['container']}>
-      <div className={s['tabs']}>
+    <div className="sidebar-container">
+      <div className="w-full px-4">
         <button
           onClick={() => setTab(0)}
-          className={`${s['tab-btn']} ${s['tab-left']} ${tab === 0 ? s['tab-active'] : ''}`}
+          className={`w-1/2 text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-l-md ${
+            tab === 0 ? 'bg-gray-700 font-bold text-foreground' : 'bg-transparent'
+          }`}
         >
           Chat
         </button>
         {localRole?.name === 'stage' || localRole?.name === 'backstage' ? (
           <button
             onClick={() => setTab(1)}
-            className={`${s['tab-btn']} ${s['tab-right']} ${tab === 1 ? s['tab-active'] : ''}`}
+            className={`w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md ${
+              tab === 1 ? 'bg-gray-700 font-bold text-foreground' : 'bg-transparent'
+            }`}
           >
             Participants
           </button>
         ) : (
           <button
             onClick={() => setTab(2)}
-            className={`${s['tab-btn']} ${s['tab-right']} ${tab === 2 ? s['tab-active'] : ''}`}
+            className={`w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md ${
+              tab === 2 ? 'bg-gray-700 font-bold text-foreground' : 'bg-transparent'
+            }`}
           >
             Schedule
           </button>

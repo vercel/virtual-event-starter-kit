@@ -1,9 +1,8 @@
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import { selectHMSMessages, selectLocalPeer } from '@100mslive/hms-video-store';
 import React, { FormEvent } from 'react';
-import s from './chat.module.css';
 import Avatar from '../Avatar';
-import Dropdown from './dropdown';
+import Dropdown from './Dropdown';
 
 const Chat = () => {
   const [msg, setMsg] = React.useState('');
@@ -23,42 +22,41 @@ const Chat = () => {
   const localPeer = useHMSStore(selectLocalPeer);
   return (
     <>
-      <div id="chat-feed" className={s['chats-ctx']}>
+      <div id="chat-feed" className="h-full overflow-y-scroll p-4">
         {msgs.length > 0 ? (
           msgs.map(m => (
-            <div key={m.id} className={s['chat-box']}>
+            <div key={m.id} className="flex items-start w-full mb-5 relative">
               <Avatar name={m.sender === localPeer.id ? localPeer.name : m.senderName} />
-              <div className={s['chat-meta']}>
-                <div className={s['chat-name']}>
-                  {m.sender === localPeer.id ? `${localPeer.name} (You)` : m.senderName}{' '}
+              <div className="flex flex-col flex-grow">
+                <div className="w-full flex  items-center font-medium pl-2">
+                  <span className="text-foreground">
+                    {m.sender === localPeer.id ? localPeer.name : m.senderName}
+                  </span>
                   {m.senderRole === 'stage' || m.senderRole === 'backstage' ? (
-                    <span
-                      className={`${s['chat-badge']} ${
-                        m.senderRole === 'backstage' ? s['mod-badge'] : ''
-                      }`}
-                    >
-                      {m.senderRole === 'stage' ? 'Speaker' : 'Moderator'}
-                    </span>
+                    <Badge
+                      isLocal={m.sender === localPeer.id}
+                      isMod={m.senderRole === 'backstage'}
+                    />
                   ) : null}
-                  <span className={s['chat-time']}>
+                  <span className="text-gray-400 text-xxs ml-1">
                     {m.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
-                <div className={s['chat-text']}>{m.message}</div>
+                <div className="pl-2 text-gray-200 break-words w-[220px] mt-1">{m.message}</div>
               </div>
               {localPeer.roleName === 'stage' || localPeer.roleName === 'backstage' ? (
-                <>
+                <div className="absolute top-0 right-0">
                   {localPeer.id !== m.sender ? (
                     <Dropdown role={m.senderRole || 'viewer'} id={m.sender} />
                   ) : null}
-                </>
+                </div>
               ) : null}
             </div>
           ))
         ) : (
-          <div className={s['chat-none']}>
-            <div className={s['chat-none-message']}>
-              <img src="/chat.svg" width={60} className={s['chat-none-image']}></img>
+          <div className="">
+            <div className="">
+              <img src="/chat.svg" width={60} className=""></img>
               <p>
                 Welcome to the Webinar. You can engage with the speaker and other participants
                 through the chat below.
@@ -67,8 +65,9 @@ const Chat = () => {
           </div>
         )}
       </div>
-      <form className={s['chat-ctx']} onSubmit={sendMessage}>
+      <form className="h-[80px] px-4 flex items-center  border-t-gray-400" onSubmit={sendMessage}>
         <input
+          className="w-full bg-transparent focus:outline-none"
           value={msg}
           onChange={e => setMsg(e.target.value)}
           type="text"
@@ -80,3 +79,19 @@ const Chat = () => {
 };
 
 export default Chat;
+
+const Badge: React.FC<{ isMod?: boolean; isLocal: boolean }> = ({ isMod = false, isLocal }) => {
+  return (
+    <div
+      style={{ border: `${isMod ? '1px solid transparent' : '1px solid #2f6eeb'}` }}
+      className={`inline-flex items-center text-[10px] p-0.5 mx-1 rounded bg-gray-700 text-foreground`}
+    >
+      {isLocal ? (
+        <>
+          You <span className="w-1 h-1 mx-1 rounded-full bg-foreground" />
+        </>
+      ) : null}{' '}
+      {isMod ? 'Moderator' : 'Speaker'}
+    </div>
+  );
+};
