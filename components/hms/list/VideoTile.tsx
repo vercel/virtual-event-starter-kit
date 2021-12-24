@@ -40,7 +40,7 @@ const VideoTile: React.FC<VideoTileProps> = ({ peer, width, height }) => {
       <video
         ref={videoRef}
         className={`${s['tile-video']} ${audioLevel ? s['tile-audio-level'] : null} ${
-          peer.isLocal ? s['is-local'] : ''
+          peer.isLocal ? s['mirror'] : ''
         }`}
         autoPlay
         muted

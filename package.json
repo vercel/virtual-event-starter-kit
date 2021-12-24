@@ -18,7 +18,7 @@
   "dependencies": {
     "@100mslive/hms-video": "^0.1.32",
     "@100mslive/hms-video-store": "^0.2.79",
-    "@100mslive/react-icons": "^0.0.1-alpha",
+    "@100mslive/react-icons": "^0.0.3-alpha",
     "@100mslive/react-sdk": "^0.0.2-alpha",
     "@100mslive/react-ui": "^0.0.0-alpha",
     "@agility/content-fetch": "1.1.1",

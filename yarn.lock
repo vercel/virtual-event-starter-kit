@@ -50,10 +50,10 @@
   resolved "https://registry.yarnpkg.com/@100mslive/react-icons/-/react-icons-0.0.0-alpha.tgz#1335e48b221fd183492aa2fbe9528a42d1dfc78a"
   integrity sha512-u3hXJc65aQkAZMmA+KVXTR24rYAtS5eWC7WMIhqCfoyvyv5QYQIkKiQxLoAt4FQ1aBHq3kF+GWs39ivMoHqciw==
 
-"@100mslive/react-icons@^0.0.1-alpha":
-  version "0.0.1-alpha"
-  resolved "https://registry.yarnpkg.com/@100mslive/react-icons/-/react-icons-0.0.1-alpha.tgz#b439bae55b79a3f45c5c23516239a0a575efc60e"
-  integrity sha512-dT8Z20DGs1kZC36+y8ZIHWyCYQOuzQm51Caxui2XpCSQfrEq5hPXiufh5usVmT1irhSA+ioBJS27pDhJ0wDAVg==
+"@100mslive/react-icons@^0.0.3-alpha":
+  version "0.0.3-alpha"
+  resolved "https://registry.yarnpkg.com/@100mslive/react-icons/-/react-icons-0.0.3-alpha.tgz#b9feaccd12f4a035df0750e5c6c6cc1d76aae7a9"
+  integrity sha512-CSEPN7QmNfqmHrPNOu9I3kJZEg9w5krqU5KInjrqEp+b9xS5hprycxyHm4sKs/tnwfnUACScqCyAnLV5q8OJxw==
 
 "@100mslive/react-sdk@^0.0.2-alpha":
   version "0.0.2-alpha"

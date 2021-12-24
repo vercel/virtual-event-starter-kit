@@ -6,8 +6,9 @@ import {
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import { ShareScreenIcon } from '@100mslive/react-icons';
 import React from 'react';
-import s from './index.module.css';
 import IconFitScreen from '@components/icons/icon-fit-screen';
+import Button from '../Button';
+import { CrossIcon } from '@100mslive/react-icons';
 
 const ScreenshareTile = () => {
   const screenSharePeer = useHMSStore(selectPeerScreenSharing);
@@ -43,11 +44,14 @@ const ScreenshareTile = () => {
   return (
     <>
       {isLocalScreenShared ? (
-        <div className={s['screenshare']}>
+        <div
+          style={{ height: 'calc(100vh - 3.2 * var(--header-height))' }}
+          className="flex flex-col items-center justify-center font-bold"
+        >
           <p>You're sharing screen</p>{' '}
-          <button className={s['screenshare-btn']} onClick={stopScreenShare}>
-            Stop screen share
-          </button>
+          <Button className="bg-red-600 hover:bg-red-700" onClick={stopScreenShare}>
+            <CrossIcon className="mr-2" /> Stop screen share
+          </Button>
         </div>
       ) : (
         <div className="relative" style={{ height: 'calc(100vh - 3.2 * var(--header-height))' }}>

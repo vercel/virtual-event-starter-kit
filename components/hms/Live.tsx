@@ -9,7 +9,7 @@ import s from './live.module.css';
  */
 const Live = () => {
   return (
-    <div className={s['container']}>
+    <div className="flex justify-center items-center relative flex-col h-full">
       <Header />
       <List />
       <Footer />

@@ -3,7 +3,6 @@ import cn from 'classnames';
 import styleUtils from '../utils.module.css';
 import styles from '../conf-entry.module.css';
 import { PreviewScreen } from './preview';
-import s from './join.module.css';
 import { useHMSActions } from '@100mslive/react-sdk';
 
 interface Props {
@@ -35,22 +34,25 @@ const ViewersJoin: React.FC<{ token: string }> = ({ token }) => {
     });
   };
   return (
-    <div className={s['viewer-container']}>
-      <p className={s['header']}>Join the conference.</p>
-      <p className={s['text']}>
+    <div className="text-center">
+      <h1>Join the conference.</h1>
+      <p className="my-0 text-gray-300 text-sm">
         An interactive online experience by the community, free for everyone.
       </p>
-      <form onSubmit={e => joinRoom(e)} className={s['wrapper']}>
+      <form onSubmit={e => joinRoom(e)} className="mt-12 md:space-x-4">
         <input
           maxLength={20}
           value={name}
           onChange={e => setName(e.target.value)}
-          className={s['input']}
-          type="text"
           required
+          className="p-4 w-80 text-md bg-gray-600 rounded-lg placeholder:text-gray-400"
           placeholder="Enter your name to join the event"
+          type="text"
         />
-        <button type="submit" className={s['btn']}>
+        <button
+          type="submit"
+          className="bg-brand-300 hover:bg-brand-200 px-4 py-4 rounded-lg cursor-pointer md:mt-0 mt-4 w-80 md:w-20"
+        >
           Join
         </button>
       </form>

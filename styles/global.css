@@ -224,6 +224,7 @@ input {
 ::-webkit-media-controls {
   display: none !important;
 }
+
 .show-overlay {
   transition: all 0.5s ease;
   box-shadow: rgb(33 33 33 / 80%) 0px 0px 1px 2px, rgb(0 0 0 / 75%) 0px 0px 0px 5000px;
@@ -246,6 +247,17 @@ input {
 .audio-level {
   border: 3px solid #702ec2;
 }
-.is-local {
-  transform: scaleX(-1);
+
+.leave {
+  background: linear-gradient(180deg, #ed4c5a 0%, #c61f5b 100%);
+  border: 2px solid #60191f;
+}
+
+.dialog-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  padding: 1.5rem;
 }

@@ -47,9 +47,9 @@ const Video: React.FC<{ id: string; audioLevel: boolean; isLocal: boolean }> = (
   return (
     <video
       id={id}
-      className={`bg-gray border-solid border-transparent w-full h-full rounded-lg object-cover ${
+      className={`bg-gray-base border-solid border-transparent w-full h-full rounded-lg object-cover ${
         audioLevel ? 'audio-level' : ''
-      } ${isLocal ? 'is-local' : ''}`}
+      } ${isLocal ? 'mirror' : ''}`}
       ref={ref}
       autoPlay
       muted

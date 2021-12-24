@@ -6,6 +6,7 @@ import VideoTile from '../VideoTile';
 import s from './index.module.css';
 import RoleChangeDialog from '../request';
 import ActiveSpeaker from './ActiveSpeaker';
+import EmptyRoom from '../EmptyRoom';
 
 const VideoList = () => {
   const stagePeers = useHMSStore(selectPeersByRole('stage'));
@@ -52,25 +53,25 @@ const VideoList = () => {
   }, [page, chunkedTracksWithPeer.length]);
   return (
     <div style={{ width: '100%', position: 'relative', padding: '0 1rem' }}>
-      <ActiveSpeaker />
-      <RoleChangeDialog />
       {chunkedTracksWithPeer && chunkedTracksWithPeer.length > 0 ? (
-        <div ref={ref} className={s['video-list']}>
-          {chunkedTracksWithPeer[page < chunkedTracksWithPeer.length ? page : 0].map(
-            (trackPeer, _) => (
-              <VideoTile
-                key={trackPeer.track ? trackPeer.track.id : trackPeer.peer.id}
-                peer={trackPeer.peer}
-                width={trackPeer.width}
-                height={trackPeer.height}
-              />
-            )
-          )}
-        </div>
+        <>
+          <ActiveSpeaker />
+          <RoleChangeDialog />
+          <div ref={ref} className={s['video-list']}>
+            {chunkedTracksWithPeer[page < chunkedTracksWithPeer.length ? page : 0].map(
+              (trackPeer, _) => (
+                <VideoTile
+                  key={trackPeer.track ? trackPeer.track.id : trackPeer.peer.id}
+                  peer={trackPeer.peer}
+                  width={trackPeer.width}
+                  height={trackPeer.height}
+                />
+              )
+            )}
+          </div>
+        </>
       ) : (
-        <div className={s['empty-room']}>
-          <h2>No Speakers Present</h2>
-        </div>
+        <EmptyRoom />
       )}
       {chunkedTracksWithPeer.length > 1 ? (
         <div className={s['pagin-ctx']}>

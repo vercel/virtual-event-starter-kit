@@ -15,7 +15,7 @@ module.exports = {
           800: 'var(--accents-8)'
         },
         'gray-main': 'var(--gray)',
-        gray: 'var(--gray1)',
+        'gray-base': 'var(--gray1)',
         secondary: 'var(--secondary-color)',
         sidebar: 'var(--sidebar)',
         brand: {
@@ -26,6 +26,7 @@ module.exports = {
         }
       },
       fontSize: {
+        xxs: '10px',
         xs: 'var(--text-xs)',
         sm: 'var(--text-sm)',
         md: 'var(--text-md)',

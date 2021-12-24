@@ -58,6 +58,7 @@ const ActiveSpeaker = () => {
     >
       <div ref={ref} className="flex justify-center  w-full h-full">
         {chunkedTracksWithPeer &&
+          chunkedTracksWithPeer.length > 0 &&
           chunkedTracksWithPeer[0].map((p, _) => (
             <VideoTile width={p.width} height={p.height} peer={p.peer} />
           ))}
