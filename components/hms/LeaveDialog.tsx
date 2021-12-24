@@ -6,7 +6,7 @@ import Button from './Button';
 import { useHMSActions } from '@100mslive/react-sdk';
 import { useRouter } from 'next/router';
 
-const LeaveButton = () => {
+const LeaveDialog = () => {
   const actions = useHMSActions();
   const router = useRouter();
   const leave = () => {
@@ -24,7 +24,7 @@ const LeaveButton = () => {
           <HangUpIcon />
         </ControlButton>
       </Dialog.Trigger>
-      <Dialog.Content className="dialog-content bg-gray-700 w-96">
+      <Dialog.Content className="dialog-content bg-gray-700 w-96 rounded-lg">
         <h3>Leave Stage?</h3>
         <p className="text-sm text-gray-200 my-0">Are you sure you want to leave the stage?</p>
         <div className="flex space-x-4 mt-6">
@@ -42,4 +42,4 @@ const LeaveButton = () => {
   );
 };
 
-export default LeaveButton;
+export default LeaveDialog;

@@ -2,7 +2,7 @@ import { selectLocalPeer, selectPeersByRole } from '@100mslive/hms-video-store';
 import { useHMSStore } from '@100mslive/react-sdk';
 import s from './participant.module.css';
 import React from 'react';
-import Avatar from '../avatar';
+import Avatar from '../avatar/index';
 import Dropdown from './dropdown';
 
 const Participants = () => {

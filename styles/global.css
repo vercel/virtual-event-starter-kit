@@ -258,6 +258,5 @@ input {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 8px;
   padding: 1.5rem;
 }

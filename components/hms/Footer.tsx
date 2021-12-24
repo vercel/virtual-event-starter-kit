@@ -5,18 +5,13 @@ import {
   VideoOnIcon,
   MicOffIcon,
   MicOnIcon,
-  ShareScreenIcon,
+  ShareScreenIcon
   // RecordIcon,
-  HangUpIcon
 } from '@100mslive/react-icons';
 import React from 'react';
-import s from './index.module.css';
-import Settings from './Settings';
-import * as Dialog from '@radix-ui/react-dialog';
-import router from 'next/router';
-import cn from 'classnames';
-import ControlButton from '../ControlButton';
-import LeaveButton from '../LeaveButton';
+import ControlButton from './ControlButton';
+import LeaveDialog from './LeaveDialog';
+import SettingDialog from './SettingDialog';
 
 const Footer = () => {
   const role = useHMSStore(selectLocalPeerRole);
@@ -69,9 +64,9 @@ const Footer = () => {
             </ControlButton>
           ) : null} */}
           {role?.name === 'backstage' || role?.name === 'stage' || role?.name === 'invitee' ? (
-            <Settings />
+            <SettingDialog />
           ) : null}
-          <LeaveButton />
+          <LeaveDialog />
         </>
       ) : null}
     </div>

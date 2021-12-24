@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps & JSX.IntrinsicElements['button']> = ({
   children,
   ...props
 }) => {
-  const baseClass = `flex items-center justify-center rounded-lg px-4 py-2.5 cursor-pointer `;
+  const baseClass = `flex items-center justify-center rounded-lg px-4 py-2.5 cursor-pointer disabled:cursor-not-allowed`;
   let variantClass = ``;
   if (variant === 'danger') {
     variantClass = `bg-red-500 hover:bg-red-600`;

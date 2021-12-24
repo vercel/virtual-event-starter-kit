@@ -1,6 +1,6 @@
 .container {
   appearance: none;
-  color: var(--secondary-color);
+  color: var(--accents-1);
   display: inline-flex;
   text-transform: uppercase;
   user-select: none;
@@ -9,12 +9,12 @@
   white-space: nowrap;
   line-height: 0;
   height: 56px;
-  width: 300px;
+  max-width: 300px;
   min-width: 160px;
   outline: none;
   overflow: hidden;
   border-radius: var(--space-2x);
-  background-color: var(--accents-8);
+  background-color: var(--accents-6);
 }
 
 .select {
@@ -33,7 +33,7 @@
   border: 1px solid var(--accents-7);
   border-radius: var(--space-2x);
   font-weight: 700;
-  background-color: var(--accents-8);
+  background-color: var(--accents-6);
 }
 
 .select:focus {
@@ -62,4 +62,5 @@
 
 .arrow > svg {
   color: #fff;
+  stroke-width: 3px;
 }

@@ -1,8 +1,7 @@
 import React from 'react';
-import Footer from './footer';
+import Footer from './Footer';
 import Header from './Header';
 import List from './list';
-import s from './live.module.css';
 
 /**
  * Live Video/Audio component
