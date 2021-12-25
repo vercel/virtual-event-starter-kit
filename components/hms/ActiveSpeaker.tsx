@@ -1,10 +1,5 @@
-import {
-  selectLocalPeer,
-  selectDominantSpeaker,
-  HMSPeer,
-  selectVideoTrackByPeerID
-} from '@100mslive/hms-video-store';
-import { useHMSActions, useHMSStore, useVideoList } from '@100mslive/react-sdk';
+import { selectLocalPeer, selectDominantSpeaker, HMSPeer } from '@100mslive/hms-video-store';
+import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
 import React, { useState, useEffect } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import VideoTile from './VideoTile';
@@ -24,18 +19,6 @@ const ActiveSpeaker = () => {
     peerFilter(dominantSpeaker || localPeer);
   }, [dominantSpeaker]);
 
-  const videoRef = React.useRef<HTMLVideoElement>(null);
-  const hmsActions = useHMSActions();
-  const videoTrack = useHMSStore(selectVideoTrackByPeerID(activeSpeaker.id));
-  useEffect(() => {
-    if (videoRef && videoRef.current && videoTrack) {
-      if (videoTrack.enabled) {
-        hmsActions.attachVideo(videoTrack.id, videoRef.current);
-      } else {
-        hmsActions.detachVideo(videoTrack.id, videoRef.current);
-      }
-    }
-  }, [videoTrack, hmsActions]);
   const { width = 0, height = 0, ref } = useResizeDetector();
   const { chunkedTracksWithPeer } = useVideoList({
     maxColCount: 1,

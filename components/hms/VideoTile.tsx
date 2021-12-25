@@ -23,7 +23,7 @@ const VideoTile: React.FC<Props> = ({ width, height, peer }) => {
   return (
     <div className="relative p-2 flex justify-center items-center" style={{ width, height }}>
       {isLocalVideoEnabled ? (
-        <HmsWatermark />
+        <>{height > 300 ? <HmsWatermark /> : null}</>
       ) : (
         <Avatar size={width < 400 ? 'lg' : 'xl'} className="absolute z-10" name={peer.name} />
       )}
@@ -60,7 +60,7 @@ const Video: React.FC<{ id: string; audioLevel: boolean; isLocal: boolean }> = (
 
 const AudioIndicator = () => {
   return (
-    <div className="absolute right-6 bottom-4 p-1 flex items-center justify-center rounded-full bg-red-500">
+    <div className="absolute right-6 bottom-5 p-1 flex items-center justify-center rounded-full bg-red-500">
       <MicOffIcon />
     </div>
   );

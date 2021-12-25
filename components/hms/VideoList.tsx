@@ -16,7 +16,7 @@ const VideoList = () => {
   const { chunkedTracksWithPeer } = useVideoList({
     maxColCount: 5,
     maxRowCount: 1,
-    maxTileCount: 1,
+    maxTileCount: 5,
     width,
     height,
     peers: renderPeers,
@@ -32,14 +32,21 @@ const VideoList = () => {
       setPage(0);
     }
   }, [page, chunkedTracksWithPeer.length]);
+  const showSingleSpeaker = renderPeers.length === 1;
   return (
     <div style={{ width: '100%', position: 'relative', padding: '0 1rem' }}>
       {chunkedTracksWithPeer && chunkedTracksWithPeer.length > 0 ? (
         <>
-          <ActiveSpeaker />
+          {showSingleSpeaker ? null : <ActiveSpeaker />}
           <RoleChangeDialog />
           <div
-            style={{ height: 'var(--video-list-height)' }}
+            style={{
+              height: `${
+                showSingleSpeaker
+                  ? 'calc((100vh - 3.2 * var(--header-height)) '
+                  : 'var(--video-list-height)'
+              }`
+            }}
             ref={ref}
             className="w-full flex flex-wrap place-content-center items-center"
           >

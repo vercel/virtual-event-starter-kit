@@ -3,6 +3,7 @@ import { selectHMSMessages, selectLocalPeer } from '@100mslive/hms-video-store';
 import React, { FormEvent } from 'react';
 import Avatar from '../Avatar';
 import Dropdown from './Dropdown';
+import { ChatIcon } from '@100mslive/react-icons';
 
 const Chat = () => {
   const [msg, setMsg] = React.useState('');
@@ -54,9 +55,11 @@ const Chat = () => {
             </div>
           ))
         ) : (
-          <div className="">
-            <div className="">
-              <img src="/chat.svg" width={60} className=""></img>
+          <div className="h-full flex justify-center items-center">
+            <div className="w-full flex flex-col items-center text-center">
+              <div className="w-[96px] h-[96px] bg-gray-700 rounded-full text-foreground flex justify-center items-center">
+                <ChatIcon height={50} width={50} />
+              </div>
               <p>
                 Welcome to the Webinar. You can engage with the speaker and other participants
                 through the chat below.
@@ -65,7 +68,11 @@ const Chat = () => {
           </div>
         )}
       </div>
-      <form className="h-[80px] px-4 flex items-center  border-t-gray-400" onSubmit={sendMessage}>
+      <form
+        className="h-[80px] px-4 flex items-center"
+        onSubmit={sendMessage}
+        style={{ borderTop: '1px solid var(--accents-7)' }}
+      >
         <input
           className="w-full bg-transparent focus:outline-none"
           value={msg}

@@ -13,7 +13,7 @@ const Avatar: React.FC<Props> = ({ name, className = '', size = 'sm' }) => {
     sm: 'w-8 h-8 text-xs',
     md: 'w-16 h-16 text-lg',
     lg: 'w-20 h-20 text-3xl',
-    xl: 'w-32 h-32 text-6xl'
+    xl: 'w-32 h-32 text-5xl'
   };
   return (
     <div

@@ -17,7 +17,7 @@ const Participants = () => {
           <div>
             <p>Moderator ({backstagePeers.length})</p>
             {backstagePeers.map(p => (
-              <div key={p.id} className="flex items-center">
+              <div key={p.id} className="flex items-center my-4">
                 <Avatar name={p.name} />
                 <div className="grow ml-4">
                   {p.name} {p.id !== localPeer.id ? null : '(You)'}{' '}
@@ -35,7 +35,7 @@ const Participants = () => {
         <div>
           <p className="flex items-center">Speaker ({stagePeers.length})</p>
           {stagePeers.map(p => (
-            <div key={p.id} className="flex items-center">
+            <div key={p.id} className="flex items-center my-4">
               <Avatar name={p.name} />
               <div className="grow ml-4">
                 {p.name} {p.id !== localPeer.id ? null : '(You)'}
@@ -51,7 +51,7 @@ const Participants = () => {
         <div>
           <p className="flex items-center">Guest Speakers ({inviteePeers.length})</p>
           {inviteePeers.map(p => (
-            <div key={p.id} className="flex items-center">
+            <div key={p.id} className="flex items-center my-4">
               <Avatar name={p.name} />
               <div className="grow ml-4">
                 {p.name} {p.id !== localPeer.id ? null : '(You)'}
@@ -66,7 +66,7 @@ const Participants = () => {
         <div>
           <p className="flex items-center">Viewers ({viewerPeers.length})</p>
           {viewerPeers.map(p => (
-            <div key={p.id} className="flex items-center">
+            <div key={p.id} className="flex items-center my-4">
               <Avatar name={p.name} />
               <div className="grow ml-4">{p.name} </div>
               <Dropdown role={p.roleName || 'viewer'} id={p.id} />

@@ -57,7 +57,6 @@
   --gray: #252729;
   --secondary-color: #8a8f98;
   --sidebar: #0e0e10;
-  --header-height: 72px;
   --brand: #702ec2;
   --brand-lighter: #d6ccee;
   --brand-light: #8465cb;
@@ -66,6 +65,8 @@
   --error: #ea3323;
 
   --foreground: #fff;
+
+  --header-height: 72px;
   --video-list-height: 150px;
 }
 
