@@ -9,7 +9,7 @@ import MobileView from './mobile';
  */
 const Live = () => {
   return (
-    <div className="flex justify-center items-center relative flex-col md:h-full">
+    <div className="flex justify-center items-center relative flex-col h-full">
       <Header />
       <MobileView />
       <List />
