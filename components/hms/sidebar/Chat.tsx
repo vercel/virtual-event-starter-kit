@@ -57,7 +57,7 @@ const Chat = () => {
         ) : (
           <div className="h-full flex justify-center items-center">
             <div className="w-full flex flex-col items-center text-center">
-              <div className="w-[96px] h-[96px] bg-gray-700 rounded-full text-foreground flex justify-center items-center">
+              <div className="w-[80px] h-[80px] bg-gray-700 rounded-full text-foreground flex justify-center items-center">
                 <ChatIcon height={50} width={50} />
               </div>
               <p>

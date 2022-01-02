@@ -52,12 +52,17 @@ const VideoList = () => {
           >
             {chunkedTracksWithPeer[page < chunkedTracksWithPeer.length ? page : 0].map(
               (trackPeer, _) => (
-                <VideoTile
-                  key={trackPeer.track ? trackPeer.track.id : trackPeer.peer.id}
-                  peer={trackPeer.peer}
-                  width={trackPeer.width}
-                  height={trackPeer.height}
-                />
+                <>
+                  {/* Don't show local peer  */}
+                  {!trackPeer.peer.isLocal ? (
+                    <VideoTile
+                      key={trackPeer.track ? trackPeer.track.id : trackPeer.peer.id}
+                      peer={trackPeer.peer}
+                      width={trackPeer.width}
+                      height={trackPeer.height}
+                    />
+                  ) : null}
+                </>
               )
             )}
           </div>
