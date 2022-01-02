@@ -35,7 +35,7 @@ const Footer = () => {
   const isLocalScreenShare = useHMSStore(selectIsLocalScreenShared);
   return (
     <div
-      className="w-full flex items-center justify-center space-x-5"
+      className="w-full hidden md:flex items-center justify-center space-x-5"
       style={{ height: 'calc(var(--header-height) * 1.2)' }}
     >
       {role?.name !== 'viewer' ? (

@@ -57,8 +57,8 @@ const Chat = () => {
         ) : (
           <div className="h-full flex justify-center items-center">
             <div className="w-full flex flex-col items-center text-center">
-              <div className="w-[80px] h-[80px] bg-gray-700 rounded-full text-foreground flex justify-center items-center">
-                <ChatIcon height={50} width={50} />
+              <div className="md:w-[80px] md:h-[80px] w-[50px] h-[50px] bg-gray-700 rounded-full text-foreground flex justify-center items-center">
+                <ChatIcon className="md:w-[50px] md:h-[50px] h-[30px] w-[30px]" />
               </div>
               <p>
                 Welcome to the Webinar. You can engage with the speaker and other participants

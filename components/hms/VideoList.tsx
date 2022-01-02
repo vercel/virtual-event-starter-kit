@@ -34,7 +34,10 @@ const VideoList = () => {
   }, [page, chunkedTracksWithPeer.length]);
   const showSingleSpeaker = renderPeers.length === 1;
   return (
-    <div style={{ width: '100%', position: 'relative', padding: '0 1rem' }}>
+    <div
+      className="hidden md:block"
+      style={{ width: '100%', position: 'relative', padding: '0 1rem' }}
+    >
       {chunkedTracksWithPeer && chunkedTracksWithPeer.length > 0 ? (
         <>
           {showSingleSpeaker ? null : <ActiveSpeaker />}
