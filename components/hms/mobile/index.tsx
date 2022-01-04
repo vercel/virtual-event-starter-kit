@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import Avatar from '../Avatar';
 import { useResizeDetector } from 'react-resize-detector';
 import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
-import { selectDominantSpeaker, HMSPeer, selectPeersByRole } from '@100mslive/hms-video-store';
+import { HMSPeer, selectPeersByRole } from '@100mslive/hms-video-store';
 import VideoTile from '../VideoTile';
 
 const MobileView: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
@@ -46,8 +46,6 @@ const VideoList: React.FC<{ peer: HMSPeer }> = ({ peer }) => {
 
 const MobileHeader = () => {
   const stagePeers = useHMSStore(selectPeersByRole('stage'));
-  // TODO: add invitee
-  const active = false;
   return (
     <div className="w-full flex items-center h-[90px] pl-4 my-2">
       <div className="flex flex-col justify-center items-center space-y-1">
@@ -89,11 +87,3 @@ const LayoutModeIcon = () => {
     </svg>
   );
 };
-
-function usePrevious(value: HMSPeer): HMSPeer | undefined {
-  const ref = useRef<HMSPeer>();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
