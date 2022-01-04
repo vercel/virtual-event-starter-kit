@@ -42,19 +42,16 @@ const ScreenshareTile = () => {
     }
   };
   return (
-    <>
+    <div className="screenshare self-screenshare">
       {isLocalScreenShared ? (
-        <div
-          style={{ height: 'calc(100vh - 3.2 * var(--header-height))' }}
-          className="flex flex-col items-center justify-center font-bold"
-        >
+        <div className="flex flex-col items-center justify-center font-bold screenshare self-screenshare">
           <p>You're sharing screen</p>{' '}
           <Button className="bg-red-600 hover:bg-red-700" onClick={stopScreenShare}>
             <CrossIcon className="mr-2" /> Stop screen share
           </Button>
         </div>
       ) : (
-        <div className="relative" style={{ height: 'calc(100vh - 3.2 * var(--header-height))' }}>
+        <div className="relative flex items-center h-full md:p-0 p-2">
           <div
             className="absolute flex items-center bottom-0 right-0 text-sm p-2 rounded-tl-lg"
             style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
@@ -68,10 +65,16 @@ const ScreenshareTile = () => {
           >
             <IconFitScreen />
           </button>
-          <video id="screen-share-video" className="h-full" ref={videoRef} autoPlay muted></video>
+          <video
+            id="screen-share-video"
+            className="max-w-full block h-auto md:h-full"
+            ref={videoRef}
+            autoPlay
+            muted
+          ></video>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
