@@ -6,9 +6,10 @@ import { selectDominantSpeaker, HMSPeer, selectPeersByRole } from '@100mslive/hm
 import VideoTile from '../VideoTile';
 
 const MobileView = () => {
+  const peers = useHMSStore(selectPeersByRole('stage'));
   return (
     <div className="md:hidden w-full h-full flex flex-col">
-      <MobileHeader />
+      {peers.length > 0 ? <MobileHeader /> : 'NO Speakers'}
       <VideoList />
     </div>
   );
