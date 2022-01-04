@@ -11,6 +11,7 @@ import VideoTile from './VideoTile';
 import RoleChangeDialog from './request';
 import EmptyRoom from './EmptyRoom';
 import Pagination from './Pagination';
+import MobileView from './mobile';
 
 const VideoList = () => {
   const activeSpeakerThreshold = 1;
@@ -43,7 +44,7 @@ const VideoList = () => {
   return (
     <>
       <div
-        className="w-full relative"
+        className="w-full relative md:block hidden"
         style={{ height: 'calc((100vh - 3.2 * var(--header-height))' }}
       >
         {renderPeers.length > 0 ? (
@@ -59,6 +60,7 @@ const VideoList = () => {
         )}
       </div>
       <RoleChangeDialog />
+      <MobileView allPeers={renderPeers} activePeer={activeSpeaker} />
     </>
   );
 };
