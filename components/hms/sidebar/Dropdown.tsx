@@ -1,10 +1,8 @@
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import HorizontalMenuIcon from '@components/icons/icon-menu-hor';
-import RemoveUserIcon from '@components/icons/icon-remove-user';
-import BringToStageIcon from '@components/icons/icon-bring-stage';
-import s from './index.module.css';
 import { selectLocalPeerRole } from '@100mslive/hms-video-store';
+import { InviteStageIcon, RemoveUserIcon } from '@100mslive/react-icons';
 
 const Dropdown: React.FC<{ id: string; role: string }> = ({ id, role }) => {
   const actions = useHMSActions();
@@ -34,21 +32,27 @@ const Dropdown: React.FC<{ id: string; role: string }> = ({ id, role }) => {
         <div>
           <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
-              <button className={s['menu-btn']}>
+              <button type="button">
                 <HorizontalMenuIcon />
               </button>
             </DropdownMenu.Trigger>
-            <DropdownMenu.Content className={s['menu-content']}>
+            <DropdownMenu.Content className="min-w-[220px] bg-gray-700 rounded-lg">
               <DropdownMenu.Item asChild>
-                <button className={s['menu-item']} onClick={changeRole}>
-                  <BringToStageIcon />{' '}
+                <button
+                  className={`w-full flex items-center px-2 py-3 focus:bg-gray-600 focus:outline-none text-sm rounded-lg`}
+                  onClick={changeRole}
+                >
+                  <InviteStageIcon className="mr-2" />
                   {role === 'viewer' ? 'Bring user to stage' : 'Remove user from stage'}
                 </button>
               </DropdownMenu.Item>
               {localRole?.name === 'backstage' ? (
                 <DropdownMenu.Item asChild>
-                  <button className={s['menu-item']} onClick={removePeer}>
-                    <RemoveUserIcon /> Remove user
+                  <button
+                    className="w-full flex items-center px-2 py-3 focus:bg-gray-600 focus:outline-none text-sm rounded-lg"
+                    onClick={removePeer}
+                  >
+                    <RemoveUserIcon className="mr-2" /> Remove user
                   </button>
                 </DropdownMenu.Item>
               ) : null}

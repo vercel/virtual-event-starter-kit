@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
-import { IconButton, Preview, Loading, Avatar, Dialog, Flex, Text } from '@100mslive/react-ui';
+import { IconButton, Preview, Loading } from '@100mslive/react-ui';
 import {
   MicOffIcon,
   MicOnIcon,
@@ -9,14 +9,14 @@ import {
   VideoOnIcon,
   ArrowRightIcon
 } from '@100mslive/react-icons';
-import { useHMSActions, useHMSStore, useVideoTile } from '@100mslive/react-sdk';
-import { getAvatarBg } from '../getAvatarBg';
+import { useHMSActions, useVideoTile } from '@100mslive/react-sdk';
 import s from './index.module.css';
-import { HMSPeer, selectDevices, selectLocalMediaSettings } from '@100mslive/hms-video-store';
-import Select from '@components/hms/select';
+import { HMSPeer } from '@100mslive/hms-video-store';
 import InfoIcon from '@components/icons/icon-info';
 import { useRouter } from 'next/router';
 import { usePreview } from './usePreview';
+import SettingDialog from '../SettingDialog';
+import Avatar from '../Avatar';
 
 export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
   const actions = useHMSActions();
@@ -32,8 +32,8 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
       settings: {
         isAudioMuted: !audioEnabled,
         isVideoMuted: !videoEnabled
-      },
-      initEndpoint: 'https://qa-init.100ms.live/init'
+      }
+      //initEndpoint: 'https://qa-init.100ms.live/init'
     });
   };
   return (
@@ -45,15 +45,6 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
           <p className={s['sub-text']}>Preview your video and audio before joining the stage</p>
         </div>
         <form onSubmit={joinRoom}>
-          {/* <p className={s['label']}>Enter name:</p>
-          <input
-            required
-            maxLength={20}
-            className={s['input']}
-            value={name}
-            onChange={e => setName(e.target.value)}
-            type="text"
-          /> */}
           <p className={s['info']}>
             <InfoIcon /> Note: Your mic is {audioEnabled ? 'on' : 'off'} and video is{' '}
             {videoEnabled ? 'on' : 'off'}
@@ -74,7 +65,6 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
 };
 
 const PreviewVideo: React.FC<{ peer: HMSPeer; name: string }> = ({ peer, name }) => {
-  const { color, initials } = getAvatarBg(name);
   const actions = useHMSActions();
   const { videoRef, isLocal, isAudioOn, isVideoOn, audioLevel } = useVideoTile(peer);
   return (
@@ -82,9 +72,7 @@ const PreviewVideo: React.FC<{ peer: HMSPeer; name: string }> = ({ peer, name })
       {isVideoOn ? (
         <Preview.Video local={isLocal} ref={videoRef} autoPlay muted playsInline />
       ) : (
-        <Avatar size="lg" style={{ backgroundColor: color }}>
-          {initials}
-        </Avatar>
+        <Avatar size="lg" name={name} />
       )}
       <Preview.Controls>
         <IconButton active={isAudioOn} onClick={() => actions.setLocalAudioEnabled(!isAudioOn)}>
@@ -95,84 +83,14 @@ const PreviewVideo: React.FC<{ peer: HMSPeer; name: string }> = ({ peer, name })
         </IconButton>
       </Preview.Controls>
       <Preview.Setting>
-        <PreviewSetting />
+        <SettingDialog>
+          <IconButton>
+            <SettingIcon />
+          </IconButton>
+        </SettingDialog>
       </Preview.Setting>
       <Preview.BottomOverlay />
     </Preview.VideoRoot>
-  );
-};
-
-const PreviewSetting = () => {
-  const actions = useHMSActions();
-  const devices = useHMSStore(selectDevices);
-  const videoInput = devices['videoInput'] || [];
-  const audioInput = devices['audioInput'] || [];
-  const audioOutput = devices['audioOutput'] || [];
-  const selectedDevices = useHMSStore(selectLocalMediaSettings);
-  const handleAudioInput = (a: string) => {
-    actions.setAudioSettings({ deviceId: a });
-  };
-  const handleAudioOutput = (a: string) => {
-    actions.setAudioOutputDevice(a);
-  };
-  const handleVideoInput = (a: string) => {
-    actions.setVideoSettings({ deviceId: a });
-  };
-  return (
-    <Dialog>
-      <Dialog.Trigger asChild>
-        <IconButton>
-          <SettingIcon />
-        </IconButton>
-      </Dialog.Trigger>
-      <Dialog.Content title="Settings">
-        {videoInput.length > 0 ? (
-          <Flex align="center" justify="between" css={{ my: '1rem' }}>
-            <Text variant="heading-sm">Video:</Text>
-            <Select
-              onChange={e => handleVideoInput(e.target.value)}
-              value={selectedDevices.videoInputDeviceId}
-            >
-              {videoInput.map((device: MediaDeviceInfo) => (
-                <option value={device.deviceId} key={device.deviceId}>
-                  {device.label}
-                </option>
-              ))}
-            </Select>
-          </Flex>
-        ) : null}
-        {audioInput.length > 0 ? (
-          <Flex align="center" justify="between" css={{ my: '1rem' }}>
-            <Text variant="heading-sm">Microphone:</Text>
-            <Select
-              onChange={e => handleAudioInput(e.target.value)}
-              value={selectedDevices.audioInputDeviceId}
-            >
-              {audioInput.map((device: MediaDeviceInfo) => (
-                <option value={device.deviceId} key={device.deviceId}>
-                  {device.label}
-                </option>
-              ))}
-            </Select>
-          </Flex>
-        ) : null}
-        {audioOutput.length > 0 ? (
-          <Flex align="center" justify="between" css={{ my: '1rem' }}>
-            <Text variant="heading-sm">Speaker:</Text>
-            <Select
-              onChange={e => handleAudioOutput(e.target.value)}
-              value={selectedDevices.audioOutputDeviceId}
-            >
-              {audioOutput.map((device: MediaDeviceInfo) => (
-                <option value={device.deviceId} key={device.deviceId}>
-                  {device.label}
-                </option>
-              ))}
-            </Select>
-          </Flex>
-        ) : null}
-      </Dialog.Content>
-    </Dialog>
   );
 };
 

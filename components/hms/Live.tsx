@@ -1,16 +1,17 @@
 import React from 'react';
-import Footer from './footer';
-import Header from './header';
-import List from './list';
-import s from './live.module.css';
+import Footer from './Footer';
+import Header from './Header';
+import List from './Conference';
+import MobileView from './mobile';
 
 /**
  * Live Video/Audio component
  */
 const Live = () => {
   return (
-    <div className={s['container']}>
+    <div className="flex justify-center items-center relative flex-col h-full">
       <Header />
+      <MobileView />
       <List />
       <Footer />
     </div>
