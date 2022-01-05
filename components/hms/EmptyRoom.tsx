@@ -1,8 +1,24 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
 import Button from './Button';
 import { InviteIcon, PersonIcon } from '@100mslive/react-icons';
+import { selectLocalPeerRole } from '@100mslive/hms-video-store';
+import { useHMSStore } from '@100mslive/react-sdk';
+import { ChangeRoleDialog } from './demo-cta/room-cta';
 
 const EmptyRoom = () => {
+  const role = useHMSStore(selectLocalPeerRole) || 'viewer';
+  const [cp, setCp] = React.useState(false);
+  const copy = () => {
+    // @ts-ignore
+    navigator.clipboard.writeText(`${window.location.host}/stage/a?role=${role.name}`);
+    if (!cp) {
+      setCp(true);
+      setTimeout(() => {
+        setCp(false);
+      }, 3000);
+    }
+  };
   return (
     <div
       className="flex flex-col justify-center items-center text-center"
@@ -13,12 +29,22 @@ const EmptyRoom = () => {
         Looks like nobody has joined as a speaker. Invite someone to speak or change your role.
       </p>
       <div className="flex space-x-4 mt-8">
-        <Button variant="secondary">
-          <InviteIcon className="mr-2" /> Invite
-        </Button>
-        <Button>
-          <PersonIcon className="mr-2" /> Change Role
-        </Button>
+        <div className="relative">
+          {cp ? (
+            <p className="absolute top-12 left-0 flex bg-gray-600 justify-center  rounded-lg w-48 p-2">
+              Copied to clipboard!
+            </p>
+          ) : null}
+          <Button onClick={() => copy()} variant="secondary">
+            <InviteIcon className="mr-2" /> Invite
+          </Button>
+        </div>
+
+        <ChangeRoleDialog>
+          <Button>
+            <PersonIcon className="mr-2" /> Change Role
+          </Button>
+        </ChangeRoleDialog>
       </div>
     </div>
   );

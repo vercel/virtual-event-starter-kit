@@ -35,25 +35,31 @@ const RoomCta = () => {
         </button>
       </div>
 
-      <Dialog.Root>
-        <Dialog.Overlay className={s['overlay']} />
-        <Dialog.Trigger asChild>
-          <button className={s['cta-role']}>
-            <PersonIcon />
-            Change Role
-          </button>
-        </Dialog.Trigger>
-        <Dialog.Content className={s['content']}>
-          <Dialog.Close asChild className={s['close-btn']}>
-            <button>
-              <CrossIcon />
-            </button>
-          </Dialog.Close>
-          <DemoModal />
-        </Dialog.Content>
-      </Dialog.Root>
+      <ChangeRoleDialog>
+        <button className={s['cta-role']}>
+          <PersonIcon />
+          Change Role
+        </button>
+      </ChangeRoleDialog>
     </div>
   );
 };
 
 export default RoomCta;
+
+export const ChangeRoleDialog: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <Dialog.Root>
+      <Dialog.Overlay className={s['overlay']} />
+      <Dialog.Trigger asChild>{children}</Dialog.Trigger>
+      <Dialog.Content className={s['content']}>
+        <Dialog.Close asChild className={s['close-btn']}>
+          <button>
+            <CrossIcon />
+          </button>
+        </Dialog.Close>
+        <DemoModal />
+      </Dialog.Content>
+    </Dialog.Root>
+  );
+};
