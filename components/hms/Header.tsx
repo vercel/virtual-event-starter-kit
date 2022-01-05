@@ -55,13 +55,13 @@ const Header = () => {
         </div>
       </div>
       <div className="flex flex-row justify-end gap-4">
-        <div className="md:flex hidden flex-row  text-center align-middle gap-2">
+        {/* <div className="md:flex hidden flex-row  text-center align-middle gap-2">
           <p>Speakers</p>
           <div className="gap-2 flex flex-row items-center text-center">
             <img src={'/image1.png'} className="rounded-full w-6 h-6"></img>
             <img src={'/image2.png'} className="rounded-full w-6 h-6"></img>
           </div>
-        </div>
+        </div> */}
         <div className="flex items-center">
           <div
             className="rounded-3xl border-solid py-2 px-4 flex items-center font-normal text-sm leading-4 gap-2 "

@@ -290,3 +290,16 @@ input {
     --talk-card-width: unset;
   }
 }
+
+.screenshare {
+  height: calc(100vh - 3.2 * var(--header-height));
+}
+
+@media screen and (max-width: 760px) {
+  .self-screenshare {
+    height: 100%;
+  }
+  .user-screenshare {
+    height: auto;
+  }
+}

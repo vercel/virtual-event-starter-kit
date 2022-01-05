@@ -1,44 +1,31 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import Avatar from '../Avatar';
 import { useResizeDetector } from 'react-resize-detector';
 import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
-import { selectDominantSpeaker, HMSPeer, selectPeersByRole } from '@100mslive/hms-video-store';
+import { HMSPeer, selectPeersByRole } from '@100mslive/hms-video-store';
 import VideoTile from '../VideoTile';
 
-const MobileView = () => {
-  const peers = useHMSStore(selectPeersByRole('stage'));
+const MobileView: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
+  activePeer,
+  allPeers
+}) => {
   return (
     <div className="md:hidden w-full h-full flex flex-col">
-      {peers.length > 0 ? <MobileHeader /> : 'NO Speakers'}
-      <VideoList />
+      {allPeers.length > 0 ? <MobileHeader /> : 'NO Speakers'}
+      <VideoList peer={activePeer} />
     </div>
   );
 };
 
-const VideoList = () => {
-  const peers = useHMSStore(selectPeersByRole('stage'));
+const VideoList: React.FC<{ peer: HMSPeer }> = ({ peer }) => {
   const { width = 0, height = 0, ref } = useResizeDetector();
-  const [activeSpeaker, setActiveSpeaker] = useState(peers[0]);
-  const dominantSpeaker = useHMSStore(selectDominantSpeaker);
-  const peerFilter = (dominantSpeaker: HMSPeer) => {
-    if (dominantSpeaker) {
-      setActiveSpeaker(dominantSpeaker);
-    }
-  };
-
-  const prevPeer = usePrevious(activeSpeaker);
-
-  useEffect(() => {
-    peerFilter(dominantSpeaker || (prevPeer ? prevPeer : peers[0]));
-  }, [dominantSpeaker]);
-
   const { chunkedTracksWithPeer } = useVideoList({
     maxColCount: 1,
     maxRowCount: 1,
     maxTileCount: 1,
     width,
     height,
-    peers: [activeSpeaker],
+    peers: [peer],
     aspectRatio: {
       width: 1.8,
       height: 1
@@ -59,8 +46,6 @@ const VideoList = () => {
 
 const MobileHeader = () => {
   const stagePeers = useHMSStore(selectPeersByRole('stage'));
-  // TODO: add invitee
-  const active = false;
   return (
     <div className="w-full flex items-center h-[90px] pl-4 my-2">
       <div className="flex flex-col justify-center items-center space-y-1">
@@ -102,11 +87,3 @@ const LayoutModeIcon = () => {
     </svg>
   );
 };
-
-function usePrevious(value: HMSPeer): HMSPeer | undefined {
-  const ref = useRef<HMSPeer>();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
