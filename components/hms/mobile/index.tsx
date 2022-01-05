@@ -2,17 +2,29 @@ import React from 'react';
 import Avatar from '../Avatar';
 import { useResizeDetector } from 'react-resize-detector';
 import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
-import { HMSPeer, selectPeersByRole } from '@100mslive/hms-video-store';
+import {
+  HMSPeer,
+  selectIsSomeoneScreenSharing,
+  selectPeersByRole
+} from '@100mslive/hms-video-store';
 import VideoTile from '../VideoTile';
+import ScreenshareTile from '../ScreenshareTile';
 
 const MobileView: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
   activePeer,
   allPeers
 }) => {
+  const isSomeoneScreenSharing = useHMSStore(selectIsSomeoneScreenSharing);
   return (
     <div className="md:hidden w-full h-full flex flex-col">
-      {allPeers.length > 0 ? <MobileHeader /> : 'NO Speakers'}
-      <VideoList peer={activePeer} />
+      {allPeers.length > 0 ? (
+        <MobileHeader />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center font-medium">
+          No Speakers Present
+        </div>
+      )}
+      {isSomeoneScreenSharing ? <ScreenshareTile /> : <VideoList peer={activePeer} />}
     </div>
   );
 };

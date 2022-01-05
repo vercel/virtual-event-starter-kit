@@ -44,6 +44,7 @@ const VideoList = () => {
       }
     }
   }, [dominantSpeaker, stagePeers]);
+  const isSomeoneScreenSharing = useHMSStore(selectIsSomeoneScreenSharing);
   return (
     <>
       <div
@@ -52,7 +53,7 @@ const VideoList = () => {
       >
         {renderPeers.length > 0 ? (
           <>
-            {isActiveSpeakerModeOn ? (
+            {isActiveSpeakerModeOn || isSomeoneScreenSharing ? (
               <ActiveSpeaker allPeers={renderPeers} activePeer={activeSpeaker} />
             ) : (
               <NonActiveSpeakerView peers={renderPeers} />
@@ -139,9 +140,9 @@ const ActiveTile: React.FC<{ activePeer: HMSPeer }> = ({ activePeer }) => {
 const AllSpeakers: React.FC<{ allPeers: HMSPeer[] }> = ({ allPeers }) => {
   const { width = 0, height = 0, ref } = useResizeDetector();
   const { chunkedTracksWithPeer } = useVideoList({
-    maxColCount: 5,
+    maxColCount: hmsConfig.maxTileCountSpeakers,
     maxRowCount: 1,
-    maxTileCount: 5,
+    maxTileCount: hmsConfig.maxTileCountSpeakers,
     width,
     height,
     peers: allPeers,

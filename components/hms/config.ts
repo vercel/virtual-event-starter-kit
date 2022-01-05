@@ -9,5 +9,9 @@ export const hmsConfig = {
   aspectRatio: {
     width: 1.8,
     height: 1
-  }
+  },
+  /**
+   * maximum no.of tiles that can be rendered in speakers row
+   */
+  maxTileCountSpeakers: 5,
 }
