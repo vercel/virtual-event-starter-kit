@@ -2,7 +2,8 @@ import {
   selectDominantSpeaker,
   selectLocalPeer,
   selectPeersByRole,
-  HMSPeer
+  HMSPeer,
+  selectIsSomeoneScreenSharing
 } from '@100mslive/hms-video-store';
 import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
 import React, { useEffect, useState } from 'react';
@@ -13,6 +14,7 @@ import EmptyRoom from './EmptyRoom';
 import Pagination from './Pagination';
 import MobileView from './mobile';
 import { hmsConfig } from './config';
+import ScreenshareTile from './ScreenshareTile';
 
 const VideoList = () => {
   const activeSpeakerThreshold = hmsConfig.activeSpeakerThreshold;
@@ -94,10 +96,14 @@ const ActiveSpeaker: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
   allPeers,
   activePeer
 }) => {
+  const isSomeoneScreenSharing = useHMSStore(selectIsSomeoneScreenSharing);
+  const peers = isSomeoneScreenSharing
+    ? allPeers
+    : allPeers.filter(peer => peer.id !== activePeer.id);
   return (
     <>
-      <ActiveTile activePeer={activePeer} />
-      <AllSpeakers allPeers={allPeers.filter(peer => peer.id !== activePeer.id)} />
+      {isSomeoneScreenSharing ? <ScreenshareTile /> : <ActiveTile activePeer={activePeer} />}
+      <AllSpeakers allPeers={peers} />
     </>
   );
 };

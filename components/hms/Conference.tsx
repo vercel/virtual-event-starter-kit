@@ -5,8 +5,7 @@ import ScreenshareTile from './ScreenshareTile';
 import VideoList from './VideoList';
 
 const List = () => {
-  const isSomeoneScreenSharing = useHMSStore(selectIsSomeoneScreenSharing);
-  return <>{isSomeoneScreenSharing ? <ScreenshareTile /> : <VideoList />}</>;
+  return <VideoList />;
 };
 
 export default List;

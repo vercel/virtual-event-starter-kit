@@ -292,7 +292,7 @@ input {
 }
 
 .screenshare {
-  height: calc(100vh - 3.2 * var(--header-height));
+  height: calc((100vh - 3.2 * var(--header-height)) - var(--video-list-height));
 }
 
 @media screen and (max-width: 760px) {

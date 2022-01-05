@@ -51,27 +51,29 @@ const ScreenshareTile = () => {
           </Button>
         </div>
       ) : (
-        <div className="relative flex items-center h-full md:p-0 p-2">
-          <div
-            className="absolute flex items-center bottom-0 right-0 text-sm p-2 rounded-tl-lg"
-            style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
-          >
-            <ShareScreenIcon className="mr-2" /> Viewing {screenSharePeer?.name}’s Screen
+        <div className="flex w-full justify-center items-center h-full md:p-0 p-2">
+          <div className="max-w-full block h-auto md:h-full relative">
+            <div
+              className="absolute flex items-center bottom-0 right-0 text-sm p-2 rounded-tl-lg"
+              style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
+            >
+              <ShareScreenIcon className="mr-2" /> Viewing {screenSharePeer?.name}’s Screen
+            </div>
+            <button
+              onClick={fullScreen}
+              style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
+              className="absolute top-0 right-0 display items-center  justify-center rounded-bl-lg cursor-pointer z-10"
+            >
+              <IconFitScreen />
+            </button>
+            <video
+              id="screen-share-video"
+              className="max-w-full block h-auto md:h-full"
+              ref={videoRef}
+              autoPlay
+              muted
+            ></video>
           </div>
-          <button
-            onClick={fullScreen}
-            style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
-            className="absolute top-0 right-0 display items-center  justify-center rounded-bl-lg cursor-pointer z-10"
-          >
-            <IconFitScreen />
-          </button>
-          <video
-            id="screen-share-video"
-            className="max-w-full block h-auto md:h-full"
-            ref={videoRef}
-            autoPlay
-            muted
-          ></video>
         </div>
       )}
     </div>
