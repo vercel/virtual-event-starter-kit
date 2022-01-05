@@ -12,9 +12,10 @@ import RoleChangeDialog from './request';
 import EmptyRoom from './EmptyRoom';
 import Pagination from './Pagination';
 import MobileView from './mobile';
+import { hmsConfig } from './config';
 
 const VideoList = () => {
-  const activeSpeakerThreshold = 1;
+  const activeSpeakerThreshold = hmsConfig.activeSpeakerThreshold;
   const stagePeers = useHMSStore(selectPeersByRole('stage'));
   const inviteePeers = useHMSStore(selectPeersByRole('invitee'));
   const localPeer = useHMSStore(selectLocalPeer);
@@ -76,10 +77,7 @@ const NonActiveSpeakerView: React.FC<{ peers: HMSPeer[] }> = ({ peers }) => {
     width,
     height,
     peers,
-    aspectRatio: {
-      width: 1.8,
-      height: 1
-    }
+    aspectRatio: hmsConfig.aspectRatio
   });
   return (
     <div ref={ref} className="w-full h-full flex flex-wrap place-content-center items-center">
@@ -113,10 +111,7 @@ const ActiveTile: React.FC<{ activePeer: HMSPeer }> = ({ activePeer }) => {
     width,
     height,
     peers: [activePeer],
-    aspectRatio: {
-      width: 1.8,
-      height: 1
-    }
+    aspectRatio: hmsConfig.aspectRatio
   });
   return (
     <div
@@ -144,10 +139,7 @@ const AllSpeakers: React.FC<{ allPeers: HMSPeer[] }> = ({ allPeers }) => {
     width,
     height,
     peers: allPeers,
-    aspectRatio: {
-      width: 1.8,
-      height: 1
-    }
+    aspectRatio: hmsConfig.aspectRatio
   });
   const [page, setPage] = React.useState(0);
   React.useEffect(() => {

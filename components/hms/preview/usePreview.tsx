@@ -24,8 +24,8 @@ export const usePreview = (authToken: string, userName = 'preview') => {
     if (roomState === HMSRoomState.Disconnected) {
       actions.preview({
         userName,
-        authToken
-        //initEndpoint: 'https://qa-init.100ms.live/init'
+        authToken,
+        initEndpoint: process.env.NEXT_PUBLIC_HMS_INIT_PEER_ENPOINT || undefined
       });
     }
     if (isBrowser) {

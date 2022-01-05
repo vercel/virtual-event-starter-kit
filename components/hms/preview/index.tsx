@@ -32,8 +32,8 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
       settings: {
         isAudioMuted: !audioEnabled,
         isVideoMuted: !videoEnabled
-      }
-      //initEndpoint: 'https://qa-init.100ms.live/init'
+      },
+      initEndpoint: process.env.NEXT_PUBLIC_HMS_INIT_PEER_ENPOINT || undefined
     });
   };
   return (

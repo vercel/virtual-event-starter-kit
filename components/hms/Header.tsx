@@ -1,5 +1,9 @@
-import { selectLocalPeer, selectPeersByRole } from '@100mslive/hms-video-store';
-import { ExitIcon } from '@100mslive/react-icons';
+import {
+  selectDominantSpeaker,
+  selectLocalPeer,
+  selectPeersByRole
+} from '@100mslive/hms-video-store';
+import { ExitIcon, SpeakerIcon } from '@100mslive/react-icons';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import UsersIcon from '@components/icons/icon-users';
 import { useRouter } from 'next/router';
@@ -17,6 +21,7 @@ const Header = () => {
     }
   };
   const localPeer = useHMSStore(selectLocalPeer);
+  const dominantPeer = useHMSStore(selectDominantSpeaker);
   return (
     <div
       className="flex items-center justify-between px-4 w-full  "
@@ -54,6 +59,14 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+      {dominantPeer ? (
+        <div className="flex items-center space-x-2">
+          <SpeakerIcon />
+          <span>{dominantPeer.name}</span>
+        </div>
+      ) : null}
+
       <div className="flex flex-row justify-end gap-4">
         {/* <div className="md:flex hidden flex-row  text-center align-middle gap-2">
           <p>Speakers</p>
