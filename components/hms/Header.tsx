@@ -61,7 +61,7 @@ const Header = () => {
       </div>
 
       {dominantPeer ? (
-        <div className="flex items-center space-x-2">
+        <div className="md:flex  hidden items-center space-x-2">
           <SpeakerIcon />
           <span>{dominantPeer.name}</span>
         </div>
