@@ -21,13 +21,12 @@ import Avatar from '../Avatar';
 export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
   const actions = useHMSActions();
   const router = useRouter();
-  const name = router.query.name as string;
+  const [name, setName] = React.useState('');
   const { localPeer, audioEnabled, videoEnabled } = usePreview(token, 'preview');
-  // const [name, setName] = React.useState('');
   const joinRoom = (e: React.FormEvent) => {
     e.preventDefault();
     actions.join({
-      userName: name || 'David',
+      userName: name,
       authToken: token,
       settings: {
         isAudioMuted: !audioEnabled,
@@ -44,14 +43,25 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
           <p className={s['head-text']}>Welcome {name}</p>
           <p className={s['sub-text']}>Preview your video and audio before joining the stage</p>
         </div>
-        <form onSubmit={joinRoom}>
+        <form onSubmit={e => joinRoom(e)}>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            required
+            maxLength={20}
+            className="w-full text-md bg-gray-600 rounded-lg placeholder:text-gray-400 h-10 pl-2"
+            onChange={e => setName(e.target.value)}
+          />
           <p className={s['info']}>
             <InfoIcon /> Note: Your mic is {audioEnabled ? 'on' : 'off'} and video is{' '}
             {videoEnabled ? 'on' : 'off'}
           </p>
-
           <div className={s['btn-wrapper']}>
-            <button className={`${s['back-btn']} ${s['btn']}`} onClick={() => router.push('/')}>
+            <button
+              type="button"
+              className={`${s['back-btn']} ${s['btn']}`}
+              onClick={() => router.push('/')}
+            >
               Go back
             </button>
             <button className={s['btn']} type="submit">

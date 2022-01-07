@@ -97,7 +97,7 @@ export default SettingDialog;
 
 const TEST_AUDIO_URL = 'https://100ms.live/test-audio.wav';
 
-const TestAudio: React.FC<{ id: string }> = ({ id }) => {
+export const TestAudio: React.FC<{ id: string }> = ({ id }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   useEffect(() => {

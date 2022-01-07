@@ -303,3 +303,29 @@ input {
     height: auto;
   }
 }
+
+.badge {
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.speaker-badge {
+  border: 1px solid #e9a944;
+}
+
+.moderator-badge {
+  border: 1px solid #4e8ff7;
+}
+
+.guest-badge {
+  border: 1px solid #8465cb;
+}
+
+.viewer-badge {
+  border: 1px solid #8465cb;
+}

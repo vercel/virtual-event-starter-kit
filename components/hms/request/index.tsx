@@ -1,4 +1,8 @@
-import { selectDevices, selectRoleChangeRequest } from '@100mslive/hms-video-store';
+import {
+  selectDevices,
+  selectLocalMediaSettings,
+  selectRoleChangeRequest
+} from '@100mslive/hms-video-store';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import React, { useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
@@ -12,11 +16,13 @@ import {
   VideoOnIcon,
   VideoOffIcon,
   SettingIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
+  CrossIcon
 } from '@100mslive/react-icons';
 import InfoIcon from '@components/icons/icon-info';
 import router from 'next/router';
 import { Dialog as HmsDialog } from '@100mslive/react-ui';
+import SettingDialog, { TestAudio } from '../SettingDialog';
 
 const RoleChangeDialog = () => {
   const actions = useHMSActions();
@@ -89,7 +95,23 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
         console.error('error:', err);
       });
   };
+  const actions = useHMSActions();
   const devices = useHMSStore(selectDevices);
+  const videoInput = devices['videoInput'] || [];
+  const audioInput = devices['audioInput'] || [];
+  const audioOutput = devices['audioOutput'] || [];
+  const selectedDevices = useHMSStore(selectLocalMediaSettings);
+  const handleAudioInput = (a: string) => {
+    actions.setAudioSettings({ deviceId: a });
+  };
+  const handleAudioOutput = (a: string) => {
+    actions.setAudioOutputDevice(a);
+  };
+  const handleVideoInput = (a: string) => {
+    actions.setVideoSettings({ deviceId: a });
+  };
+  const textClass = `text-gray-200`;
+  const wrapperClass = `flex md:flex-row flex-col md:items-center md:justify-between my-6`;
   return (
     <div className={g['container']}>
       <div className={g['video-container']}>
@@ -110,35 +132,78 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
             </IconButton>
           </Preview.Controls>
           <Preview.Setting>
-            <HmsDialog>
-              <HmsDialog.Trigger asChild>
+            <Dialog.Root>
+              <Dialog.Overlay
+                className="fixed inset-0"
+                style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+              />
+              <Dialog.Trigger asChild>
                 <IconButton>
                   <SettingIcon />
                 </IconButton>
-              </HmsDialog.Trigger>
-              <HmsDialog.Content title="Settings">
-                <div className={g['setting-wrapper']}>
-                  <span>Video:</span>
-                  <Select>
-                    {devices.videoInput.map(a => (
-                      <option key={a.deviceId} value={a.deviceId}>
-                        {a.label}
-                      </option>
-                    ))}
-                  </Select>
+              </Dialog.Trigger>
+              <Dialog.Content className="dialog-content bg-gray-700 md:w-[520px] rounded-2xl w-[90%]">
+                <div className="w-full flex items-center justify-between">
+                  <span className="text-xl font-bold">Settings</span>
+                  <Dialog.Close asChild>
+                    <button>
+                      <CrossIcon />
+                    </button>
+                  </Dialog.Close>
                 </div>
-                <div className={g['setting-wrapper']}>
-                  <span className={g['setting-label']}>Microphone:</span>
-                  <Select>
-                    {devices.audioInput.map(a => (
-                      <option key={a.deviceId} value={a.deviceId}>
-                        {a.label}
-                      </option>
-                    ))}
-                  </Select>
+                <p className="my-0 text-gray-300 text-sm">
+                  Control your audio, video source from here
+                </p>
+                {videoInput.length > 0 ? (
+                  <div className={wrapperClass}>
+                    <span className={textClass}>Video</span>
+                    <Select
+                      onChange={e => handleVideoInput(e.target.value)}
+                      value={selectedDevices.videoInputDeviceId}
+                    >
+                      {videoInput.map((device: MediaDeviceInfo) => (
+                        <option value={device.deviceId} key={device.deviceId}>
+                          {device.label}
+                        </option>
+                      ))}
+                    </Select>
+                  </div>
+                ) : null}
+                {audioInput.length > 0 ? (
+                  <div className={wrapperClass}>
+                    <span className={textClass}>Microphone</span>
+                    <Select
+                      onChange={e => handleAudioInput(e.target.value)}
+                      value={selectedDevices.audioInputDeviceId}
+                    >
+                      {audioInput.map((device: MediaDeviceInfo) => (
+                        <option value={device.deviceId} key={device.deviceId}>
+                          {device.label}
+                        </option>
+                      ))}
+                    </Select>
+                  </div>
+                ) : null}
+                {audioOutput.length > 0 ? (
+                  <div className={wrapperClass}>
+                    <span className={textClass}>Speaker</span>
+                    <Select
+                      onChange={e => handleAudioOutput(e.target.value)}
+                      value={selectedDevices.audioOutputDeviceId}
+                    >
+                      {audioOutput.map((device: MediaDeviceInfo) => (
+                        <option value={device.deviceId} key={device.deviceId}>
+                          {device.label}
+                        </option>
+                      ))}
+                    </Select>
+                  </div>
+                ) : null}
+                <div className="flex justify-end">
+                  <TestAudio id={selectedDevices.audioOutputDeviceId || ''} />
                 </div>
-              </HmsDialog.Content>
-            </HmsDialog>
+              </Dialog.Content>
+            </Dialog.Root>
           </Preview.Setting>
           <Preview.BottomOverlay />
         </Preview.VideoRoot>
