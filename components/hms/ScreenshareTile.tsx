@@ -55,7 +55,7 @@ const ScreenshareTile = () => {
           <div className="max-w-full block h-auto md:h-full relative">
             <HmsWatermark />
             <div
-              className="absolute flex items-center bottom-0 right-0 text-sm p-2 rounded-tl-lg"
+              className="absolute flex items-center bottom-0 -right-1 text-sm p-2 rounded-tl-lg"
               style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
             >
               <ShareScreenIcon className="mr-2" /> Viewing {screenSharePeer?.name}’s Screen
@@ -63,7 +63,7 @@ const ScreenshareTile = () => {
             <button
               onClick={fullScreen}
               style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
-              className="absolute top-0 right-0 display items-center  justify-center rounded-bl-lg cursor-pointer z-10"
+              className="absolute top-0 -right-1 display items-center  justify-center rounded-bl-lg cursor-pointer z-10"
             >
               <IconFitScreen />
             </button>
@@ -84,5 +84,5 @@ const ScreenshareTile = () => {
 export default ScreenshareTile;
 
 const HmsWatermark = () => {
-  return <img src="/hms-coachmark.svg" className="absolute left-6 bottom-6 z-10" />;
+  return <img src="/hms-coachmark.svg" className="md:block hidden absolute left-2 bottom-2 z-10" />;
 };

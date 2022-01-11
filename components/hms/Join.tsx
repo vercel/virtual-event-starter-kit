@@ -44,7 +44,8 @@ const ViewersJoin: React.FC<{ token: string }> = ({ token }) => {
     actions.join({
       userName: name || 'David',
       authToken: token,
-      initEndpoint: process.env.NEXT_PUBLIC_HMS_INIT_PEER_ENPOINT || undefined
+      initEndpoint: process.env.NEXT_PUBLIC_HMS_INIT_PEER_ENPOINT || undefined,
+      rememberDeviceSelection: true
     });
   };
   return (

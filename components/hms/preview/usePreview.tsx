@@ -25,7 +25,8 @@ export const usePreview = (authToken: string, userName = 'preview') => {
       actions.preview({
         userName,
         authToken,
-        initEndpoint: process.env.NEXT_PUBLIC_HMS_INIT_PEER_ENPOINT || undefined
+        initEndpoint: process.env.NEXT_PUBLIC_HMS_INIT_PEER_ENPOINT || undefined,
+        rememberDeviceSelection: true
       });
     }
     if (isBrowser) {
