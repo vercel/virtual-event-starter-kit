@@ -2,7 +2,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { CrossIcon } from '@100mslive/react-icons';
-import { selectDevices, selectLocalMediaSettings } from '@100mslive/hms-video-store';
+import {
+  selectDevices,
+  selectIsAllowedToPublish,
+  selectLocalMediaSettings
+} from '@100mslive/hms-video-store';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import Select from './select';
 import { AudioLevelIcon } from '@100mslive/react-icons';
@@ -24,6 +28,7 @@ const SettingDialog: React.FC = ({ children }) => {
   const handleVideoInput = (a: string) => {
     actions.setVideoSettings({ deviceId: a });
   };
+  const { video: showVideo, audio: showAudio } = useHMSStore(selectIsAllowedToPublish);
   const textClass = `text-gray-200`;
   const wrapperClass = `flex md:flex-row flex-col md:items-center md:justify-between my-6`;
   return (
@@ -40,7 +45,7 @@ const SettingDialog: React.FC = ({ children }) => {
           </Dialog.Close>
         </div>
         <p className="my-0 text-gray-300 text-sm">Control your audio, video source from here</p>
-        {videoInput.length > 0 ? (
+        {showVideo && videoInput.length > 0 ? (
           <div className={wrapperClass}>
             <span className={textClass}>Video</span>
             <Select
@@ -55,7 +60,7 @@ const SettingDialog: React.FC = ({ children }) => {
             </Select>
           </div>
         ) : null}
-        {audioInput.length > 0 ? (
+        {showAudio && audioInput.length > 0 ? (
           <div className={wrapperClass}>
             <span className={textClass}>Microphone</span>
             <Select

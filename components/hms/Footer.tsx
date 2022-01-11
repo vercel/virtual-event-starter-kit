@@ -7,7 +7,6 @@ import {
   MicOnIcon,
   ShareScreenIcon,
   SettingIcon
-  // RecordIcon,
 } from '@100mslive/react-icons';
 import React from 'react';
 import ControlButton from './ControlButton';
@@ -38,42 +37,28 @@ const Footer = () => {
       className="w-full hidden md:flex items-center justify-center space-x-5"
       style={{ height: 'calc(var(--header-height) * 1.2)' }}
     >
-      {role?.name !== 'viewer' ? (
-        <>
-          {isAllowedToPublish.audio ? (
-            <ControlButton text="Mic" active={isLocalAudioEnabled} onClick={toggleAudio}>
-              {isLocalAudioEnabled ? <MicOnIcon /> : <MicOffIcon />}
-            </ControlButton>
-          ) : null}
-          {isAllowedToPublish.video ? (
-            <ControlButton text="Video" active={isLocalVideoEnabled} onClick={toggleVideo}>
-              {isLocalVideoEnabled ? <VideoOnIcon /> : <VideoOffIcon />}
-            </ControlButton>
-          ) : null}
-          {isAllowedToPublish.screen ? (
-            <ControlButton
-              text="Screen share"
-              active={isLocalScreenShare}
-              onClick={startScreenshare}
-            >
-              <ShareScreenIcon />
-            </ControlButton>
-          ) : null}
-          {/* {isAllowedToPublish.screen ? (
-            <ControlButton text="Record">
-              <RecordIcon />
-            </ControlButton>
-          ) : null} */}
-          {role?.name === 'backstage' || role?.name === 'stage' || role?.name === 'invitee' ? (
-            <SettingDialog>
-              <ControlButton text="Setting" onClick={() => {}}>
-                <SettingIcon />
-              </ControlButton>
-            </SettingDialog>
-          ) : null}
-          <LeaveDialog />
-        </>
+      {isAllowedToPublish.audio ? (
+        <ControlButton text="Mic" active={isLocalAudioEnabled} onClick={toggleAudio}>
+          {isLocalAudioEnabled ? <MicOnIcon /> : <MicOffIcon />}
+        </ControlButton>
       ) : null}
+      {isAllowedToPublish.video ? (
+        <ControlButton text="Video" active={isLocalVideoEnabled} onClick={toggleVideo}>
+          {isLocalVideoEnabled ? <VideoOnIcon /> : <VideoOffIcon />}
+        </ControlButton>
+      ) : null}
+      {isAllowedToPublish.screen ? (
+        <ControlButton text="Screen share" active={isLocalScreenShare} onClick={startScreenshare}>
+          <ShareScreenIcon />
+        </ControlButton>
+      ) : null}
+
+      <SettingDialog>
+        <ControlButton text="Setting" onClick={() => {}}>
+          <SettingIcon />
+        </ControlButton>
+      </SettingDialog>
+      {role?.name !== 'viewer' ? <LeaveDialog /> : null}
     </div>
   );
 };

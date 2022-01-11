@@ -32,7 +32,8 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
         isAudioMuted: !audioEnabled,
         isVideoMuted: !videoEnabled
       },
-      initEndpoint: process.env.NEXT_PUBLIC_HMS_INIT_PEER_ENPOINT || undefined
+      initEndpoint: process.env.NEXT_PUBLIC_HMS_INIT_PEER_ENPOINT || undefined,
+      rememberDeviceSelection: true
     });
   };
   return (
