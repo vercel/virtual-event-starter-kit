@@ -21,8 +21,7 @@ import {
 } from '@100mslive/react-icons';
 import InfoIcon from '@components/icons/icon-info';
 import router from 'next/router';
-import { Dialog as HmsDialog } from '@100mslive/react-ui';
-import SettingDialog, { TestAudio } from '../SettingDialog';
+import { TestAudio } from '../SettingDialog';
 
 const RoleChangeDialog = () => {
   const actions = useHMSActions();
@@ -32,6 +31,22 @@ const RoleChangeDialog = () => {
       try {
         if (b) {
           actions.acceptChangeRole(request);
+          // also match the setting selected
+          const vI = localStorage.getItem('videoInputDeviceId');
+          const aI = localStorage.getItem('audioInputDeviceId');
+          const aO = localStorage.getItem('audioOutputDeviceId');
+          if (vI) {
+            actions.setVideoSettings({ deviceId: vI });
+            console.log('Changed Video Settings');
+          }
+          if (aI) {
+            actions.setAudioSettings({ deviceId: aI });
+            console.log('Changed Audio Input Settings');
+          }
+          if (aO) {
+            actions.setAudioOutputDevice(aO);
+            console.log('Changed Audio Output Settings');
+          }
         } else {
           actions.rejectChangeRole(request);
         }
@@ -75,15 +90,25 @@ const RoleChangeDialog = () => {
 export default RoleChangeDialog;
 
 const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChange }) => {
+  const localVI = localStorage.getItem('videoInputDeviceId');
+  const localAI = localStorage.getItem('audioInputDeviceId');
+  const localAO = localStorage.getItem('audioOutputDeviceId');
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isAudioOn, setIsAudioOn] = useState(true);
   const [isVideoOn, setIsVideoOn] = useState(true);
+  const devices = useHMSStore(selectDevices);
+  const videoInput = devices['videoInput'] || [];
+  const audioInput = devices['audioInput'] || [];
+  const audioOutput = devices['audioOutput'] || [];
+  const [aI, setAI] = useState(localAI || audioInput[0].deviceId);
+  const [vI, setVI] = useState(localVI || videoInput[0].deviceId);
+  const [aO, setAO] = useState(localAO || audioOutput[0].deviceId);
   React.useEffect(() => {
     getVideo();
-  }, [isVideoOn]);
+  }, [isVideoOn, vI]);
   const getVideo = () => {
     navigator.mediaDevices
-      .getUserMedia({ video: {} })
+      .getUserMedia({ video: { deviceId: vI } })
       .then(stream => {
         const video = videoRef.current;
         if (video) {
@@ -95,20 +120,17 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
         console.error('error:', err);
       });
   };
-  const actions = useHMSActions();
-  const devices = useHMSStore(selectDevices);
-  const videoInput = devices['videoInput'] || [];
-  const audioInput = devices['audioInput'] || [];
-  const audioOutput = devices['audioOutput'] || [];
-  const selectedDevices = useHMSStore(selectLocalMediaSettings);
   const handleAudioInput = (a: string) => {
-    actions.setAudioSettings({ deviceId: a });
+    localStorage.setItem('audioInputDeviceId', a);
+    setAI(a);
   };
   const handleAudioOutput = (a: string) => {
-    actions.setAudioOutputDevice(a);
+    localStorage.setItem('audioOutputDeviceId', a);
+    setAO(a);
   };
   const handleVideoInput = (a: string) => {
-    actions.setVideoSettings({ deviceId: a });
+    localStorage.setItem('videoInputDeviceId', a);
+    setVI(a);
   };
   const textClass = `text-gray-200`;
   const wrapperClass = `flex md:flex-row flex-col md:items-center md:justify-between my-6`;
@@ -157,10 +179,7 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
                 {videoInput.length > 0 ? (
                   <div className={wrapperClass}>
                     <span className={textClass}>Video</span>
-                    <Select
-                      onChange={e => handleVideoInput(e.target.value)}
-                      value={selectedDevices.videoInputDeviceId}
-                    >
+                    <Select onChange={e => handleVideoInput(e.target.value)} value={vI}>
                       {videoInput.map((device: MediaDeviceInfo) => (
                         <option value={device.deviceId} key={device.deviceId}>
                           {device.label}
@@ -172,10 +191,7 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
                 {audioInput.length > 0 ? (
                   <div className={wrapperClass}>
                     <span className={textClass}>Microphone</span>
-                    <Select
-                      onChange={e => handleAudioInput(e.target.value)}
-                      value={selectedDevices.audioInputDeviceId}
-                    >
+                    <Select onChange={e => handleAudioInput(e.target.value)} value={aI}>
                       {audioInput.map((device: MediaDeviceInfo) => (
                         <option value={device.deviceId} key={device.deviceId}>
                           {device.label}
@@ -187,10 +203,7 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
                 {audioOutput.length > 0 ? (
                   <div className={wrapperClass}>
                     <span className={textClass}>Speaker</span>
-                    <Select
-                      onChange={e => handleAudioOutput(e.target.value)}
-                      value={selectedDevices.audioOutputDeviceId}
-                    >
+                    <Select onChange={e => handleAudioOutput(e.target.value)} value={aO}>
                       {audioOutput.map((device: MediaDeviceInfo) => (
                         <option value={device.deviceId} key={device.deviceId}>
                           {device.label}
@@ -200,7 +213,7 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
                   </div>
                 ) : null}
                 <div className="flex justify-end">
-                  <TestAudio id={selectedDevices.audioOutputDeviceId || ''} />
+                  <TestAudio id={aO || ''} />
                 </div>
               </Dialog.Content>
             </Dialog.Root>
@@ -237,51 +250,3 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
     </div>
   );
 };
-
-// const PreviewVideo: React.FC = () => {
-//   const videoRef = useRef<HTMLVideoElement>(null);
-//   const [isAudioOn, setIsAudioOn] = useState(true);
-//   const [isVideoOn, setIsVideoOn] = useState(true);
-//   React.useEffect(() => {
-//     getVideo();
-//   }, [isVideoOn]);
-//   const getVideo = () => {
-//     navigator.mediaDevices
-//       .getUserMedia({ video: {} })
-//       .then(stream => {
-//         const video = videoRef.current;
-//         if (video) {
-//           video.srcObject = stream;
-//           video.play();
-//         }
-//       })
-//       .catch(err => {
-//         console.error('error:', err);
-//       });
-//   };
-//   return (
-//     <Preview.VideoRoot css={{ width: '290px', height: '290px' }}>
-//       {isVideoOn ? (
-//         <Preview.Video local={true} ref={videoRef} autoPlay muted playsInline />
-//       ) : (
-//         <Avatar size="lg" style={{ backgroundColor: 'red' }}>
-//           DB
-//         </Avatar>
-//       )}
-//       <Preview.Controls>
-//         <IconButton active={isAudioOn} onClick={() => setIsAudioOn(!isVideoOn)}>
-//           {isAudioOn ? <MicOnIcon /> : <MicOffIcon />}
-//         </IconButton>
-//         <IconButton active={isVideoOn} onClick={() => setIsVideoOn(!isVideoOn)}>
-//           {isVideoOn ? <VideoOnIcon /> : <VideoOffIcon />}
-//         </IconButton>
-//       </Preview.Controls>
-//       <Preview.Setting>
-//         <IconButton>
-//           <SettingIcon />
-//         </IconButton>
-//       </Preview.Setting>
-//       <Preview.BottomOverlay />
-//     </Preview.VideoRoot>
-//   );
-// };
