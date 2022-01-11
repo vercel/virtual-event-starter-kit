@@ -6,9 +6,10 @@ import {
   selectPeerAudioByID
 } from '@100mslive/hms-video-store';
 import { MicOffIcon } from '@100mslive/react-icons';
-import { useHMSStore, useVideo } from '@100mslive/react-sdk';
+import { useHMSStore } from '@100mslive/react-sdk';
 import React from 'react';
 import Avatar from './Avatar';
+import useVideo from './lib/useVideo';
 
 interface Props {
   peer: HMSPeer;

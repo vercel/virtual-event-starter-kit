@@ -53,6 +53,7 @@ const ScreenshareTile = () => {
       ) : (
         <div className="flex w-full justify-center items-center h-full md:p-0 p-2">
           <div className="max-w-full block h-auto md:h-full relative">
+            <HmsWatermark />
             <div
               className="absolute flex items-center bottom-0 right-0 text-sm p-2 rounded-tl-lg"
               style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}
@@ -81,3 +82,7 @@ const ScreenshareTile = () => {
 };
 
 export default ScreenshareTile;
+
+const HmsWatermark = () => {
+  return <img src="/hms-coachmark.svg" className="absolute left-6 bottom-6 z-10" />;
+};

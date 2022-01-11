@@ -4,6 +4,11 @@ import styleUtils from '../utils.module.css';
 import styles from '../conf-entry.module.css';
 import { PreviewScreen } from './preview';
 import { useHMSActions } from '@100mslive/react-sdk';
+import { parsedUserAgent } from '@100mslive/hms-video';
+import * as Dialog from '@radix-ui/react-dialog';
+import Button from './Button';
+import { ArrowRightIcon } from '@100mslive/react-icons';
+import { useRouter } from 'next/router';
 
 interface Props {
   token: string;
@@ -11,10 +16,19 @@ interface Props {
 }
 
 const Join: React.FC<Props> = ({ token, role }) => {
+  const isMobile = isMobileDevice();
   return (
     <div className={cn(styles.container, styleUtils.appear, styleUtils['appear-first'])}>
+      {isMobile && role !== 'viewer' ? <MobileRoleDialog /> : null}
       {token ? (
-        <> {role === 'viewer' ? <ViewersJoin token={token} /> : <PreviewScreen token={token} />}</>
+        <>
+          {' '}
+          {role === 'viewer' ? (
+            <ViewersJoin token={token} />
+          ) : (
+            <>{isMobile ? null : <PreviewScreen token={token} />}</>
+          )}
+        </>
       ) : null}
     </div>
   );
@@ -57,5 +71,39 @@ const ViewersJoin: React.FC<{ token: string }> = ({ token }) => {
         </button>
       </form>
     </div>
+  );
+};
+
+export function isMobileDevice() {
+  const device = parsedUserAgent.getDevice();
+  return device && device.type === 'mobile';
+}
+
+const MobileRoleDialog = () => {
+  const [stage, setStage] = React.useState(``);
+  const router = useRouter();
+  React.useEffect(() => {
+    if (router.query.slug) {
+      setStage(router.query.slug as string);
+    }
+  }, [router]);
+  return (
+    <Dialog.Root open={true}>
+      <Dialog.Overlay className="fixed inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }} />
+      <Dialog.Content className="dialog-content bg-gray-700 md:w-96 w-[95%] rounded-lg text-center">
+        <h3>Joining as a speaker is not supported on mobile</h3>
+        <p className="text-xs text-gray-200 mt-4">
+          We have setup a few profiles to make it easy for you or your team to experience each
+          perspective. Join in one click or share access with anyone else.
+        </p>
+        <div className="w-full flex justify-center mt-4">
+          <a href={`/stage/${stage || 'a'}?role=viewer`}>
+            <Button>
+              Join as a Guest Instead <ArrowRightIcon />
+            </Button>
+          </a>
+        </div>
+      </Dialog.Content>
+    </Dialog.Root>
   );
 };
