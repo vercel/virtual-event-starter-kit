@@ -37,7 +37,7 @@ const Join: React.FC<Props> = ({ token, role }) => {
 export default Join;
 
 const ViewersJoin: React.FC<{ token: string }> = ({ token }) => {
-  const [name, setName] = React.useState('');
+  const [name, setName] = React.useState(localStorage.getItem('name') || '');
   const actions = useHMSActions();
   const joinRoom = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,7 +58,10 @@ const ViewersJoin: React.FC<{ token: string }> = ({ token }) => {
         <input
           maxLength={20}
           value={name}
-          onChange={e => setName(e.target.value)}
+          onChange={e => {
+            setName(e.target.value);
+            localStorage.setItem('name', e.target.value);
+          }}
           required
           className="p-4 w-80 text-md bg-gray-600 rounded-lg placeholder:text-gray-400"
           placeholder="Enter your name to join the event"

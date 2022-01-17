@@ -48,10 +48,6 @@
   overflow-y: scroll;
 }
 
-.content p {
-  margin: 0;
-}
-
 .close-btn {
   width: 100%;
   color: white;

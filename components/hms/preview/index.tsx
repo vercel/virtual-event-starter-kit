@@ -21,7 +21,7 @@ import Avatar from '../Avatar';
 export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
   const actions = useHMSActions();
   const router = useRouter();
-  const [name, setName] = React.useState('');
+  const [name, setName] = React.useState(localStorage.getItem('name') || '');
   const { localPeer, audioEnabled, videoEnabled } = usePreview(token, 'preview');
   const joinRoom = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,12 +46,16 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
         </div>
         <form onSubmit={e => joinRoom(e)}>
           <input
+            value={name}
             type="text"
             placeholder="Enter your name"
             required
             maxLength={20}
             className="w-full text-md bg-gray-600 rounded-lg placeholder:text-gray-400 h-10 pl-2"
-            onChange={e => setName(e.target.value)}
+            onChange={e => {
+              setName(e.target.value);
+              localStorage.setItem('name', e.target.value);
+            }}
           />
           <p className={s['info']}>
             <InfoIcon /> Note: Your mic is {audioEnabled ? 'on' : 'off'} and video is{' '}

@@ -13,7 +13,7 @@ const RoomCta = () => {
   const [cp, setCp] = React.useState(false);
   const copy = () => {
     // @ts-ignore
-    navigator.clipboard.writeText(`${window.location.host}/stage/a?role=${role.name}`);
+    navigator.clipboard.writeText(`${window.location.host}/stage/a?role=${role.name || 'stage'}`);
     if (!cp) {
       setCp(true);
       setTimeout(() => {

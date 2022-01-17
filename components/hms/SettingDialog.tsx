@@ -44,7 +44,10 @@ const SettingDialog: React.FC = ({ children }) => {
             </button>
           </Dialog.Close>
         </div>
-        <p className="my-0 text-gray-300 text-sm">Control your audio, video source from here</p>
+        {showAudio || showVideo ? (
+          <p className="my-0 text-gray-300 text-sm">Control your audio, video source from here</p>
+        ) : null}
+
         {showVideo && videoInput.length > 0 ? (
           <div className={wrapperClass}>
             <span className={textClass}>Video</span>

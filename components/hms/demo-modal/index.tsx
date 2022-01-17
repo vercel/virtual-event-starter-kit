@@ -35,8 +35,8 @@ const DemoModal = () => {
   }, [router]);
   return (
     <div>
-      <p className="text-[32px] font-semibold">Test your Webinar for a test drive</p>
-      <p className="text-gray-300 text-[15px]">
+      <p className="text-[32px] font-semibold my-0">Test your Webinar for a test drive</p>
+      <p className="text-gray-300 text-[15px] my-0">
         We have setup a few profiles to make it easy for you or your team to experience each
         perspective. Join in one click or share access with anyone else.
       </p>
@@ -49,7 +49,6 @@ const DemoModal = () => {
           >
             <div className="text-left max-w-xs">
               <span className={`badge ${m.roleName}-badge`}>{m.roleName}</span>
-              <p className="font-semibold">{m.name}</p>
               <p className="text-gray-300 text-xs">{m.desc}</p>
             </div>
             <div className="flex items-center space-x-4">
@@ -86,7 +85,7 @@ export const CopyButton = ({ text = '' }) => {
   return (
     <div className="relative">
       {cp ? (
-        <p className="absolute top-16 left-0 flex bg-gray-600 justify-center  rounded-lg w-48 p-2">
+        <p className="absolute top-10 left-0 flex bg-gray-600 justify-center  rounded-lg w-48 p-2">
           Copied to clipboard!
         </p>
       ) : null}
