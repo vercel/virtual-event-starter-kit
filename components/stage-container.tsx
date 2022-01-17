@@ -43,7 +43,7 @@ export default function StageContainer({ stage, allStages }: Props) {
   return (
     <div className={styles.container}>
       <div className={`${styles.streamContainer} ${isConnected ? '' : styles.streamYt}`}>
-        {true ? (
+        {loginStatus === 'loggedIn' ? (
           !stage.isLive ? (
             <div className={cn(styles.stream, styleUtils.appear, styleUtils['appear-first'])}>
               <iframe

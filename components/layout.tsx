@@ -26,6 +26,7 @@ import Footer from './footer';
 import React from 'react';
 import DemoButton from './hms/demo-cta';
 import RoomCta from './hms/demo-cta/room-cta';
+import { hmsConfig } from './hms/config';
 
 type Props = {
   children: React.ReactNode;
@@ -37,6 +38,7 @@ type Props = {
 export default function Layout({ children, className, hideNav, layoutStyles }: Props) {
   const router = useRouter();
   const activeRoute = router.asPath;
+  const disableCta = ['/schedule', '/speakers', '/expo', '/jobs'];
   return (
     <>
       <div className={styles.background}>
@@ -64,9 +66,14 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
                 </a>
               ))}
             </div>
-            <div className={cn(styles['header-right'])}>
-              {activeRoute === '/' ? <DemoButton /> : <RoomCta />}
-            </div>
+
+            {hmsConfig.hmsIntegration && !disableCta.includes(activeRoute) ? (
+              <div className={cn(styles['header-right'])}>
+                {activeRoute === '/' ? <DemoButton /> : <RoomCta />}
+              </div>
+            ) : (
+              <div />
+            )}
           </header>
         )}
         <div className={styles.page}>

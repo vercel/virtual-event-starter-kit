@@ -5,13 +5,19 @@ import { InviteIcon, PersonIcon } from '@100mslive/react-icons';
 import { selectLocalPeerRole } from '@100mslive/hms-video-store';
 import { useHMSStore } from '@100mslive/react-sdk';
 import { ChangeRoleDialog } from './demo-cta/room-cta';
+import { useRouter } from 'next/router';
 
 const EmptyRoom = () => {
   const role = useHMSStore(selectLocalPeerRole) || 'viewer';
   const [cp, setCp] = React.useState(false);
+  const router = useRouter();
   const copy = () => {
+    let stageId = `a`;
+    if (router.isReady) {
+      stageId = router.query.slug as string;
+    }
     // @ts-ignore
-    navigator.clipboard.writeText(`${window.location.host}/stage/a?role=${role.name}`);
+    navigator.clipboard.writeText(`${window.location.host}/stage/${stageId}?role=${role.name}`);
     if (!cp) {
       setCp(true);
       setTimeout(() => {

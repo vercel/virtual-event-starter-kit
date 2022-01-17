@@ -14,4 +14,9 @@ export const hmsConfig = {
    * maximum no.of tiles that can be rendered in speakers row
    */
   maxTileCountSpeakers: 5,
+  /**
+   * Turn off 100ms added things ->
+   * Disable for removing Invite change role CTAs
+   */
+  hmsIntegration: true,
 }

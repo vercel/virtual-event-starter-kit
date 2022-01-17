@@ -7,13 +7,22 @@ import DemoModal from '../demo-modal';
 import InviteIcon from '@components/icons/icon-invite';
 import { useHMSStore } from '@100mslive/react-sdk';
 import { selectLocalPeerRole } from '@100mslive/hms-video-store';
+import { useRouter } from 'next/router';
 
 const RoomCta = () => {
   const role = useHMSStore(selectLocalPeerRole) || 'viewer';
   const [cp, setCp] = React.useState(false);
+  const router = useRouter();
+  console.log(router.query);
   const copy = () => {
-    // @ts-ignore
-    navigator.clipboard.writeText(`${window.location.host}/stage/a?role=${role.name || 'stage'}`);
+    let stageId = `a`;
+    if (router.isReady) {
+      stageId = router.query.slug as string;
+    }
+    navigator.clipboard.writeText(
+      // @ts-ignore
+      `${window.location.host}/stage/${stageId}?role=${role.name || 'stage'}`
+    );
     if (!cp) {
       setCp(true);
       setTimeout(() => {
