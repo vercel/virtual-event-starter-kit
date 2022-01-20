@@ -13,7 +13,6 @@ const RoomCta = () => {
   const role = useHMSStore(selectLocalPeerRole) || 'viewer';
   const [cp, setCp] = React.useState(false);
   const router = useRouter();
-  console.log(router.query);
   const copy = () => {
     let stageId = `a`;
     if (router.isReady) {
