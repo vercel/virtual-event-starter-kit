@@ -101,7 +101,6 @@ export default function Form({ sharePage }: Props) {
 
   const onSubmit = useCallback(
     (e: React.FormEvent) => {
-      localStorage.setItem('email', email);
       e.preventDefault();
 
       if (formState === 'default') {
@@ -116,7 +115,7 @@ export default function Form({ sharePage }: Props) {
         setFormState('default');
       }
     },
-    [executeCaptcha, formState, isCaptchaEnabled, handleRegister, email]
+    [executeCaptcha, formState, isCaptchaEnabled, handleRegister]
   );
 
   const onTryAgainClick = useCallback(

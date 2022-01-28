@@ -67,7 +67,6 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
 
   const onSubmit = useCallback(
     async (e: React.FormEvent) => {
-      localStorage.setItem('email', emailInput);
       e.preventDefault();
 
       try {
@@ -84,7 +83,7 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
         setFormState('error');
       }
     },
-    [executeCaptcha, isCaptchaEnabled, handleRegister, emailInput]
+    [executeCaptcha, isCaptchaEnabled, handleRegister]
   );
 
   const onTryAgainClick = useCallback(

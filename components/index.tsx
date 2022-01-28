@@ -16,6 +16,7 @@
 
 import { useState } from 'react';
 import { PageState, ConfDataContext, UserData } from '@lib/hooks/use-conf-data';
+import Ticket from './ticket';
 import Layout from './layout';
 import ConfContainer from './conf-container';
 import Hero from './hero';
@@ -30,12 +31,11 @@ type Props = {
 
 export default function Conf({
   defaultUserData,
-  // sharePage,
+  sharePage,
   defaultPageState = 'registration'
 }: Props) {
   const [userData, setUserData] = useState<UserData>(defaultUserData);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, setPageState] = useState<PageState>(defaultPageState);
+  const [pageState, setPageState] = useState<PageState>(defaultPageState);
 
   return (
     <ConfDataContext.Provider
@@ -47,11 +47,20 @@ export default function Conf({
     >
       <Layout>
         <ConfContainer>
-          <>
-            <Hero />
-            <Form />
-            <LearnMore />
-          </>
+          {pageState === 'registration' && !sharePage ? (
+            <>
+              <Hero />
+              <Form />
+              <LearnMore />
+            </>
+          ) : (
+            <Ticket
+              username={userData.username}
+              name={userData.name}
+              ticketNumber={userData.ticketNumber}
+              sharePage={sharePage}
+            />
+          )}
         </ConfContainer>
       </Layout>
     </ConfDataContext.Provider>
