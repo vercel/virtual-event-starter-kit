@@ -17,24 +17,12 @@ import MobileView from './mobile';
 import { hmsConfig } from './config';
 import ScreenshareTile from './ScreenshareTile';
 
-const getPeers = (role: string, peers: HMSPeer[]): HMSPeer[] => {
-  if (role === 'backstage' || role === 'stage') {
-    return peers.filter(p => p.roleName !== 'viewer');
-  } else if (role === 'viewer') {
-    return peers.filter(p => p.roleName !== 'backstage' && p.roleName !== 'viewer');
-  } else if (role === 'invitee') {
-    return peers.filter(p => p.roleName !== 'backstage' && p.roleName !== 'viewer');
-  } else {
-    return peers;
-  }
-};
-
 const VideoList = () => {
   const activeSpeakerThreshold = hmsConfig.activeSpeakerThreshold;
   const stagePeers = useHMSStore(selectPeersByRole('stage'));
   const peers = useHMSStore(selectPeers);
   const localPeer = useHMSStore(selectLocalPeer);
-  const renderPeers = getPeers(localPeer.roleName || '', peers);
+  const renderPeers = peers.filter(p => p.roleName !== 'viewer');
   const [activeSpeaker, setActiveSpeaker] = useState(localPeer);
   const dominantSpeaker = useHMSStore(selectDominantSpeaker);
   const isActiveSpeakerModeOn = activeSpeaker && renderPeers.length > activeSpeakerThreshold;
