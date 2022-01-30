@@ -34,10 +34,9 @@ export default function StagePage({ stage, allStages }: Props) {
     title: 'Demo - Virtual Event Starter Kit',
     description: META_DESCRIPTION
   };
-
   return (
     <Page meta={meta} fullViewport>
-      <Layout>
+      <Layout stage={stage}>
         <StageContainer stage={stage} allStages={allStages} />
       </Layout>
     </Page>

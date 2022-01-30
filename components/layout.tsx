@@ -27,15 +27,17 @@ import React from 'react';
 import DemoButton from './hms/demo-cta';
 import RoomCta from './hms/demo-cta/room-cta';
 import { hmsConfig } from './hms/config';
+import { Stage } from '@lib/types';
 
 type Props = {
   children: React.ReactNode;
   className?: string;
   hideNav?: boolean;
   layoutStyles?: any;
+  stage: Stage;
 };
 
-export default function Layout({ children, className, hideNav, layoutStyles }: Props) {
+export default function Layout({ children, className, hideNav, layoutStyles, stage }: Props) {
   const router = useRouter();
   const activeRoute = router.asPath;
   const disableCta = ['/schedule', '/speakers', '/expo', '/jobs'];
@@ -67,7 +69,7 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
               ))}
             </div>
 
-            {hmsConfig.hmsIntegration && !disableCta.includes(activeRoute) ? (
+            {hmsConfig.hmsIntegration && stage.isLive && !disableCta.includes(activeRoute) ? (
               <div className={cn(styles['header-right'])}>
                 {activeRoute === '/' ? <DemoButton /> : <RoomCta />}
               </div>

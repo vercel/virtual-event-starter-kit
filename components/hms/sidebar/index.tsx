@@ -2,7 +2,6 @@ import { selectLocalPeerRole } from '@100mslive/hms-video-store';
 import { useHMSStore } from '@100mslive/react-sdk';
 import React from 'react';
 import Chat from './Chat';
-import s from './index.module.css';
 import Participants from './Participants';
 import ScheduleSidebar from '@components/schedule-sidebar-individual';
 import { Stage } from '@lib/types';

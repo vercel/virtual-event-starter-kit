@@ -25,6 +25,7 @@ import Room from './hms/Room';
 import Sidebar from './hms/sidebar';
 import { useHMSStore } from '@100mslive/react-sdk';
 import { selectIsConnectedToRoom } from '@100mslive/hms-video-store';
+import ScheduleSidebar from './schedule-sidebar';
 
 type Props = {
   stage: Stage;
@@ -94,7 +95,16 @@ export default function StageContainer({ stage, allStages }: Props) {
           <ConfEntry onRegister={() => mutate()} />
         )}
       </div>
-      {isConnected || !stage.isLive ? <Sidebar allStages={allStages} /> : null}
+      {/* connected to room & live -> show chat */}
+      {/* not live -> show schedule */}
+      {/* not connected & live -> null */}
+      {stage.isLive ? (
+        isConnected ? (
+          <Sidebar allStages={allStages} />
+        ) : null
+      ) : (
+        <ScheduleSidebar allStages={updatedStages} />
+      )}
     </div>
   );
 }
