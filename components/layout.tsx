@@ -74,7 +74,8 @@ export default function Layout({
               ))}
             </div>
 
-            {hmsConfig.hmsIntegration && isLive && !disableCta.includes(activeRoute) ? (
+            {(hmsConfig.hmsIntegration && isLive && !disableCta.includes(activeRoute)) ||
+            activeRoute === '/' ? (
               <div className={cn(styles['header-right'])}>
                 {activeRoute === '/' ? <DemoButton /> : <RoomCta />}
               </div>
