@@ -8,8 +8,8 @@ This virtual event starter kit was used to run [Next.js Conf 2020](https://next
 
 - Multiple stages - with the ability to add multiple sessions on each stage
 - Each stage can be configured as -
-  - An embedded YouTube stream OR A live interactive audio-video experience powered by 100ms
-  - Pre-configured live audio-video infrastructure with 99.99% uptime
+  - An embedded YouTube stream OR 
+  - A live interactive audio-video experience powered by 100ms
 - Sponsor expo, including individual virtual booths
 - Career Fair, allowing attendees to network and find job opportunities
 - Ticket registration and generation
@@ -291,16 +291,4 @@ We’re aiming to build an active community of developers who will work together
 
 P.S - Be sure to check contribution guidelines, review, and merge policies.
 
-## Frequently Asked Questions
 
-How many people can join as a speaker?
-
-What happens if my internet disconnects and reconnects?
-
-What's the default video quality?
-
-How do i remove chat?
-
-How do i record , rtmp
-
-What's the default video quality can we change it?
