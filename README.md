@@ -1,6 +1,6 @@
 Demo without live video : [https://demo.vercel.events](https://demo.vercel.events/)
 
-Demo with live video : <TODO: add link>
+Demo with live video : [https://100ms.vercel.app](https://100ms.vercel.app)
 
 This virtual event starter kit was used to run [Next.js Conf 2020](https://nextjs.org/2020/conf), which had almost 40,000 live attendees. It includes the following features:
 
