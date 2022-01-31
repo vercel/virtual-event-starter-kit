@@ -101,8 +101,8 @@ export default function ConfEntry({ onRegister }: { onRegister: () => void }) {
 
   return (
     <div className={cn(styles.container, styleUtils.appear, styleUtils['appear-first'])}>
-      <h1 className={cn(styles.hero)}>Join the conference.</h1>
-      <h2 className={cn(styles.description)}>{SITE_DESCRIPTION}</h2>
+      <h1 className={cn(styles.hero)}>Ready to experience a live stage?</h1>
+      <h2 className={cn(styles.description)}>Submit your details below to enter</h2>
       <form onSubmit={onSubmit} className={styles.form}>
         <div className={styles['form-row']}>
           <label

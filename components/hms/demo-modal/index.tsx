@@ -9,19 +9,20 @@ const data = [
     name: 'Moderator',
     roleName: 'moderator',
     role: 'backstage',
-    desc: 'Can invite participants on stage, assign speakers and remove them'
+    desc: `This role is meant for the event organisers. The moderator is like a stage admin - can add speakers, remove them, invite attendees on stage, kick them out of the event, etc`
   },
   {
     name: 'Speaker',
     roleName: 'speaker',
     role: 'stage',
-    desc: 'Always remains on the stage. Can invite attendees on stage to speak.'
+    desc:
+      'This one is self explanatory. Use this role for folks who are going to be the main guests of the session. Speakers can also invite attendees on the stage, and respond to public chat messages.'
   },
   {
-    name: 'Guest',
-    roleName: 'viewer',
+    name: 'Attendee',
+    roleName: 'attendee',
     role: 'viewer',
-    desc: `Can see and hear what's happening on the stage. Can chat with other participants`
+    desc: `This one is the most basic role - can see and hear whatever is happening on the stage, cannot share their audio and video, and can put up messages on the public chat section.`
   }
 ];
 
@@ -35,7 +36,7 @@ const DemoModal = () => {
   }, [router]);
   return (
     <div>
-      <p className="text-[32px] font-semibold my-0">Test your Webinar for a test drive</p>
+      <p className="text-[32px] font-semibold my-0">Take your Webinar for a test drive</p>
       <p className="text-gray-300 text-[15px] my-0">
         We have setup a few profiles to make it easy for you or your team to experience each
         perspective. Join in one click or share access with anyone else.

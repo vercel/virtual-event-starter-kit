@@ -50,9 +50,9 @@ const ViewersJoin: React.FC<{ token: string }> = ({ token }) => {
   };
   return (
     <div className="text-center">
-      <h1>Join the conference.</h1>
+      <h1>Enter your name to continue.</h1>
       <p className="my-0 text-gray-300 text-sm">
-        An interactive online experience by the community, free for everyone.
+        This name will be visible to other participants once you join the stage
       </p>
       <form onSubmit={e => joinRoom(e)} className="mt-12 md:space-x-4">
         <input
