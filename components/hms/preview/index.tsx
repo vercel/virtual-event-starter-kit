@@ -47,7 +47,8 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
         <form onSubmit={e => joinRoom(e)}>
           <input
             value={name}
-            type="text"
+            type="name"
+            autoComplete="name"
             placeholder="Enter your name"
             required
             maxLength={20}
