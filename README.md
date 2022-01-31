@@ -1,3 +1,5 @@
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/100mslive/virtual-event-starter-kit&project-name=virtual-event-starter-kit&repository-name=virtual-event-starter-kit&demo-url=https://demo.vercel.events&demo-image=https://demo.vercel.events/deploy.png&integration-ids=oac_7yeSwUoVR5no3SlA9WM6oR7l&demo-title=Virtual%20Event%20Starter%20Kit&demo-description=Jumpstart%20your%20virtual%20event%20and%20scale%20to%20any%20size%20with%20Next.js,%20100ms%20and%20DatoCMS)
+
 Demo without live video : [https://demo.vercel.events](https://demo.vercel.events/)
 
 Demo with live video : [https://100ms.vercel.app](https://100ms.vercel.app)
@@ -48,7 +50,7 @@ The virtual events starter kit now has added support for organising truly LIVE v
 
 Click the button below to clone and deploy this template on [Vercel](https://vercel.com/).
 
-<TODO: add deploy to vercel button>
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/100mslive/virtual-event-starter-kit&project-name=virtual-event-starter-kit&repository-name=virtual-event-starter-kit&demo-url=https://demo.vercel.events&demo-image=https://demo.vercel.events/deploy.png&integration-ids=oac_7yeSwUoVR5no3SlA9WM6oR7l&demo-title=Virtual%20Event%20Starter%20Kit&demo-description=Jumpstart%20your%20virtual%20event%20and%20scale%20to%20any%20size%20with%20Next.js,%20100ms%20and%20DatoCMS)
 
 You’ll be asked to install the **100ms with DatoCMS** integration. It lets you sign up or log in to 100ms and DatoCMS, thereby creating a new 100ms and DatoCMS project which are interlinked to each other. In a single integration, you will be able to deploy a fully working template that contains all the elements of the virtual events starter kit.
 
@@ -114,7 +116,7 @@ Room is a virtual space that holds conferencing of the people. To allow users to
 
 Every room has a “template” associated with it, which becomes the blueprint of the room. It defines the settings of the room along with the behavior/permissions of users who are part of it. If you want to see the template used for this purpose, visit the [100ms dashboard.](http://dashboard.100ms.live)
 
-<TODO: ADD Image to template from Dashboard>
+![join](/media/dashboard.png)
 
 In this case, we’ve created a custom virtual events template with pre-configured roles that are essential to organize a live virtual event.
 
@@ -215,7 +217,7 @@ Environment variables determine which CMS to use. See [lib/cms-api.ts](https://
 
 `lib/constants.ts` contains a list of variables you should customize.
 
-Note - In case you're looking to add live audio-video to the events template, we'd recommend you to move ahead with DatoCMS for a seamless integration experience. We've created a dato + 100ms integration that will help you to integrate both 100ms and DatoCMS to your vercel account in a few clicks. 
+Note - In case you're looking to add live audio-video to the events template, we'd recommend you to move ahead with DatoCMS for a seamless integration experience. We've created a dato + 100ms integration that will help you to integrate both 100ms and DatoCMS to your vercel account in a few clicks.
 
 ---
 
