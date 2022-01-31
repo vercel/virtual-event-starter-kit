@@ -1,6 +1,6 @@
 Demo without live video : [https://demo.vercel.events](https://demo.vercel.events/)
 
-Demo with live video : <TODO: add link>
+Demo with live video : [https://100ms.vercel.app](https://100ms.vercel.app)
 
 This virtual event starter kit was used to run [Next.js Conf 2020](https://nextjs.org/2020/conf), which had almost 40,000 live attendees. It includes the following features:
 
@@ -215,7 +215,7 @@ Environment variables determine which CMS to use. See [lib/cms-api.ts](https://
 
 `lib/constants.ts` contains a list of variables you should customize.
 
-Note - if you want to use live video, then datocms is best.
+Note - In case you're looking to add live audio-video to the events template, we'd recommend you to move ahead with DatoCMS for a seamless integration experience. We've created a dato + 100ms integration that will help you to integrate both 100ms and DatoCMS to your vercel account in a few clicks. 
 
 ---
 
