@@ -55,7 +55,7 @@ const DemoModal = () => {
             <div className="flex items-center space-x-4">
               <CopyButton text={`${window.location.host}/stage/${stage || 'a'}?role=${m.role}`} />
               <a href={`/stage/${stage || 'a'}?role=${m.role}`}>
-                <Button>
+                <Button className="w-[200px]">
                   Join as {m.name} <ArrowRightIcon height={20} />
                 </Button>
               </a>
