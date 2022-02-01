@@ -52,7 +52,7 @@ const DemoModal = () => {
               <span className={`badge ${m.roleName}-badge`}>{m.roleName}</span>
               <p className="text-gray-300 text-xs">{m.desc}</p>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-6">
               <CopyButton text={`${window.location.host}/stage/${stage || 'a'}?role=${m.role}`} />
               <a href={`/stage/${stage || 'a'}?role=${m.role}`}>
                 <Button className="w-[200px]">
