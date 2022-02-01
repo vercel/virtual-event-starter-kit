@@ -8,8 +8,8 @@ This virtual event starter kit was used to run [Next.js Conf 2020](https://next
 
 - Multiple stages - with the ability to add multiple sessions on each stage
 - Each stage can be configured as -
-  - An embedded YouTube stream OR A live interactive audio-video experience powered by 100ms
-  - Pre-configured live audio-video infrastructure with 99.99% uptime
+  - An embedded YouTube stream OR 
+  - A live interactive audio-video experience powered by [100ms](https://www.100ms.live)
 - Sponsor expo, including individual virtual booths
 - Career Fair, allowing attendees to network and find job opportunities
 - Ticket registration and generation
@@ -52,7 +52,7 @@ Click the button below to clone and deploy this template on [Vercel](https://ve
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/100mslive/virtual-event-starter-kit&project-name=virtual-event-starter-kit&repository-name=virtual-event-starter-kit&demo-url=https://demo.vercel.events&demo-image=https://demo.vercel.events/deploy.png&integration-ids=oac_7yeSwUoVR5no3SlA9WM6oR7l&demo-title=Virtual%20Event%20Starter%20Kit&demo-description=Jumpstart%20your%20virtual%20event%20and%20scale%20to%20any%20size%20with%20Next.js,%20100ms%20and%20DatoCMS)
 
-You’ll be asked to install the **100ms with DatoCMS** integration. It lets you sign up or log in to 100ms and DatoCMS, thereby creating a new 100ms and DatoCMS project which are interlinked to each other. In a single integration, you will be able to deploy a fully working template that contains all the elements of the virtual events starter kit.
+You’ll be asked to install the **100ms with DatoCMS** integration. It lets you sign up or log in to 100ms and DatoCMS, and connects your DatoCMS and 100ms account to vercel. In a single integration, you will be able to deploy a fully working template that contains all the elements of the virtual events starter kit.
 
 ## Running Locally
 
@@ -291,16 +291,4 @@ We’re aiming to build an active community of developers who will work together
 
 P.S - Be sure to check contribution guidelines, review, and merge policies.
 
-## Frequently Asked Questions
 
-How many people can join as a speaker?
-
-What happens if my internet disconnects and reconnects?
-
-What's the default video quality?
-
-How do i remove chat?
-
-How do i record , rtmp
-
-What's the default video quality can we change it?
