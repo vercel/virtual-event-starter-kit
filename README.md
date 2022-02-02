@@ -1,3 +1,6 @@
+https://user-images.githubusercontent.com/61158210/152098593-33f6562b-232d-40f3-b57c-1a43933405c6.mp4
+
+****
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/100mslive/virtual-event-starter-kit&project-name=virtual-event-starter-kit&repository-name=virtual-event-starter-kit&demo-url=https://demo.vercel.events&demo-image=https://demo.vercel.events/deploy.png&integration-ids=oac_7yeSwUoVR5no3SlA9WM6oR7l&demo-title=Virtual%20Event%20Starter%20Kit&demo-description=Jumpstart%20your%20virtual%20event%20and%20scale%20to%20any%20size%20with%20Next.js,%20100ms%20and%20DatoCMS)
 
 Demo without live video : [https://demo.vercel.events](https://demo.vercel.events/)
@@ -37,10 +40,6 @@ This platform is built upon three principles:
 - Database: [Redis](https://redis.io/)
 
 ## What’s New?
-
-
-https://user-images.githubusercontent.com/61158210/152098593-33f6562b-232d-40f3-b57c-1a43933405c6.mp4
-
 
 
 The virtual events starter kit now has added support for organising truly LIVE virtual events. You can quickly setup a live stage and invite speakers to interact with viewers. Live audio-video opens up a ton of possibilities with respect to what you can do with this template. You can use it for:
