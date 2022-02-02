@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
 import { IconButton, Loading } from '@100mslive/react-ui';
 import {
@@ -18,14 +17,13 @@ import {
   selectIsLocalVideoDisplayEnabled,
   useAVToggle
 } from '@100mslive/react-sdk';
-import s from './index.module.css';
 import { AudioLevel } from '../VideoTile';
-
 import InfoIcon from '@components/icons/icon-info';
 import { useRouter } from 'next/router';
 import { usePreview } from './usePreview';
 import SettingDialog from '../SettingDialog';
 import Avatar from '../Avatar';
+import Button from '../Button';
 
 export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
   const router = useRouter();
@@ -37,12 +35,12 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
     name
   });
   return (
-    <div className={s['preview-container']}>
+    <div className="bg-[#212121] rounded-lg md:p-8 p-4 flex md:flex-row flex-col">
       <PreviewContainer name={name} />
-      <div className={s['wrapper']}>
+      <div className="w-[320px] flex flex-col md:ml-8 md:mt-0 mt-4 justify-between">
         <div>
-          <p className={s['head-text']}>Welcome {name}</p>
-          <p className={s['sub-text']}>Preview your video and audio before joining the stage</p>
+          <p className="font-bold text-2xl my-0">Welcome {name}</p>
+          <p className="text-gray-400">Preview your video and audio before joining the stage</p>
         </div>
         <form
           onSubmit={e => {
@@ -57,27 +55,23 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
             placeholder="Enter your name"
             required
             maxLength={20}
-            className="w-full text-md bg-gray-600 rounded-lg placeholder:text-gray-400 h-10 pl-2"
+            className="w-full text-md bg-gray-600 rounded-lg placeholder:text-gray-400 h-10 pl-2 focus:outline-none focus:bg-gray-700"
             onChange={e => {
               setName(e.target.value);
               localStorage.setItem('name', e.target.value);
             }}
           />
-          <p className={s['info']}>
-            <InfoIcon /> Note: Your mic is {audioEnabled ? 'on' : 'off'} and video is{' '}
-            {videoEnabled ? 'on' : 'off'}
+          <p className="flex items-center">
+            <InfoIcon className="mr-2" /> Note: Your mic is {audioEnabled ? 'on' : 'off'} and video
+            is {videoEnabled ? 'on' : 'off'}
           </p>
-          <div className={s['btn-wrapper']}>
-            <button
-              type="button"
-              className={`${s['back-btn']} ${s['btn']}`}
-              onClick={() => router.push('/')}
-            >
+          <div className="flex space-x-4">
+            <Button variant="secondary" onClick={() => router.push('/')}>
               Go back
-            </button>
-            <button className={s['btn']} disabled={!enableJoin} type="submit">
+            </Button>
+            <Button disabled={!enableJoin} type="submit">
               Join Stage <ArrowRightIcon />
-            </button>
+            </Button>
           </div>
         </form>
       </div>

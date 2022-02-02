@@ -186,6 +186,7 @@ button {
 }
 
 input {
+  transition: background 0.2s ease;
   font-family: inherit;
   color: var(--foreground);
   border: none;

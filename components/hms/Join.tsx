@@ -63,7 +63,7 @@ const ViewersJoin: React.FC<{ token: string }> = ({ token }) => {
             localStorage.setItem('name', e.target.value);
           }}
           required
-          className="p-4 w-80 text-md bg-gray-600 rounded-lg placeholder:text-gray-400"
+          className="p-4 w-80 text-md bg-gray-600 rounded-lg placeholder:text-gray-400 focus:outline-none focus:bg-gray-700"
           placeholder="Enter your name to join the event"
           type="text"
         />

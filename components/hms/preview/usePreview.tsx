@@ -13,7 +13,7 @@ export interface usePreviewInput {
   /**
    * name of user who is joining, this is only required if join is called
    */
-  name?: string;
+  name: string;
   /**
    * app side authentication token
    */
@@ -50,7 +50,7 @@ export interface usePreviewResult {
  * muting/unmuting and useAudioLevelStyles for showing mic audio level to the user.
  * Any device change or mute/unmute will be carried across to join.
  */
-export const usePreview = ({ name = '', token, metadata }: usePreviewInput): usePreviewResult => {
+export const usePreview = ({ name, token, metadata }: usePreviewInput): usePreviewResult => {
   const actions = useHMSActions();
   const roomState = useHMSStore(selectRoomState);
   const isConnected = useHMSStore(selectIsConnectedToRoom) || false;
@@ -91,7 +91,7 @@ export const usePreview = ({ name = '', token, metadata }: usePreviewInput): use
     } catch (err) {
       console.log('Error: ', err);
     }
-  }, [actions, token]);
+  }, [actions, token, name]);
 
   return {
     enableJoin,

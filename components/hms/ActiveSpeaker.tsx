@@ -6,6 +6,7 @@ import {
   HMSPeer
 } from '@100mslive/react-sdk';
 import React, { useState, useEffect, useRef } from 'react';
+import { hmsConfig } from './config';
 import VideoTile from './VideoTile';
 
 const ActiveSpeaker = () => {
@@ -33,14 +34,9 @@ const ActiveSpeaker = () => {
     }
   };
   const { pagesWithTiles, ref } = useVideoList({
-    maxColCount: 1,
-    maxRowCount: 1,
     maxTileCount: 1,
     peers: [activeSpeaker],
-    aspectRatio: {
-      width: 1.8,
-      height: 1
-    }
+    aspectRatio: hmsConfig.aspectRatio
   });
   return (
     <div

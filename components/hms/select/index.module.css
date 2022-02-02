@@ -38,6 +38,7 @@
 
 .select:focus {
   outline: none;
+  background-color: var(--accents-5);
 }
 
 .select:invalid {
