@@ -16,7 +16,7 @@
     "license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js"
   },
   "dependencies": {
-    "@100mslive/react-sdk": "^0.0.5-alpha.9",
+    "@100mslive/react-sdk": "0.0.5-alpha.9",
     "@100mslive/react-ui": "0.0.5-alpha.12",
     "@agility/content-fetch": "1.1.1",
     "@agility/content-sync": "1.0.3",
@@ -38,7 +38,6 @@
     "react-aria": "3.2.0",
     "react-dom": "^17.0.2",
     "react-hot-toast": "^2.2.0",
-    "react-resize-detector": "^6.7.6",
     "smoothscroll-polyfill": "0.4.4",
     "swr": "0.3.9",
     "validator": "13.5.2",
@@ -73,6 +72,6 @@
     "typescript": "4.3.2"
   },
   "resolutions": {
-    "@100mslive/hms-video-store": "0.2.86-alpha.1"
+    "@100mslive/hms-video-store": "0.2.88"
   }
 }

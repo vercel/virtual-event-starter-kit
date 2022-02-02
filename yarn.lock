@@ -2,21 +2,21 @@
 # yarn lockfile v1
 
 
-"@100mslive/hms-video-store@0.2.86-alpha.1", "@100mslive/hms-video-store@0.2.88-alpha.7":
-  version "0.2.86-alpha.1"
-  resolved "https://registry.yarnpkg.com/@100mslive/hms-video-store/-/hms-video-store-0.2.86-alpha.1.tgz#5a738a0989d927f8b9ded434eadf4e3766dd2f19"
-  integrity sha512-teuR419/QjHpk+/Da2rnANrUW1atRH7Zy01DyWejTWCZz6mQh0YzvXVXfrDlQVDrVZzhRiOC0NUZLrWbMsOj2A==
+"@100mslive/hms-video-store@0.2.88", "@100mslive/hms-video-store@0.2.88-alpha.7":
+  version "0.2.88"
+  resolved "https://registry.yarnpkg.com/@100mslive/hms-video-store/-/hms-video-store-0.2.88.tgz#bdb6d1dce5925339fece93d2f1991a4cdad3d0ea"
+  integrity sha512-ZIdJkB5e7DDS3dA9xzXpCyOpXfxU3kOje3dI/RdQJiKgbOp61b74uiQ9PsY4632/EbpR2O6pOoVP6FRT9b+T8Q==
   dependencies:
-    "@100mslive/hms-video" "0.1.40-alpha.0"
+    "@100mslive/hms-video" "0.1.42"
     eventemitter2 "^6.4.5"
     immer "^9.0.6"
     reselect "4.0.0"
     zustand "3.5.7"
 
-"@100mslive/hms-video@0.1.40-alpha.0":
-  version "0.1.40-alpha.0"
-  resolved "https://registry.yarnpkg.com/@100mslive/hms-video/-/hms-video-0.1.40-alpha.0.tgz#d45515171c231e649b4e342e06c573cc09b2e762"
-  integrity sha512-q2wWY1iFU/h/WDJbgIrqp+g6zcv5Fzypy9u59DClrJFb66x3jB17Ui4d7XJyD3c6ZMqbHK7H8NTy9WRrP85bIg==
+"@100mslive/hms-video@0.1.42":
+  version "0.1.42"
+  resolved "https://registry.yarnpkg.com/@100mslive/hms-video/-/hms-video-0.1.42.tgz#aefd30c0cd0ce27040dc18b099c4bd4efa2c96e3"
+  integrity sha512-2YxoAALb/5QiFd1tx4Deu+igL4+4T253TG/qnu3GZAdK9ewUNlzwlAPHSHPDUYwQWWijdkG0RMEnSHzPFnzY5Q==
   dependencies:
     eventemitter2 "^6.4.5"
     sdp-transform "^2.14.1"
@@ -29,7 +29,7 @@
   resolved "https://registry.yarnpkg.com/@100mslive/react-icons/-/react-icons-0.0.5-alpha.3.tgz#71d229e2ce06cd37435011ec119cdc3266e5d701"
   integrity sha512-nBlCUEv5iwu9DUgGt2K7SZsVeY7bolFDrFPMH0A1memG/VeXKsVmN5cYD0sF0pFzVJFM5dgqw3ZO3BQnsCiNVA==
 
-"@100mslive/react-sdk@0.0.5-alpha.9", "@100mslive/react-sdk@^0.0.5-alpha.9":
+"@100mslive/react-sdk@0.0.5-alpha.9":
   version "0.0.5-alpha.9"
   resolved "https://registry.yarnpkg.com/@100mslive/react-sdk/-/react-sdk-0.0.5-alpha.9.tgz#6e999a4d1298ef174a40fbe7a24dce16e394222f"
   integrity sha512-AlayuhAiyrJKWNPdUvxFqtccejZMHwasartK7Ke/TuczzJtR3wjS7SqBAdV7+pRlTmcaTSZjOVA5r24lt5PHGA==
@@ -4547,15 +4547,6 @@ react-remove-scroll@^2.4.0:
     use-callback-ref "^1.2.3"
     use-sidecar "^1.0.1"
 
-react-resize-detector@^6.7.6:
-  version "6.7.8"
-  resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-6.7.8.tgz#318c85d1335e50f99d4fb8eb9ec34e066db597d0"
-  integrity sha512-0FaEcUBAbn+pq3PT5a9hHRebUfuS1SRLGLpIw8LydU7zX429I6XJgKerKAMPsJH0qWAl6o5bVKNqFJqr6tGPYw==
-  dependencies:
-    "@types/resize-observer-browser" "^0.1.6"
-    lodash "^4.17.21"
-    resize-observer-polyfill "^1.5.1"
-
 react-resize-detector@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-7.0.0.tgz#fbd46917ee905b7796c797aa6b301b454a6b9229"
@@ -4658,11 +4649,6 @@ reselect@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.0.0.tgz#f2529830e5d3d0e021408b246a206ef4ea4437f7"
   integrity sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==
-
-resize-observer-polyfill@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
-  integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
 
 resolve-from@^4.0.0:
   version "4.0.0"
@@ -5311,9 +5297,9 @@ webidl-conversions@^4.0.2:
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
 
 webrtc-adapter@^8.0.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-8.1.0.tgz#89429d837eb43c7a2885a0eb66390af6c552bba6"
-  integrity sha512-I+y/LWBiGYPVhIb8Ww7nyoNWhrCYENeGoRvZuyytLn/h+ahDBgItvuIfMdzT+xhOnjLIMVkOykttGJPv1dr6kA==
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-8.1.1.tgz#e4a4dfd1b5085d119da40c4efc0147f7d0961cba"
+  integrity sha512-1yXevP7TeZGmklEXkvQVrZp3fOSJlLeXNGCA7NovQokxgP3/e2T3EVGL0eKU87S9vKppWjvRWqnJeSANEspOBg==
   dependencies:
     sdp "^3.0.2"
 

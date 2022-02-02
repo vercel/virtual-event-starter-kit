@@ -9,7 +9,7 @@ import {
   VideoOnIcon,
   ArrowRightIcon
 } from '@100mslive/react-icons';
-import { useHMSActions, useVideoTile, HMSPeer } from '@100mslive/react-sdk';
+import { useHMSActions, HMSPeer } from '@100mslive/react-sdk';
 import s from './index.module.css';
 
 import InfoIcon from '@components/icons/icon-info';
@@ -81,33 +81,8 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
 };
 
 const PreviewVideo: React.FC<{ peer: HMSPeer; name: string }> = ({ peer, name }) => {
-  const actions = useHMSActions();
-  const { videoRef, isLocal, isAudioOn, isVideoOn, audioLevel } = useVideoTile(peer);
-  return (
-    <Preview.VideoRoot css={{ width: '290px', height: '290px' }} audioLevel={audioLevel}>
-      {isVideoOn ? (
-        <Preview.Video local={isLocal} ref={videoRef} autoPlay muted playsInline />
-      ) : (
-        <Avatar size="lg" name={name} />
-      )}
-      <Preview.Controls>
-        <IconButton active={isAudioOn} onClick={() => actions.setLocalAudioEnabled(!isAudioOn)}>
-          {isAudioOn ? <MicOnIcon /> : <MicOffIcon />}
-        </IconButton>
-        <IconButton active={isVideoOn} onClick={() => actions.setLocalVideoEnabled(!isVideoOn)}>
-          {isVideoOn ? <VideoOnIcon /> : <VideoOffIcon />}
-        </IconButton>
-      </Preview.Controls>
-      <Preview.Setting>
-        <SettingDialog>
-          <IconButton>
-            <SettingIcon />
-          </IconButton>
-        </SettingDialog>
-      </Preview.Setting>
-      <Preview.BottomOverlay />
-    </Preview.VideoRoot>
-  );
+  // TODO
+  return <div>Preview Component</div>;
 };
 
 const VideoLoader = () => (

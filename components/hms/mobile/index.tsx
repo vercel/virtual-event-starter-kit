@@ -32,13 +32,10 @@ const MobileView: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
 };
 
 const VideoList: React.FC<{ peer: HMSPeer }> = ({ peer }) => {
-  const { width = 0, height = 0, ref } = useResizeDetector();
-  const { chunkedTracksWithPeer } = useVideoList({
+  const { pagesWithTiles, ref } = useVideoList({
     maxColCount: 1,
     maxRowCount: 1,
     maxTileCount: 1,
-    width,
-    height,
     peers: [peer],
     aspectRatio: {
       width: 1.8,
@@ -47,11 +44,11 @@ const VideoList: React.FC<{ peer: HMSPeer }> = ({ peer }) => {
   });
   return (
     <div ref={ref} className="w-full h-full flex items-center">
-      {chunkedTracksWithPeer && chunkedTracksWithPeer.length > 0 ? (
+      {pagesWithTiles && pagesWithTiles.length > 0 ? (
         <VideoTile
-          width={chunkedTracksWithPeer[0][0].width}
-          height={chunkedTracksWithPeer[0][0].height}
-          peer={chunkedTracksWithPeer[0][0].peer}
+          width={pagesWithTiles[0][0].width}
+          height={pagesWithTiles[0][0].height}
+          peer={pagesWithTiles[0][0].peer}
         />
       ) : null}
     </div>

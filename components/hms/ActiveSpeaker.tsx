@@ -6,7 +6,6 @@ import {
   HMSPeer
 } from '@100mslive/react-sdk';
 import React, { useState, useEffect, useRef } from 'react';
-import { useResizeDetector } from 'react-resize-detector';
 import VideoTile from './VideoTile';
 
 const ActiveSpeaker = () => {
@@ -33,14 +32,10 @@ const ActiveSpeaker = () => {
       return localPeer;
     }
   };
-
-  const { width = 0, height = 0, ref } = useResizeDetector();
-  const { chunkedTracksWithPeer } = useVideoList({
+  const { pagesWithTiles, ref } = useVideoList({
     maxColCount: 1,
     maxRowCount: 1,
     maxTileCount: 1,
-    width,
-    height,
     peers: [activeSpeaker],
     aspectRatio: {
       width: 1.8,
@@ -55,9 +50,9 @@ const ActiveSpeaker = () => {
       }}
     >
       <div ref={ref} className="flex justify-center  w-full h-full">
-        {chunkedTracksWithPeer &&
-          chunkedTracksWithPeer.length > 0 &&
-          chunkedTracksWithPeer[0].map((p, _) => (
+        {pagesWithTiles &&
+          pagesWithTiles.length > 0 &&
+          pagesWithTiles[0].map((p, _) => (
             <VideoTile width={p.width} height={p.height} peer={p.peer} />
           ))}
       </div>

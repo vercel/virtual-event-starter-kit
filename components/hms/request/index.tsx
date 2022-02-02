@@ -1,15 +1,11 @@
-import {
-  selectDevices,
-  selectLocalMediaSettings,
-  selectRoleChangeRequest
-} from '@100mslive/react-sdk';
+import { selectDevices, selectRoleChangeRequest } from '@100mslive/react-sdk';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import React, { useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import s from './index.module.css';
 import Select from '../select';
 import g from './guest-invite.module.css';
-import { Avatar, IconButton, Preview } from '@100mslive/react-ui';
+import { IconButton, Preview } from '@100mslive/react-ui';
 import {
   MicOnIcon,
   MicOffIcon,
@@ -22,6 +18,7 @@ import {
 import InfoIcon from '@components/icons/icon-info';
 import router from 'next/router';
 import { TestAudio } from '../SettingDialog';
+import Avatar from '../Avatar';
 
 const RoleChangeDialog = () => {
   const actions = useHMSActions();
@@ -68,7 +65,7 @@ const RoleChangeDialog = () => {
               <>
                 <p className={s['head']}>You have been invited to speak</p>
                 <p className={s['text']}>
-                  {request.requestedBy.name} has invited you to speak, would you like to join?
+                  {request?.requestedBy?.name} has invited you to speak, would you like to join?
                 </p>
                 <div className={s['cta-wrapper']}>
                   <button className={s['reject-btn']} onClick={() => roleChange(false)}>
@@ -141,9 +138,8 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
           {isVideoOn ? (
             <Preview.Video local={true} ref={videoRef} autoPlay muted playsInline />
           ) : (
-            <Avatar size="lg" style={{ backgroundColor: 'red' }}>
-              DB
-            </Avatar>
+            // TODO:
+            <Avatar size="lg" name={'Guest'} />
           )}
           <Preview.Controls>
             <IconButton active={isAudioOn} onClick={() => setIsAudioOn(!isAudioOn)}>
