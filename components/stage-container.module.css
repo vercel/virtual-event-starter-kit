@@ -24,7 +24,7 @@
 .streamContainer {
   width: 100%;
   padding: 0;
-  min-height: 400px;
+  /* min-height: 400px; */
   height: 100%;
 }
 

@@ -86,7 +86,12 @@ const NonActiveSpeakerView: React.FC<{ peers: HMSPeer[] }> = ({ peers }) => {
       {pagesWithTiles &&
         pagesWithTiles.length > 0 &&
         pagesWithTiles[0].map((p, _) => (
-          <VideoTile width={p.width} height={p.height} trackId={p.peer.videoTrack || ''} />
+          <VideoTile
+            key={p.peer.id}
+            width={p.width}
+            height={p.height}
+            trackId={p.peer.videoTrack || ''}
+          />
         ))}
     </div>
   );
