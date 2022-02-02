@@ -50,7 +50,6 @@ const Video: React.FC<{ id: string; mirror: boolean }> = ({ id, mirror }) => {
   const ref = useVideo(id);
   return (
     <video
-      id={id}
       className={`bg-gray-base border-solid border-transparent w-full h-full rounded-lg object-cover  ${
         mirror ? 'mirror' : ''
       }`}
@@ -85,7 +84,7 @@ const HmsWatermark = () => {
   return <img src="/hms-coachmark.svg" className="absolute right-6 top-6 z-30" />;
 };
 
-const AudioLevel: React.FC<{ audioTrack: HMSPeer['audioTrack'] }> = ({ audioTrack }) => {
+export const AudioLevel: React.FC<{ audioTrack: HMSPeer['audioTrack'] }> = ({ audioTrack }) => {
   const getStyle = useCallback((level: number) => {
     const style: Record<string, string> = {
       border: `3px solid ${level > 0 ? hmsConfig.audioLevelColor : 'transparent'}`
