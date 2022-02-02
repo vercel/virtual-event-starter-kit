@@ -4,49 +4,51 @@ import Chat from './Chat';
 import Participants from './Participants';
 import ScheduleSidebar from '@components/schedule-sidebar-individual';
 import { Stage } from '@lib/types';
+import * as Tabs from '@radix-ui/react-tabs';
 
 type Props = {
   allStages: Stage[];
 };
 
 const Sidebar = ({ allStages }: Props) => {
-  const [tab, setTab] = React.useState(0);
   const localRole = useHMSStore(selectLocalPeerRole);
   return (
-    <div className="sidebar-container">
-      <div className="w-full px-4">
-        <button
-          onClick={() => setTab(0)}
-          className={`w-1/2 text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-l-md ${
-            tab === 0 ? 'bg-gray-700 font-bold text-foreground' : 'bg-transparent'
-          }`}
-        >
-          Chat
-        </button>
-        {localRole?.name === 'stage' || localRole?.name === 'backstage' ? (
-          <button
-            onClick={() => setTab(1)}
-            className={`w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md ${
-              tab === 1 ? 'bg-gray-700 font-bold text-foreground' : 'bg-transparent'
-            }`}
-          >
-            Participants
-          </button>
-        ) : (
-          <button
-            onClick={() => setTab(2)}
-            className={`w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md ${
-              tab === 2 ? 'bg-gray-700 font-bold text-foreground' : 'bg-transparent'
-            }`}
-          >
-            Schedule
-          </button>
-        )}
+    <Tabs.Root asChild defaultValue="1">
+      <div className="sidebar-container">
+        <Tabs.List className="w-full px-4 tabs">
+          <Tabs.Trigger asChild value="1">
+            <button className="w-1/2 text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-l-md">
+              Chat
+            </button>
+          </Tabs.Trigger>
+
+          {localRole?.name === 'stage' || localRole?.name === 'backstage' ? (
+            <Tabs.Trigger asChild value="2">
+              <button className="w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md">
+                Participants
+              </button>
+            </Tabs.Trigger>
+          ) : null}
+
+          {localRole?.name == 'viewer' ? (
+            <Tabs.Trigger asChild value="3">
+              <button className="w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md">
+                Schedule
+              </button>
+            </Tabs.Trigger>
+          ) : null}
+        </Tabs.List>
+        <Tabs.Content asChild value="1">
+          <Chat />
+        </Tabs.Content>
+        <Tabs.Content asChild value="2">
+          <Participants />
+        </Tabs.Content>
+        <Tabs.Content asChild value="3">
+          <ScheduleSidebar allStages={allStages} />
+        </Tabs.Content>
       </div>
-      {tab === 0 ? <Chat /> : null}
-      {tab === 1 ? <Participants /> : null}
-      {tab === 2 ? <ScheduleSidebar allStages={allStages} /> : null}
-    </div>
+    </Tabs.Root>
   );
 };
 

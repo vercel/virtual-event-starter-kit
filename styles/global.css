@@ -325,3 +325,10 @@ input {
 .attendee-badge {
   border: 1px solid #8465cb;
 }
+
+.tabs button[data-state='active'] {
+  background-color: var(--accents-7);
+  font-weight: 700;
+  color: var(--foreground);
+  outline: none;
+}

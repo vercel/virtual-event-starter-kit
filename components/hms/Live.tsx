@@ -32,13 +32,15 @@ const Notification = () => {
       return;
     }
     if (notification.type === 'RECONNECTING') {
-      toast('RECONNECTING');
+      toast.error(
+        'You are offline for now. while we try to reconnect, please check your internet connection.'
+      );
     }
     if (notification.type === 'RECONNECTED') {
-      toast('RECONNECTED');
+      toast.success('You are now connected.');
     }
     if (notification.type === 'ERROR') {
-      toast(`[ERROR] ${notification.data.code} ${notification.data}`);
+      toast.error(`Error: ${notification.data.message}`);
     }
   }, [notification]);
 
@@ -47,7 +49,7 @@ const Notification = () => {
       position="bottom-left"
       toastOptions={{
         style: {
-          background: 'var(--accents-8)',
+          background: 'var(--accents-7)',
           color: 'var(--accents-1)'
         }
       }}

@@ -2,24 +2,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { CrossIcon } from '@100mslive/react-icons';
-import {
-  selectIsAllowedToPublish,
-  selectLocalMediaSettings,
-  useHMSStore,
-  useDevices
-} from '@100mslive/react-sdk';
 import Select from './select';
 import { AudioLevelIcon } from '@100mslive/react-icons';
 import Button from './Button';
-
-enum DeviceType {
-  videoInput = 'videoInput',
-  audioInput = 'audioInput',
-  audioOutput = 'audioOutput'
-}
+import { useDevices, DeviceType } from './lib/useDevices';
 
 const SettingDialog: React.FC = ({ children }) => {
-  const { allDevices, selectedDeviceIDs, updateDevice } = useDevices();
+  const { allDevices, selectedDeviceIDs, updateDevice, isAllowedToPublish } = useDevices();
   const videoInput = allDevices['videoInput'] || [];
   const audioInput = allDevices['audioInput'] || [];
   const audioOutput = allDevices['audioOutput'] || [];
@@ -38,11 +27,10 @@ const SettingDialog: React.FC = ({ children }) => {
             </button>
           </Dialog.Close>
         </div>
-        {audioInput.length > 0 || videoInput.length > 0 ? (
+        {isAllowedToPublish.audio && isAllowedToPublish.video ? (
           <p className="my-0 text-gray-300 text-sm">Control your audio, video source from here</p>
         ) : null}
-
-        {videoInput.length > 0 ? (
+        {videoInput.length > 0 && isAllowedToPublish.video ? (
           <div className={wrapperClass}>
             <span className={textClass}>Video</span>
             <Select
@@ -62,7 +50,7 @@ const SettingDialog: React.FC = ({ children }) => {
             </Select>
           </div>
         ) : null}
-        {audioInput.length > 0 ? (
+        {audioInput.length > 0 && isAllowedToPublish.audio ? (
           <div className={wrapperClass}>
             <span className={textClass}>Microphone</span>
             <Select
