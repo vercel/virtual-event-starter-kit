@@ -5,8 +5,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { CrossIcon, PersonIcon } from '@100mslive/react-icons';
 import DemoModal from '../demo-modal';
 import InviteIcon from '@components/icons/icon-invite';
-import { useHMSStore } from '@100mslive/react-sdk';
-import { selectLocalPeerRole } from '@100mslive/hms-video-store';
+import { useHMSStore, selectLocalPeerRole } from '@100mslive/react-sdk';
 import { useRouter } from 'next/router';
 
 const RoomCta = () => {

@@ -1,14 +1,15 @@
 import { isBrowser } from '@100mslive/hms-video';
+import { useState, useEffect } from 'react';
 import {
+  useHMSActions,
+  useHMSStore,
   HMSRoomState,
   selectIsLocalAudioEnabled,
   selectIsLocalVideoDisplayEnabled,
   selectLocalPeer,
   selectRoomState,
   selectIsAllowedToPublish
-} from '@100mslive/hms-video-store';
-import { useState, useEffect } from 'react';
-import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
+} from '@100mslive/react-sdk';
 
 export const usePreview = (authToken: string, userName = 'preview') => {
   const [inProgress, setInProgress] = useState(false);

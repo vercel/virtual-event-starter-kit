@@ -1,12 +1,14 @@
 import React from 'react';
 import Avatar from '../Avatar';
 import { useResizeDetector } from 'react-resize-detector';
-import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
 import {
+  useHMSStore,
+  useVideoList,
   HMSPeer,
   selectIsSomeoneScreenSharing,
   selectPeersByRole
-} from '@100mslive/hms-video-store';
+} from '@100mslive/react-sdk';
+
 import VideoTile from '../VideoTile';
 import ScreenshareTile from '../ScreenshareTile';
 

@@ -1,12 +1,11 @@
-// new
+import { MicOffIcon } from '@100mslive/react-icons';
 import {
+  useHMSStore,
   HMSPeer,
   selectIsPeerAudioEnabled,
   selectIsPeerVideoEnabled,
   selectPeerAudioByID
-} from '@100mslive/hms-video-store';
-import { MicOffIcon } from '@100mslive/react-icons';
-import { useHMSStore } from '@100mslive/react-sdk';
+} from '@100mslive/react-sdk';
 import React from 'react';
 import Avatar from './Avatar';
 import useVideo from './lib/useVideo';

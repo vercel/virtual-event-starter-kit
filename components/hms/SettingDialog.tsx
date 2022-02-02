@@ -5,9 +5,10 @@ import { CrossIcon } from '@100mslive/react-icons';
 import {
   selectDevices,
   selectIsAllowedToPublish,
-  selectLocalMediaSettings
-} from '@100mslive/hms-video-store';
-import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
+  selectLocalMediaSettings,
+  useHMSActions,
+  useHMSStore
+} from '@100mslive/react-sdk';
 import Select from './select';
 import { AudioLevelIcon } from '@100mslive/react-icons';
 import Button from './Button';

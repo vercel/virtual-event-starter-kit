@@ -1,5 +1,4 @@
-import { selectLocalPeerRole } from '@100mslive/hms-video-store';
-import { useHMSStore } from '@100mslive/react-sdk';
+import { useHMSStore, selectLocalPeerRole } from '@100mslive/react-sdk';
 import React from 'react';
 import Chat from './Chat';
 import Participants from './Participants';

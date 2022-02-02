@@ -1,5 +1,4 @@
-import { selectLocalPeer, selectPeersByRole } from '@100mslive/hms-video-store';
-import { useHMSStore } from '@100mslive/react-sdk';
+import { useHMSStore, selectLocalPeer, selectPeersByRole } from '@100mslive/react-sdk';
 import React from 'react';
 import Avatar from '../Avatar';
 import Dropdown from './Dropdown';

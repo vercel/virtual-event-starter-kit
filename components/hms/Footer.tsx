@@ -1,5 +1,10 @@
-import { selectIsLocalScreenShared, selectLocalPeerRole } from '@100mslive/hms-video-store';
-import { useAVToggle, useHMSActions, useHMSStore } from '@100mslive/react-sdk';
+import {
+  useAVToggle,
+  useHMSActions,
+  useHMSStore,
+  selectIsLocalScreenShared,
+  selectLocalPeerRole
+} from '@100mslive/react-sdk';
 import {
   VideoOffIcon,
   VideoOnIcon,

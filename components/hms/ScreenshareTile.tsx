@@ -1,9 +1,10 @@
 import {
+  useHMSActions,
+  useHMSStore,
   selectScreenShareByPeerID,
   selectIsLocalScreenShared,
   selectPeerScreenSharing
-} from '@100mslive/hms-video-store';
-import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
+} from '@100mslive/react-sdk';
 import { ShareScreenIcon } from '@100mslive/react-icons';
 import React from 'react';
 import IconFitScreen from '@components/icons/icon-fit-screen';
@@ -14,7 +15,7 @@ const ScreenshareTile = () => {
   const screenSharePeer = useHMSStore(selectPeerScreenSharing);
   const hmsActions = useHMSActions();
   const videoRef = React.useRef<HTMLVideoElement>(null);
-  const videoTrack = useHMSStore(selectScreenShareByPeerID(screenSharePeer!.id));
+  const videoTrack = useHMSStore(selectScreenShareByPeerID(screenSharePeer?.id));
   const isLocalScreenShared = useHMSStore(selectIsLocalScreenShared);
   React.useEffect(() => {
     (async () => {

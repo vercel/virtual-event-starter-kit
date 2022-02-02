@@ -1,5 +1,10 @@
-import { selectLocalPeer, selectDominantSpeaker, HMSPeer } from '@100mslive/hms-video-store';
-import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
+import {
+  useHMSStore,
+  useVideoList,
+  selectLocalPeer,
+  selectDominantSpeaker,
+  HMSPeer
+} from '@100mslive/react-sdk';
 import React, { useState, useEffect, useRef } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import VideoTile from './VideoTile';

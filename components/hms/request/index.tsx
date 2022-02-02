@@ -2,7 +2,7 @@ import {
   selectDevices,
   selectLocalMediaSettings,
   selectRoleChangeRequest
-} from '@100mslive/hms-video-store';
+} from '@100mslive/react-sdk';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import React, { useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';

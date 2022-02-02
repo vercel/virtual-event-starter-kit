@@ -9,9 +9,9 @@ import {
   VideoOnIcon,
   ArrowRightIcon
 } from '@100mslive/react-icons';
-import { useHMSActions, useVideoTile } from '@100mslive/react-sdk';
+import { useHMSActions, useVideoTile, HMSPeer } from '@100mslive/react-sdk';
 import s from './index.module.css';
-import { HMSPeer } from '@100mslive/hms-video-store';
+
 import InfoIcon from '@components/icons/icon-info';
 import { useRouter } from 'next/router';
 import { usePreview } from './usePreview';

@@ -1,12 +1,13 @@
 import {
+  useHMSStore,
+  useVideoList,
   selectDominantSpeaker,
   selectLocalPeer,
   selectPeersByRole,
   HMSPeer,
   selectIsSomeoneScreenSharing,
   selectPeers
-} from '@100mslive/hms-video-store';
-import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
+} from '@100mslive/react-sdk';
 import React, { useEffect, useState } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import VideoTile from './VideoTile';
