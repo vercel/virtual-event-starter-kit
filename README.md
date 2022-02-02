@@ -38,6 +38,11 @@ This platform is built upon three principles:
 
 ## What’s New?
 
+
+https://user-images.githubusercontent.com/61158210/152098593-33f6562b-232d-40f3-b57c-1a43933405c6.mp4
+
+
+
 The virtual events starter kit now has added support for organising truly LIVE virtual events. You can quickly setup a live stage and invite speakers to interact with viewers. Live audio-video opens up a ton of possibilities with respect to what you can do with this template. You can use it for:
 
 1. Live Webinars
