@@ -57,7 +57,7 @@ export const ChangeRoleDialog: React.FC<{ children: React.ReactNode }> = ({ chil
     <Dialog.Root>
       <Dialog.Overlay className="fixed inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }} />
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
-      <Dialog.Content className="dialog-content max-h-[760px] bg-gray-800 text-center">
+      <Dialog.Content className="dialog-content max-h-[760px] overflow-y-scroll bg-gray-800 text-center rounded-lg dialog-animation">
         <Dialog.Close asChild className="w-full flex justify-end">
           <button>
             <CrossIcon />

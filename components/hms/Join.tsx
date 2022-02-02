@@ -94,7 +94,7 @@ const MobileRoleDialog = () => {
   return (
     <Dialog.Root open={true}>
       <Dialog.Overlay className="fixed inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }} />
-      <Dialog.Content className="dialog-content bg-gray-700 md:w-96 w-[95%] rounded-lg text-center">
+      <Dialog.Content className="dialog-content bg-gray-700 md:w-96 w-[95%] rounded-lg text-center dialog-animation">
         <h3>Joining as a speaker is not supported on mobile</h3>
         <p className="text-xs text-gray-200 mt-4">
           We have setup a few profiles to make it easy for you or your team to experience each

@@ -18,7 +18,7 @@ const SettingDialog: React.FC = ({ children }) => {
     <Dialog.Root>
       <Dialog.Overlay className="fixed inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }} />
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
-      <Dialog.Content className="dialog-content bg-gray-700 md:w-[520px] rounded-2xl w-[90%]">
+      <Dialog.Content className="dialog-content dialog-animation  bg-gray-700 md:w-[520px] rounded-2xl w-[90%] ">
         <div className="w-full flex items-center justify-between">
           <span className="text-xl font-bold">Settings</span>
           <Dialog.Close asChild>

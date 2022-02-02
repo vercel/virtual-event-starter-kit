@@ -58,7 +58,7 @@ const RoleChangeDialog = () => {
       {request && request.role.name === 'invitee' ? (
         <Dialog.Root open={request ? true : false}>
           <Dialog.Overlay className={s['pop-overlay']} />
-          <Dialog.Content className={s['pop-content']}>
+          <Dialog.Content className="dialog-content dialog-animation bg-gray-700  rounded-xl">
             {showPreview ? (
               <GuestPreview roleChange={roleChange} />
             ) : (
@@ -160,7 +160,7 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
                   <SettingIcon />
                 </IconButton>
               </Dialog.Trigger>
-              <Dialog.Content className="dialog-content bg-gray-700 md:w-[520px] rounded-2xl w-[90%]">
+              <Dialog.Content className="dialog-content bg-gray-700 md:w-[520px] rounded-2xl w-[90%]  dialog-animation ">
                 <div className="w-full flex items-center justify-between">
                   <span className="text-xl font-bold">Settings</span>
                   <Dialog.Close asChild>

@@ -22,7 +22,7 @@ const Sidebar = ({ allStages }: Props) => {
             </button>
           </Tabs.Trigger>
 
-          {localRole?.name === 'stage' || localRole?.name === 'backstage' ? (
+          {localRole?.name !== 'viewer' ? (
             <Tabs.Trigger asChild value="2">
               <button className="w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md">
                 Participants
@@ -30,7 +30,7 @@ const Sidebar = ({ allStages }: Props) => {
             </Tabs.Trigger>
           ) : null}
 
-          {localRole?.name == 'viewer' ? (
+          {localRole?.name === 'viewer' ? (
             <Tabs.Trigger asChild value="3">
               <button className="w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md">
                 Schedule

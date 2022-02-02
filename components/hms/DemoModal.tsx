@@ -6,7 +6,7 @@ const DemoModal = () => {
   return (
     <Dialog.Root defaultOpen={true}>
       <Dialog.Overlay className="fixed inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }} />
-      <Dialog.Content className="dialog-content bg-gray-700 md:w-[400px] w-[95%] rounded-lg">
+      <Dialog.Content className="dialog-content bg-gray-700 md:w-[400px] w-[95%] rounded-lg dialog-animation">
         <h3 className="mb-4">Heads Up</h3>
         <p className="text-sm text-gray-200 my-0">
           Since this is a public demo, you might encounter other people on the stage who can hear /
