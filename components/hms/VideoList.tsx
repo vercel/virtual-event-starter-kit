@@ -86,7 +86,7 @@ const NonActiveSpeakerView: React.FC<{ peers: HMSPeer[] }> = ({ peers }) => {
       {pagesWithTiles &&
         pagesWithTiles.length > 0 &&
         pagesWithTiles[0].map((p, _) => (
-          <VideoTile width={p.width} height={p.height} peer={p.peer} />
+          <VideoTile width={p.width} height={p.height} trackId={p.peer.videoTrack || ''} />
         ))}
     </div>
   );
@@ -110,8 +110,6 @@ const ActiveSpeaker: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
 
 const ActiveTile: React.FC<{ activePeer: HMSPeer }> = ({ activePeer }) => {
   const { pagesWithTiles, ref } = useVideoList({
-    maxColCount: 1,
-    maxRowCount: 1,
     maxTileCount: 1,
     peers: [activePeer],
     aspectRatio: hmsConfig.aspectRatio
@@ -127,7 +125,7 @@ const ActiveTile: React.FC<{ activePeer: HMSPeer }> = ({ activePeer }) => {
       {pagesWithTiles &&
         pagesWithTiles.length > 0 &&
         pagesWithTiles[0].map((p, _) => (
-          <VideoTile width={p.width} height={p.height} peer={p.peer} />
+          <VideoTile width={p.width} height={p.height} trackId={p.peer.videoTrack || ''} />
         ))}
     </div>
   );
@@ -135,10 +133,8 @@ const ActiveTile: React.FC<{ activePeer: HMSPeer }> = ({ activePeer }) => {
 
 const AllSpeakers: React.FC<{ allPeers: HMSPeer[] }> = ({ allPeers }) => {
   const { pagesWithTiles, ref } = useVideoList({
-    maxColCount: hmsConfig.maxTileCountSpeakers,
     maxRowCount: 1,
     maxTileCount: hmsConfig.maxTileCountSpeakers,
-
     peers: allPeers,
     aspectRatio: hmsConfig.aspectRatio
   });
@@ -160,7 +156,7 @@ const AllSpeakers: React.FC<{ allPeers: HMSPeer[] }> = ({ allPeers }) => {
       {pagesWithTiles &&
         pagesWithTiles.length > 0 &&
         pagesWithTiles[page < pagesWithTiles.length ? page : 0].map((p, _) => (
-          <VideoTile width={p.width} height={p.height} peer={p.peer} />
+          <VideoTile width={p.width} height={p.height} trackId={p.peer.videoTrack || ''} />
         ))}
       {pagesWithTiles.length > 1 ? (
         <Pagination page={page} setPage={setPage} list={pagesWithTiles} />

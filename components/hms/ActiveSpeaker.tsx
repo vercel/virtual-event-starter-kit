@@ -53,7 +53,7 @@ const ActiveSpeaker = () => {
         {pagesWithTiles &&
           pagesWithTiles.length > 0 &&
           pagesWithTiles[0].map((p, _) => (
-            <VideoTile width={p.width} height={p.height} peer={p.peer} />
+            <VideoTile width={p.width} height={p.height} trackId={p.peer.videoTrack || ''} />
           ))}
       </div>
     </div>

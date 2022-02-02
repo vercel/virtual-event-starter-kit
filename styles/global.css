@@ -245,10 +245,6 @@ input {
   }
 }
 
-.audio-level {
-  border: 3px solid #702ec2;
-}
-
 .leave {
   background: linear-gradient(180deg, #ed4c5a 0%, #c61f5b 100%);
   border: 2px solid #60191f;

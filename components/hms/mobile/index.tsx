@@ -1,6 +1,5 @@
 import React from 'react';
 import Avatar from '../Avatar';
-import { useResizeDetector } from 'react-resize-detector';
 import {
   useHMSStore,
   useVideoList,
@@ -8,9 +7,9 @@ import {
   selectIsSomeoneScreenSharing,
   selectPeersByRole
 } from '@100mslive/react-sdk';
-
 import VideoTile from '../VideoTile';
 import ScreenshareTile from '../ScreenshareTile';
+import { hmsConfig } from '../config';
 
 const MobileView: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
   activePeer,
@@ -37,10 +36,7 @@ const VideoList: React.FC<{ peer: HMSPeer }> = ({ peer }) => {
     maxRowCount: 1,
     maxTileCount: 1,
     peers: [peer],
-    aspectRatio: {
-      width: 1.8,
-      height: 1
-    }
+    aspectRatio: hmsConfig.aspectRatio
   });
   return (
     <div ref={ref} className="w-full h-full flex items-center">
@@ -48,7 +44,7 @@ const VideoList: React.FC<{ peer: HMSPeer }> = ({ peer }) => {
         <VideoTile
           width={pagesWithTiles[0][0].width}
           height={pagesWithTiles[0][0].height}
-          peer={pagesWithTiles[0][0].peer}
+          trackId={pagesWithTiles[0][0].peer.videoTrack || ''}
         />
       ) : null}
     </div>

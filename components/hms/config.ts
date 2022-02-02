@@ -2,7 +2,7 @@ export const hmsConfig = {
   /**
    * no. of tiles rendered before active speaker mode actviates
    */
-  activeSpeakerThreshold: 1,
+  activeSpeakerThreshold: 2,
   /**
    * aspect ratio of video tiles
    */
@@ -19,4 +19,12 @@ export const hmsConfig = {
    * Disable for removing Invite change role CTAs
    */
   hmsIntegration: true,
+  /**
+   * border color for audioLevel
+   */
+  audioLevelColor: '#702ec2',
+  /**
+   * setHmsWatermark
+   */
+   setHmsWatermark: true
 }
