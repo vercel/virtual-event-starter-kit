@@ -3,7 +3,6 @@ import HmsLogo from '@components/icons/icon-hms';
 import React from 'react';
 import { useRouter } from 'next/router';
 import Button from '../Button';
-import Link from 'next/link';
 
 const data = [
   {
@@ -55,11 +54,11 @@ const DemoModal = () => {
             </div>
             <div className="flex items-center space-x-6">
               <CopyButton text={`${window.location.host}/stage/${stage || 'a'}?role=${m.role}`} />
-              <Link href={`/stage/${stage || 'a'}?role=${m.role}`}>
+              <a href={`/stage/${stage || 'a'}?role=${m.role}`}>
                 <Button className="w-[200px]">
                   Join as {m.name} <ArrowRightIcon height={20} />
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         ))}
