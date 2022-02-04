@@ -1,9 +1,10 @@
 import {
+  useHMSActions,
+  useHMSStore,
   selectScreenShareByPeerID,
   selectIsLocalScreenShared,
   selectPeerScreenSharing
-} from '@100mslive/hms-video-store';
-import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
+} from '@100mslive/react-sdk';
 import { ShareScreenIcon } from '@100mslive/react-icons';
 import React from 'react';
 import IconFitScreen from '@components/icons/icon-fit-screen';
@@ -14,7 +15,7 @@ const ScreenshareTile = () => {
   const screenSharePeer = useHMSStore(selectPeerScreenSharing);
   const hmsActions = useHMSActions();
   const videoRef = React.useRef<HTMLVideoElement>(null);
-  const videoTrack = useHMSStore(selectScreenShareByPeerID(screenSharePeer!.id));
+  const videoTrack = useHMSStore(selectScreenShareByPeerID(screenSharePeer?.id));
   const isLocalScreenShared = useHMSStore(selectIsLocalScreenShared);
   React.useEffect(() => {
     (async () => {
@@ -46,7 +47,7 @@ const ScreenshareTile = () => {
       {isLocalScreenShared ? (
         <div className="flex flex-col items-center justify-center font-bold screenshare self-screenshare">
           <p>You're sharing screen</p>{' '}
-          <Button className="bg-red-600 hover:bg-red-700" onClick={stopScreenShare}>
+          <Button variant="danger" onClick={stopScreenShare}>
             <CrossIcon className="mr-2" /> Stop screen share
           </Button>
         </div>

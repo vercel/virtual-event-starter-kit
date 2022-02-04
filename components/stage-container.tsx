@@ -23,8 +23,7 @@ import styleUtils from './utils.module.css';
 import ConfEntry from './conf-entry';
 import Room from './hms/Room';
 import Sidebar from './hms/sidebar';
-import { useHMSStore } from '@100mslive/react-sdk';
-import { selectIsConnectedToRoom } from '@100mslive/hms-video-store';
+import { useHMSStore, selectIsConnectedToRoom } from '@100mslive/react-sdk';
 import ScheduleSidebar from './schedule-sidebar';
 
 type Props = {

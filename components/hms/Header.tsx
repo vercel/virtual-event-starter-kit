@@ -1,10 +1,11 @@
+import { ExitIcon, SpeakerIcon } from '@100mslive/react-icons';
 import {
+  useHMSActions,
+  useHMSStore,
   selectDominantSpeaker,
   selectLocalPeer,
   selectPeersByRole
-} from '@100mslive/hms-video-store';
-import { ExitIcon, SpeakerIcon } from '@100mslive/react-icons';
-import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
+} from '@100mslive/react-sdk';
 import UsersIcon from '@components/icons/icon-users';
 import { useRouter } from 'next/router';
 import React from 'react';

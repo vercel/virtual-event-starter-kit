@@ -2,40 +2,23 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { CrossIcon } from '@100mslive/react-icons';
-import {
-  selectDevices,
-  selectIsAllowedToPublish,
-  selectLocalMediaSettings
-} from '@100mslive/hms-video-store';
-import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import Select from './select';
 import { AudioLevelIcon } from '@100mslive/react-icons';
 import Button from './Button';
+import { useDevices, DeviceType } from './lib/useDevices';
 
 const SettingDialog: React.FC = ({ children }) => {
-  const actions = useHMSActions();
-  const devices = useHMSStore(selectDevices);
-  const videoInput = devices['videoInput'] || [];
-  const audioInput = devices['audioInput'] || [];
-  const audioOutput = devices['audioOutput'] || [];
-  const selectedDevices = useHMSStore(selectLocalMediaSettings);
-  const handleAudioInput = (a: string) => {
-    actions.setAudioSettings({ deviceId: a });
-  };
-  const handleAudioOutput = (a: string) => {
-    actions.setAudioOutputDevice(a);
-  };
-  const handleVideoInput = (a: string) => {
-    actions.setVideoSettings({ deviceId: a });
-  };
-  const { video: showVideo, audio: showAudio } = useHMSStore(selectIsAllowedToPublish);
+  const { allDevices, selectedDeviceIDs, updateDevice, isAllowedToPublish } = useDevices();
+  const videoInput = allDevices['videoInput'] || [];
+  const audioInput = allDevices['audioInput'] || [];
+  const audioOutput = allDevices['audioOutput'] || [];
   const textClass = `text-gray-200`;
   const wrapperClass = `flex md:flex-row flex-col md:items-center md:justify-between my-6`;
   return (
     <Dialog.Root>
       <Dialog.Overlay className="fixed inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }} />
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
-      <Dialog.Content className="dialog-content bg-gray-700 md:w-[520px] rounded-2xl w-[90%]">
+      <Dialog.Content className="dialog-content dialog-animation  bg-gray-700 md:w-[520px] rounded-2xl w-[90%] ">
         <div className="w-full flex items-center justify-between">
           <span className="text-xl font-bold">Settings</span>
           <Dialog.Close asChild>
@@ -44,16 +27,20 @@ const SettingDialog: React.FC = ({ children }) => {
             </button>
           </Dialog.Close>
         </div>
-        {showAudio || showVideo ? (
+        {isAllowedToPublish.audio && isAllowedToPublish.video ? (
           <p className="my-0 text-gray-300 text-sm">Control your audio, video source from here</p>
         ) : null}
-
-        {showVideo && videoInput.length > 0 ? (
+        {videoInput.length > 0 && isAllowedToPublish.video ? (
           <div className={wrapperClass}>
             <span className={textClass}>Video</span>
             <Select
-              onChange={e => handleVideoInput(e.target.value)}
-              value={selectedDevices.videoInputDeviceId}
+              onChange={e =>
+                updateDevice({
+                  deviceId: e.target.value,
+                  deviceType: DeviceType.videoInput
+                })
+              }
+              value={selectedDeviceIDs.videoInput}
             >
               {videoInput.map((device: MediaDeviceInfo) => (
                 <option value={device.deviceId} key={device.deviceId}>
@@ -63,12 +50,17 @@ const SettingDialog: React.FC = ({ children }) => {
             </Select>
           </div>
         ) : null}
-        {showAudio && audioInput.length > 0 ? (
+        {audioInput.length > 0 && isAllowedToPublish.audio ? (
           <div className={wrapperClass}>
             <span className={textClass}>Microphone</span>
             <Select
-              onChange={e => handleAudioInput(e.target.value)}
-              value={selectedDevices.audioInputDeviceId}
+              onChange={e =>
+                updateDevice({
+                  deviceId: e.target.value,
+                  deviceType: DeviceType.audioInput
+                })
+              }
+              value={selectedDeviceIDs.audioInput}
             >
               {audioInput.map((device: MediaDeviceInfo) => (
                 <option value={device.deviceId} key={device.deviceId}>
@@ -82,8 +74,13 @@ const SettingDialog: React.FC = ({ children }) => {
           <div className={wrapperClass}>
             <span className={textClass}>Speaker</span>
             <Select
-              onChange={e => handleAudioOutput(e.target.value)}
-              value={selectedDevices.audioOutputDeviceId}
+              onChange={e =>
+                updateDevice({
+                  deviceId: e.target.value,
+                  deviceType: DeviceType.audioOutput
+                })
+              }
+              value={selectedDeviceIDs.audioOutput}
             >
               {audioOutput.map((device: MediaDeviceInfo) => (
                 <option value={device.deviceId} key={device.deviceId}>
@@ -94,7 +91,7 @@ const SettingDialog: React.FC = ({ children }) => {
           </div>
         ) : null}
         <div className="flex justify-end">
-          <TestAudio id={selectedDevices.audioOutputDeviceId || ''} />
+          <TestAudio id={selectedDeviceIDs.audioOutput || ''} />
         </div>
       </Dialog.Content>
     </Dialog.Root>
@@ -112,7 +109,7 @@ export const TestAudio: React.FC<{ id: string }> = ({ id }) => {
     if (audioRef.current && id) {
       try {
         // @ts-ignore
-        audioRef.current.setSinkId(id).then(() => console.log('Playing test audio through', id));
+        audioRef.current.setSinkId(id);
       } catch (error) {
         console.log(error);
       }
@@ -121,11 +118,7 @@ export const TestAudio: React.FC<{ id: string }> = ({ id }) => {
   }, [audioRef.current, id]);
   return (
     <>
-      <Button
-        onClick={() => audioRef.current?.play().catch(console.error)}
-        disabled={playing}
-        variant="secondary"
-      >
+      <Button onClick={() => audioRef.current?.play()} disabled={playing} variant="secondary">
         <AudioLevelIcon className="mr-2" /> Play Audio Level Test
       </Button>
       <audio

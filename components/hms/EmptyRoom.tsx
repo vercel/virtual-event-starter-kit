@@ -2,7 +2,7 @@
 import React from 'react';
 import Button from './Button';
 import { InviteIcon, PersonIcon } from '@100mslive/react-icons';
-import { selectLocalPeerRole } from '@100mslive/hms-video-store';
+import { selectLocalPeerRole } from '@100mslive/react-sdk';
 import { useHMSStore } from '@100mslive/react-sdk';
 import { ChangeRoleDialog } from './demo-cta/room-cta';
 import { useRouter } from 'next/router';

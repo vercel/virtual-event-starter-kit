@@ -1,5 +1,11 @@
-import { selectIsLocalScreenShared, selectLocalPeerRole } from '@100mslive/hms-video-store';
-import { useAVToggle, useHMSActions, useHMSStore } from '@100mslive/react-sdk';
+import {
+  useAVToggle,
+  useHMSActions,
+  useHMSStore,
+  selectIsLocalScreenShared,
+  selectLocalPeerRole,
+  selectIsAllowedToPublish
+} from '@100mslive/react-sdk';
 import {
   VideoOffIcon,
   VideoOnIcon,
@@ -15,13 +21,8 @@ import SettingDialog from './SettingDialog';
 
 const Footer = () => {
   const role = useHMSStore(selectLocalPeerRole);
-  const {
-    isAllowedToPublish,
-    isLocalAudioEnabled,
-    isLocalVideoEnabled,
-    toggleAudio,
-    toggleVideo
-  } = useAVToggle();
+  const isAllowedToPublish = useHMSStore(selectIsAllowedToPublish);
+  const { isLocalAudioEnabled, isLocalVideoEnabled, toggleAudio, toggleVideo } = useAVToggle();
   const actions = useHMSActions();
   // const leaveRoom = () => actions.leave();
   const startScreenshare = async () => {

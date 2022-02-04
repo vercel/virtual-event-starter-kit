@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
-import { IconButton, Preview, Loading } from '@100mslive/react-ui';
+import { IconButton, Loading } from '@100mslive/react-ui';
 import {
   MicOffIcon,
   MicOnIcon,
@@ -9,42 +8,46 @@ import {
   VideoOnIcon,
   ArrowRightIcon
 } from '@100mslive/react-icons';
-import { useHMSActions, useVideoTile } from '@100mslive/react-sdk';
-import s from './index.module.css';
-import { HMSPeer } from '@100mslive/hms-video-store';
+import {
+  HMSPeer,
+  useVideo,
+  useHMSStore,
+  selectLocalPeer,
+  selectIsLocalAudioEnabled,
+  selectIsLocalVideoDisplayEnabled,
+  useAVToggle
+} from '@100mslive/react-sdk';
+import { AudioLevel } from '../VideoTile';
 import InfoIcon from '@components/icons/icon-info';
 import { useRouter } from 'next/router';
 import { usePreview } from './usePreview';
 import SettingDialog from '../SettingDialog';
 import Avatar from '../Avatar';
+import Button from '../Button';
 
 export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
-  const actions = useHMSActions();
   const router = useRouter();
   const [name, setName] = React.useState(localStorage.getItem('name') || '');
-  const { localPeer, audioEnabled, videoEnabled } = usePreview(token, 'preview');
-  const joinRoom = (e: React.FormEvent) => {
-    e.preventDefault();
-    actions.join({
-      userName: name,
-      authToken: token,
-      settings: {
-        isAudioMuted: !audioEnabled,
-        isVideoMuted: !videoEnabled
-      },
-      initEndpoint: process.env.NEXT_PUBLIC_HMS_INIT_PEER_ENPOINT || undefined,
-      rememberDeviceSelection: true
-    });
-  };
+  const audioEnabled = useHMSStore(selectIsLocalAudioEnabled);
+  const videoEnabled = useHMSStore(selectIsLocalVideoDisplayEnabled);
+  const { enableJoin, join } = usePreview({
+    token,
+    name
+  });
   return (
-    <div className={s['preview-container']}>
-      {localPeer ? <PreviewVideo name={name} peer={localPeer} /> : <VideoLoader />}
-      <div className={s['wrapper']}>
+    <div className="bg-[#212121] rounded-lg md:p-8 p-4 flex md:flex-row flex-col">
+      <PreviewContainer name={name} />
+      <div className="w-[320px] flex flex-col md:ml-8 md:mt-0 mt-4 justify-between">
         <div>
-          <p className={s['head-text']}>Welcome {name}</p>
-          <p className={s['sub-text']}>Preview your video and audio before joining the stage</p>
+          <p className="font-bold text-2xl my-0">Welcome {name}</p>
+          <p className="text-gray-400">Preview your video and audio before joining the stage</p>
         </div>
-        <form onSubmit={e => joinRoom(e)}>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            join();
+          }}
+        >
           <input
             value={name}
             type="name"
@@ -52,27 +55,23 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
             placeholder="Enter your name"
             required
             maxLength={20}
-            className="w-full text-md bg-gray-600 rounded-lg placeholder:text-gray-400 h-10 pl-2"
+            className="w-full text-md bg-gray-600 rounded-lg placeholder:text-gray-400 h-10 pl-2 focus:outline-none focus:bg-gray-700"
             onChange={e => {
               setName(e.target.value);
               localStorage.setItem('name', e.target.value);
             }}
           />
-          <p className={s['info']}>
-            <InfoIcon /> Note: Your mic is {audioEnabled ? 'on' : 'off'} and video is{' '}
-            {videoEnabled ? 'on' : 'off'}
+          <p className="flex items-center">
+            <InfoIcon className="mr-2" /> Note: Your mic is {audioEnabled ? 'on' : 'off'} and video
+            is {videoEnabled ? 'on' : 'off'}
           </p>
-          <div className={s['btn-wrapper']}>
-            <button
-              type="button"
-              className={`${s['back-btn']} ${s['btn']}`}
-              onClick={() => router.push('/')}
-            >
+          <div className="flex space-x-4">
+            <Button variant="secondary" onClick={() => router.push('/')}>
               Go back
-            </button>
-            <button className={s['btn']} type="submit">
+            </Button>
+            <Button disabled={!enableJoin} type="submit">
               Join Stage <ArrowRightIcon />
-            </button>
+            </Button>
           </div>
         </form>
       </div>
@@ -80,38 +79,48 @@ export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
   );
 };
 
-const PreviewVideo: React.FC<{ peer: HMSPeer; name: string }> = ({ peer, name }) => {
-  const actions = useHMSActions();
-  const { videoRef, isLocal, isAudioOn, isVideoOn, audioLevel } = useVideoTile(peer);
+const PreviewContainer: React.FC<{ name: string }> = ({ name }) => {
+  const localPeer = useHMSStore(selectLocalPeer);
+  const { isLocalAudioEnabled, isLocalVideoEnabled, toggleAudio, toggleVideo } = useAVToggle();
   return (
-    <Preview.VideoRoot css={{ width: '290px', height: '290px' }} audioLevel={audioLevel}>
-      {isVideoOn ? (
-        <Preview.Video local={isLocal} ref={videoRef} autoPlay muted playsInline />
+    <div className="w-[300px] h-[300px] relative flex justify-center items-center bg-gray-700 rounded-lg">
+      {localPeer ? (
+        <>
+          <PreviewVideo videoTrack={localPeer.videoTrack} />
+          <AudioLevel audioTrack={localPeer.audioTrack} />
+          <div className="absolute z-30 flex bottom-4 space-x-2">
+            <IconButton active={isLocalAudioEnabled} onClick={toggleAudio}>
+              {isLocalAudioEnabled ? <MicOnIcon /> : <MicOffIcon />}
+            </IconButton>
+            <IconButton active={isLocalVideoEnabled} onClick={toggleVideo}>
+              {isLocalVideoEnabled ? <VideoOnIcon /> : <VideoOffIcon />}
+            </IconButton>
+          </div>
+          <div className="absolute z-30 bottom-4 right-4">
+            <SettingDialog>
+              <IconButton>
+                <SettingIcon />
+              </IconButton>
+            </SettingDialog>
+          </div>
+          {isLocalVideoEnabled ? null : <Avatar size="lg" className="absolute z-10" name={name} />}
+        </>
       ) : (
-        <Avatar size="lg" name={name} />
+        <Loading size={90} />
       )}
-      <Preview.Controls>
-        <IconButton active={isAudioOn} onClick={() => actions.setLocalAudioEnabled(!isAudioOn)}>
-          {isAudioOn ? <MicOnIcon /> : <MicOffIcon />}
-        </IconButton>
-        <IconButton active={isVideoOn} onClick={() => actions.setLocalVideoEnabled(!isVideoOn)}>
-          {isVideoOn ? <VideoOnIcon /> : <VideoOffIcon />}
-        </IconButton>
-      </Preview.Controls>
-      <Preview.Setting>
-        <SettingDialog>
-          <IconButton>
-            <SettingIcon />
-          </IconButton>
-        </SettingDialog>
-      </Preview.Setting>
-      <Preview.BottomOverlay />
-    </Preview.VideoRoot>
+    </div>
   );
 };
 
-const VideoLoader = () => (
-  <div className={s['video-loader']}>
-    <Loading size={90} />
-  </div>
-);
+const PreviewVideo: React.FC<{ videoTrack: HMSPeer['videoTrack'] }> = ({ videoTrack }) => {
+  const ref = useVideo(videoTrack || '');
+  return (
+    <video
+      className={`w-full h-full rounded-lg object-cover mirror`}
+      autoPlay
+      muted
+      playsInline
+      ref={ref}
+    />
+  );
+};

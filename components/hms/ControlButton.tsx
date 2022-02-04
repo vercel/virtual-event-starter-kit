@@ -15,7 +15,7 @@ const ControlButton: React.FC<Props> = ({ active, text, children, onClick, class
         type="button"
         className={`flex items-center justify-center w-11 h-11 rounded-full border-solid border-2 ${
           active ? 'border-gray-200' : 'border-gray-base'
-        } ${className}`}
+        } focus:outline-none focus:border-gray-400 focus:bg-gray-800 ${className}`}
       >
         {children}
       </button>

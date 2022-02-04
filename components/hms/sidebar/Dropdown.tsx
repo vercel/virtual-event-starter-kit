@@ -1,7 +1,6 @@
-import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import HorizontalMenuIcon from '@components/icons/icon-menu-hor';
-import { selectLocalPeerRole } from '@100mslive/hms-video-store';
+import { selectLocalPeerRole, useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import { InviteStageIcon, RemoveUserIcon } from '@100mslive/react-icons';
 
 const Dropdown: React.FC<{ id: string; role: string }> = ({ id, role }) => {

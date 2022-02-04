@@ -1,15 +1,11 @@
-import {
-  selectDevices,
-  selectLocalMediaSettings,
-  selectRoleChangeRequest
-} from '@100mslive/hms-video-store';
+import { selectDevices, selectLocalPeerRole, selectRoleChangeRequest } from '@100mslive/react-sdk';
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import React, { useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import s from './index.module.css';
 import Select from '../select';
 import g from './guest-invite.module.css';
-import { Avatar, IconButton, Preview } from '@100mslive/react-ui';
+import { IconButton, Preview } from '@100mslive/react-ui';
 import {
   MicOnIcon,
   MicOffIcon,
@@ -22,8 +18,10 @@ import {
 import InfoIcon from '@components/icons/icon-info';
 import router from 'next/router';
 import { TestAudio } from '../SettingDialog';
+import Avatar from '../Avatar';
 
 const RoleChangeDialog = () => {
+  const role = useHMSStore(selectLocalPeerRole)?.name === 'invitee';
   const actions = useHMSActions();
   const request = useHMSStore(selectRoleChangeRequest);
   const roleChange = (b: boolean) => {
@@ -31,22 +29,6 @@ const RoleChangeDialog = () => {
       try {
         if (b) {
           actions.acceptChangeRole(request);
-          // also match the setting selected
-          const vI = localStorage.getItem('videoInputDeviceId');
-          const aI = localStorage.getItem('audioInputDeviceId');
-          const aO = localStorage.getItem('audioOutputDeviceId');
-          if (vI) {
-            actions.setVideoSettings({ deviceId: vI });
-            console.log('Changed Video Settings');
-          }
-          if (aI) {
-            actions.setAudioSettings({ deviceId: aI });
-            console.log('Changed Audio Input Settings');
-          }
-          if (aO) {
-            actions.setAudioOutputDevice(aO);
-            console.log('Changed Audio Output Settings');
-          }
         } else {
           actions.rejectChangeRole(request);
         }
@@ -55,20 +37,34 @@ const RoleChangeDialog = () => {
       }
     }
   };
+  React.useEffect(() => {
+    const vI = localStorage.getItem('videoInputDeviceId');
+    const aI = localStorage.getItem('audioInputDeviceId');
+    const aO = localStorage.getItem('audioOutputDeviceId');
+    if (vI) {
+      actions.setVideoSettings({ deviceId: vI });
+    }
+    if (aI) {
+      actions.setAudioSettings({ deviceId: aI });
+    }
+    if (aO) {
+      actions.setAudioOutputDevice(aO);
+    }
+  }, [role]);
   const [showPreview, setShowPreview] = React.useState(false);
   return (
     <>
       {request && request.role.name === 'invitee' ? (
         <Dialog.Root open={request ? true : false}>
           <Dialog.Overlay className={s['pop-overlay']} />
-          <Dialog.Content className={s['pop-content']}>
+          <Dialog.Content className="dialog-content dialog-animation bg-gray-700  rounded-xl">
             {showPreview ? (
               <GuestPreview roleChange={roleChange} />
             ) : (
               <>
                 <p className={s['head']}>You have been invited to speak</p>
                 <p className={s['text']}>
-                  {request.requestedBy.name} has invited you to speak, would you like to join?
+                  {request?.requestedBy?.name} has invited you to speak, would you like to join?
                 </p>
                 <div className={s['cta-wrapper']}>
                   <button className={s['reject-btn']} onClick={() => roleChange(false)}>
@@ -141,9 +137,8 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
           {isVideoOn ? (
             <Preview.Video local={true} ref={videoRef} autoPlay muted playsInline />
           ) : (
-            <Avatar size="lg" style={{ backgroundColor: 'red' }}>
-              DB
-            </Avatar>
+            // TODO:
+            <Avatar size="lg" name={'Guest'} />
           )}
           <Preview.Controls>
             <IconButton active={isAudioOn} onClick={() => setIsAudioOn(!isAudioOn)}>
@@ -164,7 +159,7 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
                   <SettingIcon />
                 </IconButton>
               </Dialog.Trigger>
-              <Dialog.Content className="dialog-content bg-gray-700 md:w-[520px] rounded-2xl w-[90%]">
+              <Dialog.Content className="dialog-content bg-gray-700 md:w-[520px] rounded-2xl w-[90%]  dialog-animation ">
                 <div className="w-full flex items-center justify-between">
                   <span className="text-xl font-bold">Settings</span>
                   <Dialog.Close asChild>

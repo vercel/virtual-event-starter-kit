@@ -24,18 +24,18 @@ const LeaveDialog = () => {
           <HangUpIcon />
         </ControlButton>
       </Dialog.Trigger>
-      <Dialog.Content className="dialog-content bg-gray-700 w-96 rounded-lg">
+      <Dialog.Content className="dialog-content bg-gray-700 w-96 rounded-lg dialog-animation">
         <h3>Leave Stage?</h3>
         <p className="text-sm text-gray-200 my-0">Are you sure you want to leave the stage?</p>
         <div className="flex space-x-4 mt-6">
+          <Button onClick={leave} variant="danger" className="w-1/2">
+            Leave
+          </Button>
           <Dialog.Close asChild>
             <Button variant="secondary" className="w-1/2">
               Cancel
             </Button>
           </Dialog.Close>
-          <Button onClick={leave} variant="danger" className="w-1/2">
-            Leave
-          </Button>
         </div>
       </Dialog.Content>
     </Dialog.Root>

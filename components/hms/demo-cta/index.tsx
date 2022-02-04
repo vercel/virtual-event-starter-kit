@@ -36,7 +36,7 @@ const DemoButton = () => {
         <InfoIcon />
         Click here to demo a live webinar powered by 100ms
       </div>
-      <Dialog.Content className={cn(styles['content'])}>
+      <Dialog.Content className={cn(styles['content'], 'dialog-animation')}>
         <Dialog.Close asChild className={cn(styles['close-btn'])}>
           <button>
             <CrossIcon />

@@ -38,6 +38,7 @@
 
 .select:focus {
   outline: none;
+  background-color: var(--accents-5);
 }
 
 .select:invalid {
@@ -62,5 +63,5 @@
 
 .arrow > svg {
   color: #fff;
-  stroke-width: 3px;
+  strokewidth: 3px;
 }

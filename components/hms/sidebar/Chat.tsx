@@ -1,5 +1,5 @@
 import { useHMSActions, useHMSStore } from '@100mslive/react-sdk';
-import { selectHMSMessages, selectLocalPeer } from '@100mslive/hms-video-store';
+import { selectHMSMessages, selectLocalPeer } from '@100mslive/react-sdk';
 import React, { FormEvent } from 'react';
 import Avatar from '../Avatar';
 import Dropdown from './Dropdown';

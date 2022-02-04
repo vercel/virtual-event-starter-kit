@@ -1,14 +1,14 @@
 import {
+  useHMSStore,
+  useVideoList,
   selectDominantSpeaker,
   selectLocalPeer,
   selectPeersByRole,
   HMSPeer,
   selectIsSomeoneScreenSharing,
   selectPeers
-} from '@100mslive/hms-video-store';
-import { useHMSStore, useVideoList } from '@100mslive/react-sdk';
+} from '@100mslive/react-sdk';
 import React, { useEffect, useState } from 'react';
-import { useResizeDetector } from 'react-resize-detector';
 import VideoTile from './VideoTile';
 import RoleChangeDialog from './request';
 import EmptyRoom from './EmptyRoom';
@@ -74,22 +74,24 @@ const VideoList = () => {
 export default VideoList;
 
 const NonActiveSpeakerView: React.FC<{ peers: HMSPeer[] }> = ({ peers }) => {
-  const { width = 0, height = 0, ref } = useResizeDetector();
-  const { chunkedTracksWithPeer } = useVideoList({
+  const { pagesWithTiles, ref } = useVideoList({
     maxColCount: 2,
     maxRowCount: 2,
     maxTileCount: 4,
-    width,
-    height,
     peers,
     aspectRatio: hmsConfig.aspectRatio
   });
   return (
     <div ref={ref} className="w-full h-full flex flex-wrap place-content-center items-center">
-      {chunkedTracksWithPeer &&
-        chunkedTracksWithPeer.length > 0 &&
-        chunkedTracksWithPeer[0].map((p, _) => (
-          <VideoTile width={p.width} height={p.height} peer={p.peer} />
+      {pagesWithTiles &&
+        pagesWithTiles.length > 0 &&
+        pagesWithTiles[0].map((p, _) => (
+          <VideoTile
+            key={p.peer.id}
+            width={p.width}
+            height={p.height}
+            trackId={p.peer.videoTrack || ''}
+          />
         ))}
     </div>
   );
@@ -112,13 +114,8 @@ const ActiveSpeaker: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
 };
 
 const ActiveTile: React.FC<{ activePeer: HMSPeer }> = ({ activePeer }) => {
-  const { width = 0, height = 0, ref } = useResizeDetector();
-  const { chunkedTracksWithPeer } = useVideoList({
-    maxColCount: 1,
-    maxRowCount: 1,
+  const { pagesWithTiles, ref } = useVideoList({
     maxTileCount: 1,
-    width,
-    height,
     peers: [activePeer],
     aspectRatio: hmsConfig.aspectRatio
   });
@@ -130,33 +127,29 @@ const ActiveTile: React.FC<{ activePeer: HMSPeer }> = ({ activePeer }) => {
         height: 'calc((100vh - 3.2 * var(--header-height)) - var(--video-list-height))'
       }}
     >
-      {chunkedTracksWithPeer &&
-        chunkedTracksWithPeer.length > 0 &&
-        chunkedTracksWithPeer[0].map((p, _) => (
-          <VideoTile width={p.width} height={p.height} peer={p.peer} />
+      {pagesWithTiles &&
+        pagesWithTiles.length > 0 &&
+        pagesWithTiles[0].map((p, _) => (
+          <VideoTile width={p.width} height={p.height} trackId={p.peer.videoTrack || ''} />
         ))}
     </div>
   );
 };
 
 const AllSpeakers: React.FC<{ allPeers: HMSPeer[] }> = ({ allPeers }) => {
-  const { width = 0, height = 0, ref } = useResizeDetector();
-  const { chunkedTracksWithPeer } = useVideoList({
-    maxColCount: hmsConfig.maxTileCountSpeakers,
+  const { pagesWithTiles, ref } = useVideoList({
     maxRowCount: 1,
     maxTileCount: hmsConfig.maxTileCountSpeakers,
-    width,
-    height,
     peers: allPeers,
     aspectRatio: hmsConfig.aspectRatio
   });
   const [page, setPage] = React.useState(0);
   React.useEffect(() => {
     // currentPageIndex should not exceed pages length
-    if (page > chunkedTracksWithPeer.length) {
+    if (page > pagesWithTiles.length) {
       setPage(0);
     }
-  }, [page, chunkedTracksWithPeer.length]);
+  }, [page, pagesWithTiles.length]);
   return (
     <div
       style={{
@@ -165,13 +158,13 @@ const AllSpeakers: React.FC<{ allPeers: HMSPeer[] }> = ({ allPeers }) => {
       ref={ref}
       className="relative w-full flex flex-wrap place-content-center items-center"
     >
-      {chunkedTracksWithPeer &&
-        chunkedTracksWithPeer.length > 0 &&
-        chunkedTracksWithPeer[page < chunkedTracksWithPeer.length ? page : 0].map((p, _) => (
-          <VideoTile width={p.width} height={p.height} peer={p.peer} />
+      {pagesWithTiles &&
+        pagesWithTiles.length > 0 &&
+        pagesWithTiles[page < pagesWithTiles.length ? page : 0].map((p, _) => (
+          <VideoTile width={p.width} height={p.height} trackId={p.peer.videoTrack || ''} />
         ))}
-      {chunkedTracksWithPeer.length > 1 ? (
-        <Pagination page={page} setPage={setPage} list={chunkedTracksWithPeer} />
+      {pagesWithTiles.length > 1 ? (
+        <Pagination page={page} setPage={setPage} list={pagesWithTiles} />
       ) : null}
     </div>
   );
