@@ -5,7 +5,6 @@ import {
   useAudioLevelStyles,
   selectIsPeerAudioEnabled,
   selectIsPeerVideoEnabled,
-  useVideo,
   HMSTrackID,
   selectPeerByID,
   selectTrackByID
@@ -13,6 +12,7 @@ import {
 import React, { useCallback, useRef } from 'react';
 import Avatar from './Avatar';
 import { hmsConfig } from './config';
+import useVideo from './lib/useVideo';
 
 interface Props {
   trackId: HMSTrackID;
@@ -86,8 +86,9 @@ const HmsWatermark = () => {
 
 export const AudioLevel: React.FC<{ audioTrack: HMSPeer['audioTrack'] }> = ({ audioTrack }) => {
   const getStyle = useCallback((level: number) => {
+    console.log('AL: ', level);
     const style: Record<string, string> = {
-      border: `3px solid ${level > 0 ? hmsConfig.audioLevelColor : 'transparent'}`
+      border: `${level > 10 ? 3 : 0}px solid ${hmsConfig.audioLevelColor}`
       // transition: 'border 0.4s ease-in-out'
     };
     return style;

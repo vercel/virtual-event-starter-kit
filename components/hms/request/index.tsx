@@ -24,17 +24,18 @@ const RoleChangeDialog = () => {
   const role = useHMSStore(selectLocalPeerRole)?.name === 'invitee';
   const actions = useHMSActions();
   const request = useHMSStore(selectRoleChangeRequest);
-  const roleChange = (b: boolean) => {
-    if (request) {
-      try {
-        if (b) {
-          actions.acceptChangeRole(request);
-        } else {
-          actions.rejectChangeRole(request);
-        }
-      } catch (error) {
-        console.log(error);
+  const roleChange = async (b: boolean) => {
+    if (!request) {
+      return;
+    }
+    try {
+      if (b) {
+        await actions.acceptChangeRole(request);
+      } else {
+        actions.rejectChangeRole(request);
       }
+    } catch (error) {
+      console.log(error);
     }
   };
   React.useEffect(() => {

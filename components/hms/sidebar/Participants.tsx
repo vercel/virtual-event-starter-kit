@@ -55,7 +55,9 @@ const Participants = () => {
               <div className="grow ml-4">
                 {p.name} {p.id !== localPeer.id ? null : '(You)'}
               </div>
-              <Dropdown id={p.id} role={p.roleName || 'viewer'} />
+              {localPeer.roleName === 'stage' || localPeer.roleName === 'backstage' ? (
+                <Dropdown id={p.id} role={p.roleName || 'viewer'} />
+              ) : null}
             </div>
           ))}
         </div>

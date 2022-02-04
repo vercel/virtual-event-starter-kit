@@ -12,6 +12,7 @@ type Props = {
 
 const Sidebar = ({ allStages }: Props) => {
   const localRole = useHMSStore(selectLocalPeerRole);
+  console.log('ROLE CHANGE');
   return (
     <Tabs.Root asChild defaultValue="1">
       <div className="sidebar-container">
@@ -22,21 +23,19 @@ const Sidebar = ({ allStages }: Props) => {
             </button>
           </Tabs.Trigger>
 
-          {localRole?.name !== 'viewer' ? (
-            <Tabs.Trigger asChild value="2">
-              <button className="w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md">
-                Participants
-              </button>
-            </Tabs.Trigger>
-          ) : null}
-
           {localRole?.name === 'viewer' ? (
             <Tabs.Trigger asChild value="3">
               <button className="w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md">
                 Schedule
               </button>
             </Tabs.Trigger>
-          ) : null}
+          ) : (
+            <Tabs.Trigger asChild value="2">
+              <button className="w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md">
+                Participants
+              </button>
+            </Tabs.Trigger>
+          )}
         </Tabs.List>
         <Tabs.Content asChild value="1">
           <Chat />
