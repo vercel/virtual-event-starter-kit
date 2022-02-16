@@ -2,21 +2,43 @@
 # yarn lockfile v1
 
 
-"@100mslive/hms-video-store@0.2.88", "@100mslive/hms-video-store@0.2.88-alpha.7":
-  version "0.2.88"
-  resolved "https://registry.yarnpkg.com/@100mslive/hms-video-store/-/hms-video-store-0.2.88.tgz#bdb6d1dce5925339fece93d2f1991a4cdad3d0ea"
-  integrity sha512-ZIdJkB5e7DDS3dA9xzXpCyOpXfxU3kOje3dI/RdQJiKgbOp61b74uiQ9PsY4632/EbpR2O6pOoVP6FRT9b+T8Q==
+"@100mslive/hms-video-store@0.2.88-alpha.7":
+  version "0.2.88-alpha.7"
+  resolved "https://registry.yarnpkg.com/@100mslive/hms-video-store/-/hms-video-store-0.2.88-alpha.7.tgz#13b249a3637a1d4be700fc553f0b487e3d333b44"
+  integrity sha512-mlRXt6pc1kcFRUntO9LsUckRR8fxA6zhMtUe336PQSUmXOQl2Z8XiKQTJiFV/dZmS5g5GIGsvkFuhVCf0oIY/w==
   dependencies:
-    "@100mslive/hms-video" "0.1.42"
+    "@100mslive/hms-video" "0.1.42-alpha.6"
     eventemitter2 "^6.4.5"
     immer "^9.0.6"
     reselect "4.0.0"
     zustand "3.5.7"
 
-"@100mslive/hms-video@0.1.42":
-  version "0.1.42"
-  resolved "https://registry.yarnpkg.com/@100mslive/hms-video/-/hms-video-0.1.42.tgz#aefd30c0cd0ce27040dc18b099c4bd4efa2c96e3"
-  integrity sha512-2YxoAALb/5QiFd1tx4Deu+igL4+4T253TG/qnu3GZAdK9ewUNlzwlAPHSHPDUYwQWWijdkG0RMEnSHzPFnzY5Q==
+"@100mslive/hms-video-store@0.2.89":
+  version "0.2.89"
+  resolved "https://registry.yarnpkg.com/@100mslive/hms-video-store/-/hms-video-store-0.2.89.tgz#b92018c20cc8bb1d43f5a187a379042443de41bf"
+  integrity sha512-XID0mb7CQ8cIaPPHDtXmeoYkH6dKeHYQio8fqBMHH7KoILXzKV5Ztdjr6EMkbI9kkM8z9YdgCNs6DqtAQleKhA==
+  dependencies:
+    "@100mslive/hms-video" "0.1.43"
+    eventemitter2 "^6.4.5"
+    immer "^9.0.6"
+    reselect "4.0.0"
+    zustand "3.5.7"
+
+"@100mslive/hms-video@0.1.42-alpha.6":
+  version "0.1.42-alpha.6"
+  resolved "https://registry.yarnpkg.com/@100mslive/hms-video/-/hms-video-0.1.42-alpha.6.tgz#969ccf085c9b519a5bc5ba04c6cf5026a48c7024"
+  integrity sha512-M00mxu8HALieadD3zpsAoHnX1yxiBUWQGjjZx6/0Gdv5EDjtRbGAP2XqiLlRnWA51XXg6+/e5+v8ocZIpzMdeQ==
+  dependencies:
+    eventemitter2 "^6.4.5"
+    sdp-transform "^2.14.1"
+    ua-parser-js "^1.0.1"
+    uuid "^8.3.2"
+    webrtc-adapter "^8.0.0"
+
+"@100mslive/hms-video@0.1.43":
+  version "0.1.43"
+  resolved "https://registry.yarnpkg.com/@100mslive/hms-video/-/hms-video-0.1.43.tgz#404776553f525e4e8fb6157b7423d7c1e6c6b94f"
+  integrity sha512-zb5Z55HCSqdvcl/JcR3A7nXlWqG/uQM8cf5hNnsHMTzSTgkCWeIWxL/mSP79DTWjdgJ9wAGLO26s/zGQBWfFjA==
   dependencies:
     eventemitter2 "^6.4.5"
     sdp-transform "^2.14.1"
@@ -35,6 +57,16 @@
   integrity sha512-AlayuhAiyrJKWNPdUvxFqtccejZMHwasartK7Ke/TuczzJtR3wjS7SqBAdV7+pRlTmcaTSZjOVA5r24lt5PHGA==
   dependencies:
     "@100mslive/hms-video-store" "0.2.88-alpha.7"
+    react-intersection-observer "^8.33.1"
+    react-resize-detector "^7.0.0"
+    zustand "^3.6.2"
+
+"@100mslive/react-sdk@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@100mslive/react-sdk/-/react-sdk-0.0.6.tgz#7321ead526a7d4172fba7cccbe91eb148d569ff1"
+  integrity sha512-48aI8YshLIl9GgoHA/klOG9zCAGBrF5CoCx4msecmKQuIe5a8HN1r6GxThA89EnS+3YODaDatAVSOEsRQjZ+mA==
+  dependencies:
+    "@100mslive/hms-video-store" "0.2.89"
     react-intersection-observer "^8.33.1"
     react-resize-detector "^7.0.0"
     zustand "^3.6.2"
@@ -348,6 +380,27 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
+"@radix-ui/react-dialog@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-dialog/-/react-dialog-0.1.5.tgz#4310659607f5ad0b8796623d5f7490dc47d3d295"
+  integrity sha512-WftvXcQSszUphCTLQkkpBIkrYYU0IYqgIvACLQady4BN4YHDgdNlrwdg2ti9QrXgq1PZ+0S/6BIaA1dmSuRQ2g==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "0.1.0"
+    "@radix-ui/react-compose-refs" "0.1.0"
+    "@radix-ui/react-context" "0.1.1"
+    "@radix-ui/react-dismissable-layer" "0.1.3"
+    "@radix-ui/react-focus-guards" "0.1.0"
+    "@radix-ui/react-focus-scope" "0.1.3"
+    "@radix-ui/react-id" "0.1.4"
+    "@radix-ui/react-portal" "0.1.3"
+    "@radix-ui/react-presence" "0.1.1"
+    "@radix-ui/react-primitive" "0.1.3"
+    "@radix-ui/react-slot" "0.1.2"
+    "@radix-ui/react-use-controllable-state" "0.1.0"
+    aria-hidden "^1.1.1"
+    react-remove-scroll "^2.4.0"
+
 "@radix-ui/react-dialog@^0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-dialog/-/react-dialog-0.1.1.tgz#515bcda3ab6a3a9b1cc20237eedc38b6c5921a7d"
@@ -394,7 +447,7 @@
     "@radix-ui/react-use-callback-ref" "0.1.0"
     "@radix-ui/react-use-escape-keydown" "0.1.0"
 
-"@radix-ui/react-dropdown-menu@^0.1.4":
+"@radix-ui/react-dropdown-menu@0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-dropdown-menu/-/react-dropdown-menu-0.1.4.tgz#c5e7db72b4854ea8d8f9151f7053fa6873eb372f"
   integrity sha512-KNFHOK+zKKqZ7x3OoxCXZ2TRESRmHpgxkXpY75i/GFt3i5N/RIH5rB9WSdwhdQXM7gkihYZIDwjdmhhSsgzHkw==
@@ -644,7 +697,7 @@
     "@radix-ui/react-use-previous" "0.1.0"
     "@radix-ui/react-use-size" "0.1.0"
 
-"@radix-ui/react-tabs@^0.1.4":
+"@radix-ui/react-tabs@0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-tabs/-/react-tabs-0.1.4.tgz#ee31b413b2d87202f8f194cd5b4827b35c26a7a6"
   integrity sha512-5UK1j3vcFQTNlsFjgxLHFw2eGLJ5EYL40/YHWWkH8fK6UC9+JSfVSVZQYImoZOeUVWgHJSEBaNdbikncjnUsKw==
