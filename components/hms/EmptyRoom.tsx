@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
 import { InviteIcon, PersonIcon } from '@100mslive/react-icons';
 import { selectLocalPeerRole } from '@100mslive/react-sdk';
@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 
 const EmptyRoom = () => {
   const role = useHMSStore(selectLocalPeerRole) || 'viewer';
-  const [cp, setCp] = React.useState(false);
+  const [copied, setCopied] = useState(false);
   const router = useRouter();
   const copy = () => {
     let stageId = `a`;
@@ -18,10 +18,10 @@ const EmptyRoom = () => {
     }
     // @ts-ignore
     navigator.clipboard.writeText(`${window.location.host}/stage/${stageId}?role=${role.name}`);
-    if (!cp) {
-      setCp(true);
+    if (!copied) {
+      setCopied(true);
       setTimeout(() => {
-        setCp(false);
+        setCopied(false);
       }, 3000);
     }
   };
@@ -36,7 +36,7 @@ const EmptyRoom = () => {
       </p>
       <div className="flex space-x-4 mt-8">
         <div className="relative">
-          {cp ? (
+          {copied ? (
             <p className="absolute top-12 left-0 flex bg-gray-600 justify-center  rounded-lg w-48 p-2">
               Copied to clipboard!
             </p>

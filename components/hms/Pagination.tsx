@@ -14,20 +14,10 @@ const Pagination: React.FC<Props> = ({ list, page, setPage }) => {
   const disableLeft = list.length - page === list.length;
   const disableRight = list.length - page === 1;
   const nextPage = () => {
-    // last
-    if (page === list.length - 1) {
-      setPage(list.length - 1);
-    } else {
-      setPage(page + 1);
-    }
+    setPage(Math.min(page + 1, list.length - 1));
   };
   const prevPage = () => {
-    // prev
-    if (page === 0) {
-      setPage(0);
-    } else {
-      setPage(page - 1);
-    }
+    setPage(Math.max(page - 1, 0));
   };
   return (
     <div

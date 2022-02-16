@@ -34,7 +34,7 @@ export default function Hero() {
       </h2>
       <h1 className={cn(styleUtils.appear, styleUtils['appear-third'], styles.hero)}>
         Welcome to the
-        <br className={styleUtils['show-on-desktop']} /> Demo conference
+        <br className={styleUtils['show-on-desktop']} /> {BRAND_NAME} conference
       </h1>
       <h2
         className={cn(

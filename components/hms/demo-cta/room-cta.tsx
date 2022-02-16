@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { CrossIcon, PersonIcon } from '@100mslive/react-icons';
 import DemoModal from '../demo-modal';
@@ -9,7 +9,7 @@ import Button from '../Button';
 
 const RoomCta = () => {
   const role = useHMSStore(selectLocalPeerRole);
-  const [cp, setCp] = React.useState(false);
+  const [copied, setCopied] = useState(false);
   const router = useRouter();
   const copy = () => {
     let stageId = `a`;
@@ -19,17 +19,17 @@ const RoomCta = () => {
     navigator.clipboard.writeText(
       `${window.location.host}/stage/${stageId}?role=${role?.name || 'viewer'}`
     );
-    if (!cp) {
-      setCp(true);
+    if (!copied) {
+      setCopied(true);
       setTimeout(() => {
-        setCp(false);
+        setCopied(false);
       }, 3000);
     }
   };
   return (
     <div className="flex items-center space-x-4">
       <div className="relative">
-        {cp ? (
+        {copied ? (
           <p className="absolute top-12 left-0 flex bg-gray-600 justify-center  rounded-lg w-48 p-2">
             Copied to clipboard!
           </p>
