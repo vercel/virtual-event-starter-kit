@@ -1,8 +1,9 @@
 import { ArrowRightIcon } from '@100mslive/react-icons';
 import HmsLogo from '@components/icons/icon-hms';
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Button from '../Button';
+import LinkButton from '../LinkButton';
 
 const data = [
   {
@@ -54,11 +55,9 @@ const DemoModal = () => {
             </div>
             <div className="flex items-center space-x-6">
               <CopyButton text={`${window.location.host}/stage/${stage || 'a'}?role=${m.role}`} />
-              <a href={`/stage/${stage || 'a'}?role=${m.role}`}>
-                <Button className="w-[200px]">
-                  Join as {m.name} <ArrowRightIcon height={20} />
-                </Button>
-              </a>
+              <LinkButton className="w-[200px]" href={`/stage/${stage || 'a'}?role=${m.role}`}>
+                Join as {m.name} <ArrowRightIcon height={20} />
+              </LinkButton>
             </div>
           </div>
         ))}
@@ -73,19 +72,19 @@ const DemoModal = () => {
 export default DemoModal;
 
 export const CopyButton = ({ text = '' }) => {
-  const [cp, setCp] = React.useState(false);
+  const [copied, setCopied] = useState(false);
   const copy = () => {
     navigator.clipboard.writeText(text);
-    if (!cp) {
-      setCp(true);
+    if (!copied) {
+      setCopied(true);
       setTimeout(() => {
-        setCp(false);
+        setCopied(false);
       }, 3000);
     }
   };
   return (
     <div className="relative">
-      {cp ? (
+      {copied ? (
         <p className="absolute top-10 left-0 flex bg-gray-600 justify-center  rounded-lg w-48 p-2">
           Copied to clipboard!
         </p>
