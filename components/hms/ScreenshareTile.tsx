@@ -10,6 +10,7 @@ import React from 'react';
 import IconFitScreen from '@components/icons/icon-fit-screen';
 import Button from './Button';
 import { CrossIcon } from '@100mslive/react-icons';
+import { hmsConfig } from './config';
 
 const ScreenshareTile = () => {
   const screenSharePeer = useHMSStore(selectPeerScreenSharing);
@@ -54,7 +55,7 @@ const ScreenshareTile = () => {
       ) : (
         <div className="flex w-full justify-center items-center h-full md:p-0 p-2">
           <div className="max-w-full block h-auto md:h-full relative">
-            <HmsWatermark />
+            {hmsConfig.setHmsWatermark ? <HmsWatermark /> : null}
             <div
               className="absolute flex items-center bottom-0 -right-1 text-sm p-2 rounded-tl-lg"
               style={{ backgroundColor: 'rgba(0,0,0,0.8)' }}

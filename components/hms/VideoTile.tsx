@@ -31,7 +31,7 @@ const VideoTile: React.FC<Props> = ({ width, height, trackId }) => {
         <div className="w-full h-full relative rounded-lg flex justify-center items-center">
           <AudioLevel audioTrack={peer.audioTrack} />
           {isVideoEnabled ? (
-            <>{height > 300 ? <HmsWatermark /> : null}</>
+            <>{height > 300 || hmsConfig.setHmsWatermark ? <HmsWatermark /> : null}</>
           ) : (
             <Avatar size={width < 400 ? 'lg' : 'xl'} className="absolute z-40" name={peer.name} />
           )}
