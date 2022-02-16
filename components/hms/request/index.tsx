@@ -4,8 +4,7 @@ import React, { useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import s from './index.module.css';
 import Select from '../select';
-import g from './guest-invite.module.css';
-import { IconButton, Preview } from '@100mslive/react-ui';
+
 import {
   MicOnIcon,
   MicOffIcon,
@@ -19,6 +18,8 @@ import InfoIcon from '@components/icons/icon-info';
 import router from 'next/router';
 import { TestAudio } from '../SettingDialog';
 import Avatar from '../Avatar';
+import IconButton from '../preview/IconButton';
+import Button from '../Button';
 
 const RoleChangeDialog = () => {
   const role = useHMSStore(selectLocalPeerRole)?.name === 'invitee';
@@ -58,7 +59,7 @@ const RoleChangeDialog = () => {
       {request && request.role.name === 'invitee' ? (
         <Dialog.Root open={request ? true : false}>
           <Dialog.Overlay className={s['pop-overlay']} />
-          <Dialog.Content className="dialog-content dialog-animation bg-gray-700  rounded-xl">
+          <Dialog.Content className="dialog-content dialog-animation bg-[#212121]   rounded-xl">
             {showPreview ? (
               <GuestPreview roleChange={roleChange} />
             ) : (
@@ -132,114 +133,116 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
   const textClass = `text-gray-200`;
   const wrapperClass = `flex md:flex-row flex-col md:items-center md:justify-between my-6`;
   return (
-    <div className={g['container']}>
-      <div className={g['video-container']}>
-        <Preview.VideoRoot css={{ width: '290px', height: '290px' }}>
-          {isVideoOn ? (
-            <Preview.Video local={true} ref={videoRef} autoPlay muted playsInline />
-          ) : (
-            // TODO:
-            <Avatar size="lg" name={'Guest'} />
-          )}
-          <Preview.Controls>
-            <IconButton active={isAudioOn} onClick={() => setIsAudioOn(!isAudioOn)}>
-              {isAudioOn ? <MicOnIcon /> : <MicOffIcon />}
-            </IconButton>
-            <IconButton active={isVideoOn} onClick={() => setIsVideoOn(!isVideoOn)}>
-              {isVideoOn ? <VideoOnIcon /> : <VideoOffIcon />}
-            </IconButton>
-          </Preview.Controls>
-          <Preview.Setting>
-            <Dialog.Root>
-              <Dialog.Overlay
-                className="fixed inset-0"
-                style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
-              />
-              <Dialog.Trigger asChild>
-                <IconButton>
-                  <SettingIcon />
-                </IconButton>
-              </Dialog.Trigger>
-              <Dialog.Content className="dialog-content bg-gray-700 md:w-[520px] rounded-2xl w-[90%]  dialog-animation ">
-                <div className="w-full flex items-center justify-between">
-                  <span className="text-xl font-bold">Settings</span>
-                  <Dialog.Close asChild>
-                    <button>
-                      <CrossIcon />
-                    </button>
-                  </Dialog.Close>
+    <div className="flex space-x-8">
+      <div className="w-[300px] h-[300px] relative flex justify-center items-center bg-gray-700 rounded-lg">
+        {isVideoOn ? (
+          <video
+            className="w-full h-full rounded-lg object-cover mirror"
+            ref={videoRef}
+            autoPlay
+            muted
+            playsInline
+          />
+        ) : (
+          <Avatar size="lg" name={'Guest'} />
+        )}
+        <div className="absolute z-30 flex bottom-4 space-x-2">
+          <IconButton active={!isAudioOn} onClick={() => setIsAudioOn(!isAudioOn)}>
+            {isAudioOn ? <MicOnIcon /> : <MicOffIcon />}
+          </IconButton>
+          <IconButton active={!isVideoOn} onClick={() => setIsVideoOn(!isVideoOn)}>
+            {isVideoOn ? <VideoOnIcon /> : <VideoOffIcon />}
+          </IconButton>
+        </div>
+        <div className="absolute z-30 bottom-4 right-4">
+          <Dialog.Root>
+            <Dialog.Overlay
+              className="fixed inset-0"
+              style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+            />
+            <Dialog.Trigger asChild>
+              <IconButton>
+                <SettingIcon />
+              </IconButton>
+            </Dialog.Trigger>
+            <Dialog.Content className="dialog-content bg-gray-700 md:w-[520px] rounded-2xl w-[90%]  dialog-animation ">
+              <div className="w-full flex items-center justify-between">
+                <span className="text-xl font-bold">Settings</span>
+                <Dialog.Close asChild>
+                  <button>
+                    <CrossIcon />
+                  </button>
+                </Dialog.Close>
+              </div>
+              <p className="my-0 text-gray-300 text-sm">
+                Control your audio, video source from here
+              </p>
+              {videoInput.length > 0 ? (
+                <div className={wrapperClass}>
+                  <span className={textClass}>Video</span>
+                  <Select onChange={e => handleVideoInput(e.target.value)} value={vI}>
+                    {videoInput.map((device: MediaDeviceInfo) => (
+                      <option value={device.deviceId} key={device.deviceId}>
+                        {device.label}
+                      </option>
+                    ))}
+                  </Select>
                 </div>
-                <p className="my-0 text-gray-300 text-sm">
-                  Control your audio, video source from here
-                </p>
-                {videoInput.length > 0 ? (
-                  <div className={wrapperClass}>
-                    <span className={textClass}>Video</span>
-                    <Select onChange={e => handleVideoInput(e.target.value)} value={vI}>
-                      {videoInput.map((device: MediaDeviceInfo) => (
-                        <option value={device.deviceId} key={device.deviceId}>
-                          {device.label}
-                        </option>
-                      ))}
-                    </Select>
-                  </div>
-                ) : null}
-                {audioInput.length > 0 ? (
-                  <div className={wrapperClass}>
-                    <span className={textClass}>Microphone</span>
-                    <Select onChange={e => handleAudioInput(e.target.value)} value={aI}>
-                      {audioInput.map((device: MediaDeviceInfo) => (
-                        <option value={device.deviceId} key={device.deviceId}>
-                          {device.label}
-                        </option>
-                      ))}
-                    </Select>
-                  </div>
-                ) : null}
-                {audioOutput.length > 0 ? (
-                  <div className={wrapperClass}>
-                    <span className={textClass}>Speaker</span>
-                    <Select onChange={e => handleAudioOutput(e.target.value)} value={aO}>
-                      {audioOutput.map((device: MediaDeviceInfo) => (
-                        <option value={device.deviceId} key={device.deviceId}>
-                          {device.label}
-                        </option>
-                      ))}
-                    </Select>
-                  </div>
-                ) : null}
-                <div className="flex justify-end">
-                  <TestAudio id={aO || ''} />
+              ) : null}
+              {audioInput.length > 0 ? (
+                <div className={wrapperClass}>
+                  <span className={textClass}>Microphone</span>
+                  <Select onChange={e => handleAudioInput(e.target.value)} value={aI}>
+                    {audioInput.map((device: MediaDeviceInfo) => (
+                      <option value={device.deviceId} key={device.deviceId}>
+                        {device.label}
+                      </option>
+                    ))}
+                  </Select>
                 </div>
-              </Dialog.Content>
-            </Dialog.Root>
-          </Preview.Setting>
-          <Preview.BottomOverlay />
-        </Preview.VideoRoot>
+              ) : null}
+              {audioOutput.length > 0 ? (
+                <div className={wrapperClass}>
+                  <span className={textClass}>Speaker</span>
+                  <Select onChange={e => handleAudioOutput(e.target.value)} value={aO}>
+                    {audioOutput.map((device: MediaDeviceInfo) => (
+                      <option value={device.deviceId} key={device.deviceId}>
+                        {device.label}
+                      </option>
+                    ))}
+                  </Select>
+                </div>
+              ) : null}
+              <div className="flex justify-end">
+                <TestAudio id={aO || ''} />
+              </div>
+            </Dialog.Content>
+          </Dialog.Root>
+        </div>
       </div>
-      <div className={g['wrapper']}>
+      <div className="w-[320px] flex flex-col ml-8 justify-between">
         <div>
-          <p className={g['head-text']}>Welcome </p>
-          <p className={g['sub-text']}>Preview your video and audio before joining the stage</p>
+          <p className="font-bold text-2xl my-0">Welcome </p>
+          <p className="text-gray-400">Preview your video and audio before joining the stage</p>
         </div>
         <form onSubmit={() => {}}>
-          <p className={g['info']}>
+          <p className="flex items-center space-x-1">
             <InfoIcon /> Note: Your mic is {isAudioOn ? 'on' : 'off'} and video is{' '}
             {isVideoOn ? 'on' : 'off'}
           </p>
-          <div className={g['btn-wrapper']}>
-            <button
-              className={`${g['back-btn']} ${g['btn']}`}
+          <div className="flex space-x-4">
+            <Button
+              variant="secondary"
               onClick={() => {
                 roleChange(false);
                 router.push('/');
               }}
             >
               Go back
-            </button>
-            <button className={g['btn']} type="button" onClick={() => roleChange(true)}>
+            </Button>
+            <Button onClick={() => roleChange(true)}>
               Join Stage <ArrowRightIcon />
-            </button>
+            </Button>
           </div>
         </form>
       </div>

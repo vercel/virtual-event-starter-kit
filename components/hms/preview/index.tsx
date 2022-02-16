@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, Loading } from '@100mslive/react-ui';
+import { Loading } from '../Loading';
 import {
   MicOffIcon,
   MicOnIcon,
@@ -24,6 +24,7 @@ import { usePreview } from './usePreview';
 import SettingDialog from '../SettingDialog';
 import Avatar from '../Avatar';
 import Button from '../Button';
+import IconButton from './IconButton';
 
 export const PreviewScreen: React.FC<{ token: string }> = ({ token }) => {
   const router = useRouter();
@@ -89,10 +90,10 @@ const PreviewContainer: React.FC<{ name: string }> = ({ name }) => {
           <PreviewVideo videoTrack={localPeer.videoTrack} />
           <AudioLevel audioTrack={localPeer.audioTrack} />
           <div className="absolute z-30 flex bottom-4 space-x-2">
-            <IconButton active={isLocalAudioEnabled} onClick={toggleAudio}>
+            <IconButton active={!isLocalAudioEnabled} onClick={toggleAudio}>
               {isLocalAudioEnabled ? <MicOnIcon /> : <MicOffIcon />}
             </IconButton>
-            <IconButton active={isLocalVideoEnabled} onClick={toggleVideo}>
+            <IconButton active={!isLocalVideoEnabled} onClick={toggleVideo}>
               {isLocalVideoEnabled ? <VideoOnIcon /> : <VideoOffIcon />}
             </IconButton>
           </div>

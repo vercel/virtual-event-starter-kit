@@ -347,3 +347,7 @@ input {
     translate: (-50%, -50%) scale(1);
   }
 }
+
+.icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
