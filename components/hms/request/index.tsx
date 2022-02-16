@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import s from './index.module.css';
 import Select from '../select';
+import { isMobileDevice } from '../Join';
 
 import {
   MicOnIcon,
@@ -22,9 +23,19 @@ import IconButton from '../preview/IconButton';
 import Button from '../Button';
 
 const RoleChangeDialog = () => {
+  const isMobile = isMobileDevice();
+  const requestSenderName = useRef<string | null>(null);
+  const [showNote, setShowNote] = useState(false);
   const role = useHMSStore(selectLocalPeerRole)?.name === 'invitee';
   const actions = useHMSActions();
   const request = useHMSStore(selectRoleChangeRequest);
+  React.useEffect(() => {
+    if (request && isMobile) {
+      requestSenderName.current = request.requestedBy?.name || '';
+      actions.rejectChangeRole(request);
+      setShowNote(true);
+    }
+  }, [request, isMobile]);
   const roleChange = async (b: boolean) => {
     if (!request) {
       return;
@@ -78,6 +89,27 @@ const RoleChangeDialog = () => {
                 </div>
               </>
             )}
+          </Dialog.Content>
+        </Dialog.Root>
+      ) : null}
+      {showNote && isMobile ? (
+        <Dialog.Root
+          open={showNote}
+          onOpenChange={s => {
+            requestSenderName.current = '';
+            setShowNote(s);
+          }}
+        >
+          <Dialog.Overlay className={s['pop-overlay']} />
+          <Dialog.Content className="dialog-content dialog-animation md:w-[300px] w-[95%] bg-[#111]   rounded-xl">
+            <h3>{requestSenderName.current} has invited you to speak</h3>
+            <p>
+              You cannot join the stage on mobile. Please join the session via a desktop/laptop and
+              ask the speaker for another invite.{' '}
+            </p>
+            <Dialog.Close asChild>
+              <Button>Got it</Button>
+            </Dialog.Close>
           </Dialog.Content>
         </Dialog.Root>
       ) : null}
