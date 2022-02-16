@@ -40,6 +40,7 @@ const RoleChangeDialog = () => {
     if (!request) {
       return;
     }
+    setShowPreview(false);
     try {
       if (b) {
         await actions.acceptChangeRole(request);
@@ -80,7 +81,13 @@ const RoleChangeDialog = () => {
                   {request?.requestedBy?.name} has invited you to speak, would you like to join?
                 </p>
                 <div className={s['cta-wrapper']}>
-                  <button className={s['reject-btn']} onClick={() => roleChange(false)}>
+                  <button
+                    className={s['reject-btn']}
+                    onClick={() => {
+                      roleChange(false);
+                      setShowPreview(false);
+                    }}
+                  >
                     Reject
                   </button>
                   <button className={s['accept-btn']} onClick={() => setShowPreview(true)}>
@@ -272,7 +279,11 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
             >
               Go back
             </Button>
-            <Button onClick={() => roleChange(true)}>
+            <Button
+              onClick={() => {
+                roleChange(true);
+              }}
+            >
               Join Stage <ArrowRightIcon />
             </Button>
           </div>
