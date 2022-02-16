@@ -30,14 +30,14 @@ const VideoTile: React.FC<Props> = ({ width, height, trackId }) => {
       {peer ? (
         <div className="w-full h-full relative rounded-lg flex justify-center items-center">
           <AudioLevel audioTrack={peer.audioTrack} />
-          {isVideoEnabled ? (
-            <>{height > 300 || hmsConfig.setHmsWatermark ? <HmsWatermark /> : null}</>
-          ) : (
-            <Avatar size={width < 400 ? 'lg' : 'xl'} className="absolute z-40" name={peer.name} />
-          )}
           <PeerName name={peer?.name} />
           {peer.videoTrack ? <Video mirror={peer.isLocal} id={peer.videoTrack} /> : null}
           {isAudioEnabled ? null : <AudioIndicator />}
+          {isVideoEnabled ? (
+            <>{height > 300 || hmsConfig.setHmsWatermark ? <HmsWatermark /> : null}</>
+          ) : (
+            <Avatar size={width < 400 ? 'lg' : 'xl'} className="absolute" name={peer.name} />
+          )}
         </div>
       ) : null}
     </div>
@@ -89,7 +89,6 @@ export const AudioLevel: React.FC<{ audioTrack: HMSPeer['audioTrack'] }> = ({ au
     console.log('AL: ', level);
     const style: Record<string, string> = {
       border: `${level > 10 ? 3 : 0}px solid ${hmsConfig.audioLevelColor}`
-      // transition: 'border 0.4s ease-in-out'
     };
     return style;
   }, []);
