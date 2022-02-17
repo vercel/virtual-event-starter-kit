@@ -23,7 +23,7 @@ const Sidebar = ({ allStages }: Props) => {
             </button>
           </Tabs.Trigger>
 
-          {localRole?.name === 'viewer' ? (
+          {localRole?.name === 'viewer' || localRole?.name === 'invitee' ? (
             <Tabs.Trigger asChild value="3">
               <button className="w-1/2  text-gray-300 h-[35px] text-[14px] border-solid border border-gray-700 rounded-r-md">
                 Schedule

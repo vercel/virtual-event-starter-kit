@@ -257,6 +257,7 @@ input {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 1.5rem;
+  z-index: 100;
 }
 
 .sidebar-container {
@@ -346,4 +347,8 @@ input {
     opacity: 1;
     translate: (-50%, -50%) scale(1);
   }
+}
+
+.icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
 }

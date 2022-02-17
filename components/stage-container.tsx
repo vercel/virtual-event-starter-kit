@@ -94,9 +94,6 @@ export default function StageContainer({ stage, allStages }: Props) {
           <ConfEntry onRegister={() => mutate()} />
         )}
       </div>
-      {/* connected to room & live -> show chat */}
-      {/* not live -> show schedule */}
-      {/* not connected & live -> null */}
       {stage.isLive ? (
         isConnected ? (
           <Sidebar allStages={allStages} />

@@ -6,8 +6,6 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useHMSNotifications } from '@100mslive/react-sdk';
 import DemoModal from './DemoModal';
 
-// import MobileView from './mobile';
-
 /**
  * Live Video/Audio component
  */
