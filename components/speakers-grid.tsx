@@ -37,7 +37,7 @@ export default function SpeakersGrid({ speakers }: Props) {
                 loading="lazy"
                 quality="50"
                 title={speaker.name}
-                placeholder={speaker.image.blurDataURL ? "blur" : "empty"}
+                placeholder={speaker.image.blurDataURL ? 'blur' : 'empty'}
                 blurDataURL={speaker.image.blurDataURL}
                 width={300}
                 height={300}

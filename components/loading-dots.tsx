@@ -40,4 +40,4 @@ export default function LoadingDots({ size = 2, height, children, reverse }: Pro
       <span />
     </span>
   );
-};
+}

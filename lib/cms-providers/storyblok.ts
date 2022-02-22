@@ -21,34 +21,36 @@ const API_URL = 'https://gapi.storyblok.com/v1/api';
 const API_TOKEN = process.env.STORYBLOK_PREVIEW_TOKEN;
 
 /**
-* This transformResponse() function can be removed if you're using the 
-* Storyblok data directly. This transformation only happens to adapt the data
-* returned from the GraphQL api to the data structure used in the 
-* starter so as not to have to modify the component files. 
-*/
+ * This transformResponse() function can be removed if you're using the
+ * Storyblok data directly. This transformation only happens to adapt the data
+ * returned from the GraphQL api to the data structure used in the
+ * starter so as not to have to modify the component files.
+ */
 function transformResponse(response: any[], _speakers?: any) {
-  const content = response.map((r: any) => r.content ? r.content : r)
+  const content = response.map((r: any) => (r.content ? r.content : r));
   content.map((item: any) => {
     Object.keys(item).map(key => {
       // assign the urls directly if not an image
-      const noAssign = ['image', 'logo', 'cardImage']
-      if(item[key].url && noAssign.indexOf(key) === -1) {
-        item[key] = item[key].url
+      const noAssign = ['image', 'logo', 'cardImage'];
+      if (item[key].url && noAssign.indexOf(key) === -1) {
+        item[key] = item[key].url;
       }
 
       // remove nesting from schedule and assign speakers
-      if(key === 'schedule') {
+      if (key === 'schedule') {
         item[key] = item[key].map((slot: { content: any; speaker: any }) => {
-          slot = slot.content
-          const speakers = _speakers?.filter((speaker: any) => slot.speaker.indexOf(speaker.uuid) !== -1)
-          slot.speaker = speakers
-          return slot
-        })
+          slot = slot.content;
+          const speakers = _speakers?.filter(
+            (speaker: any) => slot.speaker.indexOf(speaker.uuid) !== -1
+          );
+          slot.speaker = speakers;
+          return slot;
+        });
       }
-    })
-  })
+    });
+  });
 
-  return content
+  return content;
 }
 
 async function fetchCmsAPI(query: string, { variables }: { variables?: Record<string, any> } = {}) {
@@ -105,12 +107,12 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
   `);
 
   const responseData = data.SpeakerItems.items.map((s: any) => {
-    const speaker = s.content
-    speaker.talk = speaker.talk.content
-    speaker.uuid = s.uuid
-    return speaker
-  })
-  const transformedData = transformResponse(responseData)
+    const speaker = s.content;
+    speaker.talk = speaker.talk.content;
+    speaker.uuid = s.uuid;
+    return speaker;
+  });
+  const transformedData = transformResponse(responseData);
   return transformedData;
 }
 
@@ -138,8 +140,8 @@ export async function getAllStages(): Promise<Stage[]> {
     }
   `);
 
-  const transformedData = transformResponse(data.StageItems.items, speakers)
-  return transformedData
+  const transformedData = transformResponse(data.StageItems.items, speakers);
+  return transformedData;
 }
 
 export async function getAllSponsors(): Promise<Sponsor[]> {
@@ -176,8 +178,8 @@ export async function getAllSponsors(): Promise<Sponsor[]> {
   }  
   `);
 
-  const transformedData = transformResponse(data.CompanyItems.items)
-  return transformedData
+  const transformedData = transformResponse(data.CompanyItems.items);
+  return transformedData;
 }
 
 export async function getAllJobs(): Promise<Job[]> {
@@ -202,6 +204,6 @@ export async function getAllJobs(): Promise<Job[]> {
     }
   `);
 
-  const transformedData = transformResponse(data.JobItems.items)
+  const transformedData = transformResponse(data.JobItems.items);
   return transformedData;
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { MutableRefObject, useEffect } from 'react'
+import { MutableRefObject, useEffect } from 'react';
 
 const useClickOutside = (
   ref: MutableRefObject<HTMLElement | null>,
@@ -7,14 +7,14 @@ const useClickOutside = (
 ) => {
   useEffect(() => {
     const callback = (event: Event) => {
-      const el = ref.current
-      if (!event || !el || el.contains((event as any).target)) return
-      handler(event)
-    }
+      const el = ref.current;
+      if (!event || !el || el.contains((event as any).target)) return;
+      handler(event);
+    };
 
-    document.addEventListener('click', callback)
-    return () => document.removeEventListener('click', callback)
-  }, [ref, handler])
-}
+    document.addEventListener('click', callback);
+    return () => document.removeEventListener('click', callback);
+  }, [ref, handler]);
+};
 
-export default useClickOutside
+export default useClickOutside;

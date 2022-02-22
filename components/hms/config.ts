@@ -26,5 +26,5 @@ export const hmsConfig = {
   /**
    * setHmsWatermark
    */
-   setHmsWatermark: true
-}
+  setHmsWatermark: true
+};
