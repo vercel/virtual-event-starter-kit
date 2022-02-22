@@ -19,6 +19,7 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
+  font-display: optional;
   src: url(https://assets.vercel.com/raw/upload/v1587415301/fonts/2/inter-var-latin.woff2)
     format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F,
@@ -252,6 +253,7 @@ input {
 }
 
 .dialog-content {
+  font-family: inherit;
   position: fixed;
   top: 50%;
   left: 50%;
