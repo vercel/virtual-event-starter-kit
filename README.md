@@ -1,11 +1,6 @@
-https://user-images.githubusercontent.com/61158210/152098593-33f6562b-232d-40f3-b57c-1a43933405c6.mp4
-
-****
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/100mslive/virtual-event-starter-kit&project-name=virtual-event-starter-kit&repository-name=virtual-event-starter-kit&demo-url=https://demo.vercel.events&demo-image=https://demo.vercel.events/deploy.png&integration-ids=oac_7yeSwUoVR5no3SlA9WM6oR7l&demo-title=Virtual%20Event%20Starter%20Kit&demo-description=Jumpstart%20your%20virtual%20event%20and%20scale%20to%20any%20size%20with%20Next.js,%20100ms%20and%20DatoCMS)
 
-Demo without live video : [https://demo.vercel.events](https://demo.vercel.events/)
-
-Demo with live video : [https://100ms.vercel.app](https://100ms.vercel.app)
+# Virtual Events Starter Kit
 
 This virtual event starter kit was used to run [Next.js Conf 2020](https://nextjs.org/2020/conf), which had almost 40,000 live attendees. It includes the following features:
 
@@ -284,15 +279,3 @@ The demo ([demo.vercel.events](https://demo.vercel.events/)) uses [Redis](https
 Provision your own Redis instance and set `REDIS_PORT`, `REDIS_URL`, `REDIS_PASSWORD`, `REDIS_SSL_ENABLED` and `REDIS_EMAIL_TO_ID_SECRET` (come up with your own secret string) on [Vercel Project Environment Variables Settings](https://vercel.com/docs/environment-variables) for the production environment.
 
 If you do not want to maintain a Redis server, you can use [Upstash](https://upstash.com/) which provides Serverless Redis with a free tier.
-
----
-
-## Contributing
-
-We’re on a mission to create an open-source alternative to hopin / airmeet that will enable anyone to simply build their own events platform that will be 100% customisable, 100% open-source and 100% brag-worthy ;)
-
-We’re aiming to build an active community of developers who will work together to help us realise this mission. You are welcome to contribute to the issues on this repository on Github. Contributing to open-source projects is an excellent way for users to become contributors. And it’s both a fun and rewarding experience. We’re ready to swag it out, too, for every valid PR!
-
-P.S - Be sure to check contribution guidelines, review, and merge policies.
-
-
