@@ -1,0 +1,56 @@
+.pop-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Inter;
+  background: #212121;
+  border-radius: 8px;
+  padding: 24px;
+  color: white;
+}
+.pop-content p {
+  font-family: Inter;
+}
+.head {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 32px;
+  margin: 0;
+}
+.text {
+  color: #eaeae9;
+  font-size: 12px;
+  line-height: 18px;
+  margin: 1rem 0;
+}
+.pop-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  inset: 0;
+}
+.cta-wrapper {
+  display: flex;
+  margin-top: 1rem;
+}
+.cta-wrapper button {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  line-height: 24px;
+  width: 150px;
+  cursor: pointer;
+  padding: 10px 16px;
+  color: white;
+}
+.accept-btn {
+  border-radius: 8px;
+  background: #702ec2;
+  margin-left: 1rem;
+}
+.reject-btn {
+  background-color: #3b3b3b;
+  border-radius: 8px;
+}

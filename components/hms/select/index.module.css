@@ -1,0 +1,67 @@
+.container {
+  appearance: none;
+  color: var(--accents-1);
+  display: inline-flex;
+  text-transform: uppercase;
+  user-select: none;
+  font-weight: 100;
+  position: relative;
+  white-space: nowrap;
+  line-height: 0;
+  height: 56px;
+  max-width: 300px;
+  min-width: 160px;
+  outline: none;
+  overflow: hidden;
+  border-radius: var(--space-2x);
+  background-color: var(--accents-6);
+}
+
+.select {
+  -webkit-rtl-ordering: logical;
+  appearance: none;
+  border: none;
+  cursor: default;
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+  width: 100%;
+  word-spacing: normal;
+  writing-mode: horizontal-tb !important;
+  padding: var(--space-4x) var(--space-8x) var(--space-4x) var(--space-4x);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  border: 1px solid var(--accents-7);
+  border-radius: var(--space-2x);
+  font-weight: 700;
+  background-color: var(--accents-6);
+}
+
+.select:focus {
+  outline: none;
+  background-color: var(--accents-5);
+}
+
+.select:invalid {
+  color: var(--secondary-color);
+}
+
+.select option {
+  background-color: black;
+  color: #fff;
+}
+
+.arrow {
+  width: 30px;
+  height: 100%;
+  position: absolute;
+  right: 0px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  transition: border 0.2s ease 0s;
+}
+
+.arrow > svg {
+  color: #fff;
+  strokewidth: 3px;
+}

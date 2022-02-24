@@ -24,7 +24,6 @@
 .streamContainer {
   width: 100%;
   padding: 0;
-  min-height: 400px;
   height: 100%;
 }
 
@@ -41,6 +40,10 @@
 
   .streamContainer {
     width: calc(100vw - 303px);
+  }
+
+  .streamYt {
+    width: 100%;
   }
 }
 

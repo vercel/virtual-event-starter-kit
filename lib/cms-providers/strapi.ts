@@ -54,7 +54,9 @@ async function fetchCmsAPI(query: string, { variables }: { variables?: Record<st
  */
 function serializeImage(image: Image) {
   if (!image?.url) return null;
-  const imageUrl: string = image.url.startsWith('http') ? image.url : `${IMAGE_API_URL}${image.url}`;
+  const imageUrl: string = image.url.startsWith('http')
+    ? image.url
+    : `${IMAGE_API_URL}${image.url}`;
 
   return {
     ...image,

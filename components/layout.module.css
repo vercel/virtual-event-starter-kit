@@ -59,7 +59,7 @@
 }
 
 .header-right {
-  margin: var(--space-2x) var(--space-16x);
+  margin: var(--space-2x) var(--space-4x);
   display: none;
 }
 

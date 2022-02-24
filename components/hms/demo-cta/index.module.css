@@ -1,0 +1,78 @@
+.cta-btn {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  color: white;
+  background: #323332;
+  border: 2px solid #8465cb;
+  border-radius: 8px;
+  padding: 10px 16px;
+  position: relative;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background: #444443;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 20px;
+  width: 250px;
+  justify-content: space-between;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  inset: 0;
+}
+
+.content {
+  max-height: 760px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Inter;
+  background: #111111;
+  border-radius: 8px;
+  padding: 24px;
+  color: white;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.close-btn {
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cta-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cta-role {
+  font-family: Inter;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #323332;
+  gap: 0.5rem;
+}

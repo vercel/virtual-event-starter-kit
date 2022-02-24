@@ -22,23 +22,32 @@ import { NAVIGATION } from '@lib/constants';
 import styles from './layout.module.css';
 import Logo from './icons/icon-logo';
 import MobileMenu from './mobile-menu';
-import Footer, { HostedByVercel } from './footer';
-import ViewSource from '@components/view-source';
+import Footer from './footer';
+import React from 'react';
+import DemoButton from './hms/demo-cta';
+import RoomCta from './hms/demo-cta/room-cta';
+import { hmsConfig } from './hms/config';
 
 type Props = {
   children: React.ReactNode;
   className?: string;
   hideNav?: boolean;
   layoutStyles?: any;
+  isLive?: boolean;
 };
 
-export default function Layout({ children, className, hideNav, layoutStyles }: Props) {
+export default function Layout({
+  children,
+  className,
+  hideNav,
+  layoutStyles,
+  isLive = false
+}: Props) {
   const router = useRouter();
   const activeRoute = router.asPath;
-
+  const disableCta = ['/schedule', '/speakers', '/expo', '/jobs'];
   return (
     <>
-      <ViewSource />
       <div className={styles.background}>
         {!hideNav && (
           <header className={cn(styles.header)}>
@@ -53,20 +62,26 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
             </div>
             <div className={styles.tabs}>
               {NAVIGATION.map(({ name, route }) => (
-                <Link key={name} href={route}>
-                  <a
-                    className={cn(styles.tab, {
-                      [styles['tab-active']]: activeRoute.startsWith(route)
-                    })}
-                  >
-                    {name}
-                  </a>
-                </Link>
+                <a
+                  key={name}
+                  href={route}
+                  className={cn(styles.tab, {
+                    [styles['tab-active']]: activeRoute.startsWith(route)
+                  })}
+                >
+                  {name}
+                </a>
               ))}
             </div>
-            <div className={cn(styles['header-right'])}>
-              <HostedByVercel />
-            </div>
+
+            {(hmsConfig.hmsIntegration && isLive && !disableCta.includes(activeRoute)) ||
+            activeRoute === '/' ? (
+              <div className={cn(styles['header-right'])}>
+                {activeRoute === '/' ? <DemoButton /> : <RoomCta />}
+              </div>
+            ) : (
+              <div />
+            )}
           </header>
         )}
         <div className={styles.page}>

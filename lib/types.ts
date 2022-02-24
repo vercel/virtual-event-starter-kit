@@ -38,6 +38,10 @@ export type Stage = {
   stream: string;
   discord: string;
   schedule: Talk[];
+  isLive: boolean;
+  roomId: string;
+  stagePeers: string[];
+  backstagePeers: string[];
 };
 
 export type Talk = {
