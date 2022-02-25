@@ -16,6 +16,13 @@ The role is a collection of permissions that allows you to perform a certain set
 
 Roles that are created with the 100ms + Dato CMS integration
 
+| Role Name | Can share audio | Can share video | Can share screen | Can invite others to stage | Can remove others from stage | Info                                                                                                                  |
+| --------- | --------------- | --------------- | ---------------- | -------------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Backstage | Yes             | Yes             | Yes              | Yes                        | Yes                          | Can remove users and see everyone but only users with role stage can see backstage users, can invite viewers on stage |
+| Stage     | Yes             | Yes             | Yes              | Yes                        | No                           | Ideal role for speakers, can invite viewers to stage                                                                  |
+| Invitee   | Yes             | Yes             | Yes              | No                         | No                           | Viewers who are invited to the stage                                                                                  |
+| Viewer    | No              | No              | No               | No                         | No                           | Can only see Users with role Stage and Invitee and chat   
+
 You can read more on Template and Role in our official doc: 
 
 [https://docs.100ms.live/javascript/v2/foundation/templates-and-roles](https://docs.100ms.live/javascript/v2/foundation/templates-and-roles)
