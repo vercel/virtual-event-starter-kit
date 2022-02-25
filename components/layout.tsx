@@ -27,6 +27,7 @@ import React from 'react';
 import DemoButton from './hms/demo-cta';
 import RoomCta from './hms/demo-cta/room-cta';
 import { hmsConfig } from './hms/config';
+import ViewSource from './view-source';
 
 type Props = {
   children: React.ReactNode;
@@ -84,6 +85,7 @@ export default function Layout({
             )}
           </header>
         )}
+        <ViewSource />
         <div className={styles.page}>
           <main className={styles.main} style={layoutStyles}>
             <SkipNavContent />
