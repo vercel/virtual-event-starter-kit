@@ -5,7 +5,7 @@ import {
   selectDominantSpeaker,
   HMSPeer
 } from '@100mslive/react-sdk';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { hmsConfig } from './config';
 import VideoTile from './VideoTile';
 
@@ -22,17 +22,18 @@ const ActiveSpeaker = () => {
 
   const prevPeer = usePrevious(activeSpeaker);
 
-  useEffect(() => {
-    peerFilter(dominantSpeaker || getPeer());
-  }, [dominantSpeaker]);
-
-  const getPeer = () => {
+  const getPeer = useCallback(() => {
     if (localPeer.roleName === 'viewer') {
       return prevPeer || localPeer;
     } else {
       return localPeer;
     }
-  };
+  }, [localPeer, prevPeer]);
+
+  useEffect(() => {
+    peerFilter(dominantSpeaker || getPeer());
+  }, [dominantSpeaker, getPeer]);
+
   const { pagesWithTiles, ref } = useVideoList({
     maxTileCount: 1,
     peers: [activeSpeaker],

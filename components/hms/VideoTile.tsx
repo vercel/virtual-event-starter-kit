@@ -29,10 +29,10 @@ const VideoTile: React.FC<Props> = ({ width, height, trackId }) => {
     <div className="p-2 relative" style={{ width, height }}>
       {peer ? (
         <div className="w-full h-full relative rounded-lg flex justify-center items-center">
-          <AudioLevel audioTrack={peer.audioTrack} />
           <PeerName name={peer?.name} />
           {peer.videoTrack ? <Video mirror={peer.isLocal} id={peer.videoTrack} /> : null}
           {isAudioEnabled ? null : <AudioIndicator />}
+          <AudioLevel audioTrack={peer.audioTrack} />
           {isVideoEnabled ? (
             <>{height > 300 || hmsConfig.setHmsWatermark ? <HmsWatermark /> : null}</>
           ) : (
@@ -98,5 +98,5 @@ export const AudioLevel: React.FC<{ audioTrack: HMSPeer['audioTrack'] }> = ({ au
     getStyle,
     ref
   });
-  return <div className="w-full h-full absolute left-0 top-0 rounded-lg z-20" ref={ref} />;
+  return <div className="w-full h-full absolute left-0 top-0 rounded-lg" ref={ref} />;
 };

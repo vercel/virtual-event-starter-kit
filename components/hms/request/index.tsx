@@ -35,7 +35,7 @@ const RoleChangeDialog = () => {
       actions.rejectChangeRole(request);
       setShowNote(true);
     }
-  }, [request, isMobile]);
+  }, [request, isMobile, actions]);
   const roleChange = async (b: boolean) => {
     if (!request) {
       return;
@@ -64,7 +64,7 @@ const RoleChangeDialog = () => {
     if (aO) {
       actions.setAudioOutputDevice(aO);
     }
-  }, [role]);
+  }, [role, actions]);
   const [showPreview, setShowPreview] = React.useState(false);
   return (
     <>
@@ -140,9 +140,6 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
   const [aI, setAI] = useState(localAI || audioInput[0].deviceId);
   const [vI, setVI] = useState(localVI || videoInput[0].deviceId);
   const [aO, setAO] = useState(localAO || audioOutput[0].deviceId);
-  React.useEffect(() => {
-    getVideo();
-  }, [isVideoOn, vI]);
   const getVideo = () => {
     navigator.mediaDevices
       .getUserMedia({ video: { deviceId: vI } })
@@ -157,6 +154,10 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
         console.error('error:', err);
       });
   };
+  React.useEffect(() => {
+    getVideo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isVideoOn, vI]);
   const handleAudioInput = (a: string) => {
     localStorage.setItem('audioInputDeviceId', a);
     setAI(a);
