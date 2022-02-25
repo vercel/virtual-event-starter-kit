@@ -44,7 +44,7 @@ const VideoList = () => {
         setActiveSpeaker(stagePeers[0]);
       }
     }
-  }, [dominantSpeaker, stagePeers]);
+  }, [dominantSpeaker, stagePeers, localPeer.roleName]);
   const isSomeoneScreenSharing = useHMSStore(selectIsSomeoneScreenSharing);
 
   return (

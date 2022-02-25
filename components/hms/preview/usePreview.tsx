@@ -80,6 +80,7 @@ export const usePreview = ({ name, token, metadata }: usePreviewInput): usePrevi
         console.log('Error: ', err);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [actions, token]);
 
   const join = useCallback(() => {
@@ -91,7 +92,7 @@ export const usePreview = ({ name, token, metadata }: usePreviewInput): usePrevi
     } catch (err) {
       console.log('Error: ', err);
     }
-  }, [actions, token, name]);
+  }, [actions, token, config]);
 
   return {
     enableJoin,
