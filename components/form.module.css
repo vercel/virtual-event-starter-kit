@@ -180,3 +180,31 @@
     width: 240px;
   }
 }
+
+.stage-btn {
+  background: #323332;
+  border: 2px solid #8465cb;
+}
+
+.github-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.or-divider {
+  width: 100%;
+  text-align: center;
+  color: var(--secondary-color);
+  margin: var(--space-4x) 0;
+}
+
+@media (min-width: 1200px) {
+  .github-wrapper {
+    flex-direction: row;
+  }
+  .or-divider {
+    width: 240px;
+    margin: 0;
+  }
+}
