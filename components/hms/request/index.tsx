@@ -137,9 +137,9 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
   const videoInput = devices['videoInput'] || [];
   const audioInput = devices['audioInput'] || [];
   const audioOutput = devices['audioOutput'] || [];
-  const [aI, setAI] = useState(localAI || audioInput[0].deviceId);
-  const [vI, setVI] = useState(localVI || videoInput[0].deviceId);
-  const [aO, setAO] = useState(localAO || audioOutput[0].deviceId);
+  const [aI, setAI] = useState(localAI || audioInput[0]?.deviceId);
+  const [vI, setVI] = useState(localVI || videoInput[0]?.deviceId);
+  const [aO, setAO] = useState(localAO || audioOutput[0]?.deviceId);
   const getVideo = () => {
     navigator.mediaDevices
       .getUserMedia({ video: { deviceId: vI } })

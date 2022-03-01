@@ -12,7 +12,6 @@ type Props = {
 
 const Sidebar = ({ allStages }: Props) => {
   const localRole = useHMSStore(selectLocalPeerRole);
-  console.log('ROLE CHANGE');
   return (
     <Tabs.Root asChild defaultValue="1">
       <div className="sidebar-container">
