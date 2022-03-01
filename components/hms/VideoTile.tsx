@@ -86,7 +86,6 @@ const HmsWatermark = () => {
 
 export const AudioLevel: React.FC<{ audioTrack: HMSPeer['audioTrack'] }> = ({ audioTrack }) => {
   const getStyle = useCallback((level: number) => {
-    console.log('AL: ', level);
     const style: Record<string, string> = {
       border: `${level > 10 ? 3 : 0}px solid ${hmsConfig.audioLevelColor}`
     };
