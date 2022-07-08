@@ -16,7 +16,7 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import { COOKIE } from '@lib/constants';
-import redis from '@lib/redis';
+import { getTicketNumberByUserId } from '@lib/db-api';
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
   const id = req.cookies[COOKIE];
@@ -29,17 +29,15 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     });
   }
 
-  if (redis) {
-    const ticketNumberString = await redis.hget(`id:${id}`, 'ticketNumber');
+  const ticketNumberString = await getTicketNumberByUserId(id);
 
-    if (!ticketNumberString) {
-      return res.status(401).json({
-        error: {
-          code: 'not_registered',
-          message: 'This user is not registered'
-        }
-      });
-    }
+  if (!ticketNumberString) {
+    return res.status(401).json({
+      error: {
+        code: 'not_registered',
+        message: 'This user is not registered'
+      }
+    });
   }
 
   return res.status(200).json({ loggedIn: true });

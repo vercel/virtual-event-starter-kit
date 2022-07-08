@@ -18,7 +18,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import Error from 'next/error';
 import Head from 'next/head';
 import { SkipNavContent } from '@reach/skip-nav';
-import redis from '@lib/redis';
+import { getUserByUsername } from '@lib/db-api';
 
 import Page from '@components/page';
 import ConfContent from '@components/index';
@@ -71,42 +71,30 @@ export default function TicketShare({ username, ticketNumber, name, usernameFrom
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const username = params?.username?.toString() || null;
 
-  if (redis) {
-    if (username) {
-      const [name, ticketNumber] = await redis.hmget(`user:${username}`, 'name', 'ticketNumber');
+  if (username) {
+    const { name, ticketNumber } = await getUserByUsername(username);
 
-      if (ticketNumber) {
-        return {
-          props: {
-            username: username || null,
-            usernameFromParams: username || null,
-            name: name || username || null,
-            ticketNumber: parseInt(ticketNumber, 10) || null
-          },
-          revalidate: 5
-        };
-      }
+    if (ticketNumber) {
+      return {
+        props: {
+          username: username || null,
+          usernameFromParams: username || null,
+          name: name || username || null,
+          ticketNumber: ticketNumber || null
+        },
+        revalidate: 5
+      };
     }
-    return {
-      props: {
-        username: null,
-        usernameFromParams: username || null,
-        name: null,
-        ticketNumber: null
-      },
-      revalidate: 5
-    };
-  } else {
-    return {
-      props: {
-        username: null,
-        usernameFromParams: username || null,
-        name: null,
-        ticketNumber: SAMPLE_TICKET_NUMBER
-      },
-      revalidate: 5
-    };
   }
+  return {
+    props: {
+      username: null,
+      usernameFromParams: username || null,
+      name: null,
+      ticketNumber: null
+    },
+    revalidate: 5
+  };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

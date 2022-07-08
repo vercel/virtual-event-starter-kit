@@ -6,7 +6,7 @@ This virtual event starter kit was used to run [Next.js Conf 2020](https://next
 
 - Multiple stages - with the ability to add multiple sessions on each stage
 - Each stage can be configured as -
-  - An embedded YouTube stream OR 
+  - An embedded YouTube stream OR
   - A live interactive audio-video experience powered by [100ms](https://www.100ms.live)
 - Sponsor expo, including individual virtual booths
 - Career Fair, allowing attendees to network and find job opportunities
@@ -35,7 +35,6 @@ This platform is built upon three principles:
 - Database: [Redis](https://redis.io/)
 
 ## What’s New?
-
 
 The virtual events starter kit now has added support for organising truly LIVE virtual events. You can quickly setup a live stage and invite speakers to interact with viewers. Live audio-video opens up a ton of possibilities with respect to what you can do with this template. You can use it for:
 
@@ -171,12 +170,12 @@ The demo ([demo.vercel.events](https://demo.vercel.events/)) uses [Redis](https
 
 ### **Running Redis Locally**
 
-1. Install Redis locally and run it.
+1. [Install Redis](https://redis.io/docs/getting-started/installation/) locally and run it.
 2. Specify the following in `.env.local`:
 
-`REDIS_PORT=6379 # Default Redis port number REDIS_URL=localhost REDIS_PASSWORD= REDIS_SSL_ENABLED= REDIS_EMAIL_TO_ID_SECRET=foo # Come up with your own secret string`
+`REDIS_PORT=6379 # Default Redis port number REDIS_URL=localhost REDIS_PASSWORD= REDIS_SSL_ENABLED= EMAIL_TO_ID_SECRET=foo # Come up with your own secret string`
 
-> REDIS_EMAIL_TO_ID_SECRET will be used to create a hash of the email address, which will be used for the Redis key for each user data (i.e. id:<hash>). See lib/redis.ts for details.
+> EMAIL_TO_ID_SECRET will be used to create a hash of the email address, which will be used for the Redis key for each user data (i.e. id:<hash>). See lib/redis.ts for details.
 
 > If your Redis server has SSL (TLS) encryption enabled then set REDIS_SSL_ENABLED=true
 
@@ -186,6 +185,6 @@ The demo ([demo.vercel.events](https://demo.vercel.events/)) uses [Redis](https
 
 ### **Using Redis On Vercel**
 
-Provision your own Redis instance and set `REDIS_PORT`, `REDIS_URL`, `REDIS_PASSWORD`, `REDIS_SSL_ENABLED` and `REDIS_EMAIL_TO_ID_SECRET` (come up with your own secret string) on [Vercel Project Environment Variables Settings](https://vercel.com/docs/environment-variables) for the production environment.
+Provision your own Redis instance and set `REDIS_PORT`, `REDIS_URL`, `REDIS_PASSWORD`, `REDIS_SSL_ENABLED` and `EMAIL_TO_ID_SECRET` (come up with your own secret string) on [Vercel Project Environment Variables Settings](https://vercel.com/docs/environment-variables) for the production environment.
 
 If you do not want to maintain a Redis server, you can use [Upstash](https://upstash.com/) which provides Serverless Redis with a free tier.
