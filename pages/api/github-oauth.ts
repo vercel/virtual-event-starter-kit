@@ -15,10 +15,9 @@
  */
 
 import { NextApiRequest, NextApiResponse } from 'next';
-import { nanoid } from 'nanoid';
 import * as qs from 'querystring';
-import redis from '@lib/redis';
 import { renderSuccess, renderError } from '@lib/render-github-popup';
+import { createGitHubUser } from '@lib/db-api';
 
 /**
  * This API route must be triggered as a callback of your GitHub OAuth app.
@@ -70,18 +69,10 @@ export default async function githubOAuth(req: NextApiRequest, res: NextApiRespo
 
   const user = await userRes.json();
 
-  if (redis) {
-    const token = nanoid();
-    const key = `github-user:${token}`;
-
-    await redis
-      .multi()
-      .hmset(key, 'id', user.id, 'login', user.login, 'name', user.name || '')
-      .expire(key, 60 * 10) // 10m TTL
-      .exec();
-
+  try {
+    const token = await createGitHubUser(user);
     res.end(renderSuccess({ type: 'token', token }));
-  } else {
+  } catch {
     res.end(renderSuccess({ type: 'user', login: user.login, name: user.name }));
   }
 }
