@@ -17,6 +17,7 @@ import { ConfUser } from '@lib/types';
 import { SAMPLE_TICKET_NUMBER } from '@lib/constants';
 
 import * as redisApi from './db-providers/redis';
+import * as supabaseApi from './db-providers/supabase';
 
 let dbApi: {
   createUser: (id: string, email: string) => Promise<ConfUser>;
@@ -29,6 +30,12 @@ let dbApi: {
 
 if (process.env.REDIS_PORT && process.env.REDIS_URL && process.env.EMAIL_TO_ID_SECRET) {
   dbApi = redisApi;
+} else if (
+  process.env.SUPABASE_URL &&
+  process.env.SUPABASE_SERVICE_ROLE_SECRET &&
+  process.env.EMAIL_TO_ID_SECRET
+) {
+  dbApi = supabaseApi;
 } else {
   dbApi = {
     createUser: () => Promise.resolve({ ticketNumber: SAMPLE_TICKET_NUMBER }),

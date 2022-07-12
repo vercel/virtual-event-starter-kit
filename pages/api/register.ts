@@ -72,17 +72,17 @@ export default async function register(
   let id = nanoid();
   let ticketNumber: number;
   let createdAt: number = Date.now();
-  let statusCode: number = 200;
-  let name: string | undefined = undefined;
-  let username: string | undefined = undefined;
+  let statusCode = 200;
+  let name: string | null | undefined = undefined;
+  let username: string | null | undefined = undefined;
 
   id = emailToId(email);
   const existingTicketNumberString = await getTicketNumberByUserId(id);
 
   if (existingTicketNumberString) {
     const user = await getUserById(id);
-    name = user.name!;
-    username = user.username!;
+    name = user.name;
+    username = user.username;
     ticketNumber = parseInt(existingTicketNumberString, 10);
     createdAt = user.createdAt!;
     statusCode = 200;

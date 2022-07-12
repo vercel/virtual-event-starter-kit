@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { SAMPLE_TICKET_NUMBER } from '@lib/constants';
 import { ConfUser } from '@lib/types';
 import { nanoid } from 'nanoid';
 import Redis from 'ioredis';
 
 const redis = new Redis({
-  port: parseInt(process.env.REDIS_PORT || '', 10),
+  port: parseInt(process.env.REDIS_PORT || '6379', 10),
   host: process.env.REDIS_URL,
   password: process.env.REDIS_PASSWORD,
   tls: process.env.REDIS_SSL_ENABLED && process.env.REDIS_SSL_ENABLED != 'false' ? {} : undefined
