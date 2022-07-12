@@ -70,28 +70,20 @@ export default function TicketShare({ username, ticketNumber, name, usernameFrom
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const username = params?.username?.toString() || null;
+  let name: string | null | undefined;
+  let ticketNumber: number | null | undefined;
 
   if (username) {
-    const { name, ticketNumber } = await getUserByUsername(username);
-
-    if (ticketNumber) {
-      return {
-        props: {
-          username: username || null,
-          usernameFromParams: username || null,
-          name: name || username || null,
-          ticketNumber: ticketNumber || null
-        },
-        revalidate: 5
-      };
-    }
+    const user = await getUserByUsername(username);
+    name = user.name ?? user.username;
+    ticketNumber = user.ticketNumber;
   }
   return {
     props: {
-      username: null,
+      username: ticketNumber ? username : null,
       usernameFromParams: username || null,
-      name: null,
-      ticketNumber: null
+      name: ticketNumber ? name || username || null : null,
+      ticketNumber: ticketNumber || SAMPLE_TICKET_NUMBER
     },
     revalidate: 5
   };
