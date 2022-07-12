@@ -24,10 +24,9 @@ export default async function ticketImages(req: NextApiRequest, res: NextApiResp
   const { username } = req.query || {};
   if (username) {
     const usernameString = username.toString();
-    const { name, ticketNumber } = await getUserByUsername(usernameString);
+    let { name, ticketNumber } = await getUserByUsername(usernameString);
     if (!ticketNumber) {
-      res.statusCode = 404;
-      return res.end('Not Found');
+      ticketNumber = SAMPLE_TICKET_NUMBER;
     }
     url = `${SITE_URL}/ticket-image?username=${encodeURIComponent(
       usernameString

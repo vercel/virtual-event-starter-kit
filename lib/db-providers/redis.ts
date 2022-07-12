@@ -17,20 +17,24 @@ import { ConfUser } from '@lib/types';
 import { nanoid } from 'nanoid';
 import Redis from 'ioredis';
 
-const redis = new Redis({
-  port: parseInt(process.env.REDIS_PORT || '6379', 10),
-  host: process.env.REDIS_URL,
-  password: process.env.REDIS_PASSWORD,
-  tls: process.env.REDIS_SSL_ENABLED && process.env.REDIS_SSL_ENABLED != 'false' ? {} : undefined
-});
+const redis =
+  process.env.REDIS_PORT && process.env.REDIS_URL && process.env.REDIS_EMAIL_TO_ID_SECRET
+    ? new Redis({
+        port: parseInt(process.env.REDIS_PORT || '', 10),
+        host: process.env.REDIS_URL,
+        password: process.env.REDIS_PASSWORD,
+        tls:
+          process.env.REDIS_SSL_ENABLED && process.env.REDIS_SSL_ENABLED != 'false' ? {} : undefined
+      })
+    : undefined;
 
 export async function getUserByUsername(username: string): Promise<ConfUser> {
-  const [name, ticketNumber] = await redis.hmget(`user:${username}`, 'name', 'ticketNumber');
+  const [name, ticketNumber] = await redis!.hmget(`user:${username}`, 'name', 'ticketNumber');
   return { name, ticketNumber: ticketNumber ? parseInt(ticketNumber, 10) : null };
 }
 
 export async function getUserById(id: string): Promise<ConfUser> {
-  const [name, username, createdAt] = await redis.hmget(
+  const [name, username, createdAt] = await redis!.hmget(
     `id:${id}`,
     'name',
     'username',
@@ -40,9 +44,9 @@ export async function getUserById(id: string): Promise<ConfUser> {
 }
 
 export async function createUser(id: string, email: string): Promise<ConfUser> {
-  const ticketNumber = await redis.incr('count');
+  const ticketNumber = await redis!.incr('count');
   const createdAt = Date.now();
-  await redis.hmset(
+  await redis!.hmset(
     `id:${id}`,
     'email',
     email,
@@ -55,14 +59,14 @@ export async function createUser(id: string, email: string): Promise<ConfUser> {
 }
 
 export async function getTicketNumberByUserId(id: string): Promise<string | null> {
-  return await redis.hget(`id:${id}`, 'ticketNumber');
+  return await redis!.hget(`id:${id}`, 'ticketNumber');
 }
 
 export async function createGitHubUser(user: any): Promise<string> {
   const token = nanoid();
   const key = `github-user:${token}`;
 
-  await redis
+  await redis!
     .multi()
     .hmset(key, 'id', user.id, 'login', user.login, 'name', user.name || '')
     .expire(key, 60 * 10) // 10m TTL
@@ -75,7 +79,7 @@ export async function updateUserWithGitHubUser(
   token: string,
   ticketNumber: string
 ): Promise<ConfUser> {
-  const [username, name] = await redis.hmget(`github-user:${token}`, 'login', 'name');
+  const [username, name] = await redis!.hmget(`github-user:${token}`, 'login', 'name');
   if (!username) {
     throw new Error('Invalid or expired token');
   }
@@ -83,7 +87,7 @@ export async function updateUserWithGitHubUser(
   const key = `id:${id}`;
   const userKey = `user:${username}`;
 
-  await redis
+  await redis!
     .multi()
     .hsetnx(key, 'username', username)
     .hsetnx(key, 'name', name || '')
