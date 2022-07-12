@@ -21,16 +21,17 @@ import { getUserByUsername } from '@lib/db-api';
 
 export default async function ticketImages(req: NextApiRequest, res: NextApiResponse) {
   let url: string;
+  let name: string | null | undefined;
+  let ticketNumber: number | null | undefined = SAMPLE_TICKET_NUMBER;
   const { username } = req.query || {};
   if (username) {
     const usernameString = username.toString();
-    let { name, ticketNumber } = await getUserByUsername(usernameString);
-    if (!ticketNumber) {
-      ticketNumber = SAMPLE_TICKET_NUMBER;
-    }
+    const user = await getUserByUsername(usernameString);
+    name = user.name;
+    ticketNumber = user.ticketNumber;
     url = `${SITE_URL}/ticket-image?username=${encodeURIComponent(
       usernameString
-    )}&ticketNumber=${encodeURIComponent(ticketNumber)}`;
+    )}&ticketNumber=${encodeURIComponent(ticketNumber ?? SAMPLE_TICKET_NUMBER)}`;
     if (name) {
       url = `${url}&name=${encodeURIComponent(name)}`;
     }
