@@ -88,11 +88,11 @@ export type Job = {
 
 export type ConfUser = {
   id?: string;
-  email: string;
-  ticketNumber: number;
-  name?: string;
-  username?: string;
-  createdAt: number;
+  email?: string;
+  ticketNumber?: number | null;
+  name?: string | null;
+  username?: string | null;
+  createdAt?: number | null;
 };
 
 export type GitHubOAuthData =

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import crypto from 'crypto';
 
 export async function register(email: string, token?: string) {
   return await fetch('/api/register', {
@@ -35,4 +36,15 @@ export async function saveGithubToken({ id, token }: { id?: string; token: strin
       token
     })
   });
+}
+
+export function emailToId(email: string) {
+  if (process.env.EMAIL_TO_ID_SECRET) {
+    const hmac = crypto.createHmac('sha1', process.env.EMAIL_TO_ID_SECRET);
+    hmac.update(email);
+    const result = hmac.digest('hex');
+    return result;
+  } else {
+    throw new Error('EMAIL_TO_ID_SECRET is missing');
+  }
 }

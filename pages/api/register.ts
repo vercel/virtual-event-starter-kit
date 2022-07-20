@@ -18,10 +18,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { nanoid } from 'nanoid';
 import { ConfUser } from '@lib/types';
 import validator from 'validator';
-import { SAMPLE_TICKET_NUMBER, COOKIE } from '@lib/constants';
+import { COOKIE } from '@lib/constants';
 import cookie from 'cookie';
 import ms from 'ms';
-import redis, { emailToId } from '@lib/redis';
+import { getTicketNumberByUserId, getUserById, createUser } from '@lib/db-api';
+import { emailToId } from '@lib/user-api';
 import { validateCaptchaResult, IS_CAPTCHA_ENABLED } from '@lib/captcha';
 
 type ErrorResponse = {
@@ -68,42 +69,28 @@ export default async function register(
     }
   }
 
-  let id;
+  let id = nanoid();
   let ticketNumber: number;
-  let createdAt: number;
-  let statusCode: number;
-  let name: string | undefined = undefined;
-  let username: string | undefined = undefined;
-  if (redis) {
-    id = emailToId(email);
-    const existingTicketNumberString = await redis.hget(`id:${id}`, 'ticketNumber');
+  let createdAt: number = Date.now();
+  let statusCode = 200;
+  let name: string | null | undefined = undefined;
+  let username: string | null | undefined = undefined;
 
-    if (existingTicketNumberString) {
-      const item = await redis.hmget(`id:${id}`, 'name', 'username', 'createdAt');
-      name = item[0]!;
-      username = item[1]!;
-      ticketNumber = parseInt(existingTicketNumberString, 10);
-      createdAt = parseInt(item[2]!, 10);
-      statusCode = 200;
-    } else {
-      ticketNumber = await redis.incr('count');
-      createdAt = Date.now();
-      await redis.hmset(
-        `id:${id}`,
-        'email',
-        email,
-        'ticketNumber',
-        ticketNumber,
-        'createdAt',
-        createdAt
-      );
-      statusCode = 201;
-    }
-  } else {
-    id = nanoid();
-    ticketNumber = SAMPLE_TICKET_NUMBER;
-    createdAt = Date.now();
+  id = emailToId(email);
+  const existingTicketNumberString = await getTicketNumberByUserId(id);
+
+  if (existingTicketNumberString) {
+    const user = await getUserById(id);
+    name = user.name;
+    username = user.username;
+    ticketNumber = parseInt(existingTicketNumberString, 10);
+    createdAt = user.createdAt!;
     statusCode = 200;
+  } else {
+    const newUser = await createUser(id, email);
+    ticketNumber = newUser.ticketNumber!;
+    createdAt = newUser.createdAt!;
+    statusCode = 201;
   }
 
   // Save `key` in a httpOnly cookie

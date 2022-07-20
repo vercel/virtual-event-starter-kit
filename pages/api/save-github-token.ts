@@ -15,7 +15,7 @@
  */
 
 import { NextApiRequest, NextApiResponse } from 'next';
-import redis from '@lib/redis';
+import { getTicketNumberByUserId, updateUserWithGitHubUser } from '@lib/db-api';
 
 export default async function saveGithubToken(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -38,31 +38,12 @@ export default async function saveGithubToken(req: NextApiRequest, res: NextApiR
     });
   }
 
-  if (!redis) {
-    throw new Error('Redis must be set up');
-  }
-
-  const ticketNumber = await redis.hget(`id:${body.id}`, 'ticketNumber');
+  const ticketNumber = await getTicketNumberByUserId(body.id);
   if (!ticketNumber) {
     return res.status(404).json({ code: 'invalid_id', message: 'The registration does not exist' });
   }
 
-  const [username, name] = await redis.hmget(`github-user:${body.token}`, 'login', 'name');
-  if (!username) {
-    return res.status(400).json({ code: 'invalid_token', message: 'Invalid or expired token' });
-  }
-
-  const key = `id:${body.id}`;
-  const userKey = `user:${username}`;
-
-  await redis
-    .multi()
-    .hsetnx(key, 'username', username)
-    .hsetnx(key, 'name', name || '')
-    // Also save username → data pair
-    .hsetnx(userKey, 'name', name || '')
-    .hsetnx(userKey, 'ticketNumber', ticketNumber)
-    .exec();
+  const { username, name } = await updateUserWithGitHubUser(body.id, body.token, ticketNumber);
 
   res.json({ username, name });
 }

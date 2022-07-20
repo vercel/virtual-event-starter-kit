@@ -6,7 +6,7 @@ This virtual event starter kit was used to run [Next.js Conf 2020](https://next
 
 - Multiple stages - with the ability to add multiple sessions on each stage
 - Each stage can be configured as -
-  - An embedded YouTube stream OR 
+  - An embedded YouTube stream OR
   - A live interactive audio-video experience powered by [100ms](https://www.100ms.live)
 - Sponsor expo, including individual virtual booths
 - Career Fair, allowing attendees to network and find job opportunities
@@ -32,10 +32,9 @@ This platform is built upon three principles:
 - Live interactive video: [100ms](http://www.100ms.live)
 - Deployment: [Vercel](https://vercel.com/)
 - Authentication: [GitHub OAuth](https://docs.github.com/en/free-pro-team@latest/developers/apps/authorizing-oauth-apps)
-- Database: [Redis](https://redis.io/)
+- Database: [Multiple Options](https://github.com/vercel/virtual-event-starter-kit#database)
 
 ## What’s New?
-
 
 The virtual events starter kit now has added support for organising truly LIVE virtual events. You can quickly setup a live stage and invite speakers to interact with viewers. Live audio-video opens up a ton of possibilities with respect to what you can do with this template. You can use it for:
 
@@ -164,28 +163,10 @@ Once it’s set up, sign up using the registration form on the home page (not on
 
 You need a database to save user data and enable the following features:
 
-- Generating a unique ticket number for each email when signing up on the registration form. If DB is not set up, it’ll always be `1234`.
-- Generating a unique ticket image or ticket URL after signing in with GitHub. If DB is not set up, each ticket image or URL will show generic data.
+- Generating a unique ticket number for each email when signing up on the registration form. If no DB is set up, it’ll always be `1234`.
+- Generating a unique ticket image or ticket URL after signing in with GitHub. If no DB is set up, each ticket image or URL will show generic data.
 
-The demo ([demo.vercel.events](https://demo.vercel.events/)) uses [Redis](https://redis.io/), but you can customize it to use any database you like.
+Environment variables determine which database to use. See [lib/db-api.ts](https://github.com/vercel/virtual-event-starter-kit/blob/main/lib/db-api.ts) for details and `.env.local.example` for all environment variables. There's support for:
 
-### **Running Redis Locally**
-
-1. Install Redis locally and run it.
-2. Specify the following in `.env.local`:
-
-`REDIS_PORT=6379 # Default Redis port number REDIS_URL=localhost REDIS_PASSWORD= REDIS_SSL_ENABLED= REDIS_EMAIL_TO_ID_SECRET=foo # Come up with your own secret string`
-
-> REDIS_EMAIL_TO_ID_SECRET will be used to create a hash of the email address, which will be used for the Redis key for each user data (i.e. id:<hash>). See lib/redis.ts for details.
-
-> If your Redis server has SSL (TLS) encryption enabled then set REDIS_SSL_ENABLED=true
-
-1. Restart the app (`yarn dev`) after editing `.env.local`.
-2. In a separate terminal window, start the Next.js dev server (`yarn dev`) and sign up using the registration form.
-3. In a separate terminal window, run Redis CLI, list keys (`keys *`) and inspect a `id:<hash>` key (`hgetall id:<hash>`). You should see the newly registered user.
-
-### **Using Redis On Vercel**
-
-Provision your own Redis instance and set `REDIS_PORT`, `REDIS_URL`, `REDIS_PASSWORD`, `REDIS_SSL_ENABLED` and `REDIS_EMAIL_TO_ID_SECRET` (come up with your own secret string) on [Vercel Project Environment Variables Settings](https://vercel.com/docs/environment-variables) for the production environment.
-
-If you do not want to maintain a Redis server, you can use [Upstash](https://upstash.com/) which provides Serverless Redis with a free tier.
+- [Redis](https://github.com/vercel/virtual-event-starter-kit/blob/main/lib/db-providers/README.md#redis)
+- [Supabase](https://github.com/vercel/virtual-event-starter-kit/blob/main/lib/db-providers/README.md#supabase)
