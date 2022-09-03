@@ -192,8 +192,10 @@ export async function updateUserWithGitHubUser(id: string, token: string): Promi
     throw new Error('Invalid or expired token');
   }
 
+  // extract github user data
   const { login: username, name } = conferenceGitHubUser.userData.user;
 
+  // update conference user with github user data
   const UPDATE_CONFERENCE_USER = `#graphql
   mutation updateConferenceUser($id: String!, $conferenceUser: conference_users_set_input!) {
     update_conference_users_by_pk(pk_columns: {id: $id}, _set: $conferenceUser) {
