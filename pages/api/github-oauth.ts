@@ -23,8 +23,6 @@ import { createGitHubUser } from '@lib/db-api';
  * This API route must be triggered as a callback of your GitHub OAuth app.
  */
 export default async function githubOAuth(req: NextApiRequest, res: NextApiResponse) {
-  console.log('github o auth api');
-
   if (!req.query.code) {
     // This happens when user cancelled the authentication.
     // In this case, we send an empty message which indicates no data available.
