@@ -75,8 +75,6 @@ export default async function githubOAuth(req: NextApiRequest, res: NextApiRespo
     const token = await createGitHubUser(user);
     res.end(renderSuccess({ type: 'token', token }));
   } catch (error) {
-    console.log(error);
-
     res.end(renderSuccess({ type: 'user', login: user.login, name: user.name }));
   }
 }
