@@ -18,6 +18,7 @@ import { SAMPLE_TICKET_NUMBER } from '@lib/constants';
 
 import * as redisApi from './db-providers/redis';
 import * as supabaseApi from './db-providers/supabase';
+import * as nhostApi from './db-providers/nhost';
 
 let dbApi: {
   createUser: (id: string, email: string) => Promise<ConfUser>;
@@ -36,6 +37,13 @@ if (process.env.REDIS_PORT && process.env.REDIS_URL && process.env.EMAIL_TO_ID_S
   process.env.EMAIL_TO_ID_SECRET
 ) {
   dbApi = supabaseApi;
+} else if (
+  process.env.NHOST_SUBDOMAIN &&
+  process.env.NHOST_REGION &&
+  process.env.NHOST_ADMIN_SECRET &&
+  process.env.EMAIL_TO_ID_SECRET
+) {
+  dbApi = nhostApi;
 } else {
   dbApi = {
     createUser: () => Promise.resolve({ ticketNumber: SAMPLE_TICKET_NUMBER }),
