@@ -170,3 +170,4 @@ Environment variables determine which database to use. See [lib/db-api.ts](http
 
 - [Redis](https://github.com/vercel/virtual-event-starter-kit/blob/main/lib/db-providers/README.md#redis)
 - [Supabase](https://github.com/vercel/virtual-event-starter-kit/blob/main/lib/db-providers/README.md#supabase)
+- [Nhost](https://github.com/vercel/virtual-event-starter-kit/blob/main/lib/db-providers/README.md#nhost)
