@@ -6,9 +6,6 @@
   "author": "Vercel Inc.",
   "homepage": "https://demo.vercel.events",
   "license": "Apache-2.0",
-  "engines": {
-    "node": "^14"
-  },
   "scripts": {
     "dev": "next",
     "start": "next start",
