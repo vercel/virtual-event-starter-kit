@@ -1,9 +1,9 @@
 {
-  "name": "virtual-event-starter-kit",
-  "description": "Starter kit for your virtual event.",
+  "name": "storybook-day",
+  "description": "Storybook day 2023 website",
   "private": true,
-  "repository": "vercel/virtual-event-starter-kit",
-  "author": "Vercel Inc.",
+  "repository": "storybookjs/storybook-day",
+  "author": "Storybook Team",
   "homepage": "https://demo.vercel.events",
   "license": "Apache-2.0",
   "scripts": {
