@@ -10,7 +10,9 @@
     "dev": "next",
     "start": "next start",
     "build": "next build",
-    "license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js"
+    "license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@100mslive/react-icons": "^0.0.6",
@@ -22,11 +24,14 @@
     "@radix-ui/react-dropdown-menu": "0.1.4",
     "@radix-ui/react-tabs": "0.1.4",
     "@reach/skip-nav": "0.12.1",
+    "@storybook/components-marketing": "2.0.42--canary.57.a74b27b.0",
+    "@storybook/theming": "^6.5.13",
     "@supabase/supabase-js": "^1.35.4",
     "chrome-aws-lambda": "10.1.0",
     "classnames": "2.2.6",
     "cookie": "0.4.1",
     "date-fns": "2.16.1",
+    "framer-motion": "^7.6.12",
     "htmlescape": "1.1.1",
     "intersection-observer": "0.12.0",
     "ioredis": "4.19.4",
@@ -34,9 +39,9 @@
     "next": "^12.0.10",
     "nprogress": "0.2.0",
     "puppeteer-core": "5.5.0",
-    "react": "^18.0.0-rc.0",
+    "react": "^18.2.0",
     "react-aria": "3.2.0",
-    "react-dom": "^18.0.0-rc.0",
+    "react-dom": "^18.2.0",
     "react-hot-toast": "^2.2.0",
     "smoothscroll-polyfill": "0.4.4",
     "swr": "0.3.9",
@@ -44,6 +49,12 @@
     "vanilla-tilt": "1.7.0"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.0-alpha.53",
+    "@storybook/addon-interactions": "^7.0.0-alpha.53",
+    "@storybook/addon-links": "^7.0.0-alpha.53",
+    "@storybook/nextjs": "^7.0.0-alpha.53",
+    "@storybook/react": "^7.0.0-alpha.53",
+    "@storybook/testing-library": "^0.0.13",
     "@types/classnames": "2.2.11",
     "@types/cookie": "0.4.0",
     "@types/htmlescape": "1.1.1",
@@ -68,6 +79,7 @@
     "postcss-hover-media-feature": "1.0.0",
     "postcss-preset-env": "6.7.0",
     "prettier": "2.2.1",
+    "storybook": "^7.0.0-alpha.53",
     "tailwindcss": "^3.0.1",
     "typescript": "4.3.2"
   }
