@@ -1,19 +1,20 @@
 import { styled } from '@storybook/theming';
-import { styles } from '@storybook/components-marketing';
+import { AspectRatio, styles } from '@storybook/components-marketing';
 
 const { marketing, color, breakpoints } = styles;
 
 const Container = styled.div<{ background: string }>`
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
   background: ${({ background }) => background};
-  height: 100%;
   padding-top: 30px;
   overflow: hidden;
 
   @media (min-width: ${breakpoints[2]}px) {
+    min-height: 512px;
     padding-top: 0;
     flex-direction: row;
     padding-left: 60px;
@@ -31,31 +32,42 @@ const Description = styled.div`
 
 const TextWrapper = styled.div`
   color: ${color.darkest};
-  flex: 1 1 40%;
-  margin-bottom: 30px;
   margin-left: 30px;
   margin-right: 30px;
+  margin-bottom: 30px;
 
   @media (min-width: ${breakpoints[2]}px) {
+    flex: 1 1 40%;
     max-width: 360px;
     margin: 0;
   }
 `;
 
 const Figure = styled.div`
-  flex: 1 1 60%;
   align-self: stretch;
   min-width: 0;
   display: flex;
   align-items: flex-end;
+  flex: 1 1 auto;
+
+  @media (min-width: ${breakpoints[2]}px) {
+    flex: 1 1 60%;
+  }
 
   img {
     display: block;
     width: 100%;
-    margin: 0 auto;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    margin-left: auto;
+    margin-right: auto;
 
     @media (min-width: ${breakpoints[2]}px) {
-      margin: 0;
+      margin-left: 0;
+      margin-right: 0;
+      object-fit: cover;
+      object-position: left top;
     }
   }
 `;

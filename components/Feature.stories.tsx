@@ -17,7 +17,7 @@ export const Default: Story = {
     title: 'Performance overhaul',
     description:
       'Lorem ipsum dolor sit amet consectatur vestibulum aret sit click, hover, and type inside your story file. Powered by Jest and Testing.',
-    image: '/perf.png',
+    image: '/media/perf.png',
     background: '#E3F3FF'
   }
 };
@@ -27,8 +27,8 @@ export const WithIcon: Story = {
     title: 'Official Figma integration',
     description:
       'Simulate user behavior like click, hover, and type inside your story file. Powered by Jest and Testing Library',
-    image: '/figma.png',
+    image: '/media/figma.png',
     background: '#EEEEEE',
-    icon: '/figma-icon.png'
+    icon: '/media/figma-icon.png'
   }
 };

@@ -21,6 +21,9 @@ const Figure = styled(AspectRatio)<{ background: string }>`
   border-radius: 20px;
   background: ${({ background }) => background};
   margin-bottom: 30px;
+  max-height: 520px;
+  margin-left: auto;
+  margin-right: auto;
 
   img {
     display: block;
