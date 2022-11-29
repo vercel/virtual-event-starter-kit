@@ -1,7 +1,8 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { styled } from '@storybook/theming';
 import { Logos, Button } from '@storybook/design-system';
 import { styles, NavItem } from '@storybook/components-marketing';
+import { SNEAK_PEEK_URL, DISCORD_URL, TWITTER_URL } from '@lib/constants';
 
 const { pageMargins, spacing, color, breakpoints, typography } = styles;
 
@@ -48,10 +49,6 @@ const NavContainer = styled.nav`
   justify-content: space-between;
 `;
 
-interface NavProps {
-  activeSection?: 'home' | 'why' | 'docs' | 'integrations' | 'showcase' | 'community';
-}
-
 const NavLinks = styled.div`
   display: none;
   align-items: center;
@@ -65,7 +62,7 @@ const NavLinks = styled.div`
   }
 `;
 
-export const Nav: FunctionComponent<NavProps> = ({ activeSection = 'home' }) => {
+export const Nav = () => {
   return (
     <Wrapper>
       <NavContainer>
@@ -74,21 +71,13 @@ export const Nav: FunctionComponent<NavProps> = ({ activeSection = 'home' }) => 
           <YearTag>2023</YearTag>
         </LogoNavItem>
         <NavLinks>
-          <NavItem active={activeSection === 'why'} variant="default" href="#sneak-peek">
+          <NavItem variant="default" href={SNEAK_PEEK_URL}>
             Sneak peek
           </NavItem>
-          <NavItem
-            active={activeSection === 'showcase'}
-            variant="default"
-            href="https://discord.gg/storybook"
-          >
+          <NavItem variant="default" href={DISCORD_URL}>
             Discord
           </NavItem>
-          <NavItem
-            active={activeSection === 'integrations'}
-            variant="default"
-            href="https://twitter.com/storybookjs"
-          >
+          <NavItem variant="default" href={TWITTER_URL}>
             Twitter
           </NavItem>
         </NavLinks>

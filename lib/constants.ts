@@ -16,17 +16,19 @@
 
 export const SITE_URL = 'https://bright-choux-c953ce.netlify.app';
 export const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_ORIGIN || new URL(SITE_URL).origin;
-export const TWITTER_USER_NAME = 'vercel';
-export const BRAND_NAME = 'ACME';
-export const SITE_NAME_MULTILINE = ['ACME', 'Conf'];
-export const SITE_NAME = 'ACME Conf';
+export const TWITTER_USER_NAME = 'storybookjs';
+export const BRAND_NAME = 'Storybook';
+export const SITE_NAME_MULTILINE = ['Storybook Day', 'March 1, 2023'];
+export const SITE_NAME = 'Storybook Day';
 export const META_DESCRIPTION =
-  'This is an open source demo that Next.js developers can clone, deploy, and fully customize for events. Created through collaboration of marketers, designers, and developers at Vercel.';
+  'Join us for an online event about the future of UI development with Storybook. See what’s new in 7.0, meet world-class frontend devs, and check out the leading projects in the community.';
 export const SITE_DESCRIPTION =
   'An interactive online experience by the community, free for everyone.';
-export const DATE = '01 January 2022';
-export const SHORT_DATE = 'Jan 1 - 9:00am PST';
-export const FULL_DATE = 'Jan 1st 9am Pacific Time (GMT-7)';
+export const DATE = 'March 1, 2023';
+export const SHORT_DATE = 'Mar 10:00am - 12:00pm PST';
+export const SHORT_TIME = '10am - 12pm';
+export const TIMEZONE = 'Pacific Standard Time';
+export const FULL_DATE = 'March 1st 10am Pacific Time (GMT-8)';
 export const TWEET_TEXT = META_DESCRIPTION;
 export const COOKIE = 'user-id';
 
@@ -37,7 +39,7 @@ export const COPYRIGHT_HOLDER = process.env.NEXT_PUBLIC_COPYRIGHT_HOLDER;
 
 export const CODE_OF_CONDUCT =
   'https://www.notion.so/vercel/Code-of-Conduct-Example-7ddd8d0e9c354bb597a0faed87310a78';
-export const REPO = 'https://github.com/vercel/virtual-event-starter-kit';
+export const REPO = 'https://github.com/storybookjs/storybook-day';
 export const SAMPLE_TICKET_NUMBER = 1234;
 export const NAVIGATION = [
   {
@@ -71,3 +73,9 @@ export const NAVIGATION = [
 ];
 
 export type TicketGenerationState = 'default' | 'loading';
+
+export const TWITTER_URL = 'https://twitter.com/storybookjs';
+export const DISCORD_URL = 'https://discord.gg/storybook';
+export const YOUTUBE_URL = 'https://www.youtube.com/c/StorybookJS';
+export const GITHUB_URL = 'https://github.com/storybookjs';
+export const SNEAK_PEEK_URL = 'https://storybook.js.org/blog/storybook-7-0/';

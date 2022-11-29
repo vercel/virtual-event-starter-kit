@@ -4,6 +4,7 @@ import { Cardinal } from '@storybook/design-system';
 import { EmailForm } from '@components/EmailForm';
 import { FreeStickers } from '@components/FreeStickers';
 import { ByChromatic } from '@components/ByChromatic';
+import { SITE_NAME_MULTILINE, SHORT_TIME, TIMEZONE } from '@lib/constants';
 
 const { marketing, breakpoints, pageMargins } = styles;
 
@@ -84,7 +85,7 @@ const MetaWrapper = styled.div`
   }
 `;
 
-const Gradient = styled.span`
+const Gradient = styled.div`
   background-size: 100%;
 
   background-image: url("data:image/svg+xml,%3Csvg width='386' height='88' viewBox='0 0 386 88' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_220_13607)'%3E%3Crect width='386' height='88' fill='white'/%3E%3Crect x='-0.849609' y='-8' width='386.849' height='120' fill='%232A0481'/%3E%3Cellipse cx='83.1747' cy='80.5' rx='94.1747' ry='83.5' fill='url(%23paint0_radial_220_13607)'/%3E%3Cellipse cx='83.1747' cy='-6.5' rx='94.1747' ry='83.5' fill='url(%23paint1_radial_220_13607)'/%3E%3Cellipse cx='175.657' cy='-6.5' rx='94.1747' ry='83.5' fill='url(%23paint2_radial_220_13607)'/%3E%3Cellipse cx='175.657' cy='80.5' rx='94.1747' ry='83.5' fill='url(%23paint3_radial_220_13607)'/%3E%3Cellipse cx='268.142' cy='-6.5' rx='94.1747' ry='83.5' fill='url(%23paint4_radial_220_13607)'/%3E%3Cellipse cx='268.142' cy='80.5' rx='94.1747' ry='83.5' fill='url(%23paint5_radial_220_13607)'/%3E%3C/g%3E%3Cdefs%3E%3CradialGradient id='paint0_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(83.1747 80.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%23FF7777'/%3E%3Cstop offset='1' stop-color='%23FF7777' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='paint1_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(83.1747 -6.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%23FFC077'/%3E%3Cstop offset='1' stop-color='%23FFC077' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='paint2_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(175.657 -6.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%23FDFF93'/%3E%3Cstop offset='1' stop-color='%23FDFF93' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='paint3_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(175.657 80.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%23FDFF93'/%3E%3Cstop offset='1' stop-color='%23FDFF93' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='paint4_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(268.142 -6.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%23FF778F'/%3E%3Cstop offset='1' stop-color='%23FF778F' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='paint5_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(268.142 80.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%2377FFF7'/%3E%3Cstop offset='1' stop-color='%2377FFF7' stop-opacity='0'/%3E%3C/radialGradient%3E%3CclipPath id='clip0_220_13607'%3E%3Crect width='386' height='88' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
@@ -116,13 +117,12 @@ export const Hero = () => (
   <Container>
     <TitleWrapper>
       <Title>
-        Storybook Day
-        <br />
-        <Gradient>March 1, 2023</Gradient>
+        {SITE_NAME_MULTILINE[0]}
+        <Gradient>{SITE_NAME_MULTILINE[1]}</Gradient>
       </Title>
       <MetaWrapper>
         <InfoWrapper>
-          <Info size="small" text="Pacific time" count="10am - 12pm" />
+          <Info size="small" text={TIMEZONE} count={SHORT_TIME} />
           <Info size="small" text="Online event" count="Watch live" />
         </InfoWrapper>
         <ByChromatic />
