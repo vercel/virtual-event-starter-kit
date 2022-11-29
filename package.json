@@ -25,6 +25,7 @@
     "@radix-ui/react-tabs": "0.1.4",
     "@reach/skip-nav": "0.12.1",
     "@storybook/components-marketing": "2.0.42--canary.57.a74b27b.0",
+    "@storybook/design-system": "^7.9.2",
     "@storybook/theming": "^6.5.13",
     "@supabase/supabase-js": "^1.35.4",
     "chrome-aws-lambda": "10.1.0",

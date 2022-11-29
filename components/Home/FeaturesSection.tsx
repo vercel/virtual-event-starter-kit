@@ -1,7 +1,7 @@
 import { styled } from '@storybook/theming';
 import { styles } from '@storybook/components-marketing';
-import { HighlightedFeature } from '@components/HighlightedFeature';
-import { Feature } from '@components/Feature';
+import { HighlightedFeature } from './HighlightedFeature';
+import { Feature } from './Feature';
 
 const { marketing, breakpoints, pageMargins } = styles;
 

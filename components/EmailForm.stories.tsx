@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EmailForm } from './EmailForm';
 
 const meta: Meta<typeof EmailForm> = {
-  title: 'Layout/EmailForm',
+  title: 'Components/EmailForm',
   component: EmailForm,
   parameters: {
     layout: 'centered'

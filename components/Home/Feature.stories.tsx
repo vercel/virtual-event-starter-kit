@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Feature } from './Feature';
 
 const meta: Meta<typeof Feature> = {
-  title: 'Homepage/Feature',
+  title: 'Pages/Home/Feature',
   component: Feature,
   parameters: {
     layout: 'centered'

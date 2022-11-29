@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { Footer } from './Footer';
 
 export default {
-  title: 'Layout/Footer',
+  title: 'Components/Footer',
   component: Footer,
   parameters: {
     chromatic: { viewports: [320, 440, 600, 900] }

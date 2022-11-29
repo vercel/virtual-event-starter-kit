@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ByChromatic } from './ByChromatic';
 
 const meta: Meta<typeof ByChromatic> = {
-  title: 'Layout/ByChromatic',
+  title: 'Components/ByChromatic',
   component: ByChromatic,
   parameters: {
     layout: 'centered'

@@ -6,7 +6,7 @@ import { HighlightedFeature } from './HighlightedFeature';
 const { breakpoints } = styles;
 
 const meta: Meta<typeof HighlightedFeature> = {
-  title: 'Homepage/HighlightedFeature',
+  title: 'Pages/Home/HighlightedFeature',
   component: HighlightedFeature,
   parameters: {
     layout: 'centered'

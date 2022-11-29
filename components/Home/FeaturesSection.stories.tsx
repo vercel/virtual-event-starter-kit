@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FeaturesSection } from './FeaturesSection';
 
 const meta: Meta<typeof FeaturesSection> = {
-  title: 'Homepage/FeaturesSection',
+  title: 'Pages/Home/FeaturesSection',
   component: FeaturesSection,
   parameters: {
     chromatic: { viewports: [320, 440, 600, 900] }
