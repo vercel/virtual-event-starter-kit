@@ -49,11 +49,6 @@ const NavContainer = styled.nav`
 `;
 
 interface NavProps {
-  inverse?: boolean;
-  monochrome?: boolean;
-  framework: string;
-  version: string;
-  apiKey: string;
   activeSection?: 'home' | 'why' | 'docs' | 'integrations' | 'showcase' | 'community';
 }
 
@@ -70,30 +65,20 @@ const NavLinks = styled.div`
   }
 `;
 
-export const Nav: FunctionComponent<NavProps> = ({
-  inverse,
-  monochrome,
-  activeSection = 'home'
-}) => {
+export const Nav: FunctionComponent<NavProps> = ({ activeSection = 'home' }) => {
   return (
-    <Wrapper inverse={inverse}>
+    <Wrapper>
       <NavContainer>
         <LogoNavItem aria-label="home" href="navLinks.home.url">
           <StorybookLogo role="presentation" />
           <YearTag>2023</YearTag>
         </LogoNavItem>
         <NavLinks>
-          <NavItem
-            active={activeSection === 'why'}
-            monochrome={monochrome}
-            variant="default"
-            href="#sneak-peek"
-          >
+          <NavItem active={activeSection === 'why'} variant="default" href="#sneak-peek">
             Sneak peek
           </NavItem>
           <NavItem
             active={activeSection === 'showcase'}
-            monochrome={monochrome}
             variant="default"
             href="https://discord.gg/storybook"
           >
@@ -101,7 +86,6 @@ export const Nav: FunctionComponent<NavProps> = ({
           </NavItem>
           <NavItem
             active={activeSection === 'integrations'}
-            monochrome={monochrome}
             variant="default"
             href="https://twitter.com/storybookjs"
           >

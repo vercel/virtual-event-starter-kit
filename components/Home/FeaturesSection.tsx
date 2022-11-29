@@ -11,7 +11,6 @@ const Section = styled.section`
 
 const Title = styled.h2`
   ${marketing.hero1};
-  margin-bottom: 4rem;
   margin-bottom: 2.5rem;
 `;
 

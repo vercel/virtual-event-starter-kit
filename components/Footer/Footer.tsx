@@ -1,4 +1,5 @@
 import React from 'react';
+import { styled, css } from '@storybook/theming';
 import { ByChromatic } from '@components/ByChromatic';
 import { EmailForm } from '@components/EmailForm';
 import { LinkWrapper } from '@components/LinkWrapper';
@@ -13,6 +14,10 @@ import {
   FooterText
 } from './Footer.styles';
 
+const Attribution = styled(ByChromatic)`
+  margin-top: 24px;
+`;
+
 export const Footer = () => {
   return (
     <FooterWrapper>
@@ -20,7 +25,7 @@ export const Footer = () => {
         <Register>
           <Title>Get your ticket</Title>
           <EmailForm />
-          <ByChromatic />
+          <Attribution />
         </Register>
 
         <ColumnsWrapper>
