@@ -3,6 +3,7 @@ import { styled } from '@storybook/theming';
 import { useId } from '@floating-ui/react-dom-interactions';
 import { Button, Icon } from '@storybook/design-system';
 import { styles } from '@storybook/components-marketing';
+import { motion } from 'framer-motion';
 
 const { spacing, color, typography } = styles;
 
@@ -88,7 +89,7 @@ const SubmitButton = styled(Button)`
   flex: none;
 `;
 
-const Form = styled.form`
+const Form = styled(motion.form)`
   max-width: 360px;
   position: relative;
 `;
@@ -108,7 +109,13 @@ export const EmailForm = ({ ...props }: EmailFormProps) => {
   const [value, setValue] = React.useState('');
 
   return (
-    <Form ref={formRef} onSubmit={() => {}}>
+    <Form
+      ref={formRef}
+      onSubmit={() => {}}
+      whileInView={{ x: [0, -6, 5, -3, 2, 0] }}
+      transition={{ delay: 0.25, duration: 0.5, ease: 'easeInOut' }}
+      viewport={{ margin: '0px 0px -75% 0px', amount: 'all' }}
+    >
       <FormWrapper {...props}>
         <EmailIcon icon="email" />
         <InputEl

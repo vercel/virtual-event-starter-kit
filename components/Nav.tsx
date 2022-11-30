@@ -36,10 +36,11 @@ const YearTag = styled.span`
   padding: 2px 6px;
 `;
 
-const Wrapper = styled.div<{ inverse?: boolean }>`
+const Wrapper = styled.div<{ inverse?: boolean; transparent?: boolean }>`
   box-shadow: ${props => (props.inverse ? 'rgba(255, 255, 255, 0.1)' : color.tr10)} 0 -1px 0px 0px inset;
   padding-top: ${spacing.padding.medium}px;
   padding-bottom: ${spacing.padding.medium}px;
+  background-color: ${props => (props.transparent ? 'transparent' : '#d9e6f2')};
 `;
 
 const NavContainer = styled.nav`
@@ -62,9 +63,13 @@ const NavLinks = styled.div`
   }
 `;
 
-export const Nav = () => {
+interface NavProps {
+  transparent?: boolean;
+}
+
+export const Nav = ({ transparent }: NavProps) => {
   return (
-    <Wrapper>
+    <Wrapper transparent={transparent}>
       <NavContainer>
         <LogoNavItem aria-label="home" href="navLinks.home.url">
           <StorybookLogo role="presentation" />
@@ -81,7 +86,7 @@ export const Nav = () => {
             Twitter
           </NavItem>
         </NavLinks>
-        <Button size="small" appearance="secondary">
+        <Button size="small" appearance="secondary" isLink href="#register">
           Get your free ticket
         </Button>
       </NavContainer>

@@ -10,8 +10,10 @@ const meta: Meta<typeof Nav> = {
 export default meta;
 type Story = StoryObj<typeof Nav>;
 
-export const Primary: Story = {
+export const Default: Story = {};
+
+export const Transparent: Story = {
   args: {
-    inverse: false
+    transparent: true
   }
 };

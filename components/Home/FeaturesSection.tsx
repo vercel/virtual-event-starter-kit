@@ -31,7 +31,7 @@ const StorybookUiImage = styled.img`
   }
 `;
 StorybookUiImage.defaultProps = {
-  src: '/media/sb-ui.png'
+  src: '/sb-ui.png'
 };
 
 const CSF3Image = styled.img`
@@ -40,7 +40,7 @@ const CSF3Image = styled.img`
   }
 `;
 CSF3Image.defaultProps = {
-  src: '/media/csf-example.png'
+  src: '/csf-example.png'
 };
 
 export const FeaturesSection = () => (
@@ -48,7 +48,7 @@ export const FeaturesSection = () => (
     <Title>Insiders launch event</Title>
     <FeaturesGrid>
       <HighlightedFeature
-        background="url('/media/gradient-backdrop.svg')"
+        background="url('/gradient-backdrop.svg')"
         title="Design refresh"
         description="Storybook is now used for UI development along with testing and documentation. We've refined the core UI to better support all those workflows and give you a productivity boost."
         image={<StorybookUiImage />}
@@ -56,25 +56,25 @@ export const FeaturesSection = () => (
       <Feature
         title="Stability for the long run"
         description="Lorem ipsum dolor sit amet consectatur vestibulum aret sit click, hover, and type inside your story file. Powered by Jest and Testing."
-        image="/media/stability.png"
+        image="/stability.png"
         background="#FEDED2"
       />
       <Feature
         title="Performance overhaul"
         description="Lorem ipsum dolor sit amet consectatur vestibulum aret sit click, hover, and type inside your story file. Powered by Jest and Testing."
-        image="/media/perf.png"
+        image="/perf.png"
         background="#E3F3FF"
       />
       <Feature
         title="Docs 2.0"
         description="Lorem ipsum dolor sit amet consectatur vestibulum aret sit click, hover, and type inside your story file. Powered by Jest and Testing."
-        image="/media/docs-2.png"
+        image="/docs-2.png"
         background="#C3EDAF"
       />
       <Feature
         title="Interaction testing & Test runner"
         description="Lorem ipsum dolor sit amet consectatur vestibulum aret sit click, hover, and type inside your story file. Powered by Jest and Testing."
-        image="/media/interaction-testing.png"
+        image="/interaction-testing.png"
         background="#FDDE9C"
       />
       <HighlightedFeature
@@ -86,16 +86,16 @@ export const FeaturesSection = () => (
       <Feature
         title="First-class Vite support"
         description="Lorem ipsum dolor sit amet consectatur vestibulum aret sit click, hover, and type inside your story file. Powered by Jest and Testing."
-        image="/media/vite.png"
+        image="/vite.png"
         background="#FEDED2"
-        icon="/media/vite-icon.png"
+        icon="/vite-icon.png"
       />
       <Feature
         title="Official Figma integration"
         description="Lorem ipsum dolor sit amet consectatur vestibulum aret sit click, hover, and type inside your story file. Powered by Jest and Testing."
-        image="/media/figma.png"
+        image="/figma.png"
         background="#EEEEEE"
-        icon="/media/figma-icon.png"
+        icon="/figma-icon.png"
       />
     </FeaturesGrid>
   </Section>

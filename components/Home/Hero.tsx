@@ -129,7 +129,7 @@ export const Hero = () => (
       </MetaWrapper>
     </TitleWrapper>
     <div>
-      <Copy>
+      <Copy id="register">
         Join us for an online event about the future of UI development with Storybook. See what’s
         new in 7.0, meet world-class frontend devs, and check out the leading projects in the
         community.

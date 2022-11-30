@@ -19,9 +19,7 @@ import { PageState, ConfDataContext, UserData } from '@lib/hooks/use-conf-data';
 import Ticket from './ticket';
 import Layout from './layout';
 import ConfContainer from './conf-container';
-import Hero from './hero';
-import Form from './form';
-import LearnMore from './learn-more';
+import { HomePage } from './Home';
 
 type Props = {
   defaultUserData: UserData;
@@ -48,11 +46,7 @@ export default function Conf({
       <Layout>
         <ConfContainer>
           {pageState === 'registration' && !sharePage ? (
-            <>
-              <Hero />
-              <Form />
-              <LearnMore />
-            </>
+            <HomePage />
           ) : (
             <Ticket
               username={userData.username}

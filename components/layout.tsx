@@ -14,22 +14,15 @@
  * limitations under the License.
  */
 
-import Link from 'next/link';
+import React from 'react';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
-import { SkipNavContent } from '@reach/skip-nav';
-import { NAVIGATION } from '@lib/constants';
+import { SkipNavContent, SkipNavLink } from '@reach/skip-nav';
 import styles from './layout.module.css';
-import Logo from './icons/icon-logo';
-import MobileMenu from './mobile-menu';
-import Footer from './footer';
-import React from 'react';
-import DemoButton from './hms/demo-cta';
-import RoomCta from './hms/demo-cta/room-cta';
-import { hmsConfig } from './hms/config';
-import ViewSource from './view-source';
+import { Footer } from './Footer';
+import { Nav } from './Nav';
 
-type Props = {
+type LayoutProps = {
   children: React.ReactNode;
   className?: string;
   hideNav?: boolean;
@@ -37,63 +30,19 @@ type Props = {
   isLive?: boolean;
 };
 
-export default function Layout({
-  children,
-  className,
-  hideNav,
-  layoutStyles,
-  isLive = false
-}: Props) {
+export default function Layout({ children, className }: LayoutProps) {
   const router = useRouter();
   const activeRoute = router.asPath;
-  const disableCta = ['/schedule', '/speakers', '/expo', '/jobs'];
+
   return (
     <>
-      <div className={styles.background}>
-        {!hideNav && (
-          <header className={cn(styles.header)}>
-            <div className={styles['header-logos']}>
-              <MobileMenu key={router.asPath} />
-              <Link href="/">
-                {/* eslint-disable-next-line */}
-                <a className={styles.logo}>
-                  <Logo />
-                </a>
-              </Link>
-            </div>
-            <div className={styles.tabs}>
-              {NAVIGATION.map(({ name, route }) => (
-                <a
-                  key={name}
-                  href={route}
-                  className={cn(styles.tab, {
-                    [styles['tab-active']]: activeRoute.startsWith(route)
-                  })}
-                >
-                  {name}
-                </a>
-              ))}
-            </div>
-
-            {(hmsConfig.hmsIntegration && isLive && !disableCta.includes(activeRoute)) ||
-            activeRoute === '/' ? (
-              <div className={cn(styles['header-right'])}>
-                {activeRoute === '/' ? <DemoButton /> : <RoomCta />}
-              </div>
-            ) : (
-              <div />
-            )}
-          </header>
-        )}
-        <ViewSource />
-        <div className={styles.page}>
-          <main className={styles.main} style={layoutStyles}>
-            <SkipNavContent />
-            <div className={cn(styles.full, className)}>{children}</div>
-          </main>
-          {!activeRoute.startsWith('/stage') && <Footer />}
-        </div>
-      </div>
+      <SkipNavLink />
+      <Nav />
+      <SkipNavContent />
+      <main>
+        <div className={cn(styles.full, className)}>{children}</div>
+      </main>
+      {!activeRoute.startsWith('/stage') && <Footer />}
     </>
   );
 }
