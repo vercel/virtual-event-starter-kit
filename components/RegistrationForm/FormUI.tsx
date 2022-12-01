@@ -166,7 +166,12 @@ export const FormUI = ({
           />
         </Label>
 
-        <SubmitButton appearance="secondary" type="submit" isUnclickable={isLoading}>
+        <SubmitButton
+          appearance="secondary"
+          type="submit"
+          isUnclickable={isLoading}
+          disabled={isLoading}
+        >
           Get free ticket
           {isLoading && (
             <Loader>
