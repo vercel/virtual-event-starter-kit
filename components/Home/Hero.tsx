@@ -1,7 +1,7 @@
 import { styled } from '@storybook/theming';
 import { styles } from '@storybook/components-marketing';
 import { Cardinal } from '@storybook/design-system';
-import { EmailForm } from '@components/EmailForm';
+import { RegistrationForm } from '@components/RegistrationForm';
 import { FreeStickers } from '@components/FreeStickers';
 import { ByChromatic } from '@components/ByChromatic';
 import { SITE_NAME_MULTILINE, SHORT_TIME, TIMEZONE } from '@lib/constants';
@@ -53,7 +53,7 @@ const Copy = styled.h2`
   margin-bottom: 1.5rem;
 `;
 
-const Register = styled(EmailForm)`
+const Register = styled(RegistrationForm)`
   margin-bottom: 1.25rem;
 `;
 

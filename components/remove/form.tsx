@@ -19,12 +19,12 @@ import cn from 'classnames';
 import useConfData from '@lib/hooks/use-conf-data';
 import { useRouter } from 'next/router';
 import FormError from '@lib/form-error';
-import LoadingDots from './loading-dots';
-import styleUtils from './utils.module.css';
+import LoadingDots from '../loading-dots';
+import styleUtils from '../utils.module.css';
 import styles from './form.module.css';
 import useEmailQueryParam from '@lib/hooks/use-email-query-param';
 import { register } from '@lib/user-api';
-import Captcha, { useCaptcha } from './captcha';
+import Captcha, { useCaptcha } from '../captcha';
 
 type FormState = 'default' | 'loading' | 'error';
 
@@ -43,9 +43,11 @@ export default function Form({ sharePage }: Props) {
   const {
     ref: captchaRef,
     execute: executeCaptcha,
-    reset: resetCaptcha,
-    isEnabled: isCaptchaEnabled
+    reset: resetCaptcha
+    // isEnabled: isCaptchaEnabled
   } = useCaptcha();
+
+  const isCaptchaEnabled = true;
 
   const handleRegister = useCallback(
     (token?: string) => {
@@ -153,10 +155,10 @@ export default function Form({ sharePage }: Props) {
   ) : (
     <form
       className={cn(styles.form, {
-        [styles['share-page']]: sharePage,
-        [styleUtils.appear]: !errorTryAgain,
-        [styleUtils['appear-fifth']]: !errorTryAgain && !sharePage,
-        [styleUtils['appear-third']]: !errorTryAgain && sharePage
+        [styles['share-page']]: sharePage
+        // [styleUtils.appear]: !errorTryAgain,
+        // [styleUtils['appear-fifth']]: !errorTryAgain && !sharePage,
+        // [styleUtils['appear-third']]: !errorTryAgain && sharePage
       })}
       onSubmit={onSubmit}
     >

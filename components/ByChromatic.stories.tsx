@@ -12,8 +12,4 @@ const meta: Meta<typeof ByChromatic> = {
 export default meta;
 type Story = StoryObj<typeof ByChromatic>;
 
-export const Primary: Story = {
-  args: {
-    inverse: false
-  }
-};
+export const Primary: Story = {};

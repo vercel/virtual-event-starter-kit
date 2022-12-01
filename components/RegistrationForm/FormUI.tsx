@@ -1,15 +1,20 @@
-import React, { useRef, useEffect, FC } from 'react';
+import React from 'react';
 import { styled } from '@storybook/theming';
 import { useId } from '@floating-ui/react-dom-interactions';
-import { Button, Icon } from '@storybook/design-system';
+import { Button, Icon, Spinner } from '@storybook/design-system';
 import { styles } from '@storybook/components-marketing';
-import { motion } from 'framer-motion';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+import Captcha from '@components/captcha';
 
 const { spacing, color, typography } = styles;
 
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: row;
+`;
+
+const Label = styled.label`
+  flex: 1 1 230px;
 `;
 
 const InputEl = styled.input`
@@ -32,8 +37,6 @@ const InputEl = styled.input`
   line-height: 20px;
   padding: 10px 15px; //40px tall
   box-shadow: ${color.border} 0 0 0 1px inset;
-
-  flex: 1 1 230px;
 
   border-top-left-radius: ${spacing.borderRadius.small}px;
   border-bottom-left-radius: ${spacing.borderRadius.small}px;
@@ -89,51 +92,92 @@ const SubmitButton = styled(Button)`
   flex: none;
 `;
 
-const Form = styled(motion.form)`
-  max-width: 360px;
+const Form = styled.form`
   position: relative;
 `;
 
-interface EmailFormProps {
-  onSubscribe?: () => void;
-  placeholder?: string;
-  ctaText?: string;
+const CaptchaWrapper = styled.div`
+  position: absolute;
+  left: 0;
+  top: 110%;
+`;
+
+const Loader = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: ${color.secondary};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > div {
+    width: 16px;
+    height: 16px;
+  }
+`;
+
+interface FormUIProps {
+  email: string;
+  onChange: (email: string) => void;
+  onFocus: () => void;
+  onBlur: () => void;
+  onSubmit: (e: React.FormEvent) => void;
+  handleRegister: () => void;
+  isLoading?: boolean;
+  captchaRef: React.RefObject<HCaptcha>;
 }
 
-export const EmailForm = ({ ...props }: EmailFormProps) => {
-  const formRef = useRef(null);
-  const hasSubmitted = false;
-  const onSubmitForm = () => {};
-  const isSubmitting = false;
+export const FormUI = ({
+  email,
+  onChange,
+  onFocus,
+  onBlur,
+  isLoading,
+  onSubmit,
+  captchaRef,
+  handleRegister,
+  ...props
+}: FormUIProps) => {
   const id = useId();
-  const [value, setValue] = React.useState('');
 
   return (
-    <Form
-      ref={formRef}
-      onSubmit={() => {}}
-      whileInView={{ x: [0, -6, 5, -3, 2, 0] }}
-      transition={{ delay: 0.25, duration: 0.5, ease: 'easeInOut' }}
-      viewport={{ margin: '0px 0px -75% 0px', amount: 'all' }}
-    >
+    <Form onSubmit={onSubmit}>
       <FormWrapper {...props}>
         <EmailIcon icon="email" />
-        <InputEl
-          id={`${id}-email-input-field`}
-          type="email"
-          name="email"
-          value={value}
-          onChange={e => setValue(e.target.value)}
-          placeholder="Your email address"
-          autoCapitalize="off"
-          autoCorrect="off"
-          required
-        />
+        <Label htmlFor={`${id}-email-input-field`}>
+          <InputEl
+            id={`${id}-email-input-field`}
+            type="email"
+            name={`${id}-email`}
+            value={email}
+            onChange={e => {
+              onChange(e.target.value);
+            }}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            placeholder="Your email address"
+            aria-label="Your email address"
+            autoCapitalize="off"
+            autoCorrect="off"
+            required
+          />
+        </Label>
 
-        <SubmitButton appearance="secondary" type="submit" isUnclickable={isSubmitting}>
+        <SubmitButton appearance="secondary" type="submit" isUnclickable={isLoading}>
           Get free ticket
+          {isLoading && (
+            <Loader>
+              <Spinner inverse inline />
+            </Loader>
+          )}
         </SubmitButton>
       </FormWrapper>
+      <CaptchaWrapper>
+        <Captcha ref={captchaRef} onVerify={handleRegister} />
+      </CaptchaWrapper>
     </Form>
   );
 };

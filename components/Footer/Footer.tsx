@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@storybook/theming';
 import { ByChromatic } from '@components/ByChromatic';
-import { EmailForm } from '@components/EmailForm';
+import { RegistrationForm } from '@components/RegistrationForm';
 import { LinkWrapper } from '@components/LinkWrapper';
 import {
   TWITTER_URL,
@@ -32,7 +32,7 @@ export const Footer = () => {
       <LayoutWrapper>
         <Register>
           <Title>Get your ticket</Title>
-          <EmailForm />
+          <RegistrationForm />
           <Attribution />
         </Register>
 

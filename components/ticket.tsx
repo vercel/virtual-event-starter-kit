@@ -28,7 +28,7 @@ import TicketVisual from './ticket-visual';
 import TicketActions from './ticket-actions';
 import TicketCopy from './ticket-copy';
 import { DATE, SITE_NAME } from '@lib/constants';
-import Form from './form';
+import Form from './remove/form';
 
 type Props = {
   username: UserData['username'];
