@@ -28,9 +28,10 @@ type LayoutProps = {
   hideNav?: boolean;
   layoutStyles?: any;
   isLive?: boolean;
+  showFooter?: boolean;
 };
 
-export default function Layout({ children, className }: LayoutProps) {
+export default function Layout({ showFooter, children, className }: LayoutProps) {
   const router = useRouter();
   const activeRoute = router.asPath;
 
@@ -42,7 +43,7 @@ export default function Layout({ children, className }: LayoutProps) {
       <main>
         <div className={cn(styles.full, className)}>{children}</div>
       </main>
-      {!activeRoute.startsWith('/stage') && <Footer />}
+      {showFooter && <Footer />}
     </>
   );
 }

@@ -3,6 +3,7 @@ import { styled } from '@storybook/theming';
 import { Logos, Button } from '@storybook/design-system';
 import { styles, NavItem } from '@storybook/components-marketing';
 import { SNEAK_PEEK_URL, DISCORD_URL, TWITTER_URL } from '@lib/constants';
+import { LinkWrapper } from '@components/LinkWrapper';
 
 const { pageMargins, spacing, color, breakpoints, typography } = styles;
 
@@ -71,7 +72,7 @@ export const Nav = ({ transparent }: NavProps) => {
   return (
     <Wrapper transparent={transparent}>
       <NavContainer>
-        <LogoNavItem aria-label="home" href="navLinks.home.url">
+        <LogoNavItem aria-label="home" href="/" LinkWrapper={LinkWrapper}>
           <StorybookLogo role="presentation" />
           <YearTag>2023</YearTag>
         </LogoNavItem>

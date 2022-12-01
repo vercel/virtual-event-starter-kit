@@ -38,6 +38,7 @@ export default function Conf() {
   return (
     <Page meta={meta} fullViewport>
       <ConfContent
+        showFooter
         defaultUserData={defaultUserData}
         defaultPageState={query.ticketNumber ? 'ticket' : 'registration'}
       />

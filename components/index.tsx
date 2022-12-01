@@ -25,12 +25,14 @@ type Props = {
   defaultUserData: UserData;
   sharePage?: boolean;
   defaultPageState?: PageState;
+  showFooter?: boolean;
 };
 
 export default function Conf({
   defaultUserData,
   sharePage,
-  defaultPageState = 'registration'
+  defaultPageState = 'registration',
+  showFooter
 }: Props) {
   const [userData, setUserData] = useState<UserData>(defaultUserData);
   const [pageState, setPageState] = useState<PageState>(defaultPageState);
@@ -43,7 +45,7 @@ export default function Conf({
         setPageState
       }}
     >
-      <Layout>
+      <Layout showFooter={showFooter}>
         <ConfContainer>
           {pageState === 'registration' && !sharePage ? (
             <HomePage />
