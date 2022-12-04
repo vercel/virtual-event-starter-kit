@@ -2826,6 +2826,16 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-5.3.0.tgz#0ec9264cf54a527671d990eb874e030b55b70dcc"
   integrity sha512-CX6t4SYQ37lzxicAqsBtxA3OseeoVrh9cSJ5PFYam0GksYlupRfy1A+Q4aYD3zvcfECLc0zO2u+ZnR2UYKvCrw==
 
+"@splinetool/loader@^0.9.149":
+  version "0.9.149"
+  resolved "https://registry.yarnpkg.com/@splinetool/loader/-/loader-0.9.149.tgz#2d00829c142765d2dee3c2308331b25e384b0fa3"
+  integrity sha512-tDtWMMnHOnzJvQGFW5yANRSrdojwHmGC2MLKpFJSfJLOqtxZOxZ6SDUhubM+8YDK/3n2ElgMdYb1XSk5fuVXCg==
+
+"@splinetool/r3f-spline@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@splinetool/r3f-spline/-/r3f-spline-1.0.2.tgz#557b09815ec11d4695ecd9a8fb0f34915d985b2c"
+  integrity sha512-Fl1qboRpTE8yJm4BAe1l6j3Xgh3HwIzvtdX2LjCpBiSo21+j0b2rilJpLHfsXJndrq4Hegz6oEUKlPvVWumaHg==
+
 "@storybook/addon-actions@7.0.0-alpha.53":
   version "7.0.0-alpha.53"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-7.0.0-alpha.53.tgz#2d1e42d48045fe3561501016a02093744d9443fd"
@@ -7570,6 +7580,14 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
+framer-motion-3d@^7.6.18:
+  version "7.6.18"
+  resolved "https://registry.yarnpkg.com/framer-motion-3d/-/framer-motion-3d-7.6.18.tgz#c6be00c1e02dafb67ce803e13d814d4aeaa31aab"
+  integrity sha512-Gd2dejvG9lXJqEZM9ckAJOvFxXbSVqdv/29B/g8WrbFbNLBsCBMnLy/xqvtKY22Q6Vqznm1v4jMmvGfsK5Gcpg==
+  dependencies:
+    framer-motion "^7.6.18"
+    react-merge-refs "^2.0.1"
+
 framer-motion@^7.6.12:
   version "7.6.12"
   resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-7.6.12.tgz#a1f228e00da03ceb78482ae4a7fba63be39d34e4"
@@ -7579,6 +7597,19 @@ framer-motion@^7.6.12:
     framesync "6.1.2"
     hey-listen "^1.0.8"
     popmotion "11.0.5"
+    style-value-types "5.1.2"
+    tslib "2.4.0"
+  optionalDependencies:
+    "@emotion/is-prop-valid" "^0.8.2"
+
+framer-motion@^7.6.18:
+  version "7.6.18"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-7.6.18.tgz#bdc8f27c90d2b0d49c81bb8ac3ec2dc3b5504609"
+  integrity sha512-+njLqmMZBqf+GpIMRkuC7s9A9KrvOfMXm+B/yscKG+/SKAA+qdQFl/3ACU2tAhN7UFau1HuB/vBa/jrWBKVvDg==
+  dependencies:
+    "@motionone/dom" "10.13.1"
+    framesync "6.1.2"
+    hey-listen "^1.0.8"
     style-value-types "5.1.2"
     tslib "2.4.0"
   optionalDependencies:
@@ -11020,6 +11051,11 @@ react-merge-refs@^1.0.0, react-merge-refs@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-merge-refs/-/react-merge-refs-1.1.0.tgz#73d88b892c6c68cbb7a66e0800faa374f4c38b06"
   integrity sha512-alTKsjEL0dKH/ru1Iyn7vliS2QRcBp9zZPGoWxUOvRGWPUYgjo+V01is7p04It6KhgrzhJGnIj9GgX8W4bZoCQ==
+
+react-merge-refs@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-merge-refs/-/react-merge-refs-2.0.1.tgz#a1f8c2dadefa635333e9b91ec59f30b65228b006"
+  integrity sha512-pywF6oouJWuqL26xV3OruRSIqai31R9SdJX/I3gP2q8jLxUnA1IwXcLW8werUHLZOrp4N7YOeQNZrh/BKrHI4A==
 
 react-modal@^3.11.2:
   version "3.16.1"
