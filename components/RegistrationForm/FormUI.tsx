@@ -161,7 +161,6 @@ export const FormUI = ({
             placeholder="Your email address"
             aria-label="Your email address"
             autoCapitalize="off"
-            autoCorrect="off"
             required
           />
         </Label>
