@@ -17,7 +17,7 @@
 import React from 'react';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
-import { SkipNavContent, SkipNavLink } from '@reach/skip-nav';
+import { SkipNavContent as RSkipNavContent, SkipNavLink as RSkipNavLink } from '@reach/skip-nav';
 import styles from './layout.module.css';
 import { Footer } from './Footer';
 import { Nav } from './Nav';
@@ -30,6 +30,10 @@ type LayoutProps = {
   isLive?: boolean;
   showFooter?: boolean;
 };
+
+// Workaround for TS 2590 error
+const SkipNavLink: any = RSkipNavLink;
+const SkipNavContent: any = RSkipNavContent;
 
 export default function Layout({ showFooter, children, className }: LayoutProps) {
   const router = useRouter();
