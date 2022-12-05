@@ -19,7 +19,7 @@ import { GetStaticProps } from 'next';
 import Page from '@components/page';
 import SpeakersGrid from '@components/speakers-grid';
 import Layout from '@components/Layout';
-import Header from '@components/header';
+import Header from '@components/remove/header';
 
 import { getAllSpeakers } from '@lib/cms-api';
 import { Speaker } from '@lib/types';
