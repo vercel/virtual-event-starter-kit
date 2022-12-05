@@ -92,7 +92,7 @@ export const PuzzlePieces = () => {
         >
           {blocks.map((block: any) => (
             <motion.group
-              key={block}
+              key={block.id}
               animate={variant}
               variants={{
                 expand: {
