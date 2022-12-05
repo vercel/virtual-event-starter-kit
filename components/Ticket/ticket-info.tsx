@@ -15,10 +15,10 @@
  */
 
 import styles from './ticket-info.module.css';
-import styleUtils from './utils.module.css';
-import Logo from './logo';
+import styleUtils from '../utils.module.css';
+import Logo from '../remove/logo';
 import { DATE, SITE_URL } from '@lib/constants';
-import VercelLogo from '@components/icons/icon-platform';
+import VercelLogo from '@components/remove/icons/icon-platform';
 
 const siteUrl = new URL(SITE_URL);
 const siteUrlForTicket = `${siteUrl.host}${siteUrl.pathname}`.replace(/\/$/, '');

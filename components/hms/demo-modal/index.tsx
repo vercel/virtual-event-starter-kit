@@ -1,5 +1,5 @@
 import { ArrowRightIcon } from '@100mslive/react-icons';
-import HmsLogo from '@components/icons/icon-hms';
+import HmsLogo from '@components/remove/icons/icon-hms';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Button from '../Button';

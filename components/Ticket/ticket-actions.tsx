@@ -17,11 +17,11 @@
 import { useState, useRef, useEffect } from 'react';
 import cn from 'classnames';
 import { SITE_URL, TWEET_TEXT } from '@lib/constants';
-import IconTwitter from './icons/icon-twitter';
-import IconLinkedin from './icons/icon-linkedin';
-import IconDownload from './icons/icon-download';
-import LoadingDots from './loading-dots';
-import styleUtils from './utils.module.css';
+import IconTwitter from '../remove/icons/icon-twitter';
+import IconLinkedin from '../remove/icons/icon-linkedin';
+import IconDownload from '../remove/icons/icon-download';
+import LoadingDots from '../loading-dots';
+import styleUtils from '../utils.module.css';
 import styles from './ticket-actions.module.css';
 
 type Props = {

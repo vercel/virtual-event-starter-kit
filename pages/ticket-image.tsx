@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import TicketImage from '@components/ticket-image';
+import TicketImage from '@components/Ticket/ticket-image';
 
 export default function TicketOnlyPage() {
   return <TicketImage />;

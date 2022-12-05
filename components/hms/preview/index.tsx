@@ -18,7 +18,7 @@ import {
   useAVToggle
 } from '@100mslive/react-sdk';
 import { AudioLevel } from '../VideoTile';
-import InfoIcon from '@components/icons/icon-info';
+import InfoIcon from '@components/remove/icons/icon-info';
 import { useRouter } from 'next/router';
 import { usePreview } from './usePreview';
 import SettingDialog from '../SettingDialog';

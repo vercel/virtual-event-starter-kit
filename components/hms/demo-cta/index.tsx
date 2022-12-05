@@ -4,7 +4,7 @@ import React from 'react';
 import useClickOutside from '@lib/hooks/use-click-outside';
 import * as Dialog from '@radix-ui/react-dialog';
 import { CrossIcon } from '@100mslive/react-icons';
-import InfoIcon from '@components/icons/icon-info';
+import InfoIcon from '@components/remove/icons/icon-info';
 import DemoModal from '../demo-modal';
 
 const DemoButton = () => {

@@ -17,13 +17,13 @@
 import { useState, useRef } from 'react';
 import { scrollTo } from '@lib/smooth-scroll';
 import cn from 'classnames';
-import GithubIcon from '@components/icons/icon-github';
-import CheckIcon from '@components/icons/icon-check';
+import GithubIcon from '@components/remove/icons/icon-github';
+import CheckIcon from '@components/remove/icons/icon-check';
 import { REPO, SITE_ORIGIN, TicketGenerationState } from '@lib/constants';
 import isMobileOrTablet from '@lib/is-mobile-or-tablet';
 import useConfData from '@lib/hooks/use-conf-data';
-import LoadingDots from './loading-dots';
-import formStyles from './remove/form.module.css';
+import LoadingDots from '../loading-dots';
+import formStyles from '../remove/form.module.css';
 import ticketFormStyles from './ticket-form.module.css';
 import { saveGithubToken } from '@lib/user-api';
 import { GitHubOAuthData } from '@lib/types';

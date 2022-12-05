@@ -15,7 +15,7 @@ import {
   ArrowRightIcon,
   CrossIcon
 } from '@100mslive/react-icons';
-import InfoIcon from '@components/icons/icon-info';
+import InfoIcon from '@components/remove/icons/icon-info';
 import router from 'next/router';
 import { TestAudio } from '../SettingDialog';
 import Avatar from '../Avatar';

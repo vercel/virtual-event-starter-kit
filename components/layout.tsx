@@ -17,7 +17,7 @@
 import React from 'react';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
-import { SkipNavContent as RSkipNavContent, SkipNavLink as RSkipNavLink } from '@reach/skip-nav';
+import { SkipNavContent as RSkipNavContent } from '@reach/skip-nav';
 import styles from './layout.module.css';
 import { Footer } from './Footer';
 import { Nav } from './Nav';
