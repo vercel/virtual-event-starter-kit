@@ -4,7 +4,7 @@ import { StoryStage } from '../../.storybook/StoryStage';
 import { Logo3D } from './Logo3D';
 
 const meta: Meta<typeof Logo3D> = {
-  title: 'PuzzlePieces/Meshes/Logo3D',
+  title: 'PuzzlePieces/Logo3D',
   parameters: {
     layout: 'fullscreen'
   },
