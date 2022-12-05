@@ -32,16 +32,8 @@ export const Logo3D = ({ variant, ...props }: Logo3DProps) => {
 
   const { mouse } = useThree();
   const [rEuler, rQuaternion] = useMemo(() => [new Euler(), new Quaternion()], []);
-  useFrame(state => {
+  useFrame(() => {
     if (ref.current) {
-      // const t = state.clock.getElapsedTime();
-      // ref.current.rotation.set(
-      //   0.1 + Math.cos(t / 4.5) / 10,
-      //   Math.sin(t / 4) / 4,
-      //   0.3 - (1 + Math.sin(t / 4)) / 8
-      // );
-      // ref.current.position.y = (1 + Math.sin(t / 2)) / 10;
-
       // Rotate the logo to face the mouse
       rEuler.set((-mouse.y * Math.PI) / 10, (mouse.x * Math.PI) / 6, 0);
       ref.current.quaternion.slerp(rQuaternion.setFromEuler(rEuler), 0.1);
@@ -64,14 +56,14 @@ export const Logo3D = ({ variant, ...props }: Logo3DProps) => {
             scale={1}
           >
             <mesh
-              name="Shape 0"
+              name="bookmark"
               geometry={nodes['Shape 0'].geometry}
               material={materials.White}
               castShadow
               position={[702.66, 10, 0]}
             />
             <mesh
-              name="Shape 01"
+              name="letter-s"
               geometry={nodes['Shape 01'].geometry}
               material={materials.White}
               castShadow
@@ -85,7 +77,7 @@ export const Logo3D = ({ variant, ...props }: Logo3DProps) => {
             scale={1}
           >
             <mesh
-              name="Shape 02"
+              name="pink-background"
               geometry={nodes['Shape 02'].geometry}
               material={materials.Pink}
               receiveShadow

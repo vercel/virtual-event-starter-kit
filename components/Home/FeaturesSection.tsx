@@ -6,7 +6,8 @@ import { Feature } from './Feature';
 const { marketing, breakpoints, pageMargins } = styles;
 
 const Section = styled.section`
-  ${pageMargins}
+  ${pageMargins};
+  padding-top: 4rem;
 `;
 
 const Title = styled.h2`

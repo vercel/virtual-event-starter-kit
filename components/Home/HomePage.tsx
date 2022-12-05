@@ -1,4 +1,5 @@
 import { styled } from '@storybook/theming';
+import { PuzzlePieces } from '@components/PuzzlePieces';
 import { Hero } from './Hero';
 import { FeaturesSection } from './FeaturesSection';
 import { Illustration } from './Illustration';
@@ -10,8 +11,9 @@ const GradientBackdrop = styled.div`
 export const HomePage = () => (
   <>
     <GradientBackdrop>
+      <PuzzlePieces />
       <Hero />
-      <Illustration />
+      {/* <Illustration /> */}
     </GradientBackdrop>
     <FeaturesSection />
   </>

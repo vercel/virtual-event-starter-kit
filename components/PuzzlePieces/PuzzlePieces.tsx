@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import pack from 'pack-spheres';
+import { styled } from '@storybook/theming';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { Center, CameraShake, Float } from '@react-three/drei';
 import * as Random from 'canvas-sketch-util/random';
@@ -21,8 +22,9 @@ const blocks = pack({
   packAttempts: 4000,
   bounds,
   maxRadius: bounds * 0.125 * 0.75
-}).map((sphere: any) => ({
+}).map((sphere: any, index: number) => ({
   ...sphere,
+  id: index,
   position: [
     sphere.position[0],
     sphere.position[1],
@@ -56,6 +58,14 @@ function Rig() {
   );
 }
 
+const Container = styled.div`
+  height: 100vh;
+
+  @supports (height: 100svh) {
+    height: 100svh;
+  }
+`;
+
 export const PuzzlePieces = () => {
   const [variant, setVariant] = useState<'initial' | 'expand'>('initial');
 
@@ -65,7 +75,7 @@ export const PuzzlePieces = () => {
   });
 
   return (
-    <div style={{ height: '100vh' }}>
+    <Container>
       <Canvas camera={{ position: [0, 0, 50], fov: 50 }} performance={{ min: 0.1 }}>
         <ambientLight intensity={0.5} />
         <directionalLight intensity={0.3} position={[5, 25, 20]} />
@@ -82,6 +92,7 @@ export const PuzzlePieces = () => {
         >
           {blocks.map((block: any) => (
             <motion.group
+              key={block}
               animate={variant}
               variants={{
                 expand: {
@@ -123,6 +134,6 @@ export const PuzzlePieces = () => {
         </motion.group>
         <Rig />
       </Canvas>
-    </div>
+    </Container>
   );
 };
