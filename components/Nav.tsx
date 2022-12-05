@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@storybook/theming';
 import { Logos, Button } from '@storybook/design-system';
 import { styles, NavItem } from '@storybook/components-marketing';
+import { SkipNavLink as RSkipNavLink } from '@reach/skip-nav';
 import { SNEAK_PEEK_URL, DISCORD_URL, TWITTER_URL } from '@lib/constants';
 import { LinkWrapper } from '@components/LinkWrapper';
 
@@ -64,33 +65,39 @@ const NavLinks = styled.div`
   }
 `;
 
+// Workaround for TS 2590 error
+const SkipNavLink: any = RSkipNavLink;
+
 interface NavProps {
   transparent?: boolean;
 }
 
 export const Nav = ({ transparent }: NavProps) => {
   return (
-    <Wrapper transparent={transparent}>
-      <NavContainer>
-        <LogoNavItem aria-label="home" href="/" LinkWrapper={LinkWrapper}>
-          <StorybookLogo role="presentation" />
-          <YearTag>2023</YearTag>
-        </LogoNavItem>
-        <NavLinks>
-          <NavItem variant="default" href={SNEAK_PEEK_URL}>
-            Sneak peek
-          </NavItem>
-          <NavItem variant="default" href={DISCORD_URL}>
-            Discord
-          </NavItem>
-          <NavItem variant="default" href={TWITTER_URL}>
-            Twitter
-          </NavItem>
-        </NavLinks>
-        <Button size="small" appearance="secondary" isLink href="#register">
-          Get your free ticket
-        </Button>
-      </NavContainer>
-    </Wrapper>
+    <>
+      <SkipNavLink />
+      <Wrapper transparent={transparent}>
+        <NavContainer>
+          <LogoNavItem aria-label="home" href="/" LinkWrapper={LinkWrapper}>
+            <StorybookLogo role="presentation" />
+            <YearTag>2023</YearTag>
+          </LogoNavItem>
+          <NavLinks>
+            <NavItem variant="default" href={SNEAK_PEEK_URL}>
+              Sneak peek
+            </NavItem>
+            <NavItem variant="default" href={DISCORD_URL}>
+              Discord
+            </NavItem>
+            <NavItem variant="default" href={TWITTER_URL}>
+              Twitter
+            </NavItem>
+          </NavLinks>
+          <Button size="small" appearance="secondary" isLink href="#register">
+            Get your free ticket
+          </Button>
+        </NavContainer>
+      </Wrapper>
+    </>
   );
 };
