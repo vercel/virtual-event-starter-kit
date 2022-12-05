@@ -1,2 +1,2 @@
 [functions]
-  included_files = []
+  included_files = ["!node_modules/chrome-aws-lambda/**/*"]
