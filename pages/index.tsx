@@ -15,7 +15,6 @@
  */
 
 import { useRouter } from 'next/router';
-import { SkipNavContent } from '@reach/skip-nav';
 
 import Page from '@components/page';
 import ConfContent from '@components/index';
