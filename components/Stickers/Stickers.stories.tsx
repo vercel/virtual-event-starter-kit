@@ -15,8 +15,6 @@ const meta: Meta<typeof Stickers> = {
 export default meta;
 type Story = StoryObj<typeof Stickers>;
 
-export const Default: Story = {};
-
 async function fillForm(canvas: any) {
   await userEvent.type(canvas.getByLabelText('Name'), 'Marsha Wallace', { delay: 5 });
   await userEvent.type(canvas.getByLabelText('Address'), '996 Lakeshore Boulevard', { delay: 5 });
@@ -32,7 +30,14 @@ async function fillForm(canvas: any) {
   return { submitButton };
 }
 
+export const Default: Story = {
+  args: {
+    id: 'sj2j3h4-2k3j23lk4-2k3j4kj23kj'
+  }
+};
+
 export const Loading: Story = {
+  ...Default,
   parameters: {
     msw: {
       handlers: [
@@ -51,11 +56,41 @@ export const Loading: Story = {
 };
 
 export const Success: Story = {
+  ...Default,
   parameters: {
     msw: {
       handlers: [
         rest.post('/api/save-shipping-info', (req, res, ctx) => {
           return res(ctx.json('Request was received'));
+        })
+      ]
+    }
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await fillForm(canvas);
+
+    const successMessage = await canvas.findByText(/Your request was received!/i);
+    expect(successMessage).toBeVisible();
+  }
+};
+
+export const Error: Story = {
+  ...Default,
+  parameters: {
+    msw: {
+      handlers: [
+        rest.post('/api/save-shipping-info', (req, res, ctx) => {
+          return res(
+            ctx.status(400),
+            ctx.json({
+              error: {
+                code: 'bad_input',
+                message: 'Invalid parameters'
+              }
+            })
+          );
         })
       ]
     }

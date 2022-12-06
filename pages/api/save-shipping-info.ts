@@ -29,7 +29,15 @@ export default async function saveGithubToken(req: NextApiRequest, res: NextApiR
 
   const body = req.body;
 
-  if (body.id) {
+  if (
+    !body.id ||
+    !body.name ||
+    !body.address ||
+    !body.cityTown ||
+    !body.stateProvinceRegion ||
+    !body.postalCode ||
+    !body.country
+  ) {
     return res.status(400).json({
       error: {
         code: 'bad_input',

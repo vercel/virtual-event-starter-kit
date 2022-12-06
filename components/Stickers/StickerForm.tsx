@@ -86,7 +86,6 @@ export const StickerForm = ({
       label="Apartment/Suite"
       placeholder="Apt/Suite"
       value={value.address2}
-      required
       icon="pin"
       stackLevel="middle"
       hideLabel
