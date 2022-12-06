@@ -1,10 +1,11 @@
 import React from 'react';
 import { styled } from '@storybook/theming';
 import { useId } from '@floating-ui/react-dom-interactions';
-import { Button, Icon, Spinner } from '@storybook/design-system';
+import { Button, Icon } from '@storybook/design-system';
 import { styles } from '@storybook/components-marketing';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 import Captcha from '@components/captcha';
+import { LoadingSpinner } from '@components/LoadingSpinner';
 
 const { spacing, color, typography } = styles;
 
@@ -102,23 +103,6 @@ const CaptchaWrapper = styled.div`
   top: 110%;
 `;
 
-const Loader = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: ${color.secondary};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  & > div {
-    width: 16px;
-    height: 16px;
-  }
-`;
-
 interface FormUIProps {
   email: string;
   onChange: (email: string) => void;
@@ -172,11 +156,7 @@ export const FormUI = ({
           disabled={isLoading}
         >
           Get free ticket
-          {isLoading && (
-            <Loader>
-              <Spinner inverse inline />
-            </Loader>
-          )}
+          {isLoading && <LoadingSpinner />}
         </SubmitButton>
       </FormWrapper>
       <CaptchaWrapper>

@@ -77,8 +77,6 @@ export const RegistrationForm = ({ sharePage, ...props }: RegistrationFormProps)
     (token?: string) => {
       register(email, token)
         .then(async res => {
-          console.log(res);
-
           if (!res.ok) {
             throw new FormError(res);
           }

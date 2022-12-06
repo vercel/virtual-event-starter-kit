@@ -84,3 +84,37 @@ export async function updateUserWithGitHubUser(id: string, token: string): Promi
 
   return { username, name };
 }
+
+export async function updateUserWithShippingInfo(
+  id: string,
+  name: string,
+  address: string,
+  address2: string,
+  cityTown: string,
+  stateProvinceRegion: string,
+  postalCode: string,
+  country: string
+): Promise<string> {
+  const { data } = await supabase!.from('github_users').select('userData').eq('id', id).single();
+  const { login: username } = data?.userData;
+  if (!username) {
+    throw new Error('The registration does not exist');
+  }
+
+  const { error } = await supabase!
+    .from<ConfUser>('github_users')
+    .update({
+      name,
+      address,
+      address2,
+      cityTown,
+      stateProvinceRegion,
+      postalCode,
+      country
+    })
+    .eq('id', id)
+    .single();
+  if (error) console.log(error.message);
+
+  return 'Request was received';
+}

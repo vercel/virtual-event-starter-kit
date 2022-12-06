@@ -12,5 +12,12 @@ create table github_users (
   id uuid primary key default uuid_generate_v4(),
   "createdAt" timestamp with time zone default timezone('utc'::text, now()) not null,
   "userData" jsonb
+  name text
+  address text
+  "address2" text
+  "cityTown" text
+  "stateProvinceRegion" text
+  "postalCode" text
+  country text
 );
 alter table github_users enable row level security;
