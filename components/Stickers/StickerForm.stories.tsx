@@ -12,4 +12,27 @@ const meta: Meta<typeof StickerForm> = {
 export default meta;
 type Story = StoryObj<typeof StickerForm>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    value: {
+      name: '',
+      address: '',
+      address2: '',
+      cityTown: '',
+      stateProvinceRegion: '',
+      postalCode: '',
+      country: ''
+    },
+    onChange: () => {},
+    isLoading: false,
+    onSubmit: () => {},
+    handleRegister: () => {}
+  }
+};
+
+export const Loading: Story = {
+  args: {
+    ...Default.args,
+    isLoading: true
+  }
+};
