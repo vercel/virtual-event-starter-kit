@@ -1,6 +1,10 @@
 import { global as designSystemGlobal, loadFontsForStorybook } from '@storybook/design-system';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 import { ConfDataContext } from '../lib/hooks/use-conf-data';
+import '@styles/global.css';
+import '@styles/nprogress.css';
+import '@styles/chrome-bug.css';
+import '@reach/skip-nav/styles.css';
 
 // Initialize MSW
 initialize();

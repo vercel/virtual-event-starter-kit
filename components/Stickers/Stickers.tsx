@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 `;
 
 const GradientBackdrop = styled.div`
-  background: linear-gradient(180deg, #d9e6f2 0%, rgba(246, 249, 252, 0) 100%);
+  background: linear-gradient(180deg, var(--bg-blue) 0%, rgba(246, 249, 252, 0) 100%);
   padding-top: 4rem;
 `;
 

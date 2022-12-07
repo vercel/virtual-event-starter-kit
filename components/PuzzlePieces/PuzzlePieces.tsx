@@ -59,11 +59,23 @@ function Rig() {
 }
 
 const Container = styled.div`
-  height: 100vh;
+  /* account for nav height */
+  height: calc(100vh - 72px);
+  position: relative;
+  background: var(--bg-blue);
 
   @supports (height: 100svh) {
-    height: 100svh;
+    height: calc(100svh - 72px);
   }
+`;
+
+const Scrim = styled.div`
+  background: linear-gradient(180deg, rgba(246, 249, 252, 0) 0%, var(--bg-blue) 100%);
+  height: 10vh;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
 `;
 
 export const PuzzlePieces = () => {
@@ -134,6 +146,7 @@ export const PuzzlePieces = () => {
         </motion.group>
         <Rig />
       </Canvas>
+      <Scrim />
     </Container>
   );
 };

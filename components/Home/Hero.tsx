@@ -10,7 +10,7 @@ const { marketing, breakpoints, pageMargins } = styles;
 
 const Container = styled.div`
   ${pageMargins};
-  padding-top: 90px;
+  padding-top: 7rem;
   display: grid;
   grid-template-columns: 1fr;
   gap: 40px;
@@ -88,26 +88,20 @@ const MetaWrapper = styled.div`
 const Gradient = styled.div`
   background-size: 100%;
 
-  background-image: url("data:image/svg+xml,%3Csvg width='386' height='88' viewBox='0 0 386 88' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_220_13607)'%3E%3Crect width='386' height='88' fill='white'/%3E%3Crect x='-0.849609' y='-8' width='386.849' height='120' fill='%232A0481'/%3E%3Cellipse cx='83.1747' cy='80.5' rx='94.1747' ry='83.5' fill='url(%23paint0_radial_220_13607)'/%3E%3Cellipse cx='83.1747' cy='-6.5' rx='94.1747' ry='83.5' fill='url(%23paint1_radial_220_13607)'/%3E%3Cellipse cx='175.657' cy='-6.5' rx='94.1747' ry='83.5' fill='url(%23paint2_radial_220_13607)'/%3E%3Cellipse cx='175.657' cy='80.5' rx='94.1747' ry='83.5' fill='url(%23paint3_radial_220_13607)'/%3E%3Cellipse cx='268.142' cy='-6.5' rx='94.1747' ry='83.5' fill='url(%23paint4_radial_220_13607)'/%3E%3Cellipse cx='268.142' cy='80.5' rx='94.1747' ry='83.5' fill='url(%23paint5_radial_220_13607)'/%3E%3C/g%3E%3Cdefs%3E%3CradialGradient id='paint0_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(83.1747 80.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%23FF7777'/%3E%3Cstop offset='1' stop-color='%23FF7777' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='paint1_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(83.1747 -6.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%23FFC077'/%3E%3Cstop offset='1' stop-color='%23FFC077' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='paint2_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(175.657 -6.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%23FDFF93'/%3E%3Cstop offset='1' stop-color='%23FDFF93' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='paint3_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(175.657 80.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%23FDFF93'/%3E%3Cstop offset='1' stop-color='%23FDFF93' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='paint4_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(268.142 -6.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%23FF778F'/%3E%3Cstop offset='1' stop-color='%23FF778F' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='paint5_radial_220_13607' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(268.142 80.5) rotate(90) scale(83.5 94.1747)'%3E%3Cstop stop-color='%2377FFF7'/%3E%3Cstop offset='1' stop-color='%2377FFF7' stop-opacity='0'/%3E%3C/radialGradient%3E%3CclipPath id='clip0_220_13607'%3E%3Crect width='386' height='88' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
-
-  /* background: rgb(255, 119, 119); */
-  /* background: linear-gradient(
-      72deg,
-      rgba(255, 119, 119, 1) 0%,
-      rgba(255, 192, 119, 1) 17%,
-      rgba(253, 255, 147, 1) 35%,
-      rgba(119, 255, 247, 1) 55%,
-      rgba(255, 119, 143, 1) 75%,
-      rgba(42, 4, 129, 1) 100%
-    ),
-    rgba(42, 4, 129, 1); */
-  /* background: radial-gradient(circle 188px at -1.2% -1.6%, #ff7777 0%, rgba(255, 119, 119, 0) 100%),
-    radial-gradient(circle 188px at -1.2% -47.8%, #ffc077 0%, rgba(255, 192, 119, 0) 100%),
-    radial-gradient(circle 188px at 54.2% -47.8%, #fdff93 0%, rgba(253, 255, 147, 0) 100%),
-    radial-gradient(circle 188px at 6.7% 75%, #fdff93 0%, rgba(253, 255, 147, 0) 100%),
-    radial-gradient(circle 188px at 109.6% -47.8%, #ff778f 0%, rgba(255, 119, 143, 0)),
-    radial-gradient(circle 188px at 109.6% -1.6%, #77fff7 0%, rgba(119, 255, 247, 0) 100%)
-      rgba(42, 4, 129, 1); */
+  background-image: linear-gradient(
+    290deg,
+    hsl(271deg 59% 42%) 0%,
+    hsl(209deg 100% 44%) 20%,
+    hsl(198deg 100% 45%) 29%,
+    hsl(184deg 100% 42%) 36%,
+    hsl(165deg 66% 54%) 43%,
+    hsl(108deg 54% 63%) 50%,
+    hsl(57deg 72% 47%) 57%,
+    hsl(36deg 100% 55%) 64%,
+    hsl(20deg 100% 63%) 71%,
+    hsl(358deg 100% 68%) 80%,
+    hsl(340deg 100% 64%) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
