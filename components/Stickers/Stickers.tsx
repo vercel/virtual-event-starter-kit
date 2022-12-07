@@ -6,6 +6,7 @@ import { saveShippingInfo } from '@lib/user-api';
 import { useCaptcha } from '../captcha';
 import { StickerForm, FormData } from './StickerForm';
 import { Alert } from './Alert';
+import { ByChromatic } from '@components/ByChromatic';
 
 const { text, color, pageMargins } = styles;
 
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
 
 const GradientBackdrop = styled.div`
   background: linear-gradient(180deg, #d9e6f2 0%, rgba(246, 249, 252, 0) 100%);
-  padding-top: 8rem;
+  padding-top: 4rem;
 `;
 
 const Container = styled.div`
@@ -36,6 +37,14 @@ const Shipping = styled.div`
   ${text.regular};
   color: ${color.darkest};
   opacity: 50%;
+`;
+
+const Attribution = styled(ByChromatic)`
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 1.5rem;
 `;
 
 type FormState = 'default' | 'loading' | 'error' | 'success';
@@ -151,6 +160,7 @@ export const Stickers = ({ id }: { id: string }) => {
               <Shipping>We ship a batch of stickers every month.</Shipping>
             </>
           )}
+          <Attribution />
         </Container>
       </Wrapper>
     </GradientBackdrop>
