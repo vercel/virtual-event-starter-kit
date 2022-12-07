@@ -1,8 +1,6 @@
 import { useState, useCallback } from 'react';
 import { styled } from '@storybook/theming';
-import { Button, Input } from '@storybook/design-system';
 import { styles } from '@storybook/components-marketing';
-import useConfData from '@lib/hooks/use-conf-data';
 import FormError from '@lib/form-error';
 import { saveShippingInfo } from '@lib/user-api';
 import { useCaptcha } from '../captcha';
@@ -54,7 +52,6 @@ export const Stickers = ({ id }: { id: string }) => {
   });
   const [errorMsg, setErrorMsg] = useState('');
   const [formState, setFormState] = useState<FormState>('default');
-  const { setPageState, setUserData } = useConfData();
   const {
     ref: captchaRef,
     execute: executeCaptcha,
@@ -64,26 +61,15 @@ export const Stickers = ({ id }: { id: string }) => {
 
   const handleRegister = useCallback(() => {
     saveShippingInfo(id, formData)
-      .then(async res => {
+      .then(res => {
         if (!res.ok) {
           throw new FormError(res);
         }
 
-        const data = await res.json();
-        console.log(data);
-
-        const params = {
-          id: data.id,
-          ticketNumber: data.ticketNumber,
-          name: data.name,
-          username: data.username
-        };
-
-        setUserData(params);
         setFormState('success');
       })
       .catch(async err => {
-        let message = 'Error! Please try again.';
+        let message = 'Please try again.';
 
         if (err instanceof FormError) {
           const { res } = err;
@@ -93,19 +79,21 @@ export const Stickers = ({ id }: { id: string }) => {
 
           if (data?.error?.code === 'bad_email') {
             message = 'Please enter a valid email';
+          } else if (data?.error?.message) {
+            message = data.error.message;
           }
         }
 
         setErrorMsg(message);
         setFormState('error');
       });
-  }, [formData, setUserData, id]);
+  }, [formData, id]);
 
   const onSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
 
-      if (formState === 'default') {
+      if (formState === 'default' || formState === 'error') {
         setFormState('loading');
 
         if (isCaptchaEnabled) {
@@ -141,6 +129,9 @@ export const Stickers = ({ id }: { id: string }) => {
             src="stickers.svg"
             alt="Get Storybook, Chromatic and cursor pointer stickers"
           />
+          {formState === 'error' && (
+            <Alert type="error" title="Submission failed" message={errorMsg} />
+          )}
           {formState === 'success' ? (
             <Alert
               title="Your request was received!"

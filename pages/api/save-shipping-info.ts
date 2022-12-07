@@ -29,8 +29,16 @@ export default async function saveGithubToken(req: NextApiRequest, res: NextApiR
 
   const body = req.body;
 
+  if (!body.id) {
+    return res.status(400).json({
+      error: {
+        code: 'not_registered',
+        message: 'The registration does not exist. Please register for the event first.'
+      }
+    });
+  }
+
   if (
-    !body.id ||
     !body.name ||
     !body.address ||
     !body.cityTown ||
@@ -58,7 +66,7 @@ export default async function saveGithubToken(req: NextApiRequest, res: NextApiR
       body.country
     );
 
-    res.json(response);
+    res.json({ data: response });
   } catch (error) {
     res.status(500).json({ error });
   }

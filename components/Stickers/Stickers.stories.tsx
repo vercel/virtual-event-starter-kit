@@ -99,8 +99,30 @@ export const Error: Story = {
     const canvas = within(canvasElement);
 
     await fillForm(canvas);
+  }
+};
 
-    const successMessage = await canvas.findByText(/Your request was received!/i);
-    expect(successMessage).toBeVisible();
+export const UserNotFound: Story = {
+  ...Default,
+  parameters: {
+    msw: {
+      handlers: [
+        rest.post('/api/save-shipping-info', (req, res, ctx) => {
+          return res(
+            ctx.status(400),
+            ctx.json({
+              error: {
+                message: 'The registration does not exist. Please register for the event first.'
+              }
+            })
+          );
+        })
+      ]
+    }
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await fillForm(canvas);
   }
 };

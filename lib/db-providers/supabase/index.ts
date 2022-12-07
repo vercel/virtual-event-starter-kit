@@ -97,8 +97,9 @@ export async function updateUserWithShippingInfo(
 ): Promise<string> {
   const { data } = await supabase!.from('github_users').select('userData').eq('id', id).single();
   const { login: username } = data?.userData;
+
   if (!username) {
-    throw new Error('The registration does not exist');
+    throw new Error('The registration does not exist. Please register for the event first.');
   }
 
   const { error } = await supabase!
