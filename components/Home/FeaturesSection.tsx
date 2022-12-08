@@ -11,15 +11,28 @@ const Section = styled.section`
 `;
 
 const Title = styled.h2`
-  ${marketing.hero1};
-  margin-bottom: 2.5rem;
+  ${marketing.subheading};
+  margin-bottom: 1.5rem;
+
+  @media (min-width: ${breakpoints[0]}px) {
+    margin-bottom: 2.5rem;
+    ${marketing.hero2};
+  }
+
+  @media (min-width: ${breakpoints[2]}px) {
+    ${marketing.hero1};
+  }
 `;
 
 const FeaturesGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 60px 40px;
+  gap: 2.5rem;
   margin-bottom: 7rem;
+
+  @media (min-width: ${breakpoints[0]}px) {
+    gap: 4rem 2.5rem;
+  }
 
   @media (min-width: ${breakpoints[2]}px) {
     grid-template-columns: 1fr 1fr;

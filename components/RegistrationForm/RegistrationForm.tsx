@@ -14,7 +14,6 @@ import { FormUI } from './FormUI';
 const { spacing, color, typography, background } = styles;
 
 const Container = styled(motion.div)`
-  max-width: 360px;
   position: relative;
 `;
 

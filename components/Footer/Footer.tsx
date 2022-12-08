@@ -24,6 +24,7 @@ import {
 
 const Attribution = styled(ByChromatic)`
   margin-top: 24px;
+  max-width: 360px;
 `;
 
 export const Footer = () => {

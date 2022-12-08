@@ -1,5 +1,5 @@
 import { styled } from '@storybook/theming';
-import { AspectRatio, styles } from '@storybook/components-marketing';
+import { styles } from '@storybook/components-marketing';
 
 const { marketing, color, breakpoints } = styles;
 
@@ -10,8 +10,12 @@ const Container = styled.div<{ background: string }>`
   align-items: center;
   border-radius: 20px;
   background: ${({ background }) => background};
-  padding-top: 30px;
+  padding-top: 20px;
   overflow: hidden;
+
+  @media (min-width: ${breakpoints[0]}px) {
+    padding-top: 30px;
+  }
 
   @media (min-width: ${breakpoints[2]}px) {
     min-height: 512px;
@@ -22,19 +26,33 @@ const Container = styled.div<{ background: string }>`
 `;
 
 const Title = styled.h2`
-  ${marketing.subheading};
+  ${marketing.textLargeBold};
   margin-bottom: 4px;
+
+  @media (min-width: ${breakpoints[0]}px) {
+    ${marketing.subheading};
+  }
 `;
 
 const Description = styled.div`
-  ${marketing.textLarge};
+  ${marketing.textSmall};
+
+  @media (min-width: ${breakpoints[0]}px) {
+    ${marketing.textLarge};
+  }
 `;
 
 const TextWrapper = styled.div`
   color: ${color.darkest};
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-bottom: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+  @media (min-width: ${breakpoints[0]}px) {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 30px;
+  }
 
   @media (min-width: ${breakpoints[2]}px) {
     flex: 1 1 40%;

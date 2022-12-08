@@ -43,8 +43,10 @@ export const Logo3D = ({ variant, ...props }: Logo3DProps) => {
   return (
     <Center
       ref={ref}
-      onCentered={({ container, height }) => {
-        container.scale.setScalar((viewport.height / height) * 0.75);
+      onCentered={({ container, height, width }) => {
+        const scale =
+          viewport.height > viewport.width ? viewport.width / width : viewport.height / height;
+        container.scale.setScalar(scale * 0.75);
       }}
     >
       <motion.group {...props} variants={logoVariants} animate={variant} dispose={null}>

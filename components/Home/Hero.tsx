@@ -40,17 +40,27 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  ${marketing.hero1};
+  ${marketing.hero2};
   white-space: nowrap;
+  width: 100%;
+
+  @media (min-width: ${breakpoints[0]}px) {
+    ${marketing.hero1};
+  }
 
   @media (min-width: ${breakpoints[2]}px) {
     margin-bottom: 1rem;
   }
 `;
 
-const Copy = styled.h2`
-  ${marketing.textLarge};
+const Copy = styled.div`
+  ${marketing.textSmall};
+  line-height: 24px;
   margin-bottom: 1.5rem;
+
+  @media (min-width: ${breakpoints[0]}px) {
+    ${marketing.textLarge};
+  }
 `;
 
 const Register = styled(RegistrationForm)`
@@ -107,6 +117,21 @@ const Gradient = styled.div`
   color: transparent;
 `;
 
+const ByChromaticDesktop = styled(ByChromatic)`
+  display: none;
+
+  @media (min-width: ${breakpoints[2]}px) {
+    display: flex;
+  }
+`;
+const ByChromaticMobile = styled(ByChromatic)`
+  display: flex;
+
+  @media (min-width: ${breakpoints[2]}px) {
+    display: none;
+  }
+`;
+
 export const Hero = () => (
   <Container>
     <TitleWrapper>
@@ -119,7 +144,7 @@ export const Hero = () => (
           <Info size="small" text={TIMEZONE} count={SHORT_TIME} />
           <Info size="small" text="Online event" count="Watch live" />
         </InfoWrapper>
-        <ByChromatic />
+        <ByChromaticDesktop />
       </MetaWrapper>
     </TitleWrapper>
     <div>
@@ -131,5 +156,6 @@ export const Hero = () => (
       <Register />
       <FreeStickers />
     </div>
+    <ByChromaticMobile />
   </Container>
 );

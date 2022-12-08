@@ -34,7 +34,7 @@ type LayoutProps = {
 // Workaround for TS 2590 error
 const SkipNavContent: any = RSkipNavContent;
 
-export default function Layout({ showFooter, children, className }: LayoutProps) {
+export default function Layout({ showFooter, children }: LayoutProps) {
   const router = useRouter();
   const activeRoute = router.asPath;
 
@@ -42,9 +42,7 @@ export default function Layout({ showFooter, children, className }: LayoutProps)
     <>
       <Nav />
       <SkipNavContent />
-      <main>
-        <div className={cn(styles.full, className)}>{children}</div>
-      </main>
+      <main>{children}</main>
       {showFooter && <Footer />}
     </>
   );

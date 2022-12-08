@@ -1,7 +1,7 @@
 import { styled } from '@storybook/theming';
 import { AspectRatio, styles } from '@storybook/components-marketing';
 
-const { marketing, color } = styles;
+const { marketing, color, breakpoints } = styles;
 
 const TextWrapper = styled.div`
   margin: 0 auto;
@@ -9,21 +9,33 @@ const TextWrapper = styled.div`
   color: ${color.darkest};
 `;
 const Title = styled.div`
-  ${marketing.subheading};
+  ${marketing.textLargeBold};
   margin-bottom: 4px;
+
+  @media (min-width: ${breakpoints[0]}px) {
+    ${marketing.subheading};
+  }
 `;
 
-const Description = styled.h2`
-  ${marketing.textLarge};
+const Description = styled.div`
+  ${marketing.textSmall};
+
+  @media (min-width: ${breakpoints[0]}px) {
+    ${marketing.textLarge};
+  }
 `;
 
 const Figure = styled(AspectRatio)<{ background: string }>`
   border-radius: 20px;
   background: ${({ background }) => background};
-  margin-bottom: 30px;
+  margin-bottom: 1rem;
   max-height: 520px;
   margin-left: auto;
   margin-right: auto;
+
+  @media (min-width: ${breakpoints[0]}px) {
+    margin-bottom: 2rem;
+  }
 
   img {
     display: block;
@@ -34,11 +46,15 @@ const Figure = styled(AspectRatio)<{ background: string }>`
 
 const Icon = styled.img`
   flex: none;
-  display: block;
+  display: none;
   width: 80px;
   height: 80px;
   border-radius: 10px;
   margin-right: 30px;
+
+  @media (min-width: ${breakpoints[0]}px) {
+    display: block;
+  }
 `;
 
 const Lower = styled.div`

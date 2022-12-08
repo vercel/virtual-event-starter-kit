@@ -86,11 +86,13 @@ const EmailIcon = styled(Icon)`
 `;
 
 const SubmitButton = styled(Button)`
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: ${spacing.borderRadius.small}px;
-  border-bottom-right-radius: ${spacing.borderRadius.small}px;
-  flex: none;
+  && {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: ${spacing.borderRadius.small}px;
+    border-bottom-right-radius: ${spacing.borderRadius.small}px;
+    flex: none;
+  }
 `;
 
 const Form = styled.form`
