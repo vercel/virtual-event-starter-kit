@@ -6,7 +6,7 @@ import {
   selectLocalPeer,
   selectPeersByRole
 } from '@100mslive/react-sdk';
-import UsersIcon from '@components/icons/icon-users';
+import UsersIcon from '@components/remove/icons/icon-users';
 import { useRouter } from 'next/router';
 import React from 'react';
 

@@ -93,6 +93,12 @@ export type ConfUser = {
   name?: string | null;
   username?: string | null;
   createdAt?: number | null;
+  address?: string | null;
+  address2?: string | null;
+  cityTown?: string | null;
+  stateProvinceRegion?: string | null;
+  postalCode?: string | null;
+  country?: string | null;
 };
 
 export type GitHubOAuthData =

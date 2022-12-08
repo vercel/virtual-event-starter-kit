@@ -17,7 +17,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Error from 'next/error';
 import Head from 'next/head';
-import { SkipNavContent } from '@reach/skip-nav';
+import { SkipNavContent as RSkipNavContent } from '@reach/skip-nav';
 import { getUserByUsername } from '@lib/db-api';
 
 import Page from '@components/page';
@@ -30,6 +30,9 @@ type Props = {
   name: string | null;
   ticketNumber: number | null;
 };
+
+// Workaround for TS 2590 error
+const SkipNavContent: any = RSkipNavContent;
 
 export default function TicketShare({ username, ticketNumber, name, usernameFromParams }: Props) {
   if (!ticketNumber) {

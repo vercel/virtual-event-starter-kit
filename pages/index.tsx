@@ -15,7 +15,6 @@
  */
 
 import { useRouter } from 'next/router';
-import { SkipNavContent } from '@reach/skip-nav';
 
 import Page from '@components/page';
 import ConfContent from '@components/index';
@@ -24,7 +23,7 @@ import { META_DESCRIPTION } from '@lib/constants';
 export default function Conf() {
   const { query } = useRouter();
   const meta = {
-    title: 'Demo - Virtual Event Starter Kit',
+    title: 'Storybook Day',
     description: META_DESCRIPTION
   };
   const ticketNumber = query.ticketNumber?.toString();
@@ -37,8 +36,8 @@ export default function Conf() {
 
   return (
     <Page meta={meta} fullViewport>
-      <SkipNavContent />
       <ConfContent
+        showFooter
         defaultUserData={defaultUserData}
         defaultPageState={query.ticketNumber ? 'ticket' : 'registration'}
       />

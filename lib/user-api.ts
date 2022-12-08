@@ -48,3 +48,41 @@ export function emailToId(email: string) {
     throw new Error('EMAIL_TO_ID_SECRET is missing');
   }
 }
+
+export async function saveShippingInfo(
+  id: string,
+  {
+    name,
+    address,
+    address2,
+    cityTown,
+    stateProvinceRegion,
+    postalCode,
+    country
+  }: {
+    name: string;
+    address: string;
+    address2: string;
+    cityTown: string;
+    stateProvinceRegion: string;
+    postalCode: string;
+    country: string;
+  }
+) {
+  return await fetch('/api/save-shipping-info', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id,
+      name,
+      address,
+      address2,
+      cityTown,
+      stateProvinceRegion,
+      postalCode,
+      country
+    })
+  });
+}

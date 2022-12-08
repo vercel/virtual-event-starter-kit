@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Nav } from './Nav';
 
 const meta: Meta<typeof Nav> = {
-  title: 'Layout/Nav',
+  title: 'Components/Nav',
   component: Nav,
   tags: ['docsPage']
 };
@@ -10,8 +10,10 @@ const meta: Meta<typeof Nav> = {
 export default meta;
 type Story = StoryObj<typeof Nav>;
 
-export const Primary: Story = {
+export const Default: Story = {};
+
+export const Transparent: Story = {
   args: {
-    inverse: false
+    transparent: true
   }
 };

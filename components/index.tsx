@@ -16,23 +16,23 @@
 
 import { useState } from 'react';
 import { PageState, ConfDataContext, UserData } from '@lib/hooks/use-conf-data';
-import Ticket from './ticket';
-import Layout from './layout';
+import Ticket from './Ticket/ticket';
+import Layout from './Layout';
 import ConfContainer from './conf-container';
-import Hero from './hero';
-import Form from './form';
-import LearnMore from './learn-more';
+import { HomePage } from './Home';
 
 type Props = {
   defaultUserData: UserData;
   sharePage?: boolean;
   defaultPageState?: PageState;
+  showFooter?: boolean;
 };
 
 export default function Conf({
   defaultUserData,
   sharePage,
-  defaultPageState = 'registration'
+  defaultPageState = 'registration',
+  showFooter
 }: Props) {
   const [userData, setUserData] = useState<UserData>(defaultUserData);
   const [pageState, setPageState] = useState<PageState>(defaultPageState);
@@ -45,14 +45,10 @@ export default function Conf({
         setPageState
       }}
     >
-      <Layout>
+      <Layout showFooter={showFooter}>
         <ConfContainer>
           {pageState === 'registration' && !sharePage ? (
-            <>
-              <Hero />
-              <Form />
-              <LearnMore />
-            </>
+            <HomePage />
           ) : (
             <Ticket
               username={userData.username}

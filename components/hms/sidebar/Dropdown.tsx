@@ -1,5 +1,5 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import HorizontalMenuIcon from '@components/icons/icon-menu-hor';
+import HorizontalMenuIcon from '@components/remove/icons/icon-menu-hor';
 import { selectLocalPeerRole, useHMSActions, useHMSStore } from '@100mslive/react-sdk';
 import { InviteStageIcon, RemoveUserIcon } from '@100mslive/react-icons';
 

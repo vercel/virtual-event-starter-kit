@@ -18,20 +18,20 @@ import { SSRProvider, OverlayProvider } from 'react-aria';
 import '@styles/global.css';
 import '@styles/nprogress.css';
 import '@styles/chrome-bug.css';
+import '@reach/skip-nav/styles.css';
 import type { AppProps } from 'next/app';
 import NProgress from '@components/nprogress';
 import ResizeHandler from '@components/resize-handler';
-import { useEffect } from 'react';
 import { HMSRoomProvider } from '@100mslive/react-sdk';
+import { global } from '@storybook/design-system';
+const { GlobalStyle } = global;
 
 export default function App({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    document.body.classList?.remove('loading');
-  }, []);
   return (
     <SSRProvider>
       <OverlayProvider>
         <HMSRoomProvider>
+          <GlobalStyle />
           <Component {...pageProps} />
           <ResizeHandler />
           <NProgress />

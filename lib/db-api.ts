@@ -15,8 +15,6 @@
  */
 import { ConfUser } from '@lib/types';
 import { SAMPLE_TICKET_NUMBER } from '@lib/constants';
-
-import * as redisApi from './db-providers/redis';
 import * as supabaseApi from './db-providers/supabase';
 
 let dbApi: {
@@ -26,11 +24,19 @@ let dbApi: {
   getTicketNumberByUserId: (id: string) => Promise<string | null>;
   createGitHubUser: (user: any) => Promise<string>;
   updateUserWithGitHubUser: (id: string, token: string, ticketNumber: string) => Promise<ConfUser>;
+  updateUserWithShippingInfo: (
+    id: string,
+    name: string,
+    address: string,
+    address2: string,
+    cityTown: string,
+    stateProvinceRegion: string,
+    postalCode: string,
+    country: string
+  ) => Promise<string>;
 };
 
-if (process.env.REDIS_PORT && process.env.REDIS_URL && process.env.EMAIL_TO_ID_SECRET) {
-  dbApi = redisApi;
-} else if (
+if (
   process.env.SUPABASE_URL &&
   process.env.SUPABASE_SERVICE_ROLE_SECRET &&
   process.env.EMAIL_TO_ID_SECRET
@@ -43,7 +49,8 @@ if (process.env.REDIS_PORT && process.env.REDIS_URL && process.env.EMAIL_TO_ID_S
     getUserById: () => Promise.resolve({ ticketNumber: SAMPLE_TICKET_NUMBER }),
     getTicketNumberByUserId: () => Promise.resolve(null),
     createGitHubUser: () => Promise.resolve(''),
-    updateUserWithGitHubUser: () => Promise.resolve({ ticketNumber: SAMPLE_TICKET_NUMBER })
+    updateUserWithGitHubUser: () => Promise.resolve({ ticketNumber: SAMPLE_TICKET_NUMBER }),
+    updateUserWithShippingInfo: () => Promise.resolve('')
   };
 }
 
@@ -73,4 +80,26 @@ export async function updateUserWithGitHubUser(
   ticketNumber: string
 ): Promise<ConfUser> {
   return dbApi.updateUserWithGitHubUser(id, token, ticketNumber);
+}
+
+export async function updateUserWithShippingInfo(
+  id: string,
+  name: string,
+  address: string,
+  address2: string,
+  cityTown: string,
+  stateProvinceRegion: string,
+  postalCode: string,
+  country: string
+): Promise<string> {
+  return dbApi.updateUserWithShippingInfo(
+    id,
+    name,
+    address,
+    address2,
+    cityTown,
+    stateProvinceRegion,
+    postalCode,
+    country
+  );
 }
