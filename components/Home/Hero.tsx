@@ -43,6 +43,8 @@ const Title = styled.h1`
   ${marketing.hero2};
   white-space: nowrap;
   width: 100%;
+  flex: 1;
+  min-width: 0;
 
   @media (min-width: ${breakpoints[0]}px) {
     ${marketing.hero1};
@@ -74,6 +76,7 @@ const InfoWrapper = styled.div`
 
 const Info = styled(Cardinal)`
   padding: 0;
+  flex: none;
 `;
 
 const MetaWrapper = styled.div`

@@ -7,15 +7,42 @@ import HCaptcha from '@hcaptcha/react-hcaptcha';
 import Captcha from '@components/captcha';
 import { LoadingSpinner } from '@components/LoadingSpinner';
 
-const { spacing, color, typography } = styles;
+const { spacing, color, typography, breakpoints } = styles;
 
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+
+  @media (min-width: ${breakpoints[1]}px) {
+    flex-wrap: nowrap;
+  }
+`;
+
+const EmailIcon = styled(Icon)`
+  transition: all 150ms ease-out;
+  position: absolute;
+  top: 50%;
+
+  font-size: ${typography.size.s2}px;
+  height: 14px;
+  margin-top: -7px;
+  width: 14px;
+
+  z-index: 3;
+  left: 15px;
+
+  background: transparent;
+
+  path {
+    transition: all 150ms ease-out;
+    fill: ${color.mediumdark};
+  }
 `;
 
 const Label = styled.label`
   flex: 1 1 230px;
+  position: relative;
 `;
 
 const InputEl = styled.input`
@@ -44,6 +71,20 @@ const InputEl = styled.input`
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 
+  padding-left: 40px;
+
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: ${spacing.borderRadius.small}px;
+  border-top-right-radius: ${spacing.borderRadius.small}px;
+
+  @media (min-width: ${breakpoints[1]}px) {
+    border-top-left-radius: ${spacing.borderRadius.small}px;
+    border-bottom-left-radius: ${spacing.borderRadius.small}px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
   &:focus {
     box-shadow: ${color.secondary} 0 0 0 1px inset;
   }
@@ -60,38 +101,24 @@ const InputEl = styled.input`
   &:focus + svg path {
     fill: ${color.darker};
   }
-
-  padding-left: 40px;
-`;
-
-const EmailIcon = styled(Icon)`
-  transition: all 150ms ease-out;
-  position: absolute;
-  top: 50%;
-
-  font-size: ${typography.size.s2}px;
-  height: 14px;
-  margin-top: -7px;
-  width: 14px;
-
-  z-index: 3;
-  left: 15px;
-
-  background: transparent;
-
-  path {
-    transition: all 150ms ease-out;
-    fill: ${color.mediumdark};
-  }
 `;
 
 const SubmitButton = styled(Button)`
   && {
     border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-right-radius: ${spacing.borderRadius.small}px;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: ${spacing.borderRadius.small}px;
     border-bottom-right-radius: ${spacing.borderRadius.small}px;
     flex: none;
+    width: 100%;
+
+    @media (min-width: ${breakpoints[1]}px) {
+      width: auto;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: ${spacing.borderRadius.small}px;
+      border-bottom-right-radius: ${spacing.borderRadius.small}px;
+    }
   }
 `;
 
@@ -108,8 +135,6 @@ const CaptchaWrapper = styled.div`
 interface FormUIProps {
   email: string;
   onChange: (email: string) => void;
-  onFocus: () => void;
-  onBlur: () => void;
   onSubmit: (e: React.FormEvent) => void;
   handleRegister: () => void;
   isLoading?: boolean;
@@ -119,8 +144,6 @@ interface FormUIProps {
 export const FormUI = ({
   email,
   onChange,
-  onFocus,
-  onBlur,
   isLoading,
   onSubmit,
   captchaRef,
@@ -132,8 +155,8 @@ export const FormUI = ({
   return (
     <Form onSubmit={onSubmit}>
       <FormWrapper {...props}>
-        <EmailIcon icon="email" />
         <Label htmlFor={`${id}-email-input-field`}>
+          <EmailIcon icon="email" />
           <InputEl
             id={`${id}-email-input-field`}
             type="email"
@@ -142,8 +165,6 @@ export const FormUI = ({
             onChange={e => {
               onChange(e.target.value);
             }}
-            onFocus={onFocus}
-            onBlur={onBlur}
             placeholder="Your email address"
             aria-label="Your email address"
             autoCapitalize="off"

@@ -55,9 +55,14 @@ type FormState = 'default' | 'loading' | 'error';
 
 type RegistrationFormProps = {
   sharePage?: boolean;
+  disableAnimation?: boolean;
 };
 
-export const RegistrationForm = ({ sharePage, ...props }: RegistrationFormProps) => {
+export const RegistrationForm = ({
+  sharePage,
+  disableAnimation,
+  ...props
+}: RegistrationFormProps) => {
   const [email, setEmail] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [errorTryAgain, setErrorTryAgain] = useState(false);
@@ -158,7 +163,7 @@ export const RegistrationForm = ({ sharePage, ...props }: RegistrationFormProps)
 
   return (
     <Container
-      whileInView={{ x: [0, -6, 5, -3, 2, 0] }}
+      whileInView={disableAnimation ? {} : { x: [0, -6, 5, -3, 2, 0] }}
       transition={{ delay: 0.25, duration: 0.5, ease: 'easeInOut' }}
       viewport={{ margin: '0px 0px -75% 0px', amount: 'all' }}
       {...props}
@@ -175,8 +180,6 @@ export const RegistrationForm = ({ sharePage, ...props }: RegistrationFormProps)
           email={email}
           isLoading={formState === 'loading'}
           onChange={value => setEmail(value)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
           onSubmit={onSubmit}
           handleRegister={handleRegister}
           captchaRef={captchaRef}
