@@ -11,43 +11,67 @@ import { register } from '@lib/user-api';
 import { useCaptcha } from '../captcha';
 import { FormUI } from './FormUI';
 
-const { spacing, color, typography, background } = styles;
+const { spacing, color, typography, background, breakpoints } = styles;
 
 const Container = styled(motion.div)`
   position: relative;
 `;
 
 const ErrorAlert = styled.div`
-  background: ${background.negative};
+  background: ${background.lightest};
   display: flex;
-  border: 1px solid ${color.darker};
+  border: 1px solid ${color.negative};
   border-radius: ${spacing.borderRadius.small}px;
+  overflow: hidden;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  flex-wrap: wrap;
+
+  @media (min-width: ${breakpoints[1]}px) {
+    flex-wrap: nowrap;
+  }
 `;
 const ErrorMessage = styled.div`
   flex: 1 1 auto;
-  color: ${color.darkest};
+  background: ${color.lightest};
+  color: ${color.negative};
   font-size: ${typography.size.s2}px;
   font-weight: ${typography.weight.bold};
   line-height: 20px;
   padding: 10px 15px;
-  border-top-right-radius: ${spacing.borderRadius.small}px;
-  border-bottom-right-radius: ${spacing.borderRadius.small}px;
+  text-align: center;
+
+  @media (min-width: ${breakpoints[1]}px) {
+    text-align: left;
+  }
 `;
 
 const RetryButton = styled(Button)`
-  background: ${color.darker};
+  background: ${color.negative};
+  color: ${color.lightest};
   border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: ${spacing.borderRadius.small}px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: ${spacing.borderRadius.small}px;
   border-bottom-right-radius: ${spacing.borderRadius.small}px;
   flex: none;
+  width: 100%;
+
+  @media (min-width: ${breakpoints[1]}px) {
+    width: auto;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: ${spacing.borderRadius.small}px;
+    border-bottom-right-radius: ${spacing.borderRadius.small}px;
+  }
 
   &:hover {
-    background: ${color.darker};
+    background: ${color.negative};
   }
 
   &:active {
-    background: ${color.darker};
+    background: ${color.negative};
   }
 `;
 
@@ -168,7 +192,23 @@ export const RegistrationForm = ({
       viewport={{ margin: '0px 0px -75% 0px', amount: 'all' }}
       {...props}
     >
-      {formState === 'error' ? (
+      <FormUI
+        email={email}
+        isLoading={formState === 'loading'}
+        onChange={value => setEmail(value)}
+        onSubmit={onSubmit}
+        handleRegister={handleRegister}
+        captchaRef={captchaRef}
+      />
+      {formState === 'error' && (
+        <ErrorAlert>
+          <ErrorMessage>{errorMsg}</ErrorMessage>
+          <RetryButton appearance="inverse" type="button" onClick={onTryAgainClick}>
+            Try Again
+          </RetryButton>
+        </ErrorAlert>
+      )}
+      {/* {formState === 'error' ? (
         <ErrorAlert>
           <ErrorMessage>{errorMsg}</ErrorMessage>
           <RetryButton appearance="inverse" type="button" onClick={onTryAgainClick}>
@@ -184,7 +224,7 @@ export const RegistrationForm = ({
           handleRegister={handleRegister}
           captchaRef={captchaRef}
         />
-      )}
+      )} */}
     </Container>
   );
 };

@@ -40,7 +40,7 @@ export const Success: Story = {
     const canvas = within(canvasElement);
 
     const emailInput = canvas.getByLabelText('Your email address', { selector: 'input' });
-    await userEvent.type(emailInput, 'example-email@email.com', { delay: 100 });
+    await userEvent.type(emailInput, 'example-email@email.com', { delay: 5 });
 
     const submitButton = canvas.getByRole('button');
     userEvent.click(submitButton);
@@ -71,7 +71,7 @@ export const Error: Story = {
     const canvas = within(canvasElement);
 
     const emailInput = canvas.getByLabelText('Your email address', { selector: 'input' });
-    await userEvent.type(emailInput, 'example-email@email.com', { delay: 100 });
+    await userEvent.type(emailInput, 'example-email@email.com', { delay: 5 });
 
     const submitButton = canvas.getByRole('button');
     userEvent.click(submitButton);
@@ -86,7 +86,7 @@ export const TryAgain: Story = {
     const canvas = within(canvasElement);
 
     const emailInput = canvas.getByLabelText('Your email address', { selector: 'input' });
-    await userEvent.type(emailInput, 'example-email@email.com', { delay: 100 });
+    await userEvent.type(emailInput, 'example-email@email.com', { delay: 5 });
 
     const submitButton = canvas.getByRole('button');
     userEvent.click(submitButton);

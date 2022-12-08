@@ -66,11 +66,6 @@ const InputEl = styled.input`
   padding: 10px 15px; //40px tall
   box-shadow: ${color.border} 0 0 0 1px inset;
 
-  border-top-left-radius: ${spacing.borderRadius.small}px;
-  border-bottom-left-radius: ${spacing.borderRadius.small}px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-
   padding-left: 40px;
 
   border-bottom-left-radius: 0;
