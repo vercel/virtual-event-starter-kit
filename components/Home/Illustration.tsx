@@ -17,8 +17,4 @@ const Canvas = styled.div`
   border: 1px dotted #ccc;
 `;
 
-export const Illustration = () => (
-  <Container>
-    <Canvas>Illustration TBD</Canvas>
-  </Container>
-);
+export const Illustration = ({ children }) => <Container>{children}</Container>;

@@ -1,78 +1,17 @@
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import { styles } from '@storybook/components-marketing';
 import { styled } from '@storybook/theming';
 import { motion } from 'framer-motion';
-import { Button } from '@storybook/design-system';
 import useConfData from '@lib/hooks/use-conf-data';
 import FormError from '@lib/form-error';
 import useEmailQueryParam from '@lib/hooks/use-email-query-param';
 import { register } from '@lib/user-api';
 import { useCaptcha } from '../captcha';
 import { FormUI } from './FormUI';
-
-const { spacing, color, typography, background, breakpoints } = styles;
+import { Retry } from '@components/Retry';
 
 const Container = styled(motion.div)`
   position: relative;
-`;
-
-const ErrorAlert = styled.div`
-  background: ${background.lightest};
-  display: flex;
-  border: 1px solid ${color.negative};
-  border-radius: ${spacing.borderRadius.small}px;
-  overflow: hidden;
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-
-  flex-wrap: wrap;
-
-  @media (min-width: ${breakpoints[1]}px) {
-    flex-wrap: nowrap;
-  }
-`;
-const ErrorMessage = styled.div`
-  flex: 1 1 auto;
-  background: ${color.lightest};
-  color: ${color.negative};
-  font-size: ${typography.size.s2}px;
-  font-weight: ${typography.weight.bold};
-  line-height: 20px;
-  padding: 10px 15px;
-  text-align: center;
-
-  @media (min-width: ${breakpoints[1]}px) {
-    text-align: left;
-  }
-`;
-
-const RetryButton = styled(Button)`
-  background: ${color.negative};
-  color: ${color.lightest};
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: ${spacing.borderRadius.small}px;
-  border-bottom-right-radius: ${spacing.borderRadius.small}px;
-  flex: none;
-  width: 100%;
-
-  @media (min-width: ${breakpoints[1]}px) {
-    width: auto;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-right-radius: ${spacing.borderRadius.small}px;
-    border-bottom-right-radius: ${spacing.borderRadius.small}px;
-  }
-
-  &:hover {
-    background: ${color.negative};
-  }
-
-  &:active {
-    background: ${color.negative};
-  }
 `;
 
 type FormState = 'default' | 'loading' | 'error';
@@ -82,6 +21,12 @@ type RegistrationFormProps = {
   disableAnimation?: boolean;
 };
 
+const RetryAlert = styled(Retry)`
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+`;
+
 export const RegistrationForm = ({
   sharePage,
   disableAnimation,
@@ -90,7 +35,6 @@ export const RegistrationForm = ({
   const [email, setEmail] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [errorTryAgain, setErrorTryAgain] = useState(false);
-  const [focused, setFocused] = useState(false);
   const [formState, setFormState] = useState<FormState>('default');
   const { setPageState, setUserData } = useConfData();
   const router = useRouter();
@@ -200,31 +144,7 @@ export const RegistrationForm = ({
         handleRegister={handleRegister}
         captchaRef={captchaRef}
       />
-      {formState === 'error' && (
-        <ErrorAlert>
-          <ErrorMessage>{errorMsg}</ErrorMessage>
-          <RetryButton appearance="inverse" type="button" onClick={onTryAgainClick}>
-            Try Again
-          </RetryButton>
-        </ErrorAlert>
-      )}
-      {/* {formState === 'error' ? (
-        <ErrorAlert>
-          <ErrorMessage>{errorMsg}</ErrorMessage>
-          <RetryButton appearance="inverse" type="button" onClick={onTryAgainClick}>
-            Try Again
-          </RetryButton>
-        </ErrorAlert>
-      ) : (
-        <FormUI
-          email={email}
-          isLoading={formState === 'loading'}
-          onChange={value => setEmail(value)}
-          onSubmit={onSubmit}
-          handleRegister={handleRegister}
-          captchaRef={captchaRef}
-        />
-      )} */}
+      {formState === 'error' && <RetryAlert message={errorMsg} onTryAgain={onTryAgainClick} />}
     </Container>
   );
 };

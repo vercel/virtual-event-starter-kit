@@ -69,6 +69,7 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
     >
       <div ref={divRef}>
         <div className={styles['ticket-text']}>
+          {/* Title */}
           <h2 className={cn(styles.hero, styleUtils.appear, styleUtils['appear-first'])}>
             {sharePage ? (
               name ? (
@@ -95,6 +96,7 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
             )}
           </p>
         </div>
+        {/* Form (customization or sign up) */}
         <div className={cn(styleUtils.appear, styleUtils['appear-third'])}>
           {!sharePage ? (
             <TicketForm
@@ -107,6 +109,7 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
         </div>
       </div>
       <div className={styles['ticket-visual-wrapper']}>
+        {/* The actual ticket */}
         <div
           ref={ticketRef}
           className={cn(styles['ticket-visual'], styleUtils.appear, styleUtils['appear-fourth'])}
@@ -118,6 +121,7 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
             ticketGenerationState={ticketGenerationState}
           />
         </div>
+        {/* Ticket actions */}
         {!sharePage && (
           <>
             {username ? (

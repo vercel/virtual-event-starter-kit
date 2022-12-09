@@ -1,7 +1,7 @@
 {
-  "name": "Virtual Event Starter Kit",
-  "short_name": "Virtual Event Starter Kit",
-  "description": "Virtual Event Starter Kit -> https://demo.vercel.events",
+  "name": "Storybook Day",
+  "short_name": "Storybook Day",
+  "description": "Join us for an online event about the future of UI development with Storybook. See what’s new in 7.0, meet world-class frontend devs, and check out the leading projects in the community.",
   "display": "standalone",
   "start_url": "/",
   "theme_color": "#fff",

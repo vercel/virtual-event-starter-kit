@@ -24,7 +24,11 @@ export const parameters = {
     default: 'light',
     values: [
       { name: 'light', value: '#fff' },
-      { name: 'dark', value: '#171C23' }
+      { name: 'dark', value: '#171C23' },
+      {
+        name: 'gradient',
+        value: "center / cover no-repeat url('gradient-backdrop.svg')"
+      }
     ]
   },
   viewport: {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Ticket from './ticket';
 
 const meta: Meta<typeof Ticket> = {
-  title: 'Components/Ticket',
+  title: 'Pages/Ticket',
   component: Ticket,
   parameters: {
     layout: 'centered',
@@ -37,6 +37,13 @@ export const AllUserData: Story = {
 export const SharePage: Story = {
   args: {
     ...AllUserData.args,
+    sharePage: true
+  }
+};
+
+export const SharePageNoName: Story = {
+  args: {
+    username: 'rashy',
     sharePage: true
   }
 };

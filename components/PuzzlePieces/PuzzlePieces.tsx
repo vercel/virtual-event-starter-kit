@@ -60,12 +60,12 @@ function Rig() {
 
 const Container = styled.div`
   /* account for nav height */
-  height: calc(100vh - 72px);
+  height: calc(60vh);
   position: relative;
   background: var(--bg-blue);
 
   @supports (height: 100svh) {
-    height: calc(100svh - 72px);
+    height: calc(60svh);
   }
 `;
 
@@ -77,6 +77,14 @@ const Scrim = styled.div`
   right: 0;
   left: 0;
 `;
+
+/**
+ * TODO
+ * Depth effect
+ * Physics + spin
+ * have it as backdrop with transparent canvas and be able to see all the blocks on camera
+ * slower rotation
+ */
 
 export const PuzzlePieces = () => {
   const [variant, setVariant] = useState<'initial' | 'expand'>('initial');
@@ -97,7 +105,7 @@ export const PuzzlePieces = () => {
         <motion.group
           animate={variant === 'expand' ? { rotateY: [0, Math.PI * 2] } : {}}
           transition={{
-            duration: 16,
+            duration: 16 * 4,
             ease: 'linear',
             repeat: Infinity
           }}
@@ -144,7 +152,7 @@ export const PuzzlePieces = () => {
             </motion.group>
           ))}
         </motion.group>
-        <Rig />
+        {/* <Rig /> */}
       </Canvas>
       <Scrim />
     </Container>
