@@ -1,58 +1,90 @@
+import { useEffect, useRef, useState } from 'react';
 import { styled } from '@storybook/theming';
-import { styles } from '@storybook/components-marketing';
-import { Button, Icon } from '@storybook/design-system';
+import { Button, Icon, Clipboard } from '@storybook/design-system';
+import { SITE_URL, TWEET_TEXT } from '@lib/constants';
+import { useRouter } from 'next/router';
 
-const { marketing, breakpoints, pageMargins } = styles;
+const Wrapper = styled.div`
+  display: flex;
+  gap: 10px;
+`;
 
-const Title = styled.h1`
-  ${marketing.hero2};
-  background-size: 100%;
-  background-image: linear-gradient(
-    290deg,
-    hsl(271deg 59% 42%) 0%,
-    hsl(209deg 100% 44%) 20%,
-    hsl(198deg 100% 45%) 29%,
-    hsl(184deg 100% 42%) 36%,
-    hsl(165deg 66% 54%) 43%,
-    hsl(108deg 54% 63%) 50%,
-    hsl(57deg 72% 47%) 57%,
-    hsl(36deg 100% 55%) 64%,
-    hsl(20deg 100% 63%) 71%,
-    hsl(358deg 100% 68%) 80%,
-    hsl(340deg 100% 64%) 100%
+interface TicketActionsProps {
+  username: string;
+}
+
+export const TicketActions = ({ username }: TicketActionsProps) => {
+  const [imgReady, setImgReady] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const downloadLink = useRef<HTMLAnchorElement>();
+  const router = useRouter();
+  const permalink = encodeURIComponent(`${SITE_URL}/tickets/${username}`);
+  const text = encodeURIComponent(TWEET_TEXT);
+  const tweetUrl = `https://twitter.com/intent/tweet?url=${permalink}&via=storybookjs&text=${text}`;
+  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${permalink}`;
+  const downloadUrl = `/api/ticket-images/${username}`;
+  const copyUrl = `${SITE_URL}/tickets/${username}`;
+
+  useEffect(() => {
+    setImgReady(false);
+
+    const img = new Image();
+
+    img.src = downloadUrl;
+    img.onload = () => {
+      setImgReady(true);
+      setLoading(false);
+      if (downloadLink.current) {
+        downloadLink.current.click();
+        downloadLink.current = undefined;
+      }
+    };
+  }, [downloadUrl]);
+
+  return (
+    <Wrapper>
+      <Clipboard
+        toCopy={copyUrl}
+        copyOptions={{
+          onCopy: () => {
+            router.push(`/tickets/${username}`);
+          }
+        }}
+      >
+        <Button appearance="inverseSecondary" size="medium">
+          <Icon icon="copy" /> Copy URL
+        </Button>
+      </Clipboard>
+      <Button
+        appearance="inverseSecondary"
+        size="medium"
+        isLink
+        rel="noopener noreferrer"
+        target="_blank"
+        href={tweetUrl}
+      >
+        <Icon icon="twitter" /> Tweet ticket
+      </Button>
+      <Button
+        appearance="inverseSecondary"
+        size="medium"
+        isLink
+        rel="noopener noreferrer"
+        target="_blank"
+        href={linkedInUrl}
+      >
+        <Icon icon="linkedin" /> Share on LinkedIn
+      </Button>
+      <Button
+        appearance="inverseSecondary"
+        size="medium"
+        isLink
+        rel="noopener noreferrer"
+        target="_blank"
+        href={loading ? undefined : downloadUrl}
+      >
+        <Icon icon="download" /> Download
+      </Button>
+    </Wrapper>
   );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-
-  @media (min-width: ${breakpoints[0]}px) {
-    ${marketing.hero1};
-  }
-`;
-
-const Subtitle = styled.div`
-  ${marketing.textLarge};
-`;
-
-interface TicketActionsProps {}
-
-export const TicketActions = ({}: TicketActionsProps) => (
-  <div>
-    {/* Ticket actions */}
-    <Button appearance="secondary" size="medium">
-      <Icon icon="github" /> Customize your ticket
-    </Button>
-    {/* {!sharePage && (
-      <>
-        {username ? (
-          <div>
-            <TicketActions username={username} />
-            <TicketCopy username={username} />
-          </div>
-        ) : (
-          <div className="styles['ticket-actions-placeholder']" />
-        )}
-      </>
-    )} */}
-  </div>
-);
+};

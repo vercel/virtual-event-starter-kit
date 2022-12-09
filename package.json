@@ -28,7 +28,7 @@
     "@splinetool/loader": "^0.9.149",
     "@splinetool/r3f-spline": "^1.0.2",
     "@storybook/components-marketing": "2.0.42--canary.57.a74b27b.0",
-    "@storybook/design-system": "^7.9.2",
+    "@storybook/design-system": "^7.10.0",
     "@storybook/nextjs": "7.0.0-alpha.53",
     "@storybook/theming": "^7.0.0-alpha.61",
     "@supabase/supabase-js": "^1.35.4",

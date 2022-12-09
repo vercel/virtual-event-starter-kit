@@ -23,10 +23,7 @@ import isMobileOrTablet from '@lib/is-mobile-or-tablet';
 import { scrollTo } from '@lib/smooth-scroll';
 import styles from './ticket.module.css';
 import styleUtils from '../utils.module.css';
-import TicketForm from './ticket-form';
 import TicketVisual from './ticket-visual';
-import TicketActions from './ticket-actions';
-import TicketCopy from './ticket-copy';
 import { DATE, SITE_NAME } from '@lib/constants';
 import Form from '../remove/form';
 
@@ -96,17 +93,6 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
             )}
           </p>
         </div>
-        {/* Form (customization or sign up) */}
-        <div className={cn(styleUtils.appear, styleUtils['appear-third'])}>
-          {!sharePage ? (
-            <TicketForm
-              defaultUsername={username}
-              setTicketGenerationState={setTicketGenerationState}
-            />
-          ) : (
-            <Form sharePage />
-          )}
-        </div>
       </div>
       <div className={styles['ticket-visual-wrapper']}>
         {/* The actual ticket */}
@@ -121,23 +107,6 @@ export default function Ticket({ username, name, ticketNumber, sharePage }: Prop
             ticketGenerationState={ticketGenerationState}
           />
         </div>
-        {/* Ticket actions */}
-        {!sharePage && (
-          <>
-            {username ? (
-              <div>
-                <div className={styles['ticket-actions']}>
-                  <TicketActions username={username} />
-                </div>
-                <div className={styles['ticket-copy']}>
-                  <TicketCopy username={username} />
-                </div>
-              </div>
-            ) : (
-              <div className={styles['ticket-actions-placeholder']} />
-            )}
-          </>
-        )}
       </div>
     </div>
   );

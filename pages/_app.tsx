@@ -20,10 +20,11 @@ import '@styles/nprogress.css';
 import '@styles/chrome-bug.css';
 import '@reach/skip-nav/styles.css';
 import type { AppProps } from 'next/app';
+import { global } from '@storybook/design-system';
 import NProgress from '@components/nprogress';
 import ResizeHandler from '@components/resize-handler';
 import { HMSRoomProvider } from '@100mslive/react-sdk';
-import { global } from '@storybook/design-system';
+import { Analytics } from '@components/Analytics';
 const { GlobalStyle } = global;
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -35,6 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
           <ResizeHandler />
           <NProgress />
+          <Analytics />
         </HMSRoomProvider>
       </OverlayProvider>
     </SSRProvider>

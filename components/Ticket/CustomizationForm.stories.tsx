@@ -5,7 +5,8 @@ const meta: Meta<typeof CustomizationForm> = {
   title: 'Pages/TicketPage/CustomizationForm',
   component: CustomizationForm,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
+    backgrounds: { default: 'gradient' }
   }
 };
 

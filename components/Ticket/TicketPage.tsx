@@ -1,19 +1,3 @@
-/**
- * Copyright 2020 Vercel Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import Tilt from 'vanilla-tilt';
 import { useRef, useEffect, useState } from 'react';
 import { UserData } from '@lib/hooks/use-conf-data';
@@ -70,6 +54,10 @@ const Divider = styled.hr`
 const CustomizationContainer = styled.div`
   margin-top: 1.5rem;
   margin-bottom: 1rem;
+`;
+
+const StyledRegistrationForm = styled(RegistrationForm)`
+  max-width: 400px;
 `;
 
 export const TicketPage = ({ username, name, ticketNumber, sharePage }: TicketPageProps) => {
@@ -133,36 +121,16 @@ export const TicketPage = ({ username, name, ticketNumber, sharePage }: TicketPa
               setTicketGenerationState={setTicketGenerationState}
             />
           ) : (
-            <RegistrationForm sharePage />
+            <StyledRegistrationForm sharePage />
           )}
         </CustomizationContainer>
-        <FreeStickers />
-        <Divider />
-        {/* Ticket actions */}
-        {/* <div>
-        <Title>
-          {sharePage ? (
-            name ? (
-              <>{name}’s Ticket</>
-            ) : (
-              <>{SITE_NAME}</>
-            )
-          ) : (
-            <>
-              You're in. <br /> Make it unique.
-            </>
-          )}
-        </Title>
-        <p>
-          {sharePage ? (
-            <>
-              Join {name ?? 'them'} on {DATE}.
-            </>
-          ) : (
-            <>Generate a unique ticket image with your GitHub profile.</>
-          )}
-        </p>
-      </div> */}
+        {!username && <FreeStickers />}
+        {!sharePage && username && (
+          <>
+            <Divider />
+            <TicketActions username={username} />
+          </>
+        )}
       </div>
     </Wrapper>
   );

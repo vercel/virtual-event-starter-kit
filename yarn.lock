@@ -3625,6 +3625,27 @@
     lodash "^4.17.15"
     type-fest "^2.19.0"
 
+"@storybook/design-system@^7.10.0":
+  version "7.10.0"
+  resolved "https://registry.yarnpkg.com/@storybook/design-system/-/design-system-7.10.0.tgz#de97ef09824695f5b16432d86b1b026013232259"
+  integrity sha512-EMFbXEHnNfKa4FequocWomujvbBOH5yEdclCln4pwu/srLxy3mcxdByN79Xc/FTP9PPagubzMp7GQThU/bFnhw==
+  dependencies:
+    "@emotion/weak-memoize" "^0.2.5"
+    "@storybook/theming" "^6.5.9"
+    "@types/pluralize" "^0.0.29"
+    "@types/prismjs" "^1.16.6"
+    "@types/react-modal" "^3.12.1"
+    "@types/uuid" "^8.3.1"
+    copy-to-clipboard "^3.3.1"
+    human-format "^0.11.0"
+    pluralize "^8.0.0"
+    polished "^3.6.4"
+    prismjs "1.25.0"
+    react-github-button "^0.1.11"
+    react-modal "^3.11.2"
+    react-popper-tooltip "^2.11.1"
+    uuid "^3.3.3"
+
 "@storybook/design-system@^7.9.2":
   version "7.9.2"
   resolved "https://registry.yarnpkg.com/@storybook/design-system/-/design-system-7.9.2.tgz#50c8dc85cf8ad6caf6dfe6949baa57a8723c70af"
