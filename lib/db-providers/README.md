@@ -38,5 +38,5 @@ If you do not want to maintain a Redis server, you can use [Upstash](https://up
 
 - If you haven't already, [create a Supabase account](https://app.supabase.com/) and project.
 - Within your project, navigate to the [SQL editor](https://app.supabase.com/project/_/sql) and create a "New query".
-- Copy the SQL from [supabase/schema.sql](https://github.com/vercel/virtual-event-starter-kit/blob/main/lib/db-providers/schema.sql) and paste it into the Supabase SQL editor and click run.
+- Copy the SQL from [supabase/schema.sql](https://github.com/vercel/virtual-event-starter-kit/blob/main/lib/db-providers/supabase/schema.sql) and paste it into the Supabase SQL editor and click run.
 - Navigate to the [API settings](https://app.supabase.com/project/_/settings/api) and copy the project URL and service role key (make sure to keep it secret) to your env variables.
