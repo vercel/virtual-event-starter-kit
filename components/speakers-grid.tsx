@@ -41,6 +41,7 @@ export default function SpeakersGrid({ speakers }: Props) {
                 blurDataURL={speaker.image.blurDataURL}
                 width={300}
                 height={300}
+                layout="responsive"
               />
             </div>
             <div className={styles.cardBody}>
