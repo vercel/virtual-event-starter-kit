@@ -7,7 +7,7 @@
   "homepage": "https://demo.vercel.events",
   "license": "Apache-2.0",
   "engines": {
-    "node": "^14"
+    "node": "^18"
   },
   "scripts": {
     "dev": "next",
