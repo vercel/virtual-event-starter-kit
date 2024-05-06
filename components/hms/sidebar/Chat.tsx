@@ -27,15 +27,15 @@ const Chat = () => {
         {msgs.length > 0 ? (
           msgs.map(m => (
             <div key={m.id} className="flex items-start w-full mb-5 relative">
-              <Avatar name={m.sender === localPeer.id ? localPeer.name : m.senderName} />
+              <Avatar name={m.sender === localPeer?.id ? localPeer?.name : m.senderName} />
               <div className="flex flex-col flex-grow">
                 <div className="w-full flex  items-center font-medium pl-2">
                   <span className="text-foreground">
-                    {m.sender === localPeer.id ? localPeer.name : m.senderName}
+                    {m.sender === localPeer?.id ? localPeer?.name : m.senderName}
                   </span>
                   {m.senderRole === 'stage' || m.senderRole === 'backstage' ? (
                     <Badge
-                      isLocal={m.sender === localPeer.id}
+                      isLocal={m.sender === localPeer?.id}
                       isMod={m.senderRole === 'backstage'}
                     />
                   ) : null}
@@ -45,10 +45,10 @@ const Chat = () => {
                 </div>
                 <div className="pl-2 text-gray-200 break-words w-[220px] mt-1">{m.message}</div>
               </div>
-              {localPeer.roleName === 'stage' || localPeer.roleName === 'backstage' ? (
+              {localPeer?.roleName === 'stage' || localPeer?.roleName === 'backstage' ? (
                 <div className="absolute top-0 right-0">
-                  {localPeer.id !== m.sender ? (
-                    <Dropdown role={m.senderRole || 'viewer'} id={m.sender} />
+                  {localPeer?.id !== m.sender ? (
+                    <Dropdown role={m.senderRole || 'viewer'} id={m.sender || 'senderRole'} />
                   ) : null}
                 </div>
               ) : null}

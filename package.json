@@ -1,15 +1,20 @@
 {
   "private": true,
+  "repository": "vercel/virtual-event-starter-kit",
+  "author": "Vercel Inc.",
+  "homepage": "https://demo.vercel.events",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "dev": "next",
     "start": "next start",
     "build": "next build"
   },
   "dependencies": {
-    "@100mslive/hms-video": "^0.9.28",
-    "@100mslive/hms-video-store": "^0.12.9",
-    "@100mslive/react-icons": "^0.0.6",
-    "@100mslive/react-sdk": "^0.0.6",
+    "@100mslive/react-icons": "^0.10.9",
+    "@100mslive/react-sdk": "^0.10.9",
     "@agility/content-fetch": "1.1.1",
     "@agility/content-sync": "1.0.3",
     "@hcaptcha/react-hcaptcha": "^0.3.7",

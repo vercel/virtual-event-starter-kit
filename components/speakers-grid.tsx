@@ -26,7 +26,7 @@ type Props = {
 export default function SpeakersGrid({ speakers }: Props) {
   return (
     <div className={styles.grid}>
-      {speakers.map(speaker => (
+      {speakers?.map(speaker => (
         <Link
           key={speaker.name}
           href={`/speakers/${speaker.slug}`}
