@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   return {
     props: {
-      jobs
+      jobs: jobs || []
     },
     revalidate: 60
   };

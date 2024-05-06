@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   return {
     props: {
-      sponsors
+      sponsors: sponsors || []
     },
     revalidate: 60
   };

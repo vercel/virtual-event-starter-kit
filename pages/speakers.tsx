@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   return {
     props: {
-      speakers
+      speakers: speakers || []
     },
     revalidate: 60
   };

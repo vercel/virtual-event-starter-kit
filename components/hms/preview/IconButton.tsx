@@ -1,4 +1,6 @@
-const IconButton: React.FC<{ active?: boolean; onClick?: () => void }> = ({
+import React, { PropsWithChildren } from "react";
+
+const IconButton: React.FC<{ active?: boolean; onClick?: () => void } & PropsWithChildren> = ({
   active = false,
   onClick,
   children

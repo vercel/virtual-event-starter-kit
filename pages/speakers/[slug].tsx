@@ -46,7 +46,7 @@ export default function SpeakerPage({ speaker }: Props) {
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = params?.slug;
   const speakers = await getAllSpeakers();
-  const currentSpeaker = speakers.find((s: Speaker) => s.slug === slug) || null;
+  const currentSpeaker = speakers?.find((s: Speaker) => s.slug === slug) || null;
 
   if (!currentSpeaker) {
     return {
@@ -64,7 +64,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const speakers = await getAllSpeakers();
-  const slugs = speakers.map((s: Speaker) => ({ params: { slug: s.slug } }));
+  const slugs = speakers?.map((s: Speaker) => ({ params: { slug: s.slug } })) || [];
 
   return {
     paths: slugs,

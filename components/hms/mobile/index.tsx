@@ -11,7 +11,7 @@ import VideoTile from '../VideoTile';
 import ScreenshareTile from '../ScreenshareTile';
 import { hmsConfig } from '../config';
 
-const MobileView: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
+const MobileView: React.FC<{ activePeer?: HMSPeer; allPeers: HMSPeer[] }> = ({
   activePeer,
   allPeers
 }) => {
@@ -30,12 +30,12 @@ const MobileView: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
   );
 };
 
-const VideoList: React.FC<{ peer: HMSPeer }> = ({ peer }) => {
+const VideoList: React.FC<{ peer?: HMSPeer }> = ({ peer }) => {
   const { pagesWithTiles, ref } = useVideoList({
     maxColCount: 1,
     maxRowCount: 1,
     maxTileCount: 1,
-    peers: [peer],
+    peers: peer? [peer]: [],
     aspectRatio: hmsConfig.aspectRatio
   });
   return (

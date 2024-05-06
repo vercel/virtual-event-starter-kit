@@ -2,13 +2,13 @@ import React from 'react';
 import { getAvatarBg } from './lib/getAvatarBg';
 
 interface Props {
-  name: string;
+  name?: string;
   className?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   customSize?: number;
 }
 
-const Avatar: React.FC<Props> = ({ name, className = '', size = 'sm', customSize = 0 }) => {
+const Avatar: React.FC<Props> = ({ name = '', className = '', size = 'sm', customSize = 0 }) => {
   const { initials, color } = getAvatarBg(name);
   const sizeClass = {
     sm: 'w-8 h-8 text-xs',

@@ -11,7 +11,7 @@ const Participants = () => {
   const localPeer = useHMSStore(selectLocalPeer);
   return (
     <div className="h-full p-4 overflow-y-scroll text-foreground">
-      {backstagePeers.length > 0 && localPeer.roleName === 'backstage' ? (
+      {backstagePeers.length > 0 && localPeer?.roleName === 'backstage' ? (
         <>
           <div>
             <p>Moderator ({backstagePeers.length})</p>
@@ -37,9 +37,9 @@ const Participants = () => {
             <div key={p.id} className="flex items-center my-4">
               <Avatar name={p.name} />
               <div className="grow ml-4">
-                {p.name} {p.id !== localPeer.id ? null : '(You)'}
+                {p.name} {p.id !== localPeer?.id ? null : '(You)'}
               </div>
-              {p.id !== localPeer.id ? <Dropdown role={p.roleName || 'viewer'} id={p.id} /> : null}
+              {p.id !== localPeer?.id ? <Dropdown role={p.roleName || 'viewer'} id={p.id} /> : null}
             </div>
           ))}
           <Divider />
@@ -53,9 +53,9 @@ const Participants = () => {
             <div key={p.id} className="flex items-center my-4">
               <Avatar name={p.name} />
               <div className="grow ml-4">
-                {p.name} {p.id !== localPeer.id ? null : '(You)'}
+                {p.name} {p.id !== localPeer?.id ? null : '(You)'}
               </div>
-              {localPeer.roleName === 'stage' || localPeer.roleName === 'backstage' ? (
+              {localPeer?.roleName === 'stage' || localPeer?.roleName === 'backstage' ? (
                 <Dropdown id={p.id} role={p.roleName || 'viewer'} />
               ) : null}
             </div>
