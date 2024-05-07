@@ -48,38 +48,37 @@ export default function TalkCard({ talk: { title, speaker, start, end }, showTim
   return (
     <div key={title} className={styles.talk}>
       {showTime && <p className={styles.time}>{startAndEndTime || <>&nbsp;</>}</p>}
-      <Link href={firstSpeakerLink}>
-        <a
-          className={cn(styles.card, {
-            [styles['is-live']]: isTalkLive
-          })}
-        >
-          <div className={styles['card-body']}>
-            <h4 title={title} className={styles.title}>
-              {title}
-            </h4>
-            <div className={styles.speaker}>
-              <div className={styles['avatar-group']}>
-                {speaker.map(s => (
-                  <div key={s.name} className={styles['avatar-wrapper']}>
-                    <Image
-                      loading="lazy"
-                      alt={s.name}
-                      className={styles.avatar}
-                      src={s.image.url}
-                      title={s.name}
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                ))}
-              </div>
-              <h5 className={styles.name}>
-                {speaker.length === 1 ? speaker[0].name : `${speaker.length} speakers`}
-              </h5>
+      <Link
+        href={firstSpeakerLink}
+        className={cn(styles.card, {
+          [styles['is-live']]: isTalkLive
+        })}
+      >
+        <div className={styles['card-body']}>
+          <h4 title={title} className={styles.title}>
+            {title}
+          </h4>
+          <div className={styles.speaker}>
+            <div className={styles['avatar-group']}>
+              {speaker.map(s => (
+                <div key={s.name} className={styles['avatar-wrapper']}>
+                  <Image
+                    loading="lazy"
+                    alt={s.name}
+                    className={styles.avatar}
+                    src={s.image.url}
+                    title={s.name}
+                    width={24}
+                    height={24}
+                  />
+                </div>
+              ))}
             </div>
+            <h5 className={styles.name}>
+              {speaker.length === 1 ? speaker[0].name : `${speaker.length} speakers`}
+            </h5>
           </div>
-        </a>
+        </div>
       </Link>
     </div>
   );

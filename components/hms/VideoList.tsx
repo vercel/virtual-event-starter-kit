@@ -40,11 +40,11 @@ const VideoList = () => {
     if (dominantSpeaker) {
       peerFilter(dominantSpeaker);
     } else {
-      if (localPeer.roleName === 'viewer' && stagePeers.length > 0) {
+      if (localPeer?.roleName === 'viewer' && stagePeers.length > 0) {
         setActiveSpeaker(stagePeers[0]);
       }
     }
-  }, [dominantSpeaker, stagePeers, localPeer.roleName]);
+  }, [dominantSpeaker, stagePeers, localPeer?.roleName]);
   const isSomeoneScreenSharing = useHMSStore(selectIsSomeoneScreenSharing);
 
   return (
@@ -97,14 +97,14 @@ const NonActiveSpeakerView: React.FC<{ peers: HMSPeer[] }> = ({ peers }) => {
   );
 };
 
-const ActiveSpeaker: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
+const ActiveSpeaker: React.FC<{ activePeer?: HMSPeer; allPeers: HMSPeer[] }> = ({
   allPeers,
   activePeer
 }) => {
   const isSomeoneScreenSharing = useHMSStore(selectIsSomeoneScreenSharing);
   const peers = isSomeoneScreenSharing
     ? allPeers
-    : allPeers.filter(peer => peer.id !== activePeer.id);
+    : allPeers.filter(peer => peer.id !== activePeer?.id);
   return (
     <>
       {isSomeoneScreenSharing ? <ScreenshareTile /> : <ActiveTile activePeer={activePeer} />}
@@ -113,10 +113,10 @@ const ActiveSpeaker: React.FC<{ activePeer: HMSPeer; allPeers: HMSPeer[] }> = ({
   );
 };
 
-const ActiveTile: React.FC<{ activePeer: HMSPeer }> = ({ activePeer }) => {
+const ActiveTile: React.FC<{ activePeer?: HMSPeer }> = ({ activePeer }) => {
   const { pagesWithTiles, ref } = useVideoList({
     maxTileCount: 1,
-    peers: [activePeer],
+    peers: activePeer ? [activePeer]: [],
     aspectRatio: hmsConfig.aspectRatio
   });
   return (

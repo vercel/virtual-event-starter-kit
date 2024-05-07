@@ -46,7 +46,7 @@ export default function StagePage({ stage, allStages }: Props) {
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = params?.slug;
   const stages = await getAllStages();
-  const stage = stages.find((s: Stage) => s.slug === slug) || null;
+  const stage = stages?.find((s: Stage) => s.slug === slug) || null;
 
   if (!stage) {
     return {
@@ -65,8 +65,9 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const stages = await getAllStages();
-  const slugs = stages.map((s: Stage) => ({ params: { slug: s.slug } }));
+  const slugs = stages?.map((s: Stage) => ({ params: { slug: s.slug } })) || [];
 
+  console.log({ slugs });
   return {
     paths: slugs,
     fallback: false

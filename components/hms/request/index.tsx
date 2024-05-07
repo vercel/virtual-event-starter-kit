@@ -11,7 +11,7 @@ import {
   MicOffIcon,
   VideoOnIcon,
   VideoOffIcon,
-  SettingIcon,
+  SettingsIcon,
   ArrowRightIcon,
   CrossIcon
 } from '@100mslive/react-icons';
@@ -202,7 +202,7 @@ const GuestPreview: React.FC<{ roleChange: (b: boolean) => void }> = ({ roleChan
             />
             <Dialog.Trigger asChild>
               <IconButton>
-                <SettingIcon />
+                <SettingsIcon />
               </IconButton>
             </Dialog.Trigger>
             <Dialog.Content className="dialog-content bg-gray-700 md:w-[520px] rounded-2xl w-[90%]  dialog-animation ">

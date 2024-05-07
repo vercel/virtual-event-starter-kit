@@ -46,7 +46,7 @@ export default function SponsorPage({ sponsor }: Props) {
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = params?.slug;
   const sponsors = await getAllSponsors();
-  const sponsor = sponsors.find((s: Sponsor) => s.slug === slug) || null;
+  const sponsor = sponsors?.find((s: Sponsor) => s.slug === slug) || null;
 
   if (!sponsor) {
     return {
@@ -64,7 +64,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const sponsors = await getAllSponsors();
-  const slugs = sponsors.map((s: Sponsor) => ({ params: { slug: s.slug } }));
+  const slugs = sponsors?.map((s: Sponsor) => ({ params: { slug: s.slug } })) || [];
 
   return {
     paths: slugs,

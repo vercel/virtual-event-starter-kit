@@ -28,23 +28,21 @@ type Props = {
 export default function SponsorSection({ sponsor }: Props) {
   return (
     <>
-      <Link href="/expo">
-        <a className={styles.backlink}>
-          <svg
-            viewBox="0 0 24 24"
-            width="24"
-            height="24"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-            shapeRendering="geometricPrecision"
-          >
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-          Back to expo
-        </a>
+      <Link href="/expo" className={styles.backlink}>
+        <svg
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          shapeRendering="geometricPrecision"
+        >
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+        Back to expo
       </Link>
       <div className={styles.layout}>
         <iframe

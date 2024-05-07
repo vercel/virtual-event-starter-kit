@@ -7,7 +7,7 @@ import {
   selectRoomState,
   hooksErrHandler
 } from '@100mslive/react-sdk';
-import { HMSConfig } from '@100mslive/hms-video';
+import { HMSConfig } from '@100mslive/react-sdk';
 
 export interface usePreviewInput {
   /**

@@ -12,7 +12,7 @@ import {
   MicOffIcon,
   MicOnIcon,
   ShareScreenIcon,
-  SettingIcon
+  SettingsIcon
 } from '@100mslive/react-icons';
 import React from 'react';
 import ControlButton from './ControlButton';
@@ -55,7 +55,7 @@ const Footer = () => {
 
       <SettingDialog>
         <ControlButton text="Setting" onClick={() => {}}>
-          <SettingIcon />
+          <SettingsIcon />
         </ControlButton>
       </SettingDialog>
       {role?.name !== 'viewer' ? <LeaveDialog /> : null}

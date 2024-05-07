@@ -37,23 +37,21 @@ type Props = {
 export default function SpeakerSection({ speaker }: Props) {
   return (
     <>
-      <Link href="/speakers">
-        <a className={styles.backlink}>
-          <svg
-            viewBox="0 0 24 24"
-            width="24"
-            height="24"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-            shapeRendering="geometricPrecision"
-          >
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-          Back to speakers
-        </a>
+      <Link href="/speakers" className={styles.backlink}>
+        <svg
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          shapeRendering="geometricPrecision"
+        >
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+        Back to speakers
       </Link>
       <div key={speaker.name} className={styles.container}>
         <div style={{ minWidth: '300px' }}>

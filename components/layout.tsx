@@ -54,11 +54,10 @@ export default function Layout({
           <header className={cn(styles.header)}>
             <div className={styles['header-logos']}>
               <MobileMenu key={router.asPath} />
-              <Link href="/">
+              <Link href="/" className={styles.logo}>
                 {/* eslint-disable-next-line */}
-                <a className={styles.logo}>
-                  <Logo />
-                </a>
+
+                <Logo />
               </Link>
             </div>
             <div className={styles.tabs}>
